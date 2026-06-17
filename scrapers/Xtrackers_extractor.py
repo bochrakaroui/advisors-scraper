@@ -1,20 +1,7 @@
-"""
-Xtrackers ETF List Downloader
-=============================
-Downloads the Xtrackers export file from:
-  https://etf.dws.com/en-gb/product-finder/?AssetClasses=Commodities,Equities,Fixed+Income,Multi+Asset
-
-Strategy:
-  1. Open the real product-finder page in Playwright.
-  2. Scroll the actual "Download data (XLSX)" link into view.
-  3. Read the hydrated anchor href from the DOM.
-  4. If the page never hydrates the href, build the same query shape manually.
-  5. Download the file through the browser context so cookies/referer are preserved.
-"""
+"""Download the Xtrackers ETF export workbook."""
 
 import asyncio
 import json
-import os
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import parse_qs, quote, urljoin, urlparse
@@ -23,12 +10,13 @@ from playwright.async_api import async_playwright
 
 
 PAGE_URL = "https://etf.dws.com/en-gb/product-finder/?AssetClasses=Commodities,Equities,Fixed+Income,Multi+Asset"
-OUTPUT_DIR = Path("./xtrackers_downloads")
+BASE_DIR = Path(__file__).resolve().parents[1]
+OUTPUT_DIR = BASE_DIR / "providers" / "xtrackers" / "xtrackers_downloads"
 TIMEOUT_MS = 90_000
 
 
 def build_output_path() -> Path:
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     return OUTPUT_DIR / f"xtrackers_etf_export_{timestamp}.xlsx"
 
@@ -37,7 +25,6 @@ def build_fallback_export_url(page_url: str) -> str:
     parsed = urlparse(page_url)
     asset_classes_raw = parse_qs(parsed.query).get("AssetClasses", [""])[0]
     if not asset_classes_raw:
-        # The SPA may drop the original query params from page.url after hydration.
         asset_classes_raw = parse_qs(urlparse(PAGE_URL).query).get("AssetClasses", [""])[0]
 
     asset_classes = [value.strip().replace("+", " ") for value in asset_classes_raw.split(",") if value.strip()]

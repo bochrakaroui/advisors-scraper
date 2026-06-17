@@ -1,20 +1,4 @@
-"""
-iShares ETF List Downloader
-===========================
-Downloads the full ETF list (xlsx) from:
-  https://www.ishares.com/uk/individual/en/products/etf-investments
-
-How it works:
-  1. Opens the page in a headless Chromium browser via Playwright
-  2. Accepts the terms and conditions wall if it appears
-  3. Waits for the ETF table and download controls to render
-  4. Clicks the DOWNLOAD button and selects the all-ETFs option
-  5. Saves the downloaded file into the OUTPUT_DIR folder
-
-Requirements:
-  pip install playwright
-  python -m playwright install chromium
-"""
+"""Download the full iShares ETF workbook."""
 
 import asyncio
 import os
@@ -33,7 +17,8 @@ URL = (
     "&dataView=keyFacts&keyFacts=all"
 )
 
-OUTPUT_DIR = Path("./ishares_downloads")
+BASE_DIR = Path(__file__).resolve().parents[1]
+OUTPUT_DIR = BASE_DIR / "providers" / "ishares" / "ishares_downloads"
 TIMEOUT_MS = 60_000
 
 
@@ -49,11 +34,7 @@ async def click_with_fallback(locator: Locator, label: str) -> None:
         await locator.click(timeout=10_000, force=True)
 
 
-async def find_first_visible_locator(
-    page,
-    selectors: list[tuple[str, Locator]],
-    timeout_ms: int = 5_000,
-) -> Locator:
+async def find_first_visible_locator(selectors: list[tuple[str, Locator]], timeout_ms: int = 5_000) -> Locator:
     for label, locator in selectors:
         try:
             await locator.wait_for(state="visible", timeout=timeout_ms)
@@ -61,20 +42,6 @@ async def find_first_visible_locator(
             return locator
         except Exception:
             continue
-
-    print("    Could not find a visible locator. Download-related elements seen:")
-    debug_nodes = page.locator("button, a, div, span")
-    total = min(await debug_nodes.count(), 200)
-    matches: list[str] = []
-    for index in range(total):
-        text = (await debug_nodes.nth(index).inner_text()).strip()
-        if "download" in text.lower():
-            matches.append(text.replace("\n", " "))
-        if len(matches) >= 10:
-            break
-
-    for match in matches:
-        print(f"      - {match}")
 
     raise TimeoutError("No visible matching locator found")
 
@@ -176,7 +143,7 @@ async def save_response_to_disk(response) -> Path:
 
 
 async def download_etf_list() -> Path:
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(
@@ -223,7 +190,6 @@ async def download_etf_list() -> Path:
 
         print("[4/5] Clicking DOWNLOAD button ...")
         download_btn = await find_first_visible_locator(
-            page,
             [
                 (
                     "screener-download-funds button.download-button",
@@ -253,7 +219,6 @@ async def download_etf_list() -> Path:
         await page.wait_for_timeout(1_000)
 
         all_etfs_option = await find_first_visible_locator(
-            page,
             [
                 (
                     "overlay menuitem DOWNLOAD ALL FUNDS (XLS)",

@@ -1,20 +1,4 @@
-"""
-Amundi ETF List Downloader
-==========================
-Downloads the ETF search export file from:
-  https://www.amundietf.co.uk/en/professional/etf-products/search
-
-How it works:
-  1. Opens the live ETF finder in Playwright
-  2. Selects the professional-investor disclaimer path
-  3. Clicks the visible Download control
-  4. Captures the XLSX blob generated in the browser
-  5. Saves the file into ./amundi_downloads
-
-Requirements:
-  pip install playwright
-  python -m playwright install chromium
-"""
+"""Download the Amundi ETF export workbook."""
 
 import asyncio
 from datetime import datetime
@@ -24,7 +8,8 @@ from playwright.async_api import Locator, TimeoutError as PlaywrightTimeoutError
 
 
 URL = "https://www.amundietf.co.uk/en/professional/etf-products/search"
-OUTPUT_DIR = Path("./amundi_downloads")
+BASE_DIR = Path(__file__).resolve().parents[1]
+OUTPUT_DIR = BASE_DIR / "providers" / "amundi" / "amundi_downloads"
 TIMEOUT_MS = 120_000
 
 INIT_SCRIPT = """
@@ -44,7 +29,7 @@ INIT_SCRIPT = """
 
 
 def build_output_path() -> Path:
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     return OUTPUT_DIR / f"amundi_etf_export_{timestamp}.xlsx"
 
@@ -139,7 +124,7 @@ async def wait_for_blob_bytes(page) -> bytes | None:
 
 
 async def download_amundi_file() -> Path:
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(

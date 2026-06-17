@@ -1,21 +1,4 @@
-"""
-Invesco ETF List Downloader
-===========================
-Downloads the Invesco UK ETF listing file from:
-  https://www.invesco.com/uk/en/financial-products/etfs.html
-
-How it works:
-  1. Opens the live ETF page in Playwright
-  2. Removes the country splash that blocks interaction
-  3. Captures the page's own share-class dataset response
-  4. Clicks the real "Download all data" control
-  5. Saves the downloaded workbook if the site emits one
-  6. Falls back to generating an XLSX from the captured live data
-
-Requirements:
-  pip install playwright
-  python -m playwright install chromium
-"""
+"""Download the Invesco ETF export workbook."""
 
 import asyncio
 import json
@@ -31,7 +14,8 @@ from playwright.async_api import Locator, TimeoutError as PlaywrightTimeoutError
 
 
 URL = "https://www.invesco.com/uk/en/financial-products/etfs.html"
-OUTPUT_DIR = Path("./invesco_downloads")
+BASE_DIR = Path(__file__).resolve().parents[1]
+OUTPUT_DIR = BASE_DIR / "providers" / "invesco" / "invesco_downloads"
 TIMEOUT_MS = 120_000
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -49,9 +33,7 @@ INIT_SCRIPT = """
             if (value instanceof Blob) {
                 window.__invescoCapturedBlobs.push(value);
             }
-        } catch (error) {
-            console.debug('Blob capture failed', error);
-        }
+        } catch (error) {}
 
         return originalCreateObjectURL(value);
     };
@@ -62,7 +44,7 @@ INVALID_XML_RE = re.compile(r"[\x00-\x08\x0B\x0C\x0E-\x1F]")
 
 
 def build_output_path() -> Path:
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     return OUTPUT_DIR / f"invesco_etf_export_{timestamp}.xlsx"
 
@@ -397,7 +379,7 @@ async def wait_for_shareclasses_data(
 
 
 async def download_invesco_file() -> Path:
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(
