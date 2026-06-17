@@ -61,7 +61,7 @@ OUTPUT_COLUMNS = [
     "Distribution",
     "ISIN",
     "Ticker",
-    "AUM",
+    "AUM(M)",
 ]
 
 ASSET_CLASS_MAP = {
@@ -489,7 +489,6 @@ def convert_gbp_to_target_millions(
     amount_gbp_raw: str,
     target_ccy: str,
     preferred_date_text: str,
-    fallback_date_text: str,
     rates_by_date: dict[date, dict[str, Decimal]],
 ) -> str:
     cleaned_amount = clean_text(amount_gbp_raw)
@@ -502,7 +501,7 @@ def convert_gbp_to_target_millions(
     except InvalidOperation:
         return ""
 
-    rate_date_text = clean_text(preferred_date_text) or clean_text(fallback_date_text)
+    rate_date_text = clean_text(preferred_date_text)
     preferred_date = date.fromisoformat(rate_date_text) if rate_date_text else None
     daily_rates = rates_by_date[find_rate_date(preferred_date, rates_by_date)]
 
@@ -516,7 +515,7 @@ def convert_gbp_to_target_millions(
     return format_decimal(amount_target / Decimal("1000000"), places=2)
 
 
-def build_output_row(row: XtrackersRow, rates_by_date: dict[date, dict[str, Decimal]], fallback_fx_date_text: str) -> dict[str, str]:
+def build_output_row(row: XtrackersRow, rates_by_date: dict[date, dict[str, Decimal]]) -> dict[str, str]:
     return {
         "ETF Name": row.etf_name,
         "Issuer": row.issuer,
@@ -527,7 +526,7 @@ def build_output_row(row: XtrackersRow, rates_by_date: dict[date, dict[str, Deci
         "Distribution": row.distribution,
         "ISIN": row.isin,
         "Ticker": row.ticker,
-        "AUM": convert_gbp_to_target_millions(row.aum_gbp_raw, row.ccy, row.as_of_date, fallback_fx_date_text, rates_by_date),
+        "AUM(M)": convert_gbp_to_target_millions(row.aum_gbp_raw, row.ccy, row.as_of_date, rates_by_date),
     }
 
 
@@ -543,7 +542,6 @@ async def async_main() -> None:
     args = parse_args()
     input_path = args.input.resolve() if args.input else find_latest_download(INPUT_DIR)
     output_path = args.output.resolve() if args.output else build_output_path(OUTPUT_DIR)
-    fallback_fx_date_text = datetime.fromtimestamp(input_path.stat().st_mtime).date().isoformat()
 
     print("Parsing downloaded Xtrackers workbook ...")
     rows = transform_workbook_rows(parse_xlsx_rows(input_path))
@@ -560,7 +558,7 @@ async def async_main() -> None:
     rates_by_date = load_ecb_rates()
     print(f"    FX dates loaded: {len(rates_by_date):,}")
 
-    output_rows = [build_output_row(row, rates_by_date, fallback_fx_date_text) for row in rows]
+    output_rows = [build_output_row(row, rates_by_date) for row in rows]
     write_csv(output_path, output_rows)
 
     print(f"Source file : {input_path}")

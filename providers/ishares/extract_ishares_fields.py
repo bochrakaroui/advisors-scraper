@@ -43,7 +43,7 @@ OUTPUT_COLUMNS = [
     "Distribution",
     "ISIN",
     "Ticker",
-    "AUM",
+    "AUM(M)",
 ]
 
 
@@ -195,7 +195,7 @@ def transform_row(source_row: dict[str, str]) -> dict[str, str]:
         "Distribution": clean_text(source_row.get(SOURCE_COLUMNS["distribution"])),
         "ISIN": clean_text(source_row.get(SOURCE_COLUMNS["isin"])),
         "Ticker": clean_text(source_row.get(SOURCE_COLUMNS["ticker"])),
-        "AUM": format_decimal(source_row.get(SOURCE_COLUMNS["aum"])),
+        "AUM(M)": format_decimal(source_row.get(SOURCE_COLUMNS["aum"])),
     }
 
 
