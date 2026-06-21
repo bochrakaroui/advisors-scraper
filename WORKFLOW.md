@@ -37,8 +37,12 @@ The current structure is kept as-is:
   - Invesco downloaded files
   - Invesco processed files
   - Invesco field extractor
+- `providers/UBS/`
+  - UBS downloaded files
+  - UBS processed files
+  - UBS field extractor
 - `pipeline_runs/`
-  - one folder per pipeline run, named like `pipeline_run_2026-06-21_11-50-42`
+  - one folder per pipeline run, named like `2026-06-21_13-04-45`
   - contains the combined CSV and validation report for that run
 
 ## Requirements
@@ -65,12 +69,13 @@ python run_all_etf_pipeline.py --providers ishares xtrackers
 python run_all_etf_pipeline.py --etf-only
 python run_all_etf_pipeline.py --stop-on-error
 python run_all_etf_pipeline.py --use-latest-downloads
+python run_all_etf_pipeline.py --providers ubs
 ```
 
 Pipeline behavior:
 
 - deletes the provider `*_processed` folders before the run
-- creates a new folder under `pipeline_runs\` named like `20260617_135457`
+- creates a new folder under `pipeline_runs\` named like `2026-06-21_13-04-45`
 - writes one combined CSV there containing appended rows from all selected providers
 - writes a `validation_report.txt` there with row counts and missing-value checks per provider
 
@@ -130,6 +135,20 @@ Saved to:
 
 ```text
 providers\invesco\invesco_downloads\
+```
+
+### UBS
+
+Download the latest UBS file:
+
+```powershell
+python scrapers\UBS_extractor.py
+```
+
+Saved to:
+
+```text
+providers\UBS\UBS_etf_downloads\
 ```
 
 ## Processing Workflows
@@ -245,6 +264,30 @@ Current Invesco processing rules:
 - Scales source `aum` into millions and writes it as `AUM(M)`
 - Adds `Date` from the downloaded filename timestamp
 
+### UBS Processing
+
+Run:
+
+```powershell
+python providers\UBS\extract_ubs_fields.py
+```
+
+Output folder:
+
+```text
+providers\UBS\UBS_processed\
+```
+
+Current UBS processing rules:
+
+- Reads the latest downloaded `.xlsx` file by default
+- Parses the workbook directly
+- Keeps all real source rows
+- Keeps the source `Currency` as `CCY`
+- Extracts source `TER (flat fee)(%)` into `TER`
+- Preserves source `AUM(M)` as `AUM(M)`
+- Adds `Date` from the downloaded filename timestamp
+
 ## Output Format
 
 The output CSV columns are:
@@ -258,7 +301,7 @@ ETF Name,Issuer,CCY,TER,AUM(M),Date
 Useful checks:
 
 ```powershell
-python -m py_compile scrapers\Amundi_extractor.py scrapers\ishares_extractor.py scrapers\Xtrackers_extractor.py scrapers\invesco_extractor.py providers\ishares\extract_ishares_fields.py providers\xtrackers\extract_xtrackers_fields.py providers\amundi\extract_amundi_fields.py providers\invesco\extract_invesco_fields.py run_all_etf_pipeline.py
+python -m py_compile scrapers\Amundi_extractor.py scrapers\UBS_extractor.py scrapers\ishares_extractor.py scrapers\Xtrackers_extractor.py scrapers\invesco_extractor.py providers\ishares\extract_ishares_fields.py providers\xtrackers\extract_xtrackers_fields.py providers\amundi\extract_amundi_fields.py providers\invesco\extract_invesco_fields.py providers\UBS\extract_ubs_fields.py run_all_etf_pipeline.py
 ```
 
 Run iShares processing:
@@ -285,12 +328,19 @@ Run Invesco processing:
 python providers\invesco\extract_invesco_fields.py
 ```
 
+Run UBS processing:
+
+```powershell
+python providers\UBS\extract_ubs_fields.py
+```
+
 ## Current Provider Status
 
 - `iShares`: downloader and processor are working
 - `Xtrackers`: downloader and processor are working
 - `Amundi`: downloader and processor are working
 - `Invesco`: downloader and processor are working
+- `UBS`: downloader and processor are working
 
 ## Important Notes
 

@@ -19,6 +19,17 @@ from providers.amundi.extract_amundi_fields import (
     find_latest_download as find_latest_amundi_download,
     parse_xlsx_rows as parse_amundi_source_rows,
 )
+from providers.SPDR.extract_spdr_fields import (
+    INPUT_DIR as SPDR_INPUT_DIR,
+    extract_rows as extract_spdr_rows,
+    find_latest_download as find_latest_spdr_download,
+)
+from providers.UBS.extract_ubs_fields import (
+    INPUT_DIR as UBS_INPUT_DIR,
+    extract_rows as extract_ubs_rows,
+    find_latest_download as find_latest_ubs_download,
+    parse_xlsx_rows as parse_ubs_source_rows,
+)
 from providers.invesco.extract_invesco_fields import (
     INPUT_DIR as INVESCO_INPUT_DIR,
     extract_rows as extract_invesco_rows,
@@ -38,21 +49,25 @@ from providers.xtrackers.extract_xtrackers_fields import (
     parse_xlsx_rows as parse_xtrackers_source_rows,
 )
 from scrapers.Amundi_extractor import download_amundi_file
+from scrapers.UBS_extractor import download_ubs_file
 from scrapers.Xtrackers_extractor import download_xtrackers_file
 from scrapers.invesco_extractor import download_invesco_file
 from scrapers.ishares_extractor import download_etf_list
+from scrapers.spdr_collector import download_spdr_file, parse_xlsx_rows as parse_spdr_source_rows
 
 
 BASE_DIR = Path(__file__).resolve().parent
 RUNS_DIR = BASE_DIR / "pipeline_runs"
 COMBINED_FILENAME = "all_etf_fields.csv"
 
-ALL_PROVIDERS = ("ishares", "xtrackers", "amundi", "invesco")
+ALL_PROVIDERS = ("ishares", "xtrackers", "amundi", "invesco", "ubs", "spdr")
 PROCESSED_DIRS = (
     BASE_DIR / "providers" / "ishares" / "ishares_processed",
     BASE_DIR / "providers" / "xtrackers" / "xtrackers_processed",
     BASE_DIR / "providers" / "amundi" / "amundi_processed",
     BASE_DIR / "providers" / "invesco" / "invesco_processed",
+    BASE_DIR / "providers" / "UBS" / "UBS_processed",
+    BASE_DIR / "providers" / "SPDR" / "spdr_processed",
 )
 
 Downloader = Callable[[], Awaitable[Path]]
@@ -204,6 +219,22 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             input_dir=AMUNDI_INPUT_DIR,
             latest_download_finder=find_latest_amundi_download,
             source_row_parser=parse_amundi_source_rows,
+        ),
+        "spdr": ProviderPipeline(
+            name="SPDR",
+            downloader=download_spdr_file,
+            extractor=extract_spdr_rows,
+            input_dir=SPDR_INPUT_DIR,
+            latest_download_finder=find_latest_spdr_download,
+            source_row_parser=parse_spdr_source_rows,
+        ),
+        "ubs": ProviderPipeline(
+            name="UBS",
+            downloader=download_ubs_file,
+            extractor=extract_ubs_rows,
+            input_dir=UBS_INPUT_DIR,
+            latest_download_finder=find_latest_ubs_download,
+            source_row_parser=parse_ubs_source_rows,
         ),
         "invesco": ProviderPipeline(
             name="Invesco",

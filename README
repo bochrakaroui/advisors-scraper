@@ -94,4 +94,4 @@ To run the full pipeline in one command:
 python run_all_etf_pipeline.py
 ```
 
-Each pipeline run creates a new folder under `pipeline_runs\` named like `pipeline_run_2026-06-21_11-50-42`, and that folder contains one combined CSV plus a validation report built from all selected providers.
+Each pipeline run creates a new folder under `pipeline_runs\` named like `2026-06-21_13-04-45`, and that folder contains one combined CSV plus a validation report built from all selected providers.
