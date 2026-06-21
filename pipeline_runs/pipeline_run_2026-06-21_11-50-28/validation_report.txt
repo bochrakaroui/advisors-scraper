@@ -1,0 +1,21 @@
+ETF Pipeline Validation Report
+Generated: 21/06/2026 11:50:29
+Total rows: 2,196
+
+Successful providers:
+- iShares
+  Source: C:\Users\Bochra\OneDrive\Desktop\etf-extractor\providers\ishares\ishares_downloads\iShares-UnitedKingdom_20260621_114519.xls
+  Rows: 879
+  Missing: ETF Name=0, Issuer=0, CCY=0, TER=0, AUM(M)=0, Date=0
+- Xtrackers
+  Source: C:\Users\Bochra\OneDrive\Desktop\etf-extractor\providers\xtrackers\xtrackers_downloads\xtrackers_etf_export_20260621_114534.xlsx
+  Rows: 429
+  Missing: ETF Name=0, Issuer=0, CCY=0, TER=0, AUM(M)=0, Date=0
+- Amundi
+  Source: C:\Users\Bochra\OneDrive\Desktop\etf-extractor\providers\amundi\amundi_downloads\amundi_etf_export_20260621_114545.xlsx
+  Rows: 595
+  Missing: ETF Name=0, Issuer=0, CCY=0, TER=0, AUM(M)=1, Date=0
+- Invesco
+  Source: C:\Users\Bochra\OneDrive\Desktop\etf-extractor\providers\invesco\invesco_downloads\invesco_etf_export_20260621_114618.xlsx
+  Rows: 293
+  Missing: ETF Name=0, Issuer=0, CCY=0, TER=0, AUM(M)=0, Date=0

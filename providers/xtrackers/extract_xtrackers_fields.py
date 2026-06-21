@@ -1,102 +1,49 @@
-"""Extract the required ETF fields from the latest downloaded Xtrackers file."""
+"""Extract the selected ETF fields from the latest downloaded Xtrackers file."""
 
 from __future__ import annotations
 
 import argparse
-import asyncio
 import csv
 import re
-import urllib.request
 import xml.etree.ElementTree as ET
-from dataclasses import dataclass
-from datetime import date, datetime, timedelta
+from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
 from zipfile import ZipFile
-
-from playwright.async_api import Page, async_playwright
 
 
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_DIR = BASE_DIR / "xtrackers_downloads"
 OUTPUT_DIR = BASE_DIR / "xtrackers_processed"
 
-PRODUCT_FINDER_URL = (
-    "https://etf.dws.com/en-gb/product-finder/"
-    "?AssetClasses=Commodities,Equities,Fixed+Income,Multi+Asset"
-)
-DATATABLE_API_URL = "https://etf.dws.com/api/fundfinder/en-gb/datatable"
-PRODUCT_BASE_URL = "https://etf.dws.com"
-ECB_RATES_URL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
-TIMEOUT_MS = 90_000
-TICKER_CONCURRENCY = 4
-USER_AGENT = (
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) "
-    "Chrome/124.0.0.0 Safari/537.36"
-)
-
 XLSX_NS = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
-ECB_NS = {"fx": "http://www.ecb.int/vocabulary/2002-08-01/eurofxref"}
 
 SOURCE_COLUMNS = {
     "fund_name": "Name",
     "isin": "ISIN",
-    "asset_class": "Asset class",
-    "ter_percent": "TER p.a. (%)",
     "currency": "Share class currency",
+    "ter_percent": "TER p.a. (%)",
     "aum_gbp": "AuM (GBP)",
-    "distribution": "Distribution policy",
-    "launch_date": "Sub-fund launch",
-    "as_of_date": "As of",
 }
 
 OUTPUT_COLUMNS = [
     "ETF Name",
     "Issuer",
-    "Asset Class",
     "CCY",
-    "TER (bps)",
-    "Listing Date",
-    "Distribution",
-    "ISIN",
-    "Ticker",
+    "TER",
     "AUM(M)",
+    "Date",
 ]
-
-ASSET_CLASS_MAP = {
-    "Equities": "Equity",
-    "Commodities": "Commodity",
-}
-
-DISTRIBUTION_MAP = {
-    "Capitalizing": "Accumulating",
-}
-
-
-@dataclass
-class XtrackersRow:
-    etf_name: str
-    issuer: str
-    asset_class: str
-    ccy: str
-    ter_bps: str
-    listing_date: str
-    distribution: str
-    isin: str
-    ticker: str = ""
-    aum_gbp_raw: str = ""
-    as_of_date: str = ""
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Extract the required ETF fields from a downloaded Xtrackers .xlsx file.")
+    parser = argparse.ArgumentParser(description="Extract the selected ETF fields from a downloaded Xtrackers .xlsx file.")
     parser.add_argument("--input", type=Path, help="Downloaded Xtrackers .xlsx file. Defaults to the latest file.")
     parser.add_argument("--output", type=Path, help="Processed CSV path. Defaults to ./xtrackers_processed.")
     parser.add_argument(
         "--enrich-tickers",
         action="store_true",
-        help="Look up official Bloomberg tickers from Xtrackers product pages. This is slower than the default blank-ticker output.",
+        help="Ignored. Retained for compatibility with the previous script interface.",
     )
     return parser.parse_args()
 
@@ -138,41 +85,62 @@ def format_decimal(value: str | Decimal | None, places: int = 2) -> str:
     return format(quantized, f".{places}f")
 
 
-def format_ter_bps(value: str | None) -> str:
-    cleaned = clean_text(value)
-    if not cleaned:
+def format_ter(value: str | None) -> str:
+    cleaned = clean_text(value).replace("%", "").strip()
+    if "," in cleaned and "." not in cleaned:
+        cleaned = cleaned.replace(",", ".")
+    return format_decimal(cleaned, places=2)
+
+
+def extract_file_date(input_path: Path) -> str:
+    match = re.search(r"(\d{8}_\d{6})", input_path.stem)
+    if not match:
         return ""
 
+    timestamp = match.group(1)
     try:
-        bps = Decimal(cleaned) * Decimal("100")
-    except InvalidOperation:
-        return cleaned
-
-    return format_decimal(bps, places=2)
+        return datetime.strptime(timestamp, "%Y%m%d_%H%M%S").strftime("%d/%m/%Y %H:%M:%S")
+    except ValueError:
+        return timestamp
 
 
-def normalize_asset_class(value: str | None) -> str:
-    cleaned = clean_text(value)
-    return ASSET_CLASS_MAP.get(cleaned, cleaned)
+def load_shared_strings(workbook: ZipFile) -> list[str]:
+    if "xl/sharedStrings.xml" not in workbook.namelist():
+        return []
+
+    root = ET.fromstring(workbook.read("xl/sharedStrings.xml"))
+    return [
+        "".join(node.text or "" for node in item.findall(".//a:t", XLSX_NS))
+        for item in root.findall("a:si", XLSX_NS)
+    ]
 
 
-def normalize_distribution(value: str | None) -> str:
-    cleaned = clean_text(value)
-    return DISTRIBUTION_MAP.get(cleaned, cleaned)
+def extract_column_letters(cell_reference: str) -> str:
+    match = re.match(r"[A-Z]+", cell_reference)
+    return match.group(0) if match else ""
 
 
-def excel_serial_to_date_string(value: str | None) -> str:
-    cleaned = clean_text(value)
-    if not cleaned:
-        return ""
+def parse_sheet_row(row: ET.Element, shared_strings: list[str]) -> dict[str, str]:
+    values: dict[str, str] = {}
 
-    try:
-        serial = int(Decimal(cleaned))
-    except InvalidOperation:
-        return cleaned
+    for cell in row.findall("a:c", XLSX_NS):
+        column = extract_column_letters(cell.attrib.get("r", ""))
+        if not column:
+            continue
 
-    excel_base = datetime(1899, 12, 30)
-    return (excel_base + timedelta(days=serial)).date().isoformat()
+        cell_type = cell.attrib.get("t")
+        raw_value = cell.find("a:v", XLSX_NS)
+
+        if cell_type == "s" and raw_value is not None and raw_value.text is not None:
+            value = shared_strings[int(raw_value.text)]
+        elif cell_type == "inlineStr":
+            value = "".join(node.text or "" for node in cell.findall(".//a:t", XLSX_NS))
+        else:
+            value = "" if raw_value is None or raw_value.text is None else raw_value.text
+
+        values[column] = value
+
+    return values
 
 
 def parse_xlsx_rows(path: Path) -> list[dict[str, str]]:
@@ -205,328 +173,27 @@ def parse_xlsx_rows(path: Path) -> list[dict[str, str]]:
     return rows
 
 
-def load_shared_strings(workbook: ZipFile) -> list[str]:
-    if "xl/sharedStrings.xml" not in workbook.namelist():
-        return []
-
-    root = ET.fromstring(workbook.read("xl/sharedStrings.xml"))
-    return [
-        "".join(node.text or "" for node in item.findall(".//a:t", XLSX_NS))
-        for item in root.findall("a:si", XLSX_NS)
-    ]
-
-
-def parse_sheet_row(row: ET.Element, shared_strings: list[str]) -> dict[str, str]:
-    values: dict[str, str] = {}
-
-    for cell in row.findall("a:c", XLSX_NS):
-        column = extract_column_letters(cell.attrib.get("r", ""))
-        if not column:
-            continue
-
-        cell_type = cell.attrib.get("t")
-        raw_value = cell.find("a:v", XLSX_NS)
-
-        if cell_type == "s" and raw_value is not None and raw_value.text is not None:
-            value = shared_strings[int(raw_value.text)]
-        elif cell_type == "inlineStr":
-            value = "".join(node.text or "" for node in cell.findall(".//a:t", XLSX_NS))
-        else:
-            value = "" if raw_value is None or raw_value.text is None else raw_value.text
-
-        values[column] = value
-
-    return values
-
-
-def extract_column_letters(cell_reference: str) -> str:
-    match = re.match(r"[A-Z]+", cell_reference)
-    return match.group(0) if match else ""
-
-
-def transform_workbook_rows(records: list[dict[str, str]]) -> list[XtrackersRow]:
-    return [
-        XtrackersRow(
-            etf_name=clean_text(record.get(SOURCE_COLUMNS["fund_name"])),
-            issuer="Xtrackers",
-            asset_class=normalize_asset_class(record.get(SOURCE_COLUMNS["asset_class"])),
-            ccy=clean_text(record.get(SOURCE_COLUMNS["currency"])).upper(),
-            ter_bps=format_ter_bps(record.get(SOURCE_COLUMNS["ter_percent"])),
-            listing_date=excel_serial_to_date_string(record.get(SOURCE_COLUMNS["launch_date"])),
-            distribution=normalize_distribution(record.get(SOURCE_COLUMNS["distribution"])),
-            isin=clean_text(record.get(SOURCE_COLUMNS["isin"])),
-            aum_gbp_raw=clean_text(record.get(SOURCE_COLUMNS["aum_gbp"])),
-            as_of_date=excel_serial_to_date_string(record.get(SOURCE_COLUMNS["as_of_date"])),
-        )
-        for record in records
-    ]
-
-
-async def accept_product_finder_gate(page: Page) -> None:
-    for selector in ("#consent_prompt_submit", "button:has-text('Accept & continue')"):
-        try:
-            button = page.locator(selector).first
-            if await button.is_visible():
-                await button.click(force=True)
-                await page.wait_for_timeout(1_000)
-        except Exception:
-            continue
-
-
-async def fetch_product_url_map(page: Page) -> dict[str, str]:
-    loop = asyncio.get_running_loop()
-    datatable_future: asyncio.Future[dict[str, object]] = loop.create_future()
-
-    async def capture_response(response) -> None:
-        if datatable_future.done():
-            return
-        if response.status != 200 or not response.url.startswith(DATATABLE_API_URL):
-            return
-
-        try:
-            payload = await response.json()
-        except Exception:
-            return
-
-        if payload.get("values"):
-            datatable_future.set_result(payload)
-
-    page.on("response", lambda response: asyncio.create_task(capture_response(response)))
-
-    await page.goto(PRODUCT_FINDER_URL, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
-    await page.wait_for_timeout(3_000)
-    await accept_product_finder_gate(page)
-
-    payload = await asyncio.wait_for(datatable_future, timeout=45)
-    product_urls: dict[str, str] = {}
-
-    for item in payload.get("values", []):
-        isin = clean_text(item.get("ID", {}).get("value"))
-        url = clean_text(item.get("column_0", {}).get("column_0_0", {}).get("value", {}).get("url"))
-        if isin and url:
-            product_urls[isin] = url
-
-    return product_urls
-
-
-async def extract_bloomberg_ticker(page: Page, product_url: str, target_ccy: str) -> str:
-    full_url = product_url if product_url.startswith("http") else f"{PRODUCT_BASE_URL}{product_url}"
-
-    await page.goto(full_url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
-    await accept_product_finder_gate(page)
-
-    try:
-        await page.wait_for_function(
-            "() => Array.from(document.querySelectorAll('th')).some(th => th.innerText.toLowerCase().includes('bloomberg'))",
-            timeout=20_000,
-        )
-    except Exception:
-        return ""
-
-    return clean_text(
-        await page.evaluate(
-            """
-            (currencyTarget) => {
-                const normalize = (value) =>
-                    (value || "")
-                        .replaceAll("\\u00ad", "")
-                        .replace(/\\s+/g, " ")
-                        .trim();
-
-                const target = normalize(currencyTarget).toUpperCase();
-
-                for (const table of document.querySelectorAll("table")) {
-                    const headers = Array.from(table.querySelectorAll("th")).map((th) => normalize(th.innerText));
-                    const bloombergIndex = headers.findIndex((header) => header.toLowerCase().includes("bloomberg ticker"));
-                    if (bloombergIndex === -1) {
-                        continue;
-                    }
-
-                    const currencyIndex = headers.findIndex((header) => header.toLowerCase() === "currency");
-                    const rows = Array.from(table.querySelectorAll("tbody tr")).map((tr) =>
-                        Array.from(tr.querySelectorAll("td")).map((td) => normalize(td.innerText))
-                    );
-
-                    for (const row of rows) {
-                        const ticker = row[bloombergIndex] || "";
-                        const rowCurrency = currencyIndex >= 0 ? (row[currencyIndex] || "").toUpperCase() : "";
-                        if (ticker && rowCurrency === target) {
-                            return ticker;
-                        }
-                    }
-
-                    for (const row of rows) {
-                        const ticker = row[bloombergIndex] || "";
-                        if (ticker) {
-                            return ticker;
-                        }
-                    }
-                }
-
-                return "";
-            }
-            """,
-            target_ccy,
-        )
-    )
-
-
-async def enrich_tickers(rows: list[XtrackersRow]) -> dict[str, str]:
-    async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(
-            headless=True,
-            args=["--no-sandbox", "--disable-dev-shm-usage"],
-        )
-        context = await browser.new_context(
-            locale="en-GB",
-            timezone_id="Europe/London",
-            user_agent=USER_AGENT,
-            viewport={"width": 1440, "height": 1200},
-        )
-
-        async def route_handler(route) -> None:
-            url = route.request.url
-            resource_type = route.request.resource_type
-            if (
-                resource_type in {"image", "font", "media"}
-                or "linkedin" in url
-                or "doubleclick" in url
-                or "mit.dws.com" in url
-                or "google.com/ccm" in url
-                or "performancechart" in url
-                or "holdings" in url
-            ):
-                await route.abort()
-                return
-
-            await route.continue_()
-
-        await context.route("**/*", route_handler)
-
-        bootstrap_page = await context.new_page()
-        print("[1/3] Loading Xtrackers product finder and capturing product URLs ...")
-        product_url_map = await fetch_product_url_map(bootstrap_page)
-        await bootstrap_page.close()
-        print(f"    Product URLs captured: {len(product_url_map):,}")
-
-        pending_rows = [row for row in rows if row.isin in product_url_map]
-        print("[2/3] Looking up official product-page tickers ...")
-        print(f"    Pending ticker lookups: {len(pending_rows):,}")
-
-        ticker_map: dict[str, str] = {}
-        queue: asyncio.Queue[XtrackersRow | None] = asyncio.Queue()
-        for row in pending_rows:
-            queue.put_nowait(row)
-
-        async def worker(worker_number: int) -> None:
-            page = await context.new_page()
-            processed = 0
-            try:
-                while True:
-                    row = await queue.get()
-                    if row is None:
-                        queue.task_done()
-                        break
-
-                    try:
-                        ticker = await extract_bloomberg_ticker(page, product_url_map[row.isin], row.ccy)
-                        if ticker:
-                            ticker_map[row.isin] = ticker
-                    except Exception as exc:
-                        print(f"    Worker {worker_number}: ticker lookup failed for {row.isin}: {exc}")
-                    finally:
-                        processed += 1
-                        if processed % 20 == 0:
-                            print(f"    Worker {worker_number}: processed {processed} pages")
-                        queue.task_done()
-            finally:
-                await page.close()
-
-        workers = [asyncio.create_task(worker(index + 1)) for index in range(TICKER_CONCURRENCY)]
-        for _ in workers:
-            queue.put_nowait(None)
-
-        await queue.join()
-        await asyncio.gather(*workers)
-
-        print("[3/3] Ticker enrichment complete.")
-        print(f"    Tickers found: {len(ticker_map):,}")
-
-        await browser.close()
-        return ticker_map
-
-
-def load_ecb_rates() -> dict[date, dict[str, Decimal]]:
-    root = ET.fromstring(urllib.request.urlopen(ECB_RATES_URL, timeout=60).read())
-    rates_by_date: dict[date, dict[str, Decimal]] = {}
-
-    for daily_cube in root.findall(".//fx:Cube[@time]", ECB_NS):
-        cube_date = date.fromisoformat(daily_cube.attrib["time"])
-        daily_rates = {"EUR": Decimal("1")}
-
-        for currency_cube in daily_cube.findall("fx:Cube", ECB_NS):
-            daily_rates[currency_cube.attrib["currency"]] = Decimal(currency_cube.attrib["rate"])
-
-        rates_by_date[cube_date] = daily_rates
-
-    if not rates_by_date:
-        raise RuntimeError("ECB FX feed returned no rates.")
-
-    return rates_by_date
-
-
-def find_rate_date(preferred_date: date | None, rates_by_date: dict[date, dict[str, Decimal]]) -> date:
-    available_dates = sorted(rates_by_date)
-    if not available_dates:
-        raise RuntimeError("No ECB FX dates available.")
-
-    target_date = preferred_date or available_dates[-1]
-    valid_dates = [current_date for current_date in available_dates if current_date <= target_date]
-    return valid_dates[-1] if valid_dates else available_dates[0]
-
-
-def convert_gbp_to_target_millions(
-    amount_gbp_raw: str,
-    target_ccy: str,
-    preferred_date_text: str,
-    rates_by_date: dict[date, dict[str, Decimal]],
-) -> str:
-    cleaned_amount = clean_text(amount_gbp_raw)
-    target = clean_text(target_ccy).upper()
-    if not cleaned_amount or not target:
+def millions_from_raw_amount(value: str | None) -> str:
+    cleaned = clean_text(value)
+    if not cleaned:
         return ""
 
     try:
-        amount_gbp = Decimal(cleaned_amount)
+        amount = Decimal(cleaned)
     except InvalidOperation:
-        return ""
+        return cleaned
 
-    rate_date_text = clean_text(preferred_date_text)
-    preferred_date = date.fromisoformat(rate_date_text) if rate_date_text else None
-    daily_rates = rates_by_date[find_rate_date(preferred_date, rates_by_date)]
-
-    if target == "GBP":
-        amount_target = amount_gbp
-    else:
-        if "GBP" not in daily_rates or target not in daily_rates:
-            raise RuntimeError(f"ECB rates do not include the required pair GBP/{target}.")
-        amount_target = (amount_gbp / daily_rates["GBP"]) * daily_rates[target]
-
-    return format_decimal(amount_target / Decimal("1000000"), places=2)
+    return format_decimal(amount / Decimal("1000000"), places=2)
 
 
-def build_output_row(row: XtrackersRow, rates_by_date: dict[date, dict[str, Decimal]]) -> dict[str, str]:
+def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
     return {
-        "ETF Name": row.etf_name,
-        "Issuer": row.issuer,
-        "Asset Class": row.asset_class,
-        "CCY": row.ccy,
-        "TER (bps)": row.ter_bps,
-        "Listing Date": row.listing_date,
-        "Distribution": row.distribution,
-        "ISIN": row.isin,
-        "Ticker": row.ticker,
-        "AUM(M)": convert_gbp_to_target_millions(row.aum_gbp_raw, row.ccy, row.as_of_date, rates_by_date),
+        "ETF Name": clean_text(source_row.get(SOURCE_COLUMNS["fund_name"])),
+        "Issuer": "Xtrackers",
+        "CCY": clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper(),
+        "TER": format_ter(source_row.get(SOURCE_COLUMNS["ter_percent"])),
+        "AUM(M)": millions_from_raw_amount(source_row.get(SOURCE_COLUMNS["aum_gbp"])),
+        "Date": file_date,
     }
 
 
@@ -538,37 +205,33 @@ def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
         writer.writerows(rows)
 
 
-async def async_main() -> None:
-    args = parse_args()
-    input_path = args.input.resolve() if args.input else find_latest_download(INPUT_DIR)
-    output_path = args.output.resolve() if args.output else build_output_path(OUTPUT_DIR)
+def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
+    resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
+    rows = parse_xlsx_rows(resolved_input_path)
+    file_date = extract_file_date(resolved_input_path)
+    return [transform_row(row, file_date) for row in rows]
 
-    print("Parsing downloaded Xtrackers workbook ...")
-    rows = transform_workbook_rows(parse_xlsx_rows(input_path))
-    print(f"    ETF rows found: {len(rows):,}")
 
-    if args.enrich_tickers:
-        ticker_map = await enrich_tickers(rows)
-        for row in rows:
-            row.ticker = ticker_map.get(row.isin, "")
-    else:
-        print("Skipping ticker enrichment. Ticker column will be left blank.")
+def process_file(input_path: Path | None = None, output_path: Path | None = None, *, enrich_tickers: bool = False) -> Path:
+    resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
+    resolved_output_path = output_path.resolve() if output_path else build_output_path(OUTPUT_DIR)
 
-    print("Loading official ECB FX rates for AUM conversion ...")
-    rates_by_date = load_ecb_rates()
-    print(f"    FX dates loaded: {len(rates_by_date):,}")
+    if enrich_tickers:
+        print("Note: --enrich-tickers is ignored because the output no longer includes ticker enrichment.")
 
-    output_rows = [build_output_row(row, rates_by_date) for row in rows]
-    write_csv(output_path, output_rows)
+    output_rows = extract_rows(resolved_input_path)
 
-    print(f"Source file : {input_path}")
+    write_csv(resolved_output_path, output_rows)
+
+    print(f"Source file : {resolved_input_path}")
     print(f"Rows written: {len(output_rows):,}")
-    print(f"Output file : {output_path}")
-    print(f"Ticker mode : {'Official enrichment enabled' if args.enrich_tickers else 'Blank ticker column'}")
+    print(f"Output file : {resolved_output_path}")
+    return resolved_output_path
 
 
 def main() -> None:
-    asyncio.run(async_main())
+    args = parse_args()
+    process_file(args.input, args.output, enrich_tickers=args.enrich_tickers)
 
 
 if __name__ == "__main__":

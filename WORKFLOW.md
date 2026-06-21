@@ -8,16 +8,12 @@ Download ETF source files from official provider websites, then extract a clean 
 
 - ETF Name
 - Issuer
-- Asset Class
 - CCY
-- TER (bps)
-- Listing Date
-- Distribution
-- ISIN
-- Ticker
+- TER
 - AUM(M)
+- Date
 
-`AUM(M)` must be preserved.
+`Date` is taken from the downloaded filename timestamp and written in a readable format such as `17/06/2026 13:54:57`.
 
 ## Project Structure
 
@@ -35,8 +31,15 @@ The current structure is kept as-is:
   - Xtrackers field extractor
 - `providers/amundi/`
   - Amundi downloaded files
+  - Amundi processed files
+  - Amundi field extractor
 - `providers/invesco/`
   - Invesco downloaded files
+  - Invesco processed files
+  - Invesco field extractor
+- `pipeline_runs/`
+  - one folder per pipeline run, named like `pipeline_run_2026-06-21_11-50-42`
+  - contains the combined CSV and validation report for that run
 
 ## Requirements
 
@@ -46,6 +49,30 @@ Install Python dependencies:
 pip install playwright
 python -m playwright install chromium
 ```
+
+## One-Command Run
+
+Run every provider downloader and processor in sequence:
+
+```powershell
+python run_all_etf_pipeline.py
+```
+
+Optional:
+
+```powershell
+python run_all_etf_pipeline.py --providers ishares xtrackers
+python run_all_etf_pipeline.py --etf-only
+python run_all_etf_pipeline.py --stop-on-error
+python run_all_etf_pipeline.py --use-latest-downloads
+```
+
+Pipeline behavior:
+
+- deletes the provider `*_processed` folders before the run
+- creates a new folder under `pipeline_runs\` named like `20260617_135457`
+- writes one combined CSV there containing appended rows from all selected providers
+- writes a `validation_report.txt` there with row counts and missing-value checks per provider
 
 ## Download Workflows
 
@@ -118,7 +145,7 @@ python providers\ishares\extract_ishares_fields.py
 Optional:
 
 ```powershell
-python providers\ishares\extract_ishares_fields.py --all-funds
+python providers\ishares\extract_ishares_fields.py --etf-only
 ```
 
 Output folder:
@@ -131,9 +158,12 @@ Current iShares processing rules:
 
 - Reads the latest downloaded `.xls` file by default
 - Parses the XML spreadsheet directly
-- Normalizes header whitespace so headers like `Distribution Type` and `AUM (M)` still work even when the source file contains line breaks
-- Keeps ETF rows only by default
-- Preserves `AUM(M)` from the source file
+- Normalizes header whitespace so headers still work even when the source file contains line breaks
+- Keeps all real source rows by default
+- Can optionally keep ETF rows only with `--etf-only`
+- Extracts source `TER / OCF` into `TER`
+- Preserves source `AUM (M)` as `AUM(M)`
+- Adds `Date` from the downloaded filename timestamp
 - Writes the final cleaned CSV with the required output fields
 
 ### Xtrackers Processing
@@ -160,33 +190,67 @@ Current Xtrackers processing rules:
 
 - Reads the latest downloaded `.xlsx` file by default
 - Parses the workbook directly
-- Keeps the `Ticker` column in the output
-- Leaves `Ticker` blank by default
-- Can optionally enrich ticker values from official Xtrackers product pages
-- Converts source AUM from GBP into the ETF row currency
-- Writes AUM as `AUM(M)`
+- Keeps all real source rows and excludes non-data footer/disclaimer rows
+- Keeps the source `Share class currency` as `CCY`
+- Extracts source `TER p.a. (%)` into `TER`
+- Scales source `AuM (GBP)` into millions only
+- Does not perform FX conversion
+- Adds `Date` from the downloaded filename timestamp
 
-## Xtrackers AUM Conversion Rule
+### Amundi Processing
 
-The current rule is:
+Run:
 
-- if `As of` is present, use the ECB FX rate for that date
-- if `As of` is empty, use the latest available ECB FX rate
+```powershell
+python providers\amundi\extract_amundi_fields.py
+```
 
-Notes:
+Output folder:
 
-- source AUM in the downloaded Xtrackers file is `AuM (GBP)`
-- output AUM is converted to the ETF row `CCY`
-- output value is written in millions as `AUM(M)`
-- rates are not hard-coded
-- FX source is the ECB daily reference feed
+```text
+providers\amundi\amundi_processed\
+```
+
+Current Amundi processing rules:
+
+- Reads the latest downloaded `.xlsx` file by default
+- Parses the workbook directly
+- Keeps all real source rows
+- Keeps the source `Share Class Currency` as `CCY`
+- Extracts source `OGC` into `TER`
+- Extracts the numeric part of `Assets Under Management` and writes it as `AUM(M)`
+- Adds `Date` from the downloaded filename timestamp
+
+### Invesco Processing
+
+Run:
+
+```powershell
+python providers\invesco\extract_invesco_fields.py
+```
+
+Output folder:
+
+```text
+providers\invesco\invesco_processed\
+```
+
+Current Invesco processing rules:
+
+- Reads the latest downloaded `.xlsx` file by default
+- Parses the workbook directly
+- Keeps all real source rows
+- Keeps the source `currency` as `CCY`
+- Extracts source `terocf` into `TER`
+- Scales source `aum` into millions and writes it as `AUM(M)`
+- Adds `Date` from the downloaded filename timestamp
 
 ## Output Format
 
-The processed CSV output columns are:
+The output CSV columns are:
 
 ```text
-ETF Name,Issuer,Asset Class,CCY,TER (bps),Listing Date,Distribution,ISIN,Ticker,AUM(M)
+ETF Name,Issuer,CCY,TER,AUM(M),Date
 ```
 
 ## Verification Commands
@@ -194,7 +258,7 @@ ETF Name,Issuer,Asset Class,CCY,TER (bps),Listing Date,Distribution,ISIN,Ticker,
 Useful checks:
 
 ```powershell
-python -m py_compile scrapers\Amundi_extractor.py scrapers\ishares_extractor.py scrapers\Xtrackers_extractor.py scrapers\invesco_extractor.py providers\ishares\extract_ishares_fields.py providers\xtrackers\extract_xtrackers_fields.py
+python -m py_compile scrapers\Amundi_extractor.py scrapers\ishares_extractor.py scrapers\Xtrackers_extractor.py scrapers\invesco_extractor.py providers\ishares\extract_ishares_fields.py providers\xtrackers\extract_xtrackers_fields.py providers\amundi\extract_amundi_fields.py providers\invesco\extract_invesco_fields.py run_all_etf_pipeline.py
 ```
 
 Run iShares processing:
@@ -209,17 +273,28 @@ Run Xtrackers processing:
 python providers\xtrackers\extract_xtrackers_fields.py
 ```
 
+Run Amundi processing:
+
+```powershell
+python providers\amundi\extract_amundi_fields.py
+```
+
+Run Invesco processing:
+
+```powershell
+python providers\invesco\extract_invesco_fields.py
+```
+
 ## Current Provider Status
 
 - `iShares`: downloader and processor are working
 - `Xtrackers`: downloader and processor are working
-- `Amundi`: downloader is implemented
-- `Invesco`: downloader is implemented
+- `Amundi`: downloader and processor are working
+- `Invesco`: downloader and processor are working
 
 ## Important Notes
 
 - Folder structure was intentionally not changed
-- Working extractor logic was preserved
-- AUM handling was preserved
-- Xtrackers FX conversion stays dynamic and does not use static exchange rates
-- For Xtrackers, network access is needed during processing to fetch ECB FX rates
+- Processing now writes a narrow six-column dataset for every provider
+- The pipeline writes one combined CSV per run inside `pipeline_runs\<timestamp>\`
+- No provider performs FX conversion during processing

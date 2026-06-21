@@ -1,4 +1,4 @@
-"""Extract the required ETF fields from the latest downloaded iShares file."""
+"""Extract the selected ETF fields from the latest downloaded iShares file."""
 
 from __future__ import annotations
 
@@ -20,41 +20,32 @@ NS = {"ss": SPREADSHEET_NS}
 SS_INDEX = f"{{{SPREADSHEET_NS}}}Index"
 
 SOURCE_COLUMNS = {
-    "ticker": "Ticker",
     "fund_name": "Fund Name",
     "fund_type": "Fund type",
-    "isin": "ISIN",
     "currency": "Share Class Currency",
-    "asset_class": "Asset Class",
-    "distribution": "Distribution Type",
-    "listing_date": "Inception Date",
-    "issuer": "Issuing Company",
     "ter": "TER / OCF",
+    "issuer": "Issuing Company",
     "aum": "AUM (M)",
 }
 
 OUTPUT_COLUMNS = [
     "ETF Name",
     "Issuer",
-    "Asset Class",
     "CCY",
-    "TER (bps)",
-    "Listing Date",
-    "Distribution",
-    "ISIN",
-    "Ticker",
+    "TER",
     "AUM(M)",
+    "Date",
 ]
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Extract the required ETF fields from a downloaded iShares .xls file.")
+    parser = argparse.ArgumentParser(description="Extract the selected ETF fields from a downloaded iShares .xls file.")
     parser.add_argument("--input", type=Path, help="Downloaded iShares .xls file. Defaults to the latest file.")
     parser.add_argument("--output", type=Path, help="Processed CSV path. Defaults to ./ishares_processed.")
     parser.add_argument(
-        "--all-funds",
+        "--etf-only",
         action="store_true",
-        help="Include every source row. By default the script keeps ETF rows only.",
+        help="Keep ETF rows only. By default the script keeps all source rows.",
     )
     return parser.parse_args()
 
@@ -89,9 +80,50 @@ def read_sparse_row(row_element: ET.Element) -> dict[int, str]:
     return values
 
 
+def clean_text(value: str | None) -> str:
+    if value is None:
+        return ""
+
+    cleaned = value.strip()
+    return "" if cleaned in {"", "-", "- ", " -"} else cleaned
+
+
 def normalize_header(value: str | None) -> str:
     cleaned = clean_text(value)
     return re.sub(r"\s+", " ", cleaned)
+
+
+def format_decimal(value: str | None, places: int = 2) -> str:
+    cleaned = clean_text(value)
+    if not cleaned:
+        return ""
+
+    try:
+        decimal_value = Decimal(cleaned)
+    except InvalidOperation:
+        return cleaned
+
+    quantized = decimal_value.quantize(Decimal("1." + ("0" * places)), rounding=ROUND_HALF_UP)
+    return format(quantized, f".{places}f")
+
+
+def format_ter(value: str | None) -> str:
+    cleaned = clean_text(value).replace("%", "").strip()
+    if "," in cleaned and "." not in cleaned:
+        cleaned = cleaned.replace(",", ".")
+    return format_decimal(cleaned, places=2)
+
+
+def extract_file_date(input_path: Path) -> str:
+    match = re.search(r"(\d{8}_\d{6})", input_path.stem)
+    if not match:
+        return ""
+
+    timestamp = match.group(1)
+    try:
+        return datetime.strptime(timestamp, "%Y%m%d_%H%M%S").strftime("%d/%m/%Y %H:%M:%S")
+    except ValueError:
+        return timestamp
 
 
 def parse_xml_spreadsheet(path: Path) -> list[dict[str, str]]:
@@ -132,70 +164,20 @@ def parse_xml_spreadsheet(path: Path) -> list[dict[str, str]]:
             for column_index, value in sparse_values.items()
             if column_index in headers
         }
-        if clean_text(record.get(SOURCE_COLUMNS["fund_name"])) and clean_text(record.get(SOURCE_COLUMNS["isin"])):
+        if clean_text(record.get(SOURCE_COLUMNS["fund_name"])):
             rows.append(record)
 
     return rows
 
 
-def clean_text(value: str | None) -> str:
-    if value is None:
-        return ""
-
-    cleaned = value.strip()
-    return "" if cleaned in {"", "-", "- ", " -"} else cleaned
-
-
-def format_decimal(value: str | None, places: int = 2) -> str:
-    cleaned = clean_text(value)
-    if not cleaned:
-        return ""
-
-    try:
-        decimal_value = Decimal(cleaned)
-    except InvalidOperation:
-        return cleaned
-
-    quantized = decimal_value.quantize(Decimal("1." + ("0" * places)), rounding=ROUND_HALF_UP)
-    return format(quantized, f".{places}f")
-
-
-def format_ter_bps(value: str | None) -> str:
-    cleaned = clean_text(value)
-    if not cleaned:
-        return ""
-
-    try:
-        bps = Decimal(cleaned) * Decimal("100")
-    except InvalidOperation:
-        return cleaned
-
-    return format_decimal(str(bps), places=2)
-
-
-def format_date(value: str | None) -> str:
-    cleaned = clean_text(value)
-    if not cleaned:
-        return ""
-
-    try:
-        return datetime.fromisoformat(cleaned).date().isoformat()
-    except ValueError:
-        return cleaned.split("T", 1)[0]
-
-
-def transform_row(source_row: dict[str, str]) -> dict[str, str]:
+def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
     return {
         "ETF Name": clean_text(source_row.get(SOURCE_COLUMNS["fund_name"])),
         "Issuer": clean_text(source_row.get(SOURCE_COLUMNS["issuer"])),
-        "Asset Class": clean_text(source_row.get(SOURCE_COLUMNS["asset_class"])),
-        "CCY": clean_text(source_row.get(SOURCE_COLUMNS["currency"])),
-        "TER (bps)": format_ter_bps(source_row.get(SOURCE_COLUMNS["ter"])),
-        "Listing Date": format_date(source_row.get(SOURCE_COLUMNS["listing_date"])),
-        "Distribution": clean_text(source_row.get(SOURCE_COLUMNS["distribution"])),
-        "ISIN": clean_text(source_row.get(SOURCE_COLUMNS["isin"])),
-        "Ticker": clean_text(source_row.get(SOURCE_COLUMNS["ticker"])),
+        "CCY": clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper(),
+        "TER": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
         "AUM(M)": format_decimal(source_row.get(SOURCE_COLUMNS["aum"])),
+        "Date": file_date,
     }
 
 
@@ -214,21 +196,41 @@ def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
         writer.writerows(rows)
 
 
+def extract_rows(input_path: Path | None = None, *, include_all_funds: bool = False) -> list[dict[str, str]]:
+    resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
+    rows = parse_xml_spreadsheet(resolved_input_path)
+    filtered_rows = filter_rows(rows, include_all_funds=include_all_funds)
+    file_date = extract_file_date(resolved_input_path)
+    return [transform_row(row, file_date) for row in filtered_rows]
+
+
+def process_file(
+    input_path: Path | None = None,
+    output_path: Path | None = None,
+    *,
+    include_all_funds: bool = False,
+) -> Path:
+    resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
+    resolved_output_path = (
+        output_path.resolve()
+        if output_path
+        else build_output_path(OUTPUT_DIR, include_all_funds=include_all_funds)
+    )
+
+    output_rows = extract_rows(resolved_input_path, include_all_funds=include_all_funds)
+
+    write_csv(resolved_output_path, output_rows)
+
+    print(f"Source file : {resolved_input_path}")
+    print(f"Rows written: {len(output_rows):,}")
+    print(f"Output file : {resolved_output_path}")
+    print(f"Filter      : {'All funds' if include_all_funds else 'ETF rows only'}")
+    return resolved_output_path
+
+
 def main() -> None:
     args = parse_args()
-    input_path = args.input.resolve() if args.input else find_latest_download(INPUT_DIR)
-    output_path = args.output.resolve() if args.output else build_output_path(OUTPUT_DIR, include_all_funds=args.all_funds)
-
-    rows = parse_xml_spreadsheet(input_path)
-    filtered_rows = filter_rows(rows, include_all_funds=args.all_funds)
-    output_rows = [transform_row(row) for row in filtered_rows]
-
-    write_csv(output_path, output_rows)
-
-    print(f"Source file : {input_path}")
-    print(f"Rows written: {len(output_rows):,}")
-    print(f"Output file : {output_path}")
-    print(f"Filter      : {'All funds' if args.all_funds else 'ETF rows only'}")
+    process_file(args.input, args.output, include_all_funds=not args.etf_only)
 
 
 if __name__ == "__main__":

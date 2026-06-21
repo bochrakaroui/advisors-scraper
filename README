@@ -41,15 +41,10 @@ The project focuses on extracting key ETF information such as:
 
 * ETF name
 * Issuer / provider
-* ISIN
-* Ticker
 * Currency
-* AUM
 * TER
-* Asset class
-* Distribution type
-* Listing market
-* Source website
+* AUM in millions
+* Download file date
 
 ## Use of Agents and LLMs
 
@@ -91,4 +86,12 @@ The project can be extended to support official sources such as:
 
 This project is currently under development.
 
-The first version focuses on downloading official ETF files and extracting the most important fields needed for ETF data storage.
+The current version focuses on downloading official ETF files and extracting a standardized six-column dataset.
+
+To run the full pipeline in one command:
+
+```powershell
+python run_all_etf_pipeline.py
+```
+
+Each pipeline run creates a new folder under `pipeline_runs\` named like `pipeline_run_2026-06-21_11-50-42`, and that folder contains one combined CSV plus a validation report built from all selected providers.
