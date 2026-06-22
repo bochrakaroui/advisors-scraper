@@ -8,8 +8,9 @@ Download ETF source files from official provider websites, then extract a clean 
 
 - ETF Name
 - Issuer
+- ISIN
 - CCY
-- TER
+- TER(bps)
 - AUM(M)
 - Date
 
@@ -41,6 +42,12 @@ The current structure is kept as-is:
   - UBS downloaded files
   - UBS processed files
   - UBS field extractor
+- `providers/jpmorgan/`
+  - J.P. Morgan downloaded files
+  - J.P. Morgan processed files
+  - J.P. Morgan field extractor
+- `docs/provider_workflows.md`
+  - provider-by-provider source and fetch-method notes
 - `pipeline_runs/`
   - one folder per pipeline run, named like `2026-06-21_13-04-45`
   - contains the combined CSV and validation report for that run
@@ -70,6 +77,7 @@ python run_all_etf_pipeline.py --etf-only
 python run_all_etf_pipeline.py --stop-on-error
 python run_all_etf_pipeline.py --use-latest-downloads
 python run_all_etf_pipeline.py --providers ubs
+python run_all_etf_pipeline.py --providers jpmorgan
 ```
 
 Pipeline behavior:
@@ -151,6 +159,20 @@ Saved to:
 providers\UBS\UBS_etf_downloads\
 ```
 
+### J.P. Morgan
+
+Download the latest J.P. Morgan file:
+
+```powershell
+python scrapers\jpmorgan_extractor.py
+```
+
+Saved to:
+
+```text
+providers\jpmorgan\jpmorgan_downloads\
+```
+
 ## Processing Workflows
 
 ### iShares Processing
@@ -180,7 +202,8 @@ Current iShares processing rules:
 - Normalizes header whitespace so headers still work even when the source file contains line breaks
 - Keeps all real source rows by default
 - Can optionally keep ETF rows only with `--etf-only`
-- Extracts source `TER / OCF` into `TER`
+- Reads source `TER / OCF`
+- Writes `TER(bps)` in basis points
 - Preserves source `AUM (M)` as `AUM(M)`
 - Adds `Date` from the downloaded filename timestamp
 - Writes the final cleaned CSV with the required output fields
@@ -211,7 +234,8 @@ Current Xtrackers processing rules:
 - Parses the workbook directly
 - Keeps all real source rows and excludes non-data footer/disclaimer rows
 - Keeps the source `Share class currency` as `CCY`
-- Extracts source `TER p.a. (%)` into `TER`
+- Reads source `TER p.a. (%)`
+- Writes `TER(bps)` in basis points
 - Scales source `AuM (GBP)` into millions only
 - Does not perform FX conversion
 - Adds `Date` from the downloaded filename timestamp
@@ -236,7 +260,8 @@ Current Amundi processing rules:
 - Parses the workbook directly
 - Keeps all real source rows
 - Keeps the source `Share Class Currency` as `CCY`
-- Extracts source `OGC` into `TER`
+- Reads source `OGC`
+- Writes `TER(bps)` in basis points
 - Extracts the numeric part of `Assets Under Management` and writes it as `AUM(M)`
 - Adds `Date` from the downloaded filename timestamp
 
@@ -260,7 +285,8 @@ Current Invesco processing rules:
 - Parses the workbook directly
 - Keeps all real source rows
 - Keeps the source `currency` as `CCY`
-- Extracts source `terocf` into `TER`
+- Reads source `terocf`
+- Writes `TER(bps)` in basis points
 - Scales source `aum` into millions and writes it as `AUM(M)`
 - Adds `Date` from the downloaded filename timestamp
 
@@ -284,8 +310,32 @@ Current UBS processing rules:
 - Parses the workbook directly
 - Keeps all real source rows
 - Keeps the source `Currency` as `CCY`
-- Extracts source `TER (flat fee)(%)` into `TER`
+- Reads source `TER (flat fee)(%)`
+- Writes `TER(bps)` in basis points
 - Preserves source `AUM(M)` as `AUM(M)`
+- Adds `Date` from the downloaded filename timestamp
+
+### J.P. Morgan Processing
+
+Run:
+
+```powershell
+python providers\jpmorgan\extract_jpmorgan_fields.py
+```
+
+Output folder:
+
+```text
+providers\jpmorgan\jpmorgan_processed\
+```
+
+Current J.P. Morgan processing rules:
+
+- Reads the latest downloaded `.json` snapshot by default
+- Filters ETF rows only from the official listing payload
+- Keeps the share-class currency as `CCY`
+- Converts `ongoingCharge` into `TER(bps)`
+- Converts `assetsUnderManagement` into `AUM(M)`
 - Adds `Date` from the downloaded filename timestamp
 
 ## Output Format
@@ -293,7 +343,7 @@ Current UBS processing rules:
 The output CSV columns are:
 
 ```text
-ETF Name,Issuer,CCY,TER,AUM(M),Date
+ETF Name,Issuer,ISIN,CCY,TER(bps),AUM(M),Date
 ```
 
 ## Verification Commands
@@ -301,7 +351,7 @@ ETF Name,Issuer,CCY,TER,AUM(M),Date
 Useful checks:
 
 ```powershell
-python -m py_compile scrapers\Amundi_extractor.py scrapers\UBS_extractor.py scrapers\ishares_extractor.py scrapers\Xtrackers_extractor.py scrapers\invesco_extractor.py providers\ishares\extract_ishares_fields.py providers\xtrackers\extract_xtrackers_fields.py providers\amundi\extract_amundi_fields.py providers\invesco\extract_invesco_fields.py providers\UBS\extract_ubs_fields.py run_all_etf_pipeline.py
+python -m py_compile scrapers\Amundi_extractor.py scrapers\UBS_extractor.py scrapers\ishares_extractor.py scrapers\Xtrackers_extractor.py scrapers\invesco_extractor.py scrapers\jpmorgan_extractor.py providers\ishares\extract_ishares_fields.py providers\xtrackers\extract_xtrackers_fields.py providers\amundi\extract_amundi_fields.py providers\invesco\extract_invesco_fields.py providers\UBS\extract_ubs_fields.py providers\jpmorgan\extract_jpmorgan_fields.py run_all_etf_pipeline.py
 ```
 
 Run iShares processing:
@@ -334,6 +384,12 @@ Run UBS processing:
 python providers\UBS\extract_ubs_fields.py
 ```
 
+Run J.P. Morgan processing:
+
+```powershell
+python providers\jpmorgan\extract_jpmorgan_fields.py
+```
+
 ## Current Provider Status
 
 - `iShares`: downloader and processor are working
@@ -341,10 +397,13 @@ python providers\UBS\extract_ubs_fields.py
 - `Amundi`: downloader and processor are working
 - `Invesco`: downloader and processor are working
 - `UBS`: downloader and processor are working
+- `SPDR`: downloader and processor are working
+- `HSBC`: downloader and processor are working
+- `J.P. Morgan`: downloader and processor are working
 
 ## Important Notes
 
 - Folder structure was intentionally not changed
-- Processing now writes a narrow six-column dataset for every provider
+- Processing now writes a narrow seven-column dataset for every provider
 - The pipeline writes one combined CSV per run inside `pipeline_runs\<timestamp>\`
 - No provider performs FX conversion during processing

@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+
+pipeline_runs/
+
+data/raw/
+data/processed/
+
+providers/*/*_downloads/*
+providers/*/*_processed/*
+!providers/
+!providers/*/
+
+.vendor_pypdf/**/__pycache__/

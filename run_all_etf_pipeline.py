@@ -47,6 +47,12 @@ from providers.ishares.extract_ishares_fields import (
     find_latest_download as find_latest_ishares_download,
     parse_xml_spreadsheet as parse_ishares_source_rows,
 )
+from providers.jpmorgan.extract_jpmorgan_fields import (
+    INPUT_DIR as JPMORGAN_INPUT_DIR,
+    extract_rows as extract_jpmorgan_rows,
+    find_latest_download as find_latest_jpmorgan_download,
+    parse_snapshot_rows as parse_jpmorgan_source_rows,
+)
 from providers.xtrackers.extract_xtrackers_fields import (
     INPUT_DIR as XTRACKERS_INPUT_DIR,
     extract_rows as extract_xtrackers_rows,
@@ -59,6 +65,7 @@ from scrapers.Xtrackers_extractor import download_xtrackers_file
 from scrapers.hsbc_extractor import download_hsbc_file
 from scrapers.invesco_extractor import download_invesco_file
 from scrapers.ishares_extractor import download_etf_list
+from scrapers.jpmorgan_extractor import download_jpmorgan_file
 from scrapers.spdr_collector import download_spdr_file, parse_xlsx_rows as parse_spdr_source_rows
 
 
@@ -66,7 +73,7 @@ BASE_DIR = Path(__file__).resolve().parent
 RUNS_DIR = BASE_DIR / "pipeline_runs"
 COMBINED_FILENAME = "all_etf_fields.csv"
 
-ALL_PROVIDERS = ("ishares", "xtrackers", "amundi", "invesco", "ubs", "spdr", "hsbc")
+ALL_PROVIDERS = ("ishares", "xtrackers", "amundi", "invesco", "ubs", "spdr", "hsbc", "jpmorgan")
 PROCESSED_DIRS = (
     BASE_DIR / "providers" / "ishares" / "ishares_processed",
     BASE_DIR / "providers" / "xtrackers" / "xtrackers_processed",
@@ -75,6 +82,7 @@ PROCESSED_DIRS = (
     BASE_DIR / "providers" / "UBS" / "UBS_processed",
     BASE_DIR / "providers" / "SPDR" / "spdr_processed",
     BASE_DIR / "providers" / "hsbc" / "hsbc_processed",
+    BASE_DIR / "providers" / "jpmorgan" / "jpmorgan_processed",
 )
 
 Downloader = Callable[[], Awaitable[Path]]
@@ -297,6 +305,14 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             input_dir=INVESCO_INPUT_DIR,
             latest_download_finder=find_latest_invesco_download,
             source_row_parser=parse_invesco_source_rows,
+        ),
+        "jpmorgan": ProviderPipeline(
+            name="J.P. Morgan",
+            downloader=download_jpmorgan_file,
+            extractor=extract_jpmorgan_rows,
+            input_dir=JPMORGAN_INPUT_DIR,
+            latest_download_finder=find_latest_jpmorgan_download,
+            source_row_parser=parse_jpmorgan_source_rows,
         ),
     }
 

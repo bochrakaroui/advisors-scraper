@@ -9,9 +9,6 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-from scrapers.hsbc_extractor import extract_factsheet_fields
-
-
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_DIR = BASE_DIR / "hsbc_downloads"
 OUTPUT_DIR = BASE_DIR / "hsbc_processed"
@@ -74,16 +71,12 @@ def parse_snapshot_rows(path: Path) -> list[dict[str, str]]:
 
 def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
     isin = clean_text(source_row.get("isin")).upper()
-    snapshot_ccy = clean_text(source_row.get("ccy")).upper()
-    snapshot_ter_bps = clean_text(source_row.get("ter_bps"))
-    factsheet_fields = extract_factsheet_fields(isin) if isin and (not snapshot_ccy or not snapshot_ter_bps) else {}
-
     return {
         "ETF Name": clean_text(source_row.get("etf_name")),
         "Issuer": ISSUER,
         "ISIN": isin,
-        "CCY": snapshot_ccy or clean_text(factsheet_fields.get("ccy")).upper(),
-        "TER(bps)": snapshot_ter_bps or clean_text(factsheet_fields.get("ter_bps")),
+        "CCY": clean_text(source_row.get("ccy")).upper(),
+        "TER(bps)": clean_text(source_row.get("ter_bps")),
         "AUM(M)": clean_text(source_row.get("aum_mn")),
         "Date": file_date,
     }

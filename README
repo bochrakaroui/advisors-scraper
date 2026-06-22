@@ -86,7 +86,26 @@ The project can be extended to support official sources such as:
 
 This project is currently under development.
 
-The current version focuses on downloading official ETF files and extracting a standardized six-column dataset.
+The current version focuses on downloading official ETF source data and extracting a standardized dataset with these columns:
+
+* ETF Name
+* Issuer
+* ISIN
+* CCY
+* TER(bps)
+* AUM(M)
+* Date
+
+Currently implemented providers include:
+
+* iShares
+* Xtrackers
+* Amundi
+* Invesco
+* UBS
+* SPDR / State Street
+* HSBC Asset Management
+* J.P. Morgan Asset Management
 
 To run the full pipeline in one command:
 
@@ -94,4 +113,4 @@ To run the full pipeline in one command:
 python run_all_etf_pipeline.py
 ```
 
-Each pipeline run creates a new folder under `pipeline_runs\` named like `2026-06-21_13-04-45`, and that folder contains one combined CSV plus a validation report built from all selected providers.
+Each pipeline run creates a new folder under `pipeline_runs\` named like `2026-06-22_10-22-28`, and that folder contains one combined CSV plus a validation report built from all selected providers.

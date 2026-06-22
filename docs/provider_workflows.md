@@ -126,4 +126,18 @@ This file documents how each provider is fetched in the current repo, using the 
 - Notes:
   - `CCY` is sourced from the official listing API and factsheet fallback where needed.
   - `AUM(M)` is enriched from official detail/factsheet sources.
-  - `TER(bps)` is only filled when HSBC exposes it through those official sources.
+- `TER(bps)` is only filled when HSBC exposes it through those official sources.
+
+## J.P. Morgan Asset Management
+
+- Official page: `https://am.jpmorgan.com/gb/en/asset-management/per/products/fund-explorer/etf`
+- Fetch method:
+  - Uses the official `FundsMarketingHandler/fund-explorer` JSON endpoint behind the UK ETF explorer.
+  - The request is filtered with `country=gb`, `role=per`, `language=en`, and `fundType=etf`.
+- Raw file saved:
+  - `providers/jpmorgan/jpmorgan_downloads/*.json`
+- Extraction source:
+  - Primary extraction comes directly from the saved JSON snapshot.
+- Notes:
+  - The listing payload already exposes share-class name, ISIN, share-class currency, ongoing charge, and assets under management.
+  - No product-page fallback is currently needed for the J.P. Morgan provider.

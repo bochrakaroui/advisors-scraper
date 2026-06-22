@@ -8,12 +8,12 @@ import json
 import logging
 import re
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import deepcopy
 from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from functools import lru_cache
 from pathlib import Path
-from urllib.parse import urljoin
 
 import requests
 from playwright.sync_api import Page, sync_playwright
@@ -23,6 +23,8 @@ PAGE_URL = "https://www.assetmanagement.hsbc.co.uk/en/institutional-investor/fun
 FUNDS_API_URL = "https://www.assetmanagement.hsbc.co.uk/api/v1/nav/funds"
 FACTSHEET_URL_TEMPLATE = "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/{isin}/gb/en/factsheet"
 ISSUER = "HSBC Asset Management"
+FACTSHEET_TIMEOUT = (15, 45)
+MAX_FACTSHEET_WORKERS = 8
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "hsbc" / "hsbc_downloads"
@@ -38,7 +40,7 @@ except Exception:
 
 
 def setup_logging() -> None:
-    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s", force=True)
 
 
 def timestamp_now() -> datetime:
@@ -155,13 +157,6 @@ def fetch_funds_page(page: Page, authorization: str, payload: dict[str, object])
     )
 
 
-def extract_share_class_link(share_class: dict[str, object]) -> str:
-    for item in share_class.get("data", []):
-        if item.get("columnId") == "UniqueIdentifier":
-            return clean_text(item.get("link"))
-    return ""
-
-
 def extract_currency(share_class: dict[str, object]) -> str:
     for item in share_class.get("data", []):
         if item.get("groupType") != "currency":
@@ -181,8 +176,7 @@ def extract_currency(share_class: dict[str, object]) -> str:
     return ""
 
 
-def extract_listing_rows(page_information: dict[str, object], api_pages: list[dict[str, object]]) -> list[dict[str, str]]:
-    detail_base = clean_text(page_information.get("fundDetailPageUrl")) or "/en/institutional-investor/funds"
+def extract_listing_rows(api_pages: list[dict[str, object]]) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
 
     for api_page in api_pages:
@@ -191,8 +185,6 @@ def extract_listing_rows(page_information: dict[str, object], api_pages: list[di
             fund_name = clean_text(fund.get("name"))
             for share_class in fund.get("shareClasses", []):
                 isin = clean_text(share_class.get("isin")).upper()
-                link = extract_share_class_link(share_class)
-                detail_url = urljoin("https://www.assetmanagement.hsbc.co.uk", detail_base.rstrip("/") + link)
                 rows.append(
                     {
                         "fund_id": fund_id,
@@ -200,7 +192,6 @@ def extract_listing_rows(page_information: dict[str, object], api_pages: list[di
                         "issuer": ISSUER,
                         "isin": isin,
                         "ccy": extract_currency(share_class),
-                        "detail_url": detail_url,
                     }
                 )
 
@@ -251,68 +242,26 @@ def parse_percentage_to_bps(raw_value: str) -> str:
     return format_decimal(percentage * Decimal("100"), places=2)
 
 
-def open_prices_and_fees_tab(page: Page) -> None:
-    for selector in (
-        "text='Prices and fees'",
-        "h2:has-text('Prices and fees')",
-        "[role='tab']:has-text('Prices and fees')",
-    ):
-        try:
-            page.locator(selector).first.click(timeout=5_000, force=True)
-            page.wait_for_timeout(2_000)
-            return
-        except Exception:
-            continue
-
-
-def capture_detail_page_fields(page: Page, detail_url: str) -> dict[str, str]:
-    payloads: list[dict[str, object]] = []
-
-    def on_response(response) -> None:
-        if "/api/v1/detail/list" not in response.url:
-            return
-        try:
-            payloads.append(response.json())
-        except Exception:
-            return
-
-    page.on("response", on_response)
-    try:
-        page.goto(detail_url, wait_until="domcontentloaded", timeout=120_000)
-        accept_hsbc_overlays(page)
-        page.wait_for_timeout(2_500)
-        open_prices_and_fees_tab(page)
-    finally:
-        page.remove_listener("response", on_response)
-
-    fields = {"aum_raw": "", "ter_bps": ""}
-    for payload in payloads:
-        if clean_text(payload.get("title")) == "Fees":
-            for item in payload.get("items", []):
-                if clean_text(item.get("title")).startswith("Ongoing charge figure") and not fields["ter_bps"]:
-                    fields["ter_bps"] = parse_percentage_to_bps(clean_text(item.get("value")))
-        for item in payload.get("items", []):
-            if clean_text(item.get("title")) == "Fund AUM" and not fields["aum_raw"]:
-                fields["aum_raw"] = clean_text(item.get("value"))
-
-    return fields
-
-
 @lru_cache(maxsize=None)
 def extract_factsheet_fields(isin: str) -> dict[str, str]:
     if PdfReader is None:
         return {"ccy": "", "ter_bps": "", "aum_raw": ""}
-
-    response = requests.get(
-        FACTSHEET_URL_TEMPLATE.format(isin=isin.lower()),
-        headers={"User-Agent": "Mozilla/5.0"},
-        timeout=120,
-    )
-    if response.status_code != 200 or "pdf" not in (response.headers.get("content-type") or "").lower():
+    try:
+        response = requests.get(
+            FACTSHEET_URL_TEMPLATE.format(isin=isin.lower()),
+            headers={"User-Agent": "Mozilla/5.0"},
+            timeout=FACTSHEET_TIMEOUT,
+        )
+    except requests.RequestException:
         return {"ccy": "", "ter_bps": "", "aum_raw": ""}
 
-    reader = PdfReader(io.BytesIO(response.content))
-    text = "\n".join(pdf_page.extract_text() or "" for pdf_page in reader.pages)
+    if response.status_code != 200 or "pdf" not in (response.headers.get("content-type") or "").lower():
+        return {"ccy": "", "ter_bps": "", "aum_raw": ""}
+    try:
+        reader = PdfReader(io.BytesIO(response.content))
+        text = "\n".join(pdf_page.extract_text() or "" for pdf_page in reader.pages)
+    except Exception:
+        return {"ccy": "", "ter_bps": "", "aum_raw": ""}
     aum_match = re.search(
         r"Fund size\s+[A-Z]{3}\s+([0-9][0-9,]*(?:\.\d+)?)",
         text,
@@ -331,64 +280,64 @@ def extract_factsheet_fields(isin: str) -> dict[str, str]:
     }
 
 
-def collect_aum_map(page: Page, listing_rows: list[dict[str, str]]) -> tuple[dict[str, str], list[dict[str, str]]]:
+def fetch_factsheet_map(isins: list[str], *, label: str) -> dict[str, dict[str, str]]:
+    unique_isins = [isin for isin in dict.fromkeys(isin for isin in isins if isin)]
+    if not unique_isins:
+        return {}
+
+    total = len(unique_isins)
+    logging.info("Fetching official HSBC factsheets for %s (%s documents) ...", label, total)
+    results: dict[str, dict[str, str]] = {}
+
+    with ThreadPoolExecutor(max_workers=min(MAX_FACTSHEET_WORKERS, total)) as executor:
+        future_map = {executor.submit(extract_factsheet_fields, isin): isin for isin in unique_isins}
+        completed = 0
+
+        for future in as_completed(future_map):
+            isin = future_map[future]
+            try:
+                results[isin] = future.result()
+            except Exception:
+                results[isin] = {"ccy": "", "ter_bps": "", "aum_raw": ""}
+
+            completed += 1
+            if completed == total or completed % 25 == 0:
+                logging.info("Factsheets %s: %s/%s complete", label, completed, total)
+
+    return results
+
+
+def build_aum_map(
+    listing_rows: list[dict[str, str]],
+    factsheet_by_isin: dict[str, dict[str, str]],
+) -> tuple[dict[str, str], list[dict[str, str]]]:
     aum_by_fund_id: dict[str, str] = {}
     raw_entries: list[dict[str, str]] = []
 
-    detail_targets: dict[str, list[tuple[str, str, str]]] = {}
+    targets_by_fund_id: dict[str, list[dict[str, str]]] = {}
     for row in listing_rows:
-        detail_targets.setdefault(row["fund_id"], []).append((row["detail_url"], row["etf_name"], row["isin"]))
+        targets_by_fund_id.setdefault(row["fund_id"], []).append(row)
 
-    for fund_id, targets in detail_targets.items():
-        etf_name = targets[0][1]
-        raw_aum_value = ""
-        source = ""
-        source_url = ""
-
-        for detail_url, _, share_class_isin in targets:
-            raw_aum_value = capture_detail_page_fields(page, detail_url).get("aum_raw", "")
-            if raw_aum_value:
-                source = "detail_api"
-                source_url = detail_url
-                break
-
-        if not raw_aum_value:
-            for _, _, share_class_isin in targets:
-                raw_aum_value = extract_factsheet_fields(share_class_isin).get("aum_raw", "")
-                if raw_aum_value:
-                    source = "factsheet_pdf"
-                    source_url = FACTSHEET_URL_TEMPLATE.format(isin=share_class_isin.lower())
-                    break
-
+    for fund_id, targets in targets_by_fund_id.items():
+        representative = next((row for row in targets if row["isin"]), targets[0])
+        representative_isin = representative["isin"]
+        factsheet_fields = factsheet_by_isin.get(representative_isin, {})
+        raw_aum_value = clean_text(factsheet_fields.get("aum_raw"))
         aum_mn = parse_aum_to_millions(raw_aum_value)
         aum_by_fund_id[fund_id] = aum_mn
         raw_entries.append(
             {
                 "fund_id": fund_id,
-                "etf_name": etf_name,
-                "share_class_isins": [share_class_isin for _, _, share_class_isin in targets],
-                "source": source,
-                "source_url": source_url,
+                "etf_name": representative["etf_name"],
+                "share_class_isins": [row["isin"] for row in targets if row["isin"]],
+                "source": "factsheet_pdf" if raw_aum_value else "",
+                "source_url": FACTSHEET_URL_TEMPLATE.format(isin=representative_isin.lower()) if representative_isin else "",
                 "raw_aum_value": raw_aum_value,
                 "aum_mn": aum_mn,
             }
         )
 
     return aum_by_fund_id, raw_entries
-
-
-def collect_detail_ter_map(page: Page, listing_rows: list[dict[str, str]]) -> dict[str, str]:
-    ter_by_isin: dict[str, str] = {}
-
-    for row in listing_rows:
-        isin = row["isin"]
-        if extract_factsheet_fields(isin).get("ter_bps"):
-            continue
-        ter_bps = capture_detail_page_fields(page, row["detail_url"]).get("ter_bps", "")
-        if ter_bps:
-            ter_by_isin[isin] = ter_bps
-
-    return ter_by_isin
 
 
 def build_snapshot(now: datetime) -> dict[str, object]:
@@ -398,7 +347,6 @@ def build_snapshot(now: datetime) -> dict[str, object]:
 
         authorization, initial_payload, initial_response = capture_initial_api_context(list_page)
         total_pages = int(initial_response.get("paging", {}).get("totalPages", 1))
-        page_information = initial_payload.get("pageInformation", {})
 
         api_pages = [initial_response]
         for page_number in range(2, total_pages + 1):
@@ -406,15 +354,16 @@ def build_snapshot(now: datetime) -> dict[str, object]:
             page_payload["paging"]["currentPage"] = page_number
             api_pages.append(fetch_funds_page(list_page, authorization, page_payload))
 
-        detail_page = browser.new_page()
-        listing_rows = extract_listing_rows(page_information, api_pages)
-        aum_by_fund_id, raw_aum_entries = collect_aum_map(detail_page, listing_rows)
-        detail_ter_by_isin = collect_detail_ter_map(detail_page, listing_rows)
+        listing_rows = extract_listing_rows(api_pages)
         browser.close()
+
+    logging.info("Captured %s HSBC ETF listing rows from the official listing API.", len(listing_rows))
+    factsheet_by_isin = fetch_factsheet_map([row["isin"] for row in listing_rows], label="share classes")
+    aum_by_fund_id, raw_aum_entries = build_aum_map(listing_rows, factsheet_by_isin)
 
     enriched_rows = []
     for row in listing_rows:
-        factsheet_fields = extract_factsheet_fields(row["isin"])
+        factsheet_fields = factsheet_by_isin.get(row["isin"], {})
         enriched_rows.append(
             {
                 "fund_id": row["fund_id"],
@@ -422,14 +371,14 @@ def build_snapshot(now: datetime) -> dict[str, object]:
                 "issuer": row["issuer"],
                 "isin": row["isin"],
                 "ccy": row["ccy"] or factsheet_fields.get("ccy", ""),
-                "ter_bps": factsheet_fields.get("ter_bps", "") or detail_ter_by_isin.get(row["isin"], ""),
+                "ter_bps": factsheet_fields.get("ter_bps", ""),
                 "aum_mn": aum_by_fund_id.get(row["fund_id"], ""),
             }
         )
 
     return {
         "source_url": PAGE_URL,
-        "method": "official API + detail API/product factsheets",
+        "method": "official listing API + official factsheet PDFs",
         "captured_at": now.isoformat(),
         "pages": api_pages,
         "aum_entries": raw_aum_entries,
