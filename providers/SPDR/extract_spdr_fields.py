@@ -14,7 +14,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from scrapers.spdr_collector import parse_xlsx_rows
+from scrapers.spdr_collector import fetch_spdr_currency_map, parse_xlsx_rows
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -32,8 +32,9 @@ SOURCE_COLUMNS = {
 OUTPUT_COLUMNS = [
     "ETF Name",
     "Issuer",
+    "ISIN",
     "CCY",
-    "TER",
+    "TER(bps)",
     "AUM(M)",
     "Date",
 ]
@@ -86,9 +87,14 @@ def format_decimal(value: str | Decimal | None, places: int = 2) -> str:
 
 def format_ter(value: str | None) -> str:
     cleaned = clean_text(value).replace("%", "").strip()
+    if not cleaned:
+        return ""
     if "," in cleaned and "." not in cleaned:
         cleaned = cleaned.replace(",", ".")
-    return format_decimal(cleaned, places=2)
+    try:
+        return format_decimal(str(Decimal(cleaned) * Decimal("100")), places=2)
+    except InvalidOperation:
+        return cleaned
 
 
 def extract_file_date(input_path: Path) -> str:
@@ -116,12 +122,15 @@ def convert_aum_to_millions(total_fund_assets_raw: str | None) -> str:
     return format_decimal(amount / Decimal("1000000"), places=2)
 
 
-def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
+def transform_row(source_row: dict[str, str], file_date: str, currency_overrides: dict[str, str]) -> dict[str, str]:
+    isin = clean_text(source_row.get("ISIN")).upper()
+    ccy = clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper() or currency_overrides.get(isin, "")
     return {
         "ETF Name": clean_text(source_row.get(SOURCE_COLUMNS["fund_name"])),
         "Issuer": ISSUER,
-        "CCY": clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper(),
-        "TER": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
+        "ISIN": isin,
+        "CCY": ccy,
+        "TER(bps)": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
         "AUM(M)": convert_aum_to_millions(source_row.get(SOURCE_COLUMNS["aum_raw"])),
         "Date": file_date,
     }
@@ -139,7 +148,8 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
     rows = parse_xlsx_rows(resolved_input_path)
     file_date = extract_file_date(resolved_input_path)
-    return [transform_row(row, file_date) for row in rows]
+    currency_overrides = fetch_spdr_currency_map(resolved_input_path)
+    return [transform_row(row, file_date, currency_overrides) for row in rows]
 
 
 def process_file(input_path: Path | None = None, output_path: Path | None = None) -> Path:

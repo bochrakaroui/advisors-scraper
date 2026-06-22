@@ -6,7 +6,6 @@ import argparse
 import asyncio
 import csv
 import os
-import shutil
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -18,6 +17,12 @@ from providers.amundi.extract_amundi_fields import (
     extract_rows as extract_amundi_rows,
     find_latest_download as find_latest_amundi_download,
     parse_xlsx_rows as parse_amundi_source_rows,
+)
+from providers.hsbc.extract_hsbc_fields import (
+    INPUT_DIR as HSBC_INPUT_DIR,
+    extract_rows as extract_hsbc_rows,
+    find_latest_download as find_latest_hsbc_download,
+    parse_snapshot_rows as parse_hsbc_source_rows,
 )
 from providers.SPDR.extract_spdr_fields import (
     INPUT_DIR as SPDR_INPUT_DIR,
@@ -51,6 +56,7 @@ from providers.xtrackers.extract_xtrackers_fields import (
 from scrapers.Amundi_extractor import download_amundi_file
 from scrapers.UBS_extractor import download_ubs_file
 from scrapers.Xtrackers_extractor import download_xtrackers_file
+from scrapers.hsbc_extractor import download_hsbc_file
 from scrapers.invesco_extractor import download_invesco_file
 from scrapers.ishares_extractor import download_etf_list
 from scrapers.spdr_collector import download_spdr_file, parse_xlsx_rows as parse_spdr_source_rows
@@ -60,7 +66,7 @@ BASE_DIR = Path(__file__).resolve().parent
 RUNS_DIR = BASE_DIR / "pipeline_runs"
 COMBINED_FILENAME = "all_etf_fields.csv"
 
-ALL_PROVIDERS = ("ishares", "xtrackers", "amundi", "invesco", "ubs", "spdr")
+ALL_PROVIDERS = ("ishares", "xtrackers", "amundi", "invesco", "ubs", "spdr", "hsbc")
 PROCESSED_DIRS = (
     BASE_DIR / "providers" / "ishares" / "ishares_processed",
     BASE_DIR / "providers" / "xtrackers" / "xtrackers_processed",
@@ -68,6 +74,7 @@ PROCESSED_DIRS = (
     BASE_DIR / "providers" / "invesco" / "invesco_processed",
     BASE_DIR / "providers" / "UBS" / "UBS_processed",
     BASE_DIR / "providers" / "SPDR" / "spdr_processed",
+    BASE_DIR / "providers" / "hsbc" / "hsbc_processed",
 )
 
 Downloader = Callable[[], Awaitable[Path]]
@@ -120,15 +127,54 @@ def build_run_dir() -> Path:
     return run_dir
 
 
-def remove_readonly_and_retry(function, path: str, excinfo) -> None:
-    os.chmod(path, 0o666)
-    function(path)
-
-
 def clean_processed_dirs() -> None:
     for processed_dir in PROCESSED_DIRS:
-        if processed_dir.exists():
-            shutil.rmtree(processed_dir, onexc=remove_readonly_and_retry)
+        if not processed_dir.exists():
+            continue
+
+        for child in sorted(processed_dir.rglob("*"), reverse=True):
+            try:
+                os.chmod(child, 0o666)
+            except OSError:
+                pass
+
+            try:
+                if child.is_file():
+                    child.unlink()
+                else:
+                    child.rmdir()
+            except PermissionError:
+                print(f"[WARN] Skipping locked processed file or folder: {child}")
+            except OSError:
+                pass
+
+        try:
+            processed_dir.rmdir()
+        except PermissionError:
+            print(f"[WARN] Keeping processed folder because a file is locked: {processed_dir}")
+        except OSError:
+            pass
+
+
+def clean_raw_input_dir(input_dir: Path) -> None:
+    if not input_dir.exists():
+        return
+
+    for child in sorted(input_dir.rglob("*"), reverse=True):
+        try:
+            os.chmod(child, 0o666)
+        except OSError:
+            pass
+
+        try:
+            if child.is_file():
+                child.unlink()
+            else:
+                child.rmdir()
+        except PermissionError:
+            print(f"[WARN] Skipping locked raw file or folder: {child}")
+        except OSError:
+            pass
 
 
 def write_combined_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
@@ -228,6 +274,14 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             latest_download_finder=find_latest_spdr_download,
             source_row_parser=parse_spdr_source_rows,
         ),
+        "hsbc": ProviderPipeline(
+            name="HSBC",
+            downloader=download_hsbc_file,
+            extractor=extract_hsbc_rows,
+            input_dir=HSBC_INPUT_DIR,
+            latest_download_finder=find_latest_hsbc_download,
+            source_row_parser=parse_hsbc_source_rows,
+        ),
         "ubs": ProviderPipeline(
             name="UBS",
             downloader=download_ubs_file,
@@ -250,6 +304,7 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
 async def prepare_input_file(pipeline: ProviderPipeline, use_latest_downloads: bool) -> Path:
     if use_latest_downloads:
         return pipeline.latest_download_finder(pipeline.input_dir)
+    clean_raw_input_dir(pipeline.input_dir)
     return await pipeline.downloader()
 
 

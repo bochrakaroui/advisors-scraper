@@ -20,6 +20,7 @@ XLSX_NS = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
 SOURCE_COLUMNS = {
     "fund_name": "Product name",
+    "isin": "ISIN code",
     "currency": "Share Class Currency",
     "ter": "OGC",
     "aum": "Assets Under Management",
@@ -28,8 +29,9 @@ SOURCE_COLUMNS = {
 OUTPUT_COLUMNS = [
     "ETF Name",
     "Issuer",
+    "ISIN",
     "CCY",
-    "TER",
+    "TER(bps)",
     "AUM(M)",
     "Date",
 ]
@@ -81,9 +83,14 @@ def format_decimal(value: str | Decimal | None, places: int = 2) -> str:
 
 def format_ter(value: str | None) -> str:
     cleaned = clean_text(value).replace("%", "").strip()
+    if not cleaned:
+        return ""
     if "," in cleaned and "." not in cleaned:
         cleaned = cleaned.replace(",", ".")
-    return format_decimal(cleaned, places=2)
+    try:
+        return format_decimal(str(Decimal(cleaned) * Decimal("100")), places=2)
+    except InvalidOperation:
+        return cleaned
 
 
 def extract_file_date(input_path: Path) -> str:
@@ -183,8 +190,9 @@ def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
     return {
         "ETF Name": clean_text(source_row.get(SOURCE_COLUMNS["fund_name"])),
         "Issuer": "Amundi",
+        "ISIN": clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper(),
         "CCY": clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper(),
-        "TER": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
+        "TER(bps)": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
         "AUM(M)": extract_amundi_aum_millions(source_row.get(SOURCE_COLUMNS["aum"])),
         "Date": file_date,
     }

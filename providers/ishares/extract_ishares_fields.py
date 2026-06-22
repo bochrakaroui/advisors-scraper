@@ -22,6 +22,7 @@ SS_INDEX = f"{{{SPREADSHEET_NS}}}Index"
 SOURCE_COLUMNS = {
     "fund_name": "Fund Name",
     "fund_type": "Fund type",
+    "isin": "ISIN",
     "currency": "Share Class Currency",
     "ter": "TER / OCF",
     "issuer": "Issuing Company",
@@ -31,8 +32,9 @@ SOURCE_COLUMNS = {
 OUTPUT_COLUMNS = [
     "ETF Name",
     "Issuer",
+    "ISIN",
     "CCY",
-    "TER",
+    "TER(bps)",
     "AUM(M)",
     "Date",
 ]
@@ -109,9 +111,14 @@ def format_decimal(value: str | None, places: int = 2) -> str:
 
 def format_ter(value: str | None) -> str:
     cleaned = clean_text(value).replace("%", "").strip()
+    if not cleaned:
+        return ""
     if "," in cleaned and "." not in cleaned:
         cleaned = cleaned.replace(",", ".")
-    return format_decimal(cleaned, places=2)
+    try:
+        return format_decimal(str(Decimal(cleaned) * Decimal("100")), places=2)
+    except InvalidOperation:
+        return cleaned
 
 
 def extract_file_date(input_path: Path) -> str:
@@ -174,8 +181,9 @@ def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
     return {
         "ETF Name": clean_text(source_row.get(SOURCE_COLUMNS["fund_name"])),
         "Issuer": clean_text(source_row.get(SOURCE_COLUMNS["issuer"])),
+        "ISIN": clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper(),
         "CCY": clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper(),
-        "TER": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
+        "TER(bps)": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
         "AUM(M)": format_decimal(source_row.get(SOURCE_COLUMNS["aum"])),
         "Date": file_date,
     }

@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import asyncio
 import csv
+import json
 import logging
 import re
+from urllib.error import URLError
 import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
@@ -17,6 +19,7 @@ from zipfile import ZipFile
 
 PAGE_URL = "https://www.ssga.com/uk/en_gb/intermediary/etfs/fund-finder"
 XLSX_URL = "https://www.ssga.com/uk/en_gb/intermediary/library-content/products/fund-data/etfs/emea/spdr-product-data-emea-en.xlsx"
+FUND_FINDER_API_URL = "https://www.ssga.com/bin/v1/ssmp/fund/fundfinder?country=uk&language=en_gb&role=intermediary&product=&ui=fund-finder"
 ISSUER = "SPDR / State Street Global Advisors"
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -175,6 +178,88 @@ def parse_xlsx_rows(path: Path) -> list[dict[str, str]]:
     return rows
 
 
+def extract_spdr_isin(source_row: dict[str, object]) -> str:
+    for document_group in source_row.get("documentPdf", []) or []:
+        if clean_text(document_group.get("docType")) != "Key-investor-information":
+            continue
+        for document in document_group.get("docs", []) or []:
+            match = re.search(r"isin=([A-Z0-9]{12})", clean_text(document.get("path")), flags=re.IGNORECASE)
+            if match:
+                return match.group(1).upper()
+
+    match = re.search(r"\b([A-Z]{2}[A-Z0-9]{10})\b", clean_text(source_row.get("keywords")))
+    return match.group(1).upper() if match else ""
+
+
+def infer_currency_from_value(value: object) -> str:
+    cleaned = clean_text(value)
+    if not cleaned:
+        return ""
+
+    if cleaned.startswith("MXN"):
+        return "MXN"
+    if cleaned.startswith("CHF"):
+        return "CHF"
+    if cleaned.startswith("JPY"):
+        return "JPY"
+
+    first_char = cleaned[0]
+    if first_char == "$":
+        return "USD"
+    if first_char == "€":
+        return "EUR"
+    if ord(first_char) == 163:
+        return "GBP"
+
+    return ""
+
+
+def parse_currency_map_from_payload(payload: dict[str, object]) -> dict[str, str]:
+    items = (
+        payload.get("data", {})
+        .get("funds", {})
+        .get("uk-etfs", {})
+        .get("datas", [])
+    )
+    currency_map: dict[str, str] = {}
+
+    for item in items:
+        isin = extract_spdr_isin(item)
+        if not isin:
+            continue
+
+        ccy = ""
+        for field_name in ("nav", "aum", "closePrice", "bidPrice", "offerPrice"):
+            ccy = infer_currency_from_value(item.get(field_name))
+            if ccy:
+                break
+
+        if ccy:
+            currency_map[isin] = ccy
+
+    return currency_map
+
+
+def fetch_spdr_currency_map(xlsx_path: Path | None = None) -> dict[str, str]:
+    request = urllib.request.Request(
+        FUND_FINDER_API_URL,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/124.0.0.0 Safari/537.36"
+            )
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=120) as response:
+            payload = json.load(response)
+    except URLError as exc:
+        logging.warning("Unable to load the SPDR fund finder JSON for currency backfill: %s", exc)
+        return {}
+    return parse_currency_map_from_payload(payload)
+
+
 def format_decimal(value: str | Decimal | None, places: int = 2) -> str:
     if isinstance(value, Decimal):
         decimal_value = value
@@ -205,12 +290,13 @@ def convert_aum_to_millions(total_fund_assets_raw: str | None) -> str:
     return format_decimal(amount / Decimal("1000000"), places=2)
 
 
-def transform_row(source_row: dict[str, str]) -> SpdrRow:
+def transform_row(source_row: dict[str, str], currency_overrides: dict[str, str]) -> SpdrRow:
+    isin = clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper()
     return SpdrRow(
         etf_name=clean_text(source_row.get(SOURCE_COLUMNS["fund_name"])),
         issuer=ISSUER,
-        isin=clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper(),
-        ccy=clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper(),
+        isin=isin,
+        ccy=clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper() or currency_overrides.get(isin, ""),
         aum_mn=convert_aum_to_millions(source_row.get(SOURCE_COLUMNS["aum_raw"])),
     )
 
@@ -281,7 +367,8 @@ def main() -> None:
     source_rows = parse_xlsx_rows(raw_path)
     logging.info("Parsed source rows: %s", len(source_rows))
 
-    transformed_rows = [transform_row(row) for row in source_rows]
+    currency_overrides = fetch_spdr_currency_map(raw_path)
+    transformed_rows = [transform_row(row, currency_overrides) for row in source_rows]
     valid_rows = validate_rows(transformed_rows)
     write_processed_csv(processed_path, valid_rows)
 
