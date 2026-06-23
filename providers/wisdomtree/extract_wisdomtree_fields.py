@@ -99,9 +99,9 @@ def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
         "ETF Name": clean_text(source_row.get("etf_name")),
         "Issuer": ISSUER,
         "ISIN": clean_text(source_row.get("isin")).upper(),
-        "CCY": clean_text(source_row.get("ccy")).upper(),
+        "CCY": clean_text(source_row.get("ccy") or source_row.get("base_currency")).upper(),
         "TER(bps)": clean_text(source_row.get("ter_bps")),
-        "AUM(M)": clean_text(source_row.get("aum_numeric")),
+        "AUM(M)": clean_text(source_row.get("aum_numeric") or source_row.get("aum_m")),
         "Date": file_date,
     }
 

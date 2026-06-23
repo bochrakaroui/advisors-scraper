@@ -1,76 +1,46 @@
-"""Download WisdomTree Europe UCITS ETF data from the official product-list PDF."""
+"""Download WisdomTree Europe UCITS ETF data from product detail pages."""
 
 from __future__ import annotations
 
 import asyncio
-import io
 import json
 import os
 import re
-import sys
 from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
+from urllib.parse import urljoin, urlparse
 
-import requests
+from bs4 import BeautifulSoup
+from playwright.async_api import TimeoutError as PlaywrightTimeoutError, async_playwright
 
 
-PAGE_URL = "https://www.wisdomtree.eu/en-gb/products"
-PRODUCT_LIST_PDF_URL = (
-    "https://www.wisdomtree.eu/-/media/eu-media-files/other-documents/product-list/etf-product-list.pdf?sc_lang=en-gb"
-)
+START_URL = "https://www.wisdomtree.eu/products?structure=UCITS+ETFs"
 ISSUER = "WisdomTree"
 PROVIDER = "WisdomTree"
+BASE_URL = "https://www.wisdomtree.eu"
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "wisdomtree"
-VENDOR_PYPDF_DIR = BASE_DIR / ".vendor_pypdf"
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
-
-if str(VENDOR_PYPDF_DIR) not in sys.path and VENDOR_PYPDF_DIR.exists():
-    sys.path.insert(0, str(VENDOR_PYPDF_DIR))
-
-try:
-    from pypdf import PdfReader
-except Exception:
-    PdfReader = None
-
-
-LISTING_PATTERN = re.compile(
-    r"(?P<prefix>.*?)(?P<exchange>UK|IT|CH|DE|FR & NL)\s+"
-    r"(?P<exchange_code>\S+)\s+"
-    r"(?P<bloomberg_code>.+?)\s+"
-    r"(?P<isin>[A-Z]{2}[A-Z0-9]{10})\s+"
-    r"(?P<trading_currency>[A-Z]{3})\s+"
-    r"(?P<base_currency>[A-Z]{3})\s+"
-    r"(?P<ter>\d+(?:\.\d+)?)\s*$"
+TIMEOUT_MS = 120_000
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/124.0.0.0 Safari/537.36"
 )
-SECTION_PATTERN = re.compile(r"^[A-Z][A-Za-z&\- ]+\s+Exchange$")
-ISIN_PATTERN = re.compile(r"^[A-Z]{2}[A-Z0-9]{10}$")
-REQUEST_HEADERS = {"User-Agent": "Mozilla/5.0"}
-REQUEST_TIMEOUT = 60
-
-HEADER_LINES = {
-    "Exchange",
-    "Code",
-    "Code ISIN",
-    "Bloomberg",
-    "Trading",
-    "Currency",
-    "Base",
-    "Currency TER/MER % Issuer",
-    "UCITS ETFs AND UNLEVERAGED ETPs",
-    "SHORT AND LEVERAGED ETPs",
-    "Contents",
-}
-MARKER_LINES = {"WT", "WIXL", "FXL", "WTMA"}
-SECTION_TITLES = {
-    "EQUITIES",
-    "COMMODITIES",
-    "CURRENCIES",
-    "FIXED INCOME",
-    "DIGITAL ASSETS",
-    "AGRICULTURE",
+ISIN_PATTERN = re.compile(r"^[A-Z]{2}[A-Z0-9]{9}[0-9]$")
+DATE_PATTERN = re.compile(r"(\d{1,2}\s+[A-Za-z]{3}\s+\d{4})")
+PRODUCT_URL_PATTERN = re.compile(r"^https://www\.wisdomtree\.eu/en-gb/etfs/[^?#]+$")
+FLAG_COUNTRY_MAP = {
+    "gbr": "United Kingdom",
+    "deu": "Germany",
+    "ita": "Italy",
+    "che": "Switzerland",
+    "fra": "France",
+    "nld": "Netherlands",
+    "esp": "Spain",
+    "swe": "Sweden",
 }
 
 
@@ -98,8 +68,12 @@ def build_output_path(now: datetime) -> Path:
 def clean_text(value: object | None) -> str:
     if value is None:
         return ""
-    cleaned = str(value).replace("\u00ad", "").strip()
+    cleaned = str(value).replace("\u00ad", "").replace("\u00a0", " ").strip()
     return "" if cleaned in {"", "-", "--", "- ", " -", "None"} else cleaned
+
+
+def normalize_header(value: object | None) -> str:
+    return re.sub(r"[^a-z0-9]+", "", clean_text(value).lower())
 
 
 def format_decimal(value: Decimal, places: int = 2) -> str:
@@ -111,158 +85,382 @@ def normalize_ter_bps(raw_value: str) -> str:
     cleaned = clean_text(raw_value).replace("%", "").strip()
     if not cleaned:
         return ""
-
     if "," in cleaned and "." not in cleaned:
         cleaned = cleaned.replace(",", ".")
-
     try:
         ter_pct = Decimal(cleaned)
     except InvalidOperation:
         return ""
-
     return format_decimal(ter_pct * Decimal("100"), places=2)
 
 
-def is_valid_isin(value: str) -> bool:
-    return bool(ISIN_PATTERN.fullmatch(clean_text(value).upper()))
+def normalize_amount_text(raw_value: str) -> str:
+    compact = clean_text(raw_value).replace("Â", "").replace(" ", "")
+    if "," in compact and "." not in compact:
+        parts = compact.split(",")
+        if len(parts) > 2 or len(parts[-1]) == 3:
+            return compact.replace(",", "")
+        return compact.replace(",", ".")
+    return compact.replace(",", "")
 
 
-def fetch_product_list_pdf() -> bytes:
-    response = requests.get(PRODUCT_LIST_PDF_URL, headers=REQUEST_HEADERS, timeout=REQUEST_TIMEOUT)
-    response.raise_for_status()
+def normalize_aum_millions(raw_value: str) -> tuple[str, str]:
+    cleaned = clean_text(raw_value).replace("â‚¬", "€").replace("Â£", "£")
+    if not cleaned:
+        return "", ""
 
-    content_type = (response.headers.get("content-type") or "").lower()
-    if "pdf" not in content_type:
-        raise ValueError(f"Unexpected WisdomTree product list content type: {content_type or 'unknown'}")
+    currency_code = ""
+    for symbol, code in (("€", "EUR"), ("$", "USD"), ("£", "GBP")):
+        if symbol in cleaned:
+            currency_code = code
+            cleaned = cleaned.replace(symbol, "")
 
-    return response.content
+    if not currency_code:
+        upper_cleaned = cleaned.upper()
+        for prefix, code in (("EUR", "EUR"), ("USD", "USD"), ("GBP", "GBP")):
+            if upper_cleaned.startswith(prefix):
+                currency_code = code
+                cleaned = cleaned[len(prefix):]
+                break
 
+    normalized = re.sub(r"[^0-9,.\-]", "", normalize_amount_text(cleaned))
+    if not normalized:
+        return "", currency_code
 
-def iter_pdf_lines(pdf_bytes: bytes) -> list[tuple[int, str]]:
-    if PdfReader is None:
-        raise RuntimeError("pypdf is not available. The WisdomTree product-list PDF cannot be parsed.")
+    try:
+        amount = Decimal(normalized)
+    except InvalidOperation:
+        return "", currency_code
 
-    reader = PdfReader(io.BytesIO(pdf_bytes))
-    lines: list[tuple[int, str]] = []
-
-    for page_number, page in enumerate(reader.pages, start=1):
-        page_text = page.extract_text() or ""
-        for line in page_text.splitlines():
-            cleaned = " ".join(line.replace("\u00a0", " ").split())
-            if cleaned:
-                lines.append((page_number, cleaned))
-
-    return lines
-
-
-def is_header_or_section(line: str) -> bool:
-    if line in HEADER_LINES or line in MARKER_LINES:
-        return True
-    if line in SECTION_TITLES:
-        return True
-    if re.fullmatch(r"\d+", line):
-        return True
-    if SECTION_PATTERN.fullmatch(line):
-        return True
-    return False
+    millions = amount / Decimal("1000000")
+    millions_text = format(millions, "f").rstrip("0").rstrip(".")
+    return millions_text or "0", currency_code
 
 
-def build_product_rows(pdf_bytes: bytes, scraped_at: str) -> list[dict[str, str]]:
-    rows: list[dict[str, str]] = []
-    started = False
-    current_name = ""
+def normalize_product_url(url: str) -> str:
+    parsed = urlparse(urljoin(BASE_URL, clean_text(url)))
+    normalized = parsed._replace(query="", fragment="").geturl()
+    return normalized.rstrip("/")
 
-    for page_number, line in iter_pdf_lines(pdf_bytes):
-        if line == "Currency TER/MER % Issuer":
-            started = True
-            current_name = ""
-            continue
 
-        if not started:
-            continue
+def is_product_url(url: str) -> bool:
+    return bool(PRODUCT_URL_PATTERN.fullmatch(normalize_product_url(url)))
 
-        if is_header_or_section(line):
-            current_name = ""
-            continue
 
-        match = LISTING_PATTERN.search(line)
+def extract_country_value(cell) -> str:
+    texts = [clean_text(text) for text in cell.stripped_strings]
+    alt_texts = [clean_text(image.get("alt")) for image in cell.find_all("img")]
+    combined = " ".join(part for part in alt_texts + texts if part)
+    combined = combined.replace("Image:", "").strip()
+    return combined
+
+
+def extract_product_name(soup: BeautifulSoup) -> str:
+    heading = soup.find("h1")
+    if heading:
+        return clean_text(heading.get_text(" ", strip=True))
+
+    title = clean_text(soup.title.get_text(" ", strip=True) if soup.title else "")
+    return clean_text(title.split("|", 1)[0])
+
+
+def extract_overview_metrics(soup: BeautifulSoup) -> dict[str, str]:
+    metrics: dict[str, str] = {
+        "base_currency": "",
+        "ter_raw": "",
+        "ter_bps": "",
+        "aum_raw": "",
+        "aum_numeric": "",
+        "aum_m": "",
+        "aum_currency": "",
+        "as_of_date": "",
+    }
+
+    overview_section = soup.select_one("#fund-overview")
+    if overview_section:
+        for row in overview_section.select("tbody tr"):
+            cells = row.find_all("td")
+            if len(cells) < 2:
+                continue
+            key = normalize_header(cells[0].get_text(" ", strip=True))
+            value = clean_text(cells[1].get_text(" ", strip=True))
+            if key == "basecurrency":
+                metrics["base_currency"] = value.upper()
+            elif key == "ter":
+                metrics["ter_raw"] = value
+                metrics["ter_bps"] = normalize_ter_bps(value)
+
+    nav_section = soup.select_one("#fund-nav")
+    if nav_section:
+        nav_header = nav_section.select_one("thead th:nth-child(2)")
+        if nav_header:
+            date_match = DATE_PATTERN.search(clean_text(nav_header.get_text(" ", strip=True)))
+            if date_match:
+                metrics["as_of_date"] = clean_text(date_match.group(1))
+
+        for row in nav_section.select("tbody tr"):
+            cells = row.find_all("td")
+            if len(cells) < 2:
+                continue
+            key = normalize_header(cells[0].get_text(" ", strip=True))
+            value = clean_text(cells[1].get_text(" ", strip=True))
+            if key == "totalaumoffund":
+                metrics["aum_raw"] = value
+                metrics["aum_numeric"], metrics["aum_currency"] = normalize_aum_millions(value)
+                metrics["aum_m"] = metrics["aum_numeric"]
+
+    return metrics
+
+
+def extract_country_from_listing_cell(cell) -> str:
+    image = cell.find("img")
+    if image:
+        source = clean_text(image.get("src"))
+        match = re.search(r"/flags/([a-z]{3})\.", source, flags=re.IGNORECASE)
         if match:
-            prefix = clean_text(match.group("prefix")).strip(" -")
-            if prefix:
-                wisdomtree_idx = prefix.find("WisdomTree")
-                if wisdomtree_idx >= 0:
-                    current_name = clean_text(prefix[wisdomtree_idx:])
-                elif current_name:
-                    current_name = clean_text(f"{current_name} {prefix}")
-                else:
-                    current_name = prefix
+            return FLAG_COUNTRY_MAP.get(match.group(1).lower(), match.group(1).upper())
+    return extract_country_value(cell)
 
-            etf_name = " ".join(current_name.split())
-            isin = clean_text(match.group("isin")).upper()
 
-            if "UCITS ETF" not in etf_name or not is_valid_isin(isin):
+def extract_listings_from_table(soup: BeautifulSoup) -> list[dict[str, str]]:
+    listings: list[dict[str, str]] = []
+
+    for table in soup.find_all("table"):
+        rows = table.find_all("tr")
+        if len(rows) < 2:
+            continue
+
+        header_cells = rows[0].find_all(["th", "td"])
+        headers = [normalize_header(cell.get_text(" ", strip=True)) for cell in header_cells]
+        if not {"country", "exchange", "tradingcurrency", "exchangeticker", "isin"}.issubset(headers):
+            continue
+
+        header_indexes = {header: index for index, header in enumerate(headers)}
+        for row in rows[1:]:
+            cells = row.find_all(["td", "th"])
+            if len(cells) < len(headers):
                 continue
 
-            rows.append(
-                {
-                    "provider": PROVIDER,
-                    "issuer": ISSUER,
-                    "etf_name": etf_name,
-                    "isin": isin,
-                    "ccy": clean_text(match.group("base_currency")).upper(),
-                    "aum_raw": "",
-                    "aum_numeric": "",
-                    "aum_currency": "",
-                    "ter_raw": clean_text(match.group("ter")),
-                    "ter_bps": normalize_ter_bps(match.group("ter")),
-                    "product_url": "",
-                    "scraped_at": scraped_at,
-                    "source_page": str(page_number),
-                }
-            )
+            listing = {
+                "country": extract_country_from_listing_cell(cells[header_indexes["country"]]),
+                "exchange": clean_text(cells[header_indexes["exchange"]].get_text(" ", strip=True)),
+                "ccy": clean_text(cells[header_indexes["tradingcurrency"]].get_text(" ", strip=True)).upper(),
+                "ticker": clean_text(cells[header_indexes["exchangeticker"]].get_text(" ", strip=True)).upper(),
+                "isin": clean_text(cells[header_indexes["isin"]].get_text(" ", strip=True)).upper(),
+            }
+            if ISIN_PATTERN.fullmatch(listing["isin"]):
+                listings.append(listing)
+
+    return listings
+
+
+def extract_listings_from_text(page_text: str) -> list[dict[str, str]]:
+    lines = [clean_text(line) for line in page_text.splitlines()]
+    lines = [line for line in lines if line]
+
+    listings: list[dict[str, str]] = []
+    current: dict[str, str] | None = None
+    in_listings = False
+
+    for line in lines:
+        if not in_listings:
+            if line == "Listings & Codes":
+                in_listings = True
             continue
 
-        wisdomtree_idx = line.find("WisdomTree")
-        if wisdomtree_idx >= 0:
-            current_name = clean_text(line[wisdomtree_idx:])
-        elif current_name:
-            current_name = clean_text(f"{current_name} {line}")
-        else:
-            current_name = clean_text(line)
+        if line.startswith("####") or line in {"Holdings", "Documents"} or line.startswith("Performance is total return"):
+            break
 
-    deduped_rows: dict[tuple[str, str], dict[str, str]] = {}
+        if line.startswith("Country"):
+            if current and ISIN_PATTERN.fullmatch(current.get("isin", "")):
+                listings.append(current)
+            current = {"country": clean_text(line.removeprefix("Country")).replace("Image:", "").strip()}
+            continue
+
+        if current is None:
+            continue
+
+        if line.startswith("Exchange Ticker"):
+            current["ticker"] = clean_text(line.removeprefix("Exchange Ticker")).upper()
+        elif line.startswith("Trading Currency"):
+            current["ccy"] = clean_text(line.removeprefix("Trading Currency")).upper()
+        elif line.startswith("Exchange"):
+            current["exchange"] = clean_text(line.removeprefix("Exchange"))
+        elif line.startswith("ISIN"):
+            current["isin"] = clean_text(line.removeprefix("ISIN")).upper()
+
+    if current and ISIN_PATTERN.fullmatch(current.get("isin", "")):
+        listings.append(current)
+
+    return listings
+
+
+def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    deduped: dict[tuple[str, str, str, str, str], dict[str, str]] = {}
     for row in rows:
-        key = (row["isin"], row["product_url"])
-        deduped_rows.setdefault(key, row)
+        key = (
+            clean_text(row.get("isin")).upper(),
+            clean_text(row.get("exchange")),
+            clean_text(row.get("ticker")).upper(),
+            clean_text(row.get("ccy")).upper(),
+            clean_text(row.get("country")),
+        )
+        deduped.setdefault(key, row)
+    return list(deduped.values())
 
-    return list(deduped_rows.values())
+
+async def collect_product_urls(page) -> list[str]:
+    await page.goto(START_URL, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+    await page.wait_for_timeout(5_000)
+    html = await page.content()
+    if "Attention Required! | Cloudflare" in html or "Sorry, you have been blocked" in html:
+        raise ValueError("WisdomTree products page was blocked by Cloudflare.")
+    soup = BeautifulSoup(html, "html.parser")
+    urls = sorted({
+        normalize_product_url(anchor.get("href", ""))
+        for anchor in soup.select("td.nameLink a[href*='/en-gb/etfs/'], a[href*='/en-gb/etfs/']")
+        if is_product_url(anchor.get("href", ""))
+    })
+    if not urls:
+        raise ValueError("Could not find any WisdomTree ETF detail links on the filtered products page.")
+    return urls
 
 
-def build_snapshot(now: datetime) -> dict[str, object]:
-    pdf_bytes = fetch_product_list_pdf()
+async def new_wisdomtree_context(browser):
+    context = await browser.new_context(
+        locale="en-GB",
+        timezone_id="Europe/London",
+        user_agent=USER_AGENT,
+        viewport={"width": 1440, "height": 1600},
+    )
+    return context
+
+
+async def scrape_detail_rows(page, product_url: str, scraped_at: str) -> list[dict[str, str]]:
+    await page.goto(product_url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+    await page.wait_for_timeout(5_000)
+    soup = BeautifulSoup(await page.content(), "html.parser")
+
+    etf_name = extract_product_name(soup)
+    metrics = extract_overview_metrics(soup)
+    listings = extract_listings_from_table(soup)
+
+    if not listings:
+        raise ValueError("No Listings & Codes rows were parsed from the product detail page.")
+
+    rows: list[dict[str, str]] = []
+    for listing in listings:
+        isin = clean_text(listing.get("isin")).upper()
+        if not ISIN_PATTERN.fullmatch(isin):
+            continue
+
+        rows.append(
+            {
+                "provider": PROVIDER,
+                "issuer": ISSUER,
+                "etf_name": etf_name,
+                "ticker": clean_text(listing.get("ticker")).upper(),
+                "exchange": clean_text(listing.get("exchange")),
+                "country": clean_text(listing.get("country")),
+                "ccy": clean_text(listing.get("ccy") or metrics["base_currency"]).upper(),
+                "base_currency": metrics["base_currency"],
+                "isin": isin,
+                "aum_raw": metrics["aum_raw"],
+                "aum_numeric": metrics["aum_numeric"],
+                "aum_m": metrics["aum_m"],
+                "aum_currency": metrics["aum_currency"],
+                "ter_raw": metrics["ter_raw"],
+                "ter_bps": metrics["ter_bps"],
+                "product_url": product_url,
+                "source_url": product_url,
+                "scraped_at": scraped_at,
+                "as_of_date": metrics["as_of_date"],
+            }
+        )
+
+    if not rows:
+        raise ValueError("No valid listing rows with ISIN were produced from the product detail page.")
+
+    return dedupe_rows(rows)
+
+
+async def build_snapshot(now: datetime) -> dict[str, object]:
     scraped_at = now.isoformat()
-    rows = build_product_rows(pdf_bytes, scraped_at=scraped_at)
-    valid_isin_count = sum(1 for row in rows if is_valid_isin(row["isin"]))
-    missing_ccy_count = sum(1 for row in rows if not row["ccy"])
-    missing_aum_count = sum(1 for row in rows if not row["aum_numeric"])
 
-    print(f"Official URL used: {PAGE_URL}")
-    print("Data method used: official product-list PDF linked from the WisdomTree products page")
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(
+            headless=True,
+            args=["--no-sandbox", "--disable-dev-shm-usage"],
+        )
+        product_urls: list[str] = []
+        last_listing_error: Exception | None = None
+        for _ in range(3):
+            listing_context = await new_wisdomtree_context(browser)
+            listing_page = await listing_context.new_page()
+            await listing_page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined});")
+            try:
+                product_urls = await collect_product_urls(listing_page)
+                last_listing_error = None
+                break
+            except Exception as exc:
+                last_listing_error = exc
+                await asyncio.sleep(2)
+            finally:
+                await listing_page.close()
+                await listing_context.close()
+
+        if last_listing_error is not None:
+            raise last_listing_error
+        print(f"Start URL used: {START_URL}")
+        print(f"Product detail links found: {len(product_urls):,}")
+
+        rows: list[dict[str, str]] = []
+        warnings: list[str] = []
+
+        for index, product_url in enumerate(product_urls, start=1):
+            last_error: Exception | None = None
+            for attempt in range(2):
+                detail_context = await new_wisdomtree_context(browser)
+                detail_page = await detail_context.new_page()
+                await detail_page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined});")
+                try:
+                    detail_rows = await scrape_detail_rows(detail_page, product_url, scraped_at=scraped_at)
+                    rows.extend(detail_rows)
+                    print(f"[{index}/{len(product_urls)}] Listings extracted: {len(detail_rows):,} -> {product_url}")
+                    last_error = None
+                    break
+                except Exception as exc:
+                    last_error = exc
+                finally:
+                    await detail_page.close()
+                    await detail_context.close()
+
+            if last_error is not None:
+                if isinstance(last_error, PlaywrightTimeoutError):
+                    warning = f"{product_url} -> timed out"
+                else:
+                    warning = f"{product_url} -> {last_error}"
+                warnings.append(warning)
+                print(f"[WARN] WisdomTree detail page failed: {warning}")
+
+        await browser.close()
+
+    rows = dedupe_rows(rows)
+    missing_aum_count = sum(1 for row in rows if not clean_text(row.get("aum_numeric")))
+    missing_ccy_count = sum(1 for row in rows if not clean_text(row.get("ccy")))
+    valid_isin_count = sum(1 for row in rows if ISIN_PATTERN.fullmatch(clean_text(row.get("isin")).upper()))
+
     print(f"Rows extracted: {len(rows):,}")
     print(f"Valid ISINs: {valid_isin_count:,}")
     print(f"Missing CCY values: {missing_ccy_count:,}")
     print(f"Missing AUM values: {missing_aum_count:,}")
 
     return {
-        "source_url": PAGE_URL,
-        "source_document_url": PRODUCT_LIST_PDF_URL,
-        "method": "official product-list PDF",
+        "source_url": START_URL,
+        "method": "filtered products page -> ETF detail pages",
         "captured_at": scraped_at,
-        "limitations": [
-            "Only rows whose official product names contain 'UCITS ETF' are kept.",
-            "The downloaded official product-list PDF exposes ISIN, base currency, and TER.",
-            "Fund-level AUM and product detail URLs are not exposed in the downloaded PDF, so they remain blank in this snapshot.",
-        ],
+        "warning_count": len(warnings),
+        "warnings": warnings,
         "rows": rows,
     }
 
@@ -272,7 +470,7 @@ def write_json(path: Path, payload: object) -> None:
 
 
 def download_snapshot(destination: Path) -> None:
-    snapshot = build_snapshot(datetime.now())
+    snapshot = asyncio.run(build_snapshot(datetime.now()))
     write_json(destination, snapshot)
     print(f"Raw snapshot saved: {destination}")
 
