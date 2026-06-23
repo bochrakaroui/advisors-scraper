@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 import re
 from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
@@ -21,7 +22,8 @@ ISSUER = "Vanguard"
 PROVIDER = "Vanguard"
 
 BASE_DIR = Path(__file__).resolve().parents[2]
-OUTPUT_DIR = BASE_DIR / "providers" / "vanguard" / "vanguard_downloads"
+OUTPUT_DIR = BASE_DIR / "providers" / "vanguard"
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 
 ROW_SELECTOR = "tr[data-cy^='fund-overview-table-row-']"
 FUNDS_QUERY_NAME = '"operationName":"FundsQuery"'
@@ -31,13 +33,29 @@ PORT_ID_PATTERN = re.compile(r"/uk-fund-directory/product/etf/[^/]+/([^/]+)/", f
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Download Vanguard UK ETF overview data into a raw JSON snapshot.")
-    parser.add_argument("--output", type=Path, help="Optional output path. Defaults to providers/vanguard/vanguard_downloads.")
+    parser.add_argument("--output", type=Path, help="Optional output path. Defaults to a date folder inside providers/vanguard.")
     return parser.parse_args()
 
 
+def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
+
+
 def build_output_path(now: datetime) -> Path:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    return OUTPUT_DIR / f"vanguard_etf_export_{now.strftime('%Y%m%d_%H%M%S')}.json"
+    return build_run_output_dir(OUTPUT_DIR, now.strftime("%Y-%m-%d")) / "vanguard_etf_export.json"
 
 
 def clean_text(value: object | None) -> str:

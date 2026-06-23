@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import io
 import json
+import os
 import re
 import sys
 from datetime import datetime
@@ -22,8 +23,9 @@ ISSUER = "WisdomTree"
 PROVIDER = "WisdomTree"
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = BASE_DIR / "providers" / "wisdomtree" / "wisdomtree_downloads"
+OUTPUT_DIR = BASE_DIR / "providers" / "wisdomtree"
 VENDOR_PYPDF_DIR = BASE_DIR / ".vendor_pypdf"
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 
 if str(VENDOR_PYPDF_DIR) not in sys.path and VENDOR_PYPDF_DIR.exists():
     sys.path.insert(0, str(VENDOR_PYPDF_DIR))
@@ -72,9 +74,25 @@ SECTION_TITLES = {
 }
 
 
+def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
+
+
 def build_output_path(now: datetime) -> Path:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    return OUTPUT_DIR / f"wisdomtree_etf_export_{now.strftime('%Y%m%d_%H%M%S')}.json"
+    return build_run_output_dir(OUTPUT_DIR, now.strftime("%Y-%m-%d")) / "wisdomtree_etf_export.json"
 
 
 def clean_text(value: object | None) -> str:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import os
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -13,8 +14,9 @@ from zipfile import ZipFile
 
 
 BASE_DIR = Path(__file__).resolve().parent
-INPUT_DIR = BASE_DIR / "invesco_downloads"
-OUTPUT_DIR = BASE_DIR / "invesco_processed"
+INPUT_DIR = BASE_DIR
+OUTPUT_DIR = BASE_DIR
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 
 XLSX_NS = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
@@ -40,21 +42,37 @@ OUTPUT_COLUMNS = [
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Extract the selected ETF fields from a downloaded Invesco .xlsx file.")
     parser.add_argument("--input", type=Path, help="Downloaded Invesco .xlsx file. Defaults to the latest file.")
-    parser.add_argument("--output", type=Path, help="Processed CSV path. Defaults to ./invesco_processed.")
+    parser.add_argument("--output", type=Path, help="Processed CSV path. Defaults to a date folder inside ./invesco.")
     return parser.parse_args()
 
 
+def build_run_output_dir(base_dir: Path) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
+
+
 def find_latest_download(input_dir: Path) -> Path:
-    candidates = sorted(input_dir.glob("*.xlsx"), key=lambda path: path.stat().st_mtime, reverse=True)
+    candidates = sorted((path for path in input_dir.rglob("*.xlsx") if path.is_file()), key=lambda path: path.stat().st_mtime, reverse=True)
     if not candidates:
         raise FileNotFoundError(f"No .xlsx files found in {input_dir}")
     return candidates[0]
 
 
 def build_output_path(output_dir: Path) -> Path:
-    output_dir.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-    return output_dir / f"invesco_selected_fields_{timestamp}.csv"
+    return build_run_output_dir(output_dir) / "invesco_selected_fields.csv"
 
 
 def clean_text(value: str | None) -> str:
@@ -96,7 +114,10 @@ def format_ter(value: str | None) -> str:
 def extract_file_date(input_path: Path) -> str:
     match = re.search(r"(\d{8}_\d{6})", input_path.stem)
     if not match:
-        return ""
+        parent_date_match = re.match(r"(\d{4}-\d{2}-\d{2})", input_path.parent.name)
+        if not parent_date_match:
+            return ""
+        return datetime.strptime(parent_date_match.group(1), "%Y-%m-%d").strftime("%d/%m/%Y 00:00:00")
 
     timestamp = match.group(1)
     try:

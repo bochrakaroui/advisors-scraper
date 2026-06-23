@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -11,16 +12,34 @@ from playwright.async_api import Download, Locator, TimeoutError as PlaywrightTi
 
 URL = "https://www.ubs.com/uk/en/assetmanagement/funds/etf.html"
 BASE_DIR = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = BASE_DIR / "providers" / "UBS" / "UBS_etf_downloads"
+OUTPUT_DIR = BASE_DIR / "providers" / "UBS"
 TIMEOUT_MS = 120_000
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+
+
+def build_run_output_dir(base_dir: Path) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
 
 
 def build_output_path(filename_hint: str | None = None) -> Path:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    dated_output_dir = build_run_output_dir(OUTPUT_DIR)
     if filename_hint:
-        return OUTPUT_DIR / filename_hint.replace(".xlsx", f"_{timestamp}.xlsx")
-    return OUTPUT_DIR / f"UBSFunds_List_{timestamp}.xlsx"
+        return dated_output_dir / filename_hint
+    return dated_output_dir / "UBSFunds_List.xlsx"
 
 
 async def click_with_fallback(locator: Locator, label: str) -> None:

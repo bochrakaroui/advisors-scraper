@@ -97,6 +97,7 @@ BASE_DIR = Path(__file__).resolve().parent
 RUNS_DIR = BASE_DIR / "pipeline_runs"
 COMBINED_FILENAME = "all_etf_fields.csv"
 ISIN_FILTER_PATH = BASE_DIR / "ISIN-list.xlsx"
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 XML_NS = {
     "main": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
     "rel": "http://schemas.openxmlformats.org/package/2006/relationships",
@@ -120,20 +121,6 @@ ALL_PROVIDERS = (
     "vanguard",
     "firsttrust",
 )
-PROCESSED_DIRS = (
-    BASE_DIR / "providers" / "ishares" / "ishares_processed",
-    BASE_DIR / "providers" / "xtrackers" / "xtrackers_processed",
-    BASE_DIR / "providers" / "amundi" / "amundi_processed",
-    BASE_DIR / "providers" / "invesco" / "invesco_processed",
-    BASE_DIR / "providers" / "UBS" / "UBS_processed",
-    BASE_DIR / "providers" / "SPDR" / "spdr_processed",
-    BASE_DIR / "providers" / "hsbc" / "hsbc_processed",
-    BASE_DIR / "providers" / "jpmorgan" / "jpmorgan_processed",
-    BASE_DIR / "providers" / "wisdomtree" / "wisdomtree_processed",
-    BASE_DIR / "providers" / "vanguard" / "vanguard_processed",
-    BASE_DIR / "providers" / "firsttrust" / "firsttrust_processed",
-)
-
 Downloader = Callable[[], Awaitable[Path]]
 Extractor = Callable[[Path], list[dict[str, str]]]
 LatestDownloadFinder = Callable[[Path], Path]
@@ -146,6 +133,8 @@ class ProviderPipeline:
     downloader: Downloader
     extractor: Extractor
     input_dir: Path
+    output_dir: Path
+    output_filename: str
     latest_download_finder: LatestDownloadFinder
     source_row_parser: SourceRowParser
 
@@ -190,61 +179,24 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def build_run_dir() -> Path:
-    run_timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    run_dir = RUNS_DIR / run_timestamp
-    run_dir.mkdir(parents=True, exist_ok=True)
-    return run_dir
+def build_unique_date_dir(base_dir: Path, run_date: str) -> Path:
+    candidate = base_dir / run_date
+    suffix = 1
+    while candidate.exists():
+        candidate = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    candidate.mkdir(parents=True, exist_ok=False)
+    return candidate
 
 
-def clean_processed_dirs() -> None:
-    for processed_dir in PROCESSED_DIRS:
-        if not processed_dir.exists():
-            continue
-
-        for child in sorted(processed_dir.rglob("*"), reverse=True):
-            try:
-                os.chmod(child, 0o666)
-            except OSError:
-                pass
-
-            try:
-                if child.is_file():
-                    child.unlink()
-                else:
-                    child.rmdir()
-            except PermissionError:
-                print(f"[WARN] Skipping locked processed file or folder: {child}")
-            except OSError:
-                pass
-
-        try:
-            processed_dir.rmdir()
-        except PermissionError:
-            print(f"[WARN] Keeping processed folder because a file is locked: {processed_dir}")
-        except OSError:
-            pass
+def build_run_dir(run_date: str) -> Path:
+    return build_unique_date_dir(RUNS_DIR, run_date)
 
 
-def clean_raw_input_dir(input_dir: Path) -> None:
-    if not input_dir.exists():
-        return
-
-    for child in sorted(input_dir.rglob("*"), reverse=True):
-        try:
-            os.chmod(child, 0o666)
-        except OSError:
-            pass
-
-        try:
-            if child.is_file():
-                child.unlink()
-            else:
-                child.rmdir()
-        except PermissionError:
-            print(f"[WARN] Skipping locked raw file or folder: {child}")
-        except OSError:
-            pass
+def build_provider_output_path(output_dir: Path, run_date: str, filename: str) -> Path:
+    dated_output_dir = output_dir / run_date
+    dated_output_dir.mkdir(parents=True, exist_ok=True)
+    return dated_output_dir / filename
 
 
 def write_combined_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
@@ -489,6 +441,12 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_etf_list,
             extractor=lambda input_path: extract_ishares_rows(input_path, include_all_funds=include_all_funds),
             input_dir=ISHARES_INPUT_DIR,
+            output_dir=ISHARES_INPUT_DIR,
+            output_filename=(
+                "ishares_selected_fields_all_funds.csv"
+                if include_all_funds
+                else "ishares_selected_fields_etf_only.csv"
+            ),
             latest_download_finder=find_latest_ishares_download,
             source_row_parser=parse_ishares_source_rows,
         ),
@@ -497,6 +455,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_xtrackers_file,
             extractor=extract_xtrackers_rows,
             input_dir=XTRACKERS_INPUT_DIR,
+            output_dir=XTRACKERS_INPUT_DIR,
+            output_filename="xtrackers_selected_fields.csv",
             latest_download_finder=find_latest_xtrackers_download,
             source_row_parser=parse_xtrackers_source_rows,
         ),
@@ -505,6 +465,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_amundi_file,
             extractor=extract_amundi_rows,
             input_dir=AMUNDI_INPUT_DIR,
+            output_dir=AMUNDI_INPUT_DIR,
+            output_filename="amundi_selected_fields.csv",
             latest_download_finder=find_latest_amundi_download,
             source_row_parser=parse_amundi_source_rows,
         ),
@@ -513,6 +475,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_spdr_file,
             extractor=extract_spdr_rows,
             input_dir=SPDR_INPUT_DIR,
+            output_dir=SPDR_INPUT_DIR,
+            output_filename="spdr_selected_fields.csv",
             latest_download_finder=find_latest_spdr_download,
             source_row_parser=parse_spdr_source_rows,
         ),
@@ -521,6 +485,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_hsbc_file,
             extractor=extract_hsbc_rows,
             input_dir=HSBC_INPUT_DIR,
+            output_dir=HSBC_INPUT_DIR,
+            output_filename="hsbc_selected_fields.csv",
             latest_download_finder=find_latest_hsbc_download,
             source_row_parser=parse_hsbc_source_rows,
         ),
@@ -529,6 +495,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_ubs_file,
             extractor=extract_ubs_rows,
             input_dir=UBS_INPUT_DIR,
+            output_dir=UBS_INPUT_DIR,
+            output_filename="ubs_selected_fields.csv",
             latest_download_finder=find_latest_ubs_download,
             source_row_parser=parse_ubs_source_rows,
         ),
@@ -537,6 +505,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_invesco_file,
             extractor=extract_invesco_rows,
             input_dir=INVESCO_INPUT_DIR,
+            output_dir=INVESCO_INPUT_DIR,
+            output_filename="invesco_selected_fields.csv",
             latest_download_finder=find_latest_invesco_download,
             source_row_parser=parse_invesco_source_rows,
         ),
@@ -545,6 +515,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_jpmorgan_file,
             extractor=extract_jpmorgan_rows,
             input_dir=JPMORGAN_INPUT_DIR,
+            output_dir=JPMORGAN_INPUT_DIR,
+            output_filename="jpmorgan_selected_fields.csv",
             latest_download_finder=find_latest_jpmorgan_download,
             source_row_parser=parse_jpmorgan_source_rows,
         ),
@@ -553,6 +525,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_wisdomtree_file,
             extractor=extract_wisdomtree_rows,
             input_dir=WISDOMTREE_INPUT_DIR,
+            output_dir=WISDOMTREE_INPUT_DIR,
+            output_filename="wisdomtree_selected_fields.csv",
             latest_download_finder=find_latest_wisdomtree_download,
             source_row_parser=parse_wisdomtree_source_rows,
         ),
@@ -561,6 +535,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_vanguard_file,
             extractor=extract_vanguard_rows,
             input_dir=VANGUARD_INPUT_DIR,
+            output_dir=VANGUARD_INPUT_DIR,
+            output_filename="vanguard_selected_fields.csv",
             latest_download_finder=find_latest_vanguard_download,
             source_row_parser=parse_vanguard_source_rows,
         ),
@@ -569,6 +545,8 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             downloader=download_firsttrust_file,
             extractor=extract_firsttrust_rows,
             input_dir=FIRSTTRUST_INPUT_DIR,
+            output_dir=FIRSTTRUST_INPUT_DIR,
+            output_filename="firsttrust_selected_fields.csv",
             latest_download_finder=find_latest_firsttrust_download,
             source_row_parser=parse_firsttrust_source_rows,
         ),
@@ -578,21 +556,24 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
 async def prepare_input_file(pipeline: ProviderPipeline, use_latest_downloads: bool) -> Path:
     if use_latest_downloads:
         return pipeline.latest_download_finder(pipeline.input_dir)
-    clean_raw_input_dir(pipeline.input_dir)
     return await pipeline.downloader()
 
 
 async def run_provider(
     pipeline: ProviderPipeline,
     use_latest_downloads: bool,
-) -> tuple[Path, int, list[dict[str, str]], dict[str, int]]:
+    run_date: str,
+) -> tuple[Path, Path, int, list[dict[str, str]], dict[str, int]]:
     print()
     print(f"=== {pipeline.name} ===")
     input_path = await prepare_input_file(pipeline, use_latest_downloads)
     source_row_count = len(pipeline.source_row_parser(input_path))
     rows = pipeline.extractor(input_path)
     missing_counts = validate_rows(pipeline.name, rows)
+    output_path = build_provider_output_path(pipeline.output_dir, run_date, pipeline.output_filename)
+    write_combined_csv(output_path, rows)
     print(f"Input file   : {input_path}")
+    print(f"Output file  : {output_path}")
     print(f"Source rows  : {source_row_count:,}")
     print(f"Rows extracted: {len(rows):,}")
     print(f"Excluded rows: {source_row_count - len(rows):,}")
@@ -600,33 +581,45 @@ async def run_provider(
         "Missing values: "
         + ", ".join(f"{column}={count}" for column, count in missing_counts.items())
     )
-    return input_path, source_row_count, rows, missing_counts
+    return input_path, output_path, source_row_count, rows, missing_counts
 
 
 async def async_main() -> int:
     args = parse_args()
     pipelines = build_pipelines(include_all_funds=not args.etf_only)
-    run_dir = build_run_dir()
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    run_dir = build_run_dir(run_date)
+    run_folder_name = run_dir.name
     combined_output_path = run_dir / COMBINED_FILENAME
     whitelist_isins = load_allowed_isins(ISIN_FILTER_PATH)
 
-    clean_processed_dirs()
-
-    successes: list[tuple[str, Path, int, int, dict[str, int]]] = []
+    successes: list[tuple[str, Path, Path, int, int, dict[str, int]]] = []
     failures: list[tuple[str, Exception]] = []
     combined_rows: list[dict[str, str]] = []
 
-    for provider_key in args.providers:
-        pipeline = pipelines[provider_key]
-        try:
-            input_path, source_row_count, rows, missing_counts = await run_provider(pipeline, args.use_latest_downloads)
-            combined_rows.extend(rows)
-            successes.append((pipeline.name, input_path, source_row_count, len(rows), missing_counts))
-        except Exception as exc:
-            failures.append((pipeline.name, exc))
-            print(f"[ERROR] {pipeline.name} failed: {exc}")
-            if args.stop_on_error:
-                break
+    previous_run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    os.environ[RUN_FOLDER_ENV_VAR] = run_folder_name
+    try:
+        for provider_key in args.providers:
+            pipeline = pipelines[provider_key]
+            try:
+                input_path, output_path, source_row_count, rows, missing_counts = await run_provider(
+                    pipeline,
+                    args.use_latest_downloads,
+                    run_folder_name,
+                )
+                combined_rows.extend(rows)
+                successes.append((pipeline.name, input_path, output_path, source_row_count, len(rows), missing_counts))
+            except Exception as exc:
+                failures.append((pipeline.name, exc))
+                print(f"[ERROR] {pipeline.name} failed: {exc}")
+                if args.stop_on_error:
+                    break
+    finally:
+        if previous_run_folder_name is None:
+            os.environ.pop(RUN_FOLDER_ENV_VAR, None)
+        else:
+            os.environ[RUN_FOLDER_ENV_VAR] = previous_run_folder_name
 
     filtered_rows, filter_summary = apply_final_isin_whitelist(combined_rows, whitelist_isins)
     print()
@@ -665,9 +658,10 @@ async def async_main() -> int:
     print(f"Rows removed by ISIN filter: {filter_summary.removed_rows_count:,}")
 
     if successes:
-        for provider_name, input_path, source_row_count, row_count, missing_counts in successes:
+        for provider_name, input_path, output_path, source_row_count, row_count, missing_counts in successes:
             print(f"{provider_name}:")
             print(f"  Source -> {input_path}")
+            print(f"  Output -> {output_path}")
             print(f"  Source rows -> {source_row_count:,}")
             print(f"  Rows   -> {row_count:,}")
             print(f"  Excluded -> {source_row_count - row_count:,}")

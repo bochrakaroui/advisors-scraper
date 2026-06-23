@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -16,7 +17,8 @@ API_URL = (
     "?country=gb&role=per&userLoggedIn=false&language=en&fundType=etf"
 )
 BASE_DIR = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = BASE_DIR / "providers" / "jpmorgan" / "jpmorgan_downloads"
+OUTPUT_DIR = BASE_DIR / "providers" / "jpmorgan"
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 REQUEST_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -28,13 +30,29 @@ REQUEST_HEADERS = {
 }
 
 
+def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
+
+
 def timestamp_now() -> datetime:
     return datetime.now()
 
 
 def build_output_path(now: datetime) -> Path:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    return OUTPUT_DIR / f"jpmorgan_etf_export_{now.strftime('%Y%m%d_%H%M%S')}.json"
+    return build_run_output_dir(OUTPUT_DIR, now.strftime("%Y-%m-%d")) / "jpmorgan_etf_export.json"
 
 
 def download_snapshot(destination: Path) -> None:

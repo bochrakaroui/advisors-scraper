@@ -3,6 +3,7 @@
 import asyncio
 import json
 import math
+import os
 import re
 import zipfile
 from datetime import datetime, timezone
@@ -15,7 +16,7 @@ from playwright.async_api import Locator, TimeoutError as PlaywrightTimeoutError
 
 URL = "https://www.invesco.com/uk/en/financial-products/etfs.html"
 BASE_DIR = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = BASE_DIR / "providers" / "invesco" / "invesco_downloads"
+OUTPUT_DIR = BASE_DIR / "providers" / "invesco"
 TIMEOUT_MS = 120_000
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -41,12 +42,29 @@ INIT_SCRIPT = """
 """
 
 INVALID_XML_RE = re.compile(r"[\x00-\x08\x0B\x0C\x0E-\x1F]")
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+
+
+def build_run_output_dir(base_dir: Path) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
 
 
 def build_output_path() -> Path:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    return OUTPUT_DIR / f"invesco_etf_export_{timestamp}.xlsx"
+    return build_run_output_dir(OUTPUT_DIR) / "invesco_etf_export.xlsx"
 
 
 def is_shareclasses_url(url: str) -> bool:

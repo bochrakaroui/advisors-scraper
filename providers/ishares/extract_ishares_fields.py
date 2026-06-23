@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import os
 import re
 from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
@@ -12,8 +13,9 @@ import xml.etree.ElementTree as ET
 
 
 BASE_DIR = Path(__file__).resolve().parent
-INPUT_DIR = BASE_DIR / "ishares_downloads"
-OUTPUT_DIR = BASE_DIR / "ishares_processed"
+INPUT_DIR = BASE_DIR
+OUTPUT_DIR = BASE_DIR
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 
 SPREADSHEET_NS = "urn:schemas-microsoft-com:office:spreadsheet"
 NS = {"ss": SPREADSHEET_NS}
@@ -43,7 +45,7 @@ OUTPUT_COLUMNS = [
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Extract the selected ETF fields from a downloaded iShares .xls file.")
     parser.add_argument("--input", type=Path, help="Downloaded iShares .xls file. Defaults to the latest file.")
-    parser.add_argument("--output", type=Path, help="Processed CSV path. Defaults to ./ishares_processed.")
+    parser.add_argument("--output", type=Path, help="Processed CSV path. Defaults to a date folder inside ./ishares.")
     parser.add_argument(
         "--etf-only",
         action="store_true",
@@ -52,18 +54,35 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def build_run_output_dir(base_dir: Path) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
+
+
 def find_latest_download(input_dir: Path) -> Path:
-    candidates = sorted(input_dir.glob("*.xls"), key=lambda path: path.stat().st_mtime, reverse=True)
+    candidates = sorted((path for path in input_dir.rglob("*.xls") if path.is_file()), key=lambda path: path.stat().st_mtime, reverse=True)
     if not candidates:
         raise FileNotFoundError(f"No .xls files found in {input_dir}")
     return candidates[0]
 
 
 def build_output_path(output_dir: Path, include_all_funds: bool) -> Path:
-    output_dir.mkdir(parents=True, exist_ok=True)
+    dated_output_dir = build_run_output_dir(output_dir)
     mode = "all_funds" if include_all_funds else "etf_only"
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-    return output_dir / f"ishares_selected_fields_{mode}_{timestamp}.csv"
+    return dated_output_dir / f"ishares_selected_fields_{mode}.csv"
 
 
 def read_sparse_row(row_element: ET.Element) -> dict[int, str]:
@@ -124,7 +143,10 @@ def format_ter(value: str | None) -> str:
 def extract_file_date(input_path: Path) -> str:
     match = re.search(r"(\d{8}_\d{6})", input_path.stem)
     if not match:
-        return ""
+        parent_date_match = re.match(r"(\d{4}-\d{2}-\d{2})", input_path.parent.name)
+        if not parent_date_match:
+            return ""
+        return datetime.strptime(parent_date_match.group(1), "%Y-%m-%d").strftime("%d/%m/%Y 00:00:00")
 
     timestamp = match.group(1)
     try:

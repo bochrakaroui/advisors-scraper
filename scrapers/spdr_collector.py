@@ -6,6 +6,7 @@ import asyncio
 import csv
 import json
 import logging
+import os
 import re
 from urllib.error import URLError
 import urllib.request
@@ -24,8 +25,7 @@ ISSUER = "SPDR / State Street Global Advisors"
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 PROVIDER_DIR = BASE_DIR / "providers" / "SPDR"
-RAW_DIR = PROVIDER_DIR / "spdr_downloads"
-PROCESSED_DIR = PROVIDER_DIR / "spdr_processed"
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 
 XLSX_NS = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
@@ -48,6 +48,23 @@ class SpdrRow:
     aum_mn: str
 
 
+def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
+
+
 def setup_logging() -> None:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
@@ -57,16 +74,11 @@ def timestamp_now() -> datetime:
 
 
 def build_raw_path(now: datetime) -> Path:
-    RAW_DIR.mkdir(parents=True, exist_ok=True)
-    return RAW_DIR / f"spdr_product_data_{now.strftime('%Y%m%d_%H%M%S')}.xlsx"
+    return build_run_output_dir(PROVIDER_DIR, now.strftime("%Y-%m-%d")) / "spdr_product_data.xlsx"
 
 
 def build_processed_path(now: datetime) -> Path:
-    PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
-    primary = PROCESSED_DIR / f"spdr_etfs_{now.strftime('%Y%m%d')}.csv"
-    if not primary.exists():
-        return primary
-    return PROCESSED_DIR / f"spdr_etfs_{now.strftime('%Y%m%d_%H%M%S')}.csv"
+    return build_run_output_dir(PROVIDER_DIR, now.strftime("%Y-%m-%d")) / "spdr_etfs.csv"
 
 
 def download_raw_xlsx(destination: Path) -> None:

@@ -18,8 +18,9 @@ URL = (
 )
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = BASE_DIR / "providers" / "ishares" / "ishares_downloads"
+OUTPUT_DIR = BASE_DIR / "providers" / "ishares"
 TIMEOUT_MS = 60_000
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 
 
 async def click_with_fallback(locator: Locator, label: str) -> None:
@@ -120,12 +121,30 @@ async def extract_download_href(locator: Locator) -> str | None:
     return await locator.evaluate(script)
 
 
+def build_run_output_dir(base_dir: Path) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
+
+
 def build_output_path(filename_hint: str) -> Path:
     suggested = filename_hint or "ishares_etf_list.xls"
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    dated_output_dir = build_run_output_dir(OUTPUT_DIR)
     stem, ext = os.path.splitext(suggested)
     ext = ext or ".xls"
-    return OUTPUT_DIR / f"{stem}_{timestamp}{ext}"
+    return dated_output_dir / f"{stem}{ext}"
 
 
 async def save_response_to_disk(response) -> Path:

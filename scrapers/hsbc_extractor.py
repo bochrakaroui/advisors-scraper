@@ -6,6 +6,7 @@ import asyncio
 import io
 import json
 import logging
+import os
 import re
 import sys
 import zipfile
@@ -29,9 +30,10 @@ FACTSHEET_TIMEOUT = (15, 45)
 MAX_FACTSHEET_WORKERS = 8
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = BASE_DIR / "providers" / "hsbc" / "hsbc_downloads"
+OUTPUT_DIR = BASE_DIR / "providers" / "hsbc"
 VENDOR_PYPDF_DIR = BASE_DIR / ".vendor_pypdf"
 REFERENCE_ISIN_PATH = BASE_DIR / "ISIN-list.xlsx"
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 XLSX_NS = {
     "main": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
     "rel": "http://schemas.openxmlformats.org/package/2006/relationships",
@@ -46,6 +48,23 @@ except Exception:
     PdfReader = None
 
 
+def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
+
+
 def setup_logging() -> None:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s", force=True)
 
@@ -55,8 +74,7 @@ def timestamp_now() -> datetime:
 
 
 def build_output_path(now: datetime) -> Path:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    return OUTPUT_DIR / f"hsbc_etf_export_{now.strftime('%Y%m%d_%H%M%S')}.json"
+    return build_run_output_dir(OUTPUT_DIR, now.strftime("%Y-%m-%d")) / "hsbc_etf_export.json"
 
 
 def clean_text(value: object | None) -> str:

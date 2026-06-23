@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import parse_qs, quote, urljoin, urlparse
@@ -11,14 +12,31 @@ from playwright.async_api import async_playwright
 
 PAGE_URL = "https://etf.dws.com/en-gb/product-finder/?AssetClasses=Commodities,Equities,Fixed+Income,Multi+Asset"
 BASE_DIR = Path(__file__).resolve().parents[1]
-OUTPUT_DIR = BASE_DIR / "providers" / "xtrackers" / "xtrackers_downloads"
+OUTPUT_DIR = BASE_DIR / "providers" / "xtrackers"
 TIMEOUT_MS = 90_000
+RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+
+
+def build_run_output_dir(base_dir: Path) -> Path:
+    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
+    if run_folder_name:
+        output_dir = base_dir / run_folder_name
+        output_dir.mkdir(parents=True, exist_ok=True)
+        return output_dir
+
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    output_dir = base_dir / run_date
+    suffix = 1
+    while output_dir.exists():
+        output_dir = base_dir / f"{run_date} ({suffix})"
+        suffix += 1
+    output_dir.mkdir(parents=True, exist_ok=False)
+    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    return output_dir
 
 
 def build_output_path() -> Path:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    return OUTPUT_DIR / f"xtrackers_etf_export_{timestamp}.xlsx"
+    return build_run_output_dir(OUTPUT_DIR) / "xtrackers_etf_export.xlsx"
 
 
 def build_fallback_export_url(page_url: str) -> str:
