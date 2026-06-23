@@ -141,3 +141,60 @@ This file documents how each provider is fetched in the current repo, using the 
 - Notes:
   - The listing payload already exposes share-class name, ISIN, share-class currency, ongoing charge, and assets under management.
   - No product-page fallback is currently needed for the J.P. Morgan provider.
+
+## WisdomTree
+
+- Official page: `https://www.wisdomtree.eu/en-gb/products`
+- Website flow:
+  - Uses the official `WisdomTree Product List` PDF linked from the UK products page.
+  - Parses only rows whose official product names contain `UCITS ETF`.
+- Fetch method:
+  - Downloads the official product-list PDF directly.
+  - Builds a provider snapshot from that PDF for the rows that match the UCITS ETF filter.
+- Raw file saved:
+  - `providers/wisdomtree/wisdomtree_downloads/*.json`
+- Extraction source:
+  - Primary extraction comes from the saved WisdomTree JSON snapshot built from the official product-list PDF.
+- Notes:
+  - The downloaded official product-list PDF exposes ISIN, base currency, and TER.
+  - `CCY` is taken from the official base currency in that document.
+  - `TER(bps)` is derived from the official TER percentage by multiplying by `100`.
+  - The downloaded official product-list PDF does not expose fund-level AUM or detail-page URLs, so those fields remain blank instead of being invented.
+
+## Vanguard
+
+- Official page: `https://www.vanguard.co.uk/uk-fund-directory/product?product-type=etf`
+- Website flow:
+  - Opens the UK ETF overview page with Playwright.
+  - Dismisses the cookie banner if shown.
+  - Expands the table page size to `All`.
+  - Captures the official `FundsQuery` GraphQL request used by the page.
+- Fetch method:
+  - Main row extraction comes from the rendered overview table.
+  - ISIN enrichment comes from replaying the same official `gpx/graphql` `FundsQuery` request used by the page.
+  - Product detail pages are only used as a fallback if an ISIN is still missing after the GraphQL lookup.
+- Raw file saved:
+  - `providers/vanguard/vanguard_downloads/*.json`
+- Extraction source:
+  - ETF name, product URL, `CCY`, `AUM(M)`, and `TER(bps)` come from the official Vanguard overview table.
+  - `ISIN` comes from the official Vanguard GraphQL payload keyed by `portId`.
+- Notes:
+  - Only ETF product URLs under `/uk-fund-directory/product/etf/` are kept.
+  - `AUM(M)` is normalized from the `Fund size` column.
+  - `TER(bps)` is derived from the `Fee` column by multiplying the percentage by `100`.
+
+## First Trust
+
+- Official page: `https://www.ftglobalportfolios.com/uk/professional/Products/`
+- Fetch method:
+  - ETF/shareclass listing rows come from the embedded official products JSON on the UK products page.
+  - `TER(bps)` and `AUM(M)` are enriched from the official First Trust fund-facts HTML endpoint used by the site for each share class.
+- Raw file saved:
+  - `providers/firsttrust/firsttrust_downloads/*.json`
+- Extraction source:
+  - `ETF Name`, `ISIN`, and `CCY` come from the listing JSON.
+  - `TER(bps)` comes from `Total Expense Ratio`.
+  - `AUM(M)` comes from `Total Fund AUM`.
+- Notes:
+  - The scraper keeps share classes that have a `London Stock Exchange` listing in the official listing data.
+  - `CCY` is taken from the official shareclass currency.

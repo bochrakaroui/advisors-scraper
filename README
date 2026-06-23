@@ -80,6 +80,7 @@ The project can be extended to support official sources such as:
 * Invesco
 * UBS
 * Vanguard
+* First Trust
 * SPDR
 
 ## Project Status
@@ -103,9 +104,12 @@ Currently implemented providers include:
 * Amundi
 * Invesco
 * UBS
+* Vanguard
 * SPDR / State Street
 * HSBC Asset Management
 * J.P. Morgan Asset Management
+* WisdomTree
+* First Trust
 
 To run the full pipeline in one command:
 
@@ -113,4 +117,4 @@ To run the full pipeline in one command:
 python run_all_etf_pipeline.py
 ```
 
-Each pipeline run creates a new folder under `pipeline_runs\` named like `2026-06-22_10-22-28`, and that folder contains one combined CSV plus a validation report built from all selected providers.
+Each pipeline run creates a new folder under `pipeline_runs\` named like `2026-06-22_10-22-28`, and that folder contains the final combined CSV filtered by the root `ISIN-list.xlsx` whitelist.

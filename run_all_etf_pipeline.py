@@ -6,10 +6,13 @@ import argparse
 import asyncio
 import csv
 import os
+import re
+import zipfile
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Awaitable, Callable
+import xml.etree.ElementTree as ET
 
 from providers.amundi.extract_amundi_fields import (
     INPUT_DIR as AMUNDI_INPUT_DIR,
@@ -18,11 +21,23 @@ from providers.amundi.extract_amundi_fields import (
     find_latest_download as find_latest_amundi_download,
     parse_xlsx_rows as parse_amundi_source_rows,
 )
+from providers.firsttrust.extract_firsttrust_fields import (
+    INPUT_DIR as FIRSTTRUST_INPUT_DIR,
+    extract_rows as extract_firsttrust_rows,
+    find_latest_download as find_latest_firsttrust_download,
+    parse_snapshot_rows as parse_firsttrust_source_rows,
+)
 from providers.hsbc.extract_hsbc_fields import (
     INPUT_DIR as HSBC_INPUT_DIR,
     extract_rows as extract_hsbc_rows,
     find_latest_download as find_latest_hsbc_download,
     parse_snapshot_rows as parse_hsbc_source_rows,
+)
+from providers.wisdomtree.extract_wisdomtree_fields import (
+    INPUT_DIR as WISDOMTREE_INPUT_DIR,
+    extract_rows as extract_wisdomtree_rows,
+    find_latest_download as find_latest_wisdomtree_download,
+    parse_snapshot_rows as parse_wisdomtree_source_rows,
 )
 from providers.SPDR.extract_spdr_fields import (
     INPUT_DIR as SPDR_INPUT_DIR,
@@ -53,13 +68,21 @@ from providers.jpmorgan.extract_jpmorgan_fields import (
     find_latest_download as find_latest_jpmorgan_download,
     parse_snapshot_rows as parse_jpmorgan_source_rows,
 )
+from providers.vanguard.extract_vanguard_fields import (
+    INPUT_DIR as VANGUARD_INPUT_DIR,
+    extract_rows as extract_vanguard_rows,
+    find_latest_download as find_latest_vanguard_download,
+    parse_snapshot_rows as parse_vanguard_source_rows,
+)
 from providers.xtrackers.extract_xtrackers_fields import (
     INPUT_DIR as XTRACKERS_INPUT_DIR,
     extract_rows as extract_xtrackers_rows,
     find_latest_download as find_latest_xtrackers_download,
     parse_xlsx_rows as parse_xtrackers_source_rows,
 )
+from providers.vanguard.download_vanguard import download_vanguard_file
 from scrapers.Amundi_extractor import download_amundi_file
+from scrapers.firsttrust_extractor import download_firsttrust_file
 from scrapers.UBS_extractor import download_ubs_file
 from scrapers.Xtrackers_extractor import download_xtrackers_file
 from scrapers.hsbc_extractor import download_hsbc_file
@@ -67,13 +90,36 @@ from scrapers.invesco_extractor import download_invesco_file
 from scrapers.ishares_extractor import download_etf_list
 from scrapers.jpmorgan_extractor import download_jpmorgan_file
 from scrapers.spdr_collector import download_spdr_file, parse_xlsx_rows as parse_spdr_source_rows
+from scrapers.wisdomtree_extractor import download_wisdomtree_file
 
 
 BASE_DIR = Path(__file__).resolve().parent
 RUNS_DIR = BASE_DIR / "pipeline_runs"
 COMBINED_FILENAME = "all_etf_fields.csv"
+ISIN_FILTER_PATH = BASE_DIR / "ISIN-list.xlsx"
+XML_NS = {
+    "main": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
+    "rel": "http://schemas.openxmlformats.org/package/2006/relationships",
+}
+CELL_REF_PATTERN = re.compile(r"([A-Z]+)")
+HEADER_NORMALIZE_PATTERN = re.compile(r"[^a-z0-9]+")
+INTERNAL_SPACE_PATTERN = re.compile(r"\s+")
+ISIN_HEADER_CANDIDATES = ("isin", "isincode")
+INVISIBLE_ISIN_CHARACTERS = ("\u00A0", "\u2007", "\u202F", "\u200B", "\uFEFF")
 
-ALL_PROVIDERS = ("ishares", "xtrackers", "amundi", "invesco", "ubs", "spdr", "hsbc", "jpmorgan")
+ALL_PROVIDERS = (
+    "ishares",
+    "xtrackers",
+    "amundi",
+    "invesco",
+    "ubs",
+    "spdr",
+    "hsbc",
+    "jpmorgan",
+    "wisdomtree",
+    "vanguard",
+    "firsttrust",
+)
 PROCESSED_DIRS = (
     BASE_DIR / "providers" / "ishares" / "ishares_processed",
     BASE_DIR / "providers" / "xtrackers" / "xtrackers_processed",
@@ -83,6 +129,9 @@ PROCESSED_DIRS = (
     BASE_DIR / "providers" / "SPDR" / "spdr_processed",
     BASE_DIR / "providers" / "hsbc" / "hsbc_processed",
     BASE_DIR / "providers" / "jpmorgan" / "jpmorgan_processed",
+    BASE_DIR / "providers" / "wisdomtree" / "wisdomtree_processed",
+    BASE_DIR / "providers" / "vanguard" / "vanguard_processed",
+    BASE_DIR / "providers" / "firsttrust" / "firsttrust_processed",
 )
 
 Downloader = Callable[[], Awaitable[Path]]
@@ -99,6 +148,19 @@ class ProviderPipeline:
     input_dir: Path
     latest_download_finder: LatestDownloadFinder
     source_row_parser: SourceRowParser
+
+
+@dataclass(frozen=True)
+class IsinFilterSummary:
+    whitelist_unique_isin_count: int
+    final_rows_before_filtering: int
+    final_unique_isins_before_filtering: int
+    final_rows_after_filtering: int
+    final_unique_isins_after_filtering: int
+    removed_rows_count: int
+    removed_unique_isin_count: int
+    unexpected_isin_count_after_filtering: int
+    isin_column_name: str
 
 
 def parse_args() -> argparse.Namespace:
@@ -193,39 +255,6 @@ def write_combined_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
         writer.writerows(rows)
 
 
-def write_validation_report(
-    output_path: Path,
-    successes: list[tuple[str, Path, int, int, dict[str, int]]],
-    failures: list[tuple[str, Exception]],
-    total_rows: int,
-) -> None:
-    lines = [
-        "ETF Pipeline Validation Report",
-        f"Generated: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}",
-        f"Total rows: {total_rows:,}",
-        "",
-    ]
-
-    if successes:
-        lines.append("Successful providers:")
-        for provider_name, input_path, source_row_count, row_count, missing_counts in successes:
-            lines.append(f"- {provider_name}")
-            lines.append(f"  Source: {input_path}")
-            lines.append(f"  Source rows parsed: {source_row_count:,}")
-            lines.append(f"  Rows: {row_count:,}")
-            lines.append(f"  Excluded rows: {source_row_count - row_count:,}")
-            lines.append("  Missing: " + ", ".join(f"{column}={count}" for column, count in missing_counts.items()))
-        lines.append("")
-
-    if failures:
-        lines.append("Failed providers:")
-        for provider_name, exc in failures:
-            lines.append(f"- {provider_name}: {exc}")
-        lines.append("")
-
-    output_path.write_text("\n".join(lines), encoding="utf-8")
-
-
 def validate_rows(provider_name: str, rows: list[dict[str, str]]) -> dict[str, int]:
     expected_columns = set(OUTPUT_COLUMNS)
     missing_counts = {column: 0 for column in OUTPUT_COLUMNS}
@@ -246,6 +275,211 @@ def validate_rows(provider_name: str, rows: list[dict[str, str]]) -> dict[str, i
                 missing_counts[column] += 1
 
     return missing_counts
+
+
+def normalize_isin(value: object | None) -> str | None:
+    if value is None:
+        return None
+
+    normalized = str(value)
+    for invisible_character in INVISIBLE_ISIN_CHARACTERS:
+        normalized = normalized.replace(invisible_character, "")
+    normalized = normalized.strip().upper()
+    normalized = INTERNAL_SPACE_PATTERN.sub("", normalized)
+    return normalized or None
+
+
+def canonicalize_header(value: object | None) -> str:
+    if value is None:
+        return ""
+
+    normalized = str(value)
+    for invisible_character in INVISIBLE_ISIN_CHARACTERS:
+        normalized = normalized.replace(invisible_character, " ")
+    normalized = normalized.strip().lower()
+    return HEADER_NORMALIZE_PATTERN.sub("", normalized)
+
+
+def detect_isin_column_name(columns: list[str] | tuple[str, ...]) -> str:
+    normalized_columns = [(column, canonicalize_header(column)) for column in columns]
+    for candidate in ISIN_HEADER_CANDIDATES:
+        for original_column, normalized_column in normalized_columns:
+            if normalized_column == candidate:
+                return original_column
+    raise ValueError(f"Could not detect an ISIN column in columns: {list(columns)}")
+
+
+def column_index_from_ref(cell_ref: str) -> int:
+    match = CELL_REF_PATTERN.match(cell_ref)
+    if not match:
+        return -1
+
+    column_letters = match.group(1)
+    index = 0
+    for character in column_letters:
+        index = index * 26 + (ord(character) - ord("A") + 1)
+    return index - 1
+
+
+def get_cell_text(cell: ET.Element, shared_strings: list[str]) -> str:
+    value = cell.find("main:v", XML_NS)
+    inline_text = cell.find("main:is", XML_NS)
+    cell_type = cell.attrib.get("t")
+
+    if cell_type == "inlineStr" and inline_text is not None:
+        return "".join(node.text or "" for node in inline_text.iterfind(".//main:t", XML_NS)).strip()
+
+    if value is None or value.text is None:
+        return ""
+
+    raw_value = value.text.strip()
+    if cell_type == "s":
+        try:
+            return shared_strings[int(raw_value)].strip()
+        except (ValueError, IndexError):
+            return ""
+    return raw_value
+
+
+def read_sheet_rows(sheet_root: ET.Element, shared_strings: list[str]) -> list[dict[int, str]]:
+    sheet_rows: list[dict[int, str]] = []
+    for row in sheet_root.findall("main:sheetData/main:row", XML_NS):
+        row_values: dict[int, str] = {}
+        for cell in row.findall("main:c", XML_NS):
+            column_index = column_index_from_ref(cell.attrib.get("r", ""))
+            if column_index < 0:
+                continue
+            row_values[column_index] = get_cell_text(cell, shared_strings)
+        sheet_rows.append(row_values)
+    return sheet_rows
+
+
+def load_allowed_isins(path: Path) -> set[str]:
+    if not path.exists():
+        raise FileNotFoundError(f"Required ISIN filter file not found: {path}")
+
+    allowed_isins: set[str] = set()
+    try:
+        with zipfile.ZipFile(path) as workbook_zip:
+            shared_strings: list[str] = []
+            if "xl/sharedStrings.xml" in workbook_zip.namelist():
+                shared_strings_root = ET.fromstring(workbook_zip.read("xl/sharedStrings.xml"))
+                for item in shared_strings_root.findall("main:si", XML_NS):
+                    shared_strings.append(
+                        "".join(node.text or "" for node in item.iterfind(".//main:t", XML_NS)).strip()
+                    )
+
+            workbook_root = ET.fromstring(workbook_zip.read("xl/workbook.xml"))
+            relationships_root = ET.fromstring(workbook_zip.read("xl/_rels/workbook.xml.rels"))
+            relationship_map = {
+                relation.attrib["Id"]: relation.attrib["Target"]
+                for relation in relationships_root.findall("rel:Relationship", XML_NS)
+            }
+
+            for sheet in workbook_root.findall("main:sheets/main:sheet", XML_NS):
+                relationship_id = sheet.attrib.get(
+                    "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id",
+                    "",
+                )
+                target = relationship_map.get(relationship_id)
+                if not target:
+                    continue
+
+                sheet_root = ET.fromstring(workbook_zip.read(f"xl/{target}"))
+                sheet_rows = read_sheet_rows(sheet_root, shared_strings)
+                if not sheet_rows:
+                    continue
+
+                header_row_index = next(
+                    (
+                        index
+                        for index, row_values in enumerate(sheet_rows[:25])
+                        if any(canonicalize_header(value) in ISIN_HEADER_CANDIDATES for value in row_values.values())
+                    ),
+                    None,
+                )
+                if header_row_index is None:
+                    continue
+
+                header_row = sheet_rows[header_row_index]
+                normalized_headers = {
+                    column_index: canonicalize_header(header_value)
+                    for column_index, header_value in header_row.items()
+                }
+                isin_column_index = next(
+                    (
+                        column_index
+                        for column_index, normalized_header in normalized_headers.items()
+                        if normalized_header in ISIN_HEADER_CANDIDATES
+                    ),
+                    None,
+                )
+                if isin_column_index is None:
+                    continue
+
+                for row_values in sheet_rows[header_row_index + 1 :]:
+                    isin = normalize_isin(row_values.get(isin_column_index))
+                    if isin:
+                        allowed_isins.add(isin)
+    except PermissionError as exc:
+        raise PermissionError(
+            f"Cannot read the ISIN filter file because it is locked: {path}. "
+            "Please close ISIN-list.xlsx and run the pipeline again."
+        ) from exc
+
+    if not allowed_isins:
+        raise ValueError(f"No ISIN values were loaded from {path}")
+
+    return allowed_isins
+
+
+def collect_normalized_isins(rows: list[dict[str, str]], isin_column_name: str) -> set[str]:
+    return {
+        normalized_isin
+        for normalized_isin in (normalize_isin(row.get(isin_column_name)) for row in rows)
+        if normalized_isin
+    }
+
+
+def validate_whitelisted_rows(rows: list[dict[str, str]], isin_column_name: str, whitelist_isins: set[str]) -> list[str]:
+    final_isins = collect_normalized_isins(rows, isin_column_name)
+    return sorted(final_isins - whitelist_isins)
+
+
+def apply_final_isin_whitelist(
+    rows: list[dict[str, str]],
+    whitelist_isins: set[str],
+) -> tuple[list[dict[str, str]], IsinFilterSummary]:
+    columns = list(rows[0].keys()) if rows else list(OUTPUT_COLUMNS)
+    isin_column_name = detect_isin_column_name(columns)
+
+    final_isins_before_filtering = collect_normalized_isins(rows, isin_column_name)
+
+    filtered_rows: list[dict[str, str]] = []
+    removed_rows: list[dict[str, str]] = []
+    for row in rows:
+        normalized_isin = normalize_isin(row.get(isin_column_name))
+        if normalized_isin and normalized_isin in whitelist_isins:
+            filtered_rows.append(row)
+        else:
+            removed_rows.append(row)
+
+    final_isins_after_filtering = collect_normalized_isins(filtered_rows, isin_column_name)
+    removed_isins = collect_normalized_isins(removed_rows, isin_column_name)
+    unexpected_isins = sorted(final_isins_after_filtering - whitelist_isins)
+
+    summary = IsinFilterSummary(
+        whitelist_unique_isin_count=len(whitelist_isins),
+        final_rows_before_filtering=len(rows),
+        final_unique_isins_before_filtering=len(final_isins_before_filtering),
+        final_rows_after_filtering=len(filtered_rows),
+        final_unique_isins_after_filtering=len(final_isins_after_filtering),
+        removed_rows_count=len(removed_rows),
+        removed_unique_isin_count=len(removed_isins),
+        unexpected_isin_count_after_filtering=len(unexpected_isins),
+        isin_column_name=isin_column_name,
+    )
+    return filtered_rows, summary
 
 
 def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
@@ -314,6 +548,30 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             latest_download_finder=find_latest_jpmorgan_download,
             source_row_parser=parse_jpmorgan_source_rows,
         ),
+        "wisdomtree": ProviderPipeline(
+            name="WisdomTree",
+            downloader=download_wisdomtree_file,
+            extractor=extract_wisdomtree_rows,
+            input_dir=WISDOMTREE_INPUT_DIR,
+            latest_download_finder=find_latest_wisdomtree_download,
+            source_row_parser=parse_wisdomtree_source_rows,
+        ),
+        "vanguard": ProviderPipeline(
+            name="Vanguard",
+            downloader=download_vanguard_file,
+            extractor=extract_vanguard_rows,
+            input_dir=VANGUARD_INPUT_DIR,
+            latest_download_finder=find_latest_vanguard_download,
+            source_row_parser=parse_vanguard_source_rows,
+        ),
+        "firsttrust": ProviderPipeline(
+            name="First Trust",
+            downloader=download_firsttrust_file,
+            extractor=extract_firsttrust_rows,
+            input_dir=FIRSTTRUST_INPUT_DIR,
+            latest_download_finder=find_latest_firsttrust_download,
+            source_row_parser=parse_firsttrust_source_rows,
+        ),
     }
 
 
@@ -350,7 +608,7 @@ async def async_main() -> int:
     pipelines = build_pipelines(include_all_funds=not args.etf_only)
     run_dir = build_run_dir()
     combined_output_path = run_dir / COMBINED_FILENAME
-    validation_report_path = run_dir / "validation_report.txt"
+    whitelist_isins = load_allowed_isins(ISIN_FILTER_PATH)
 
     clean_processed_dirs()
 
@@ -370,15 +628,41 @@ async def async_main() -> int:
             if args.stop_on_error:
                 break
 
-    write_combined_csv(combined_output_path, combined_rows)
-    write_validation_report(validation_report_path, successes, failures, len(combined_rows))
+    filtered_rows, filter_summary = apply_final_isin_whitelist(combined_rows, whitelist_isins)
+    print()
+    print("=== Final ISIN Whitelist Filter ===")
+    print(f"Whitelist unique ISIN count: {filter_summary.whitelist_unique_isin_count:,}")
+    print(f"Final rows before filtering: {filter_summary.final_rows_before_filtering:,}")
+    print(f"Final unique ISINs before filtering: {filter_summary.final_unique_isins_before_filtering:,}")
+    print(f"Final rows after filtering: {filter_summary.final_rows_after_filtering:,}")
+    print(f"Final unique ISINs after filtering: {filter_summary.final_unique_isins_after_filtering:,}")
+    print(f"Removed rows count: {filter_summary.removed_rows_count:,}")
+    print(f"Removed unique ISIN count: {filter_summary.removed_unique_isin_count:,}")
+    print(f"Unexpected ISIN count after filtering: {filter_summary.unexpected_isin_count_after_filtering:,}")
+
+    unexpected_isins_pre_save = validate_whitelisted_rows(
+        filtered_rows,
+        filter_summary.isin_column_name,
+        whitelist_isins,
+    )
+    if unexpected_isins_pre_save:
+        print("Unexpected non-whitelisted ISINs after final filter:")
+        for isin in unexpected_isins_pre_save[:100]:
+            print(f"  {isin}")
+        raise ValueError(
+            "Final ETF rows still contain non-whitelisted ISINs before saving: "
+            + ", ".join(unexpected_isins_pre_save[:25])
+        )
+
+    write_combined_csv(combined_output_path, filtered_rows)
 
     print()
     print("=== Summary ===")
     print(f"Run folder   : {run_dir}")
     print(f"Combined CSV : {combined_output_path}")
-    print(f"Validation   : {validation_report_path}")
-    print(f"Total rows   : {len(combined_rows):,}")
+    print(f"Total rows   : {len(filtered_rows):,}")
+    print(f"Whitelist ISINs: {filter_summary.whitelist_unique_isin_count:,} from {ISIN_FILTER_PATH}")
+    print(f"Rows removed by ISIN filter: {filter_summary.removed_rows_count:,}")
 
     if successes:
         for provider_name, input_path, source_row_count, row_count, missing_counts in successes:

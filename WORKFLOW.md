@@ -46,11 +46,23 @@ The current structure is kept as-is:
   - J.P. Morgan downloaded files
   - J.P. Morgan processed files
   - J.P. Morgan field extractor
+- `providers/wisdomtree/`
+  - WisdomTree downloaded files
+  - WisdomTree processed files
+  - WisdomTree field extractor
+- `providers/vanguard/`
+  - Vanguard downloaded files
+  - Vanguard processed files
+  - Vanguard field extractor
+- `providers/firsttrust/`
+  - First Trust downloaded files
+  - First Trust processed files
+  - First Trust field extractor
 - `docs/provider_workflows.md`
   - provider-by-provider source and fetch-method notes
 - `pipeline_runs/`
   - one folder per pipeline run, named like `2026-06-21_13-04-45`
-  - contains the combined CSV and validation report for that run
+  - contains the final combined CSV for that run
 
 ## Requirements
 
@@ -78,14 +90,16 @@ python run_all_etf_pipeline.py --stop-on-error
 python run_all_etf_pipeline.py --use-latest-downloads
 python run_all_etf_pipeline.py --providers ubs
 python run_all_etf_pipeline.py --providers jpmorgan
+python run_all_etf_pipeline.py --providers wisdomtree
+python run_all_etf_pipeline.py --providers vanguard
+python run_all_etf_pipeline.py --providers firsttrust
 ```
 
 Pipeline behavior:
 
 - deletes the provider `*_processed` folders before the run
 - creates a new folder under `pipeline_runs\` named like `2026-06-21_13-04-45`
-- writes one combined CSV there containing appended rows from all selected providers
-- writes a `validation_report.txt` there with row counts and missing-value checks per provider
+- writes one combined CSV there containing appended rows from all selected providers after the final ISIN whitelist filter
 
 ## Download Workflows
 
@@ -171,6 +185,48 @@ Saved to:
 
 ```text
 providers\jpmorgan\jpmorgan_downloads\
+```
+
+### WisdomTree
+
+Download the latest WisdomTree file:
+
+```powershell
+python scrapers\wisdomtree_extractor.py
+```
+
+Saved to:
+
+```text
+providers\wisdomtree\wisdomtree_downloads\
+```
+
+### Vanguard
+
+Download the latest Vanguard file:
+
+```powershell
+python providers\vanguard\download_vanguard.py
+```
+
+Saved to:
+
+```text
+providers\vanguard\vanguard_downloads\
+```
+
+### First Trust
+
+Download the latest First Trust file:
+
+```powershell
+python scrapers\firsttrust_extractor.py
+```
+
+Saved to:
+
+```text
+providers\firsttrust\firsttrust_downloads\
 ```
 
 ## Processing Workflows
@@ -338,6 +394,77 @@ Current J.P. Morgan processing rules:
 - Converts `assetsUnderManagement` into `AUM(M)`
 - Adds `Date` from the downloaded filename timestamp
 
+### WisdomTree Processing
+
+Run:
+
+```powershell
+python providers\wisdomtree\extract_wisdomtree_fields.py
+```
+
+Output folder:
+
+```text
+providers\wisdomtree\wisdomtree_processed\
+```
+
+Current WisdomTree processing rules:
+
+- Reads the latest downloaded `.json` snapshot by default
+- Uses the official `WisdomTree Product List` PDF linked from the UK products page as the source behind that snapshot
+- Keeps only rows whose official product names contain `UCITS ETF`
+- Uses the official base currency as `CCY`
+- Converts source TER percentages into `TER(bps)`
+- Leaves `AUM(M)` blank when the official downloaded source does not expose fund-level AUM
+- Adds `Date` from the downloaded filename timestamp
+
+### Vanguard Processing
+
+Run:
+
+```powershell
+python providers\vanguard\extract_vanguard_fields.py
+```
+
+Output folder:
+
+```text
+providers\vanguard\vanguard_processed\
+```
+
+Current Vanguard processing rules:
+
+- Reads the latest downloaded `.json` snapshot by default
+- Uses the official Vanguard UK ETF overview table as the main source
+- Keeps the official listing currency as `CCY`
+- Converts overview-table fee percentages into `TER(bps)`
+- Normalizes overview-table fund size into `AUM(M)`
+- Uses the official Vanguard GraphQL payload for `ISIN`
+- Adds `Date` from the downloaded filename timestamp
+
+### First Trust Processing
+
+Run:
+
+```powershell
+python providers\firsttrust\extract_firsttrust_fields.py
+```
+
+Output folder:
+
+```text
+providers\firsttrust\firsttrust_processed\
+```
+
+Current First Trust processing rules:
+
+- Reads the latest downloaded `.json` snapshot by default
+- Uses the official embedded products JSON for ETF/shareclass rows
+- Keeps the official shareclass currency as `CCY`
+- Converts official `Total Expense Ratio` values into `TER(bps)`
+- Normalizes official `Total Fund AUM` values into `AUM(M)`
+- Adds `Date` from the downloaded filename timestamp
+
 ## Output Format
 
 The output CSV columns are:
@@ -351,7 +478,8 @@ ETF Name,Issuer,ISIN,CCY,TER(bps),AUM(M),Date
 Useful checks:
 
 ```powershell
-python -m py_compile scrapers\Amundi_extractor.py scrapers\UBS_extractor.py scrapers\ishares_extractor.py scrapers\Xtrackers_extractor.py scrapers\invesco_extractor.py scrapers\jpmorgan_extractor.py providers\ishares\extract_ishares_fields.py providers\xtrackers\extract_xtrackers_fields.py providers\amundi\extract_amundi_fields.py providers\invesco\extract_invesco_fields.py providers\UBS\extract_ubs_fields.py providers\jpmorgan\extract_jpmorgan_fields.py run_all_etf_pipeline.py
+python -m py_compile scrapers\Amundi_extractor.py scrapers\UBS_extractor.py scrapers\ishares_extractor.py scrapers\Xtrackers_extractor.py scrapers\invesco_extractor.py scrapers\jpmorgan_extractor.py scrapers\wisdomtree_extractor.py providers\ishares\extract_ishares_fields.py providers\xtrackers\extract_xtrackers_fields.py providers\amundi\extract_amundi_fields.py providers\invesco\extract_invesco_fields.py providers\UBS\extract_ubs_fields.py providers\jpmorgan\extract_jpmorgan_fields.py providers\wisdomtree\extract_wisdomtree_fields.py providers\vanguard\download_vanguard.py providers\vanguard\extract_vanguard_fields.py run_all_etf_pipeline.py
+python -m py_compile scrapers\Amundi_extractor.py scrapers\UBS_extractor.py scrapers\ishares_extractor.py scrapers\Xtrackers_extractor.py scrapers\invesco_extractor.py scrapers\jpmorgan_extractor.py scrapers\wisdomtree_extractor.py scrapers\firsttrust_extractor.py providers\ishares\extract_ishares_fields.py providers\xtrackers\extract_xtrackers_fields.py providers\amundi\extract_amundi_fields.py providers\invesco\extract_invesco_fields.py providers\UBS\extract_ubs_fields.py providers\jpmorgan\extract_jpmorgan_fields.py providers\wisdomtree\extract_wisdomtree_fields.py providers\vanguard\download_vanguard.py providers\vanguard\extract_vanguard_fields.py providers\firsttrust\extract_firsttrust_fields.py run_all_etf_pipeline.py
 ```
 
 Run iShares processing:
@@ -390,6 +518,12 @@ Run J.P. Morgan processing:
 python providers\jpmorgan\extract_jpmorgan_fields.py
 ```
 
+Run WisdomTree processing:
+
+```powershell
+python providers\wisdomtree\extract_wisdomtree_fields.py
+```
+
 ## Current Provider Status
 
 - `iShares`: downloader and processor are working
@@ -400,6 +534,7 @@ python providers\jpmorgan\extract_jpmorgan_fields.py
 - `SPDR`: downloader and processor are working
 - `HSBC`: downloader and processor are working
 - `J.P. Morgan`: downloader and processor are working
+- `WisdomTree`: downloader and processor are working
 
 ## Important Notes
 

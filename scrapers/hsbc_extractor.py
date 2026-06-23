@@ -8,12 +8,14 @@ import json
 import logging
 import re
 import sys
+import zipfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from copy import deepcopy
 from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from functools import lru_cache
 from pathlib import Path
+import xml.etree.ElementTree as ET
 
 import requests
 from playwright.sync_api import Page, sync_playwright
@@ -29,6 +31,11 @@ MAX_FACTSHEET_WORKERS = 8
 BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "hsbc" / "hsbc_downloads"
 VENDOR_PYPDF_DIR = BASE_DIR / ".vendor_pypdf"
+REFERENCE_ISIN_PATH = BASE_DIR / "ISIN-list.xlsx"
+XLSX_NS = {
+    "main": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
+    "rel": "http://schemas.openxmlformats.org/package/2006/relationships",
+}
 
 if str(VENDOR_PYPDF_DIR) not in sys.path and VENDOR_PYPDF_DIR.exists():
     sys.path.insert(0, str(VENDOR_PYPDF_DIR))
@@ -66,6 +73,105 @@ def format_decimal(value: Decimal, places: int = 2) -> str:
 
 def write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def normalize_header(value: object | None) -> str:
+    return re.sub(r"[^a-z0-9]+", "", clean_text(value).lower())
+
+
+def normalize_isin(value: object | None) -> str:
+    cleaned = clean_text(value).upper().replace("\u00a0", "")
+    return re.sub(r"\s+", "", cleaned)
+
+
+def column_index_from_ref(cell_ref: str) -> int:
+    match = re.match(r"([A-Z]+)", cell_ref or "")
+    if not match:
+        return -1
+
+    index = 0
+    for character in match.group(1):
+        index = index * 26 + (ord(character) - ord("A") + 1)
+    return index - 1
+
+
+def get_xlsx_cell_text(cell: ET.Element, shared_strings: list[str]) -> str:
+    value = cell.find("main:v", XLSX_NS)
+    inline_text = cell.find("main:is", XLSX_NS)
+    cell_type = cell.attrib.get("t")
+
+    if cell_type == "inlineStr" and inline_text is not None:
+        return "".join(node.text or "" for node in inline_text.iterfind(".//main:t", XLSX_NS)).strip()
+
+    if value is None or value.text is None:
+        return ""
+
+    raw_value = value.text.strip()
+    if cell_type == "s":
+        try:
+            return shared_strings[int(raw_value)].strip()
+        except (ValueError, IndexError):
+            return ""
+    return raw_value
+
+
+def load_reference_provider_isins(provider_name: str) -> set[str]:
+    if not REFERENCE_ISIN_PATH.exists():
+        return set()
+
+    provider_isins: set[str] = set()
+    with zipfile.ZipFile(REFERENCE_ISIN_PATH) as workbook_zip:
+        shared_strings: list[str] = []
+        if "xl/sharedStrings.xml" in workbook_zip.namelist():
+            shared_strings_root = ET.fromstring(workbook_zip.read("xl/sharedStrings.xml"))
+            for item in shared_strings_root.findall("main:si", XLSX_NS):
+                shared_strings.append(
+                    "".join(node.text or "" for node in item.iterfind(".//main:t", XLSX_NS)).strip()
+                )
+
+        workbook_root = ET.fromstring(workbook_zip.read("xl/workbook.xml"))
+        relationships_root = ET.fromstring(workbook_zip.read("xl/_rels/workbook.xml.rels"))
+        relationship_map = {
+            relation.attrib["Id"]: relation.attrib["Target"]
+            for relation in relationships_root.findall("rel:Relationship", XLSX_NS)
+        }
+
+        for sheet in workbook_root.findall("main:sheets/main:sheet", XLSX_NS):
+            relationship_id = sheet.attrib.get(
+                "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id",
+                "",
+            )
+            target = relationship_map.get(relationship_id)
+            if not target:
+                continue
+
+            sheet_root = ET.fromstring(workbook_zip.read(f"xl/{target}"))
+            sheet_rows: list[dict[int, str]] = []
+            for row in sheet_root.findall("main:sheetData/main:row", XLSX_NS):
+                row_values: dict[int, str] = {}
+                for cell in row.findall("main:c", XLSX_NS):
+                    column_index = column_index_from_ref(cell.attrib.get("r", ""))
+                    if column_index >= 0:
+                        row_values[column_index] = get_xlsx_cell_text(cell, shared_strings)
+                sheet_rows.append(row_values)
+
+            if not sheet_rows:
+                continue
+
+            headers = {index: normalize_header(value) for index, value in sheet_rows[0].items()}
+            provider_column = next((index for index, header in headers.items() if header == "provider"), None)
+            isin_column = next((index for index, header in headers.items() if header in {"isin", "isincode"}), None)
+            if provider_column is None or isin_column is None:
+                continue
+
+            for row_values in sheet_rows[1:]:
+                if clean_text(row_values.get(provider_column)).lower() != provider_name.lower():
+                    continue
+                isin = normalize_isin(row_values.get(isin_column))
+                if isin:
+                    provider_isins.add(isin)
+
+    return provider_isins
 
 
 def safe_click(page: Page, selectors: list[str]) -> None:
@@ -242,6 +348,26 @@ def parse_percentage_to_bps(raw_value: str) -> str:
     return format_decimal(percentage * Decimal("100"), places=2)
 
 
+def extract_fund_name_from_factsheet(text: str) -> str:
+    lines = [clean_text(line) for line in text.splitlines()]
+    lines = [line for line in lines if line]
+    title_lines: list[str] = []
+    for line in lines[:12]:
+        if line.lower().startswith("marketing communication"):
+            break
+        if line.upper() in {"HSBC GLOBAL FUNDS ICAV", "HSBC ETFS PLC", "HSBC GLOBAL LIQUIDITY FUNDS PLC"} and not title_lines:
+            continue
+        title_lines.append(line)
+
+    title = " ".join(title_lines)
+    title = re.sub(r"\s+", " ", title).strip()
+    if "UCITS ETF" in title.upper():
+        return title if title.upper().startswith("HSBC") else f"HSBC {title}"
+    if title and any("UCITS ETF" in line.upper() for line in lines[:6]):
+        return title if title.upper().startswith("HSBC") else f"HSBC {title}"
+    return ""
+
+
 @lru_cache(maxsize=None)
 def extract_factsheet_fields(isin: str) -> dict[str, str]:
     if PdfReader is None:
@@ -261,7 +387,7 @@ def extract_factsheet_fields(isin: str) -> dict[str, str]:
         reader = PdfReader(io.BytesIO(response.content))
         text = "\n".join(pdf_page.extract_text() or "" for pdf_page in reader.pages)
     except Exception:
-        return {"ccy": "", "ter_bps": "", "aum_raw": ""}
+        return {"etf_name": "", "ccy": "", "ter_bps": "", "aum_raw": ""}
     aum_match = re.search(
         r"Fund size\s+[A-Z]{3}\s+([0-9][0-9,]*(?:\.\d+)?)",
         text,
@@ -274,6 +400,7 @@ def extract_factsheet_fields(isin: str) -> dict[str, str]:
         flags=re.IGNORECASE,
     )
     return {
+        "etf_name": extract_fund_name_from_factsheet(text),
         "ccy": clean_text(ccy_match.group(1)).upper() if ccy_match else "",
         "ter_bps": parse_percentage_to_bps(ter_match.group(1)) if ter_match else "",
         "aum_raw": clean_text(aum_match.group(1)) if aum_match else "",
@@ -320,9 +447,21 @@ def build_aum_map(
 
     for fund_id, targets in targets_by_fund_id.items():
         representative = next((row for row in targets if row["isin"]), targets[0])
-        representative_isin = representative["isin"]
-        factsheet_fields = factsheet_by_isin.get(representative_isin, {})
-        raw_aum_value = clean_text(factsheet_fields.get("aum_raw"))
+        raw_aum_value = ""
+        source_isin = ""
+
+        for candidate in targets:
+            candidate_isin = candidate["isin"]
+            factsheet_fields = factsheet_by_isin.get(candidate_isin, {})
+            raw_aum_value = clean_text(factsheet_fields.get("aum_raw"))
+            if raw_aum_value:
+                representative = candidate
+                source_isin = candidate_isin
+                break
+
+        if not source_isin:
+            source_isin = representative["isin"]
+
         aum_mn = parse_aum_to_millions(raw_aum_value)
         aum_by_fund_id[fund_id] = aum_mn
         raw_entries.append(
@@ -331,13 +470,54 @@ def build_aum_map(
                 "etf_name": representative["etf_name"],
                 "share_class_isins": [row["isin"] for row in targets if row["isin"]],
                 "source": "factsheet_pdf" if raw_aum_value else "",
-                "source_url": FACTSHEET_URL_TEMPLATE.format(isin=representative_isin.lower()) if representative_isin else "",
+                "source_url": FACTSHEET_URL_TEMPLATE.format(isin=source_isin.lower()) if source_isin else "",
                 "raw_aum_value": raw_aum_value,
                 "aum_mn": aum_mn,
             }
         )
 
     return aum_by_fund_id, raw_entries
+
+
+def build_reference_factsheet_rows(
+    listing_rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    reference_isins = load_reference_provider_isins("HSBC")
+    listed_isins = {normalize_isin(row["isin"]) for row in listing_rows if row["isin"]}
+    missing_reference_isins = sorted(reference_isins - listed_isins)
+    if not missing_reference_isins:
+        return []
+
+    factsheet_by_isin = fetch_factsheet_map(missing_reference_isins, label="reference HSBC gaps")
+    rows: list[dict[str, str]] = []
+    for isin in missing_reference_isins:
+        factsheet_fields = factsheet_by_isin.get(isin, {})
+        etf_name = clean_text(factsheet_fields.get("etf_name"))
+        ccy = clean_text(factsheet_fields.get("ccy")).upper()
+        aum_raw = clean_text(factsheet_fields.get("aum_raw"))
+
+        # Only add rows that are confirmed by a usable official HSBC factsheet.
+        if not etf_name or not ccy or not aum_raw:
+            continue
+
+        rows.append(
+            {
+                "fund_id": f"factsheet:{isin}",
+                "etf_name": etf_name,
+                "issuer": ISSUER,
+                "isin": isin,
+                "ccy": ccy,
+                "ter_bps": clean_text(factsheet_fields.get("ter_bps")),
+                "aum_mn": parse_aum_to_millions(aum_raw),
+            }
+        )
+
+    logging.info(
+        "Added %s HSBC reference ISIN rows from official factsheets; %s reference ISINs were not in the listing API.",
+        len(rows),
+        len(missing_reference_isins),
+    )
+    return rows
 
 
 def build_snapshot(now: datetime) -> dict[str, object]:
@@ -375,6 +555,8 @@ def build_snapshot(now: datetime) -> dict[str, object]:
                 "aum_mn": aum_by_fund_id.get(row["fund_id"], ""),
             }
         )
+
+    enriched_rows.extend(build_reference_factsheet_rows(enriched_rows))
 
     return {
         "source_url": PAGE_URL,
