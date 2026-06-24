@@ -121,6 +121,38 @@ async def extract_download_href(locator: Locator) -> str | None:
     return await locator.evaluate(script)
 
 
+async def wait_for_download_controls(page) -> None:
+    selectors = [
+        "screener-download-funds",
+        "button.mat-mdc-menu-trigger.download-button",
+        "button:has(div.button-content:has-text('DOWNLOAD'))",
+        "button:has-text('DOWNLOAD')",
+    ]
+
+    last_error: Exception | None = None
+    for selector in selectors:
+        try:
+            await page.locator(selector).first.wait_for(state="attached", timeout=15_000)
+            return
+        except Exception as exc:
+            last_error = exc
+
+    raise TimeoutError("Could not find the iShares download controls in the DOM") from last_error
+
+
+async def goto_with_retry(page, url: str) -> None:
+    last_exc: Exception | None = None
+    for wait_until in ("commit", "domcontentloaded"):
+        try:
+            await page.goto(url, wait_until=wait_until, timeout=TIMEOUT_MS)
+            await page.wait_for_load_state("domcontentloaded", timeout=TIMEOUT_MS)
+            return
+        except Exception as exc:
+            last_exc = exc
+    if last_exc is not None:
+        raise last_exc
+
+
 def build_run_output_dir(base_dir: Path) -> Path:
     run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
     if run_folder_name:
@@ -182,7 +214,7 @@ async def download_etf_list() -> Path:
         page = await context.new_page()
 
         print("[1/5] Navigating to iShares ETF page ...")
-        await page.goto(URL, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+        await goto_with_retry(page, URL)
 
         print("[2/5] Looking for T&C accept button ...")
         try:
@@ -200,12 +232,10 @@ async def download_etf_list() -> Path:
         await dismiss_onetrust_overlay(page)
 
         print("[3/5] Waiting for the product table to render ...")
-        await page.wait_for_selector(
-            "button:has-text('DOWNLOAD'), [class*='download']",
-            timeout=TIMEOUT_MS,
-        )
+        await wait_for_download_controls(page)
         await page.wait_for_timeout(3_000)
         await dismiss_onetrust_overlay(page)
+        await wait_for_download_controls(page)
 
         print("[4/5] Clicking DOWNLOAD button ...")
         download_btn = await find_first_visible_locator(
@@ -273,7 +303,7 @@ async def download_etf_list() -> Path:
         direct_href = await extract_download_href(all_etfs_option)
         if direct_href:
             print(f"     Found export URL: {direct_href}")
-            response = await page.goto(direct_href, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+            response = await page.goto(direct_href, wait_until="commit", timeout=TIMEOUT_MS)
             if response is None:
                 raise RuntimeError("The export link did not return a response.")
 

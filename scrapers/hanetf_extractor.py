@@ -51,11 +51,6 @@ ISIN_RE = re.compile(r"^[A-Z]{2}[A-Z0-9]{9}\d$")
 # Helpers
 # ---------------------------------------------------------------------------
 def build_run_output_dir(base_dir: Path) -> Path:
-    run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
-    if run_folder_name:
-        output_dir = base_dir / run_folder_name
-        output_dir.mkdir(parents=True, exist_ok=True)
-        return output_dir
     run_date = datetime.now().strftime("%Y-%m-%d")
     output_dir = base_dir / run_date
     suffix = 1
@@ -63,7 +58,6 @@ def build_run_output_dir(base_dir: Path) -> Path:
         output_dir = base_dir / f"{run_date} ({suffix})"
         suffix += 1
     output_dir.mkdir(parents=True, exist_ok=False)
-    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
     return output_dir
 
 

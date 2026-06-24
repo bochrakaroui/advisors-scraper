@@ -32,6 +32,10 @@ USER_AGENT = (
 ISIN_PATTERN = re.compile(r"^[A-Z]{2}[A-Z0-9]{9}[0-9]$")
 DATE_PATTERN = re.compile(r"(\d{1,2}\s+[A-Za-z]{3}\s+\d{4})")
 PRODUCT_URL_PATTERN = re.compile(r"^https://www\.wisdomtree\.eu/en-gb/etfs/[^?#]+$")
+SUPPLEMENTAL_PRODUCT_URLS = (
+    "https://www.wisdomtree.eu/en-gb/etfs/commodities/weng---wisdomtree-strategic-metals-ucits-etf---gbp-hedged-acc",
+    "https://www.wisdomtree.eu/en-gb/etfs/commodities/wenu---wisdomtree-strategic-metals-ucits-etf---usd-acc",
+)
 FLAG_COUNTRY_MAP = {
     "gbr": "United Kingdom",
     "deu": "Germany",
@@ -315,12 +319,13 @@ async def collect_product_urls(page) -> list[str]:
     html = await page.content()
     if "Attention Required! | Cloudflare" in html or "Sorry, you have been blocked" in html:
         raise ValueError("WisdomTree products page was blocked by Cloudflare.")
-    soup = BeautifulSoup(html, "html.parser")
-    urls = sorted({
-        normalize_product_url(anchor.get("href", ""))
-        for anchor in soup.select("td.nameLink a[href*='/en-gb/etfs/'], a[href*='/en-gb/etfs/']")
-        if is_product_url(anchor.get("href", ""))
-    })
+    discovered_urls = {
+        normalize_product_url(href)
+        for href in await page.eval_on_selector_all("a[href]", "els => els.map(a => a.href)")
+        if clean_text(href).startswith(f"{BASE_URL}/en-gb/etfs/")
+    }
+
+    urls = sorted(discovered_urls | {normalize_product_url(url) for url in SUPPLEMENTAL_PRODUCT_URLS})
     if not urls:
         raise ValueError("Could not find any WisdomTree ETF detail links on the filtered products page.")
     return urls
