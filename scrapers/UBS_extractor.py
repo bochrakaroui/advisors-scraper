@@ -93,6 +93,29 @@ async def dismiss_cookie_banner(page) -> None:
             continue
 
 
+async def find_download_link(page) -> Locator:
+    selectors = [
+        ("a[download][data-testid='downloadURL']", page.locator("a[download][data-testid='downloadURL']").first),
+        ("a[data-testid='downloadURL']", page.locator("a[data-testid='downloadURL']").first),
+        ("a[download]", page.locator("a[download]").first),
+        ("link text Download Excel", page.get_by_role("link", name="Download Excel").first),
+        ("text link Download Excel", page.locator("a:has-text('Download Excel')").first),
+    ]
+
+    last_error: Exception | None = None
+    for _ in range(8):
+        await dismiss_cookie_banner(page)
+        for _, locator in selectors:
+            try:
+                await locator.wait_for(state="visible", timeout=15_000)
+                return locator
+            except Exception as exc:
+                last_error = exc
+        await page.wait_for_timeout(2_000)
+
+    raise TimeoutError("Could not find the UBS download link in the DOM") from last_error
+
+
 async def download_ubs_file() -> Path:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -123,8 +146,7 @@ async def download_ubs_file() -> Path:
         await dismiss_cookie_banner(page)
 
         print("[3/4] Waiting for the fund list and download link ...")
-        download_link = page.locator("a[download][data-testid='downloadURL']").first
-        await download_link.wait_for(state="visible", timeout=TIMEOUT_MS)
+        download_link = await find_download_link(page)
 
         print("[4/4] Downloading workbook ...")
         try:

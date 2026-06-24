@@ -125,8 +125,12 @@ async def wait_for_download_controls(page) -> None:
     selectors = [
         "screener-download-funds",
         "button.mat-mdc-menu-trigger.download-button",
+        "button[aria-label*='download' i]",
+        "a[aria-label*='download' i]",
         "button:has(div.button-content:has-text('DOWNLOAD'))",
         "button:has-text('DOWNLOAD')",
+        "button:has-text('Download all funds')",
+        "a:has-text('Download all funds')",
     ]
 
     last_error: Exception | None = None
@@ -215,8 +219,10 @@ async def download_etf_list() -> Path:
 
         print("[1/5] Navigating to iShares ETF page ...")
         await goto_with_retry(page, URL)
+        await page.wait_for_timeout(2_000)
 
-        print("[2/5] Looking for T&C accept button ...")
+        print("[2/5] Clearing overlays and passing T&C gate ...")
+        await dismiss_onetrust_overlay(page)
         try:
             accept_btn = page.locator(
                 "a[href*='siteEntryPassthrough=true'], "
@@ -224,7 +230,13 @@ async def download_etf_list() -> Path:
                 "a:has-text('Continue')"
             ).first
             await accept_btn.wait_for(state="visible", timeout=15_000)
-            await click_with_fallback(accept_btn, "T&C accept button")
+            await accept_btn.scroll_into_view_if_needed()
+            await accept_btn.click(timeout=10_000)
+            try:
+                await page.wait_for_load_state("domcontentloaded", timeout=15_000)
+            except Exception:
+                pass
+            await page.wait_for_timeout(2_000)
             print("    T&C accepted.")
         except Exception:
             print("    No T&C gate found, continuing.")
@@ -233,7 +245,7 @@ async def download_etf_list() -> Path:
 
         print("[3/5] Waiting for the product table to render ...")
         await wait_for_download_controls(page)
-        await page.wait_for_timeout(3_000)
+        await page.wait_for_timeout(5_000)
         await dismiss_onetrust_overlay(page)
         await wait_for_download_controls(page)
 
