@@ -107,6 +107,10 @@ def find_latest_input(input_dir: Path) -> Path:
     return candidates[0]
 
 
+def find_latest_download(input_dir: Path) -> Path:
+    return find_latest_input(input_dir)
+
+
 def build_output_path(input_path: Path) -> Path:
     return input_path.parent / "palmersquare_selected_fields.csv"
 
@@ -318,6 +322,10 @@ def read_csv(input_path: Path) -> list[dict[str, str]]:
     with input_path.open("r", newline="", encoding="utf-8-sig") as fh:
         reader = csv.DictReader(fh)
         return list(reader)
+
+
+def parse_snapshot_rows(input_path: Path) -> list[dict[str, str]]:
+    return read_csv(input_path)
 
 
 def find_column(

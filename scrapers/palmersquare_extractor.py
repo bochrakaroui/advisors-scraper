@@ -20,6 +20,7 @@ Raw output columns:
 from __future__ import annotations
 
 import argparse
+import asyncio
 import csv
 import os
 import re
@@ -505,6 +506,10 @@ def process(url: str, *, headless: bool = True) -> Path:
     print("=" * 60)
 
     return output_path
+
+
+async def download_palmersquare_file(url: str = URL, *, headless: bool = True) -> Path:
+    return await asyncio.to_thread(process, url, headless=headless)
 
 
 def main() -> None:

@@ -33,6 +33,18 @@ from providers.hanetf.extract_hanetf_fields import (
     find_latest_download as find_latest_hanetf_download,
     parse_snapshot_rows as parse_hanetf_source_rows,
 )
+from providers.palmersquare.extract_palmersquare_fields import (
+    INPUT_DIR as PALMERSQUARE_INPUT_DIR,
+    extract_rows as extract_palmersquare_rows,
+    find_latest_download as find_latest_palmersquare_download,
+    parse_snapshot_rows as parse_palmersquare_source_rows,
+)
+from providers.vaneck.extract_vaneck_fields import (
+    INPUT_DIR as VANECK_INPUT_DIR,
+    extract_rows as extract_vaneck_rows,
+    find_latest_download as find_latest_vaneck_download,
+    parse_snapshot_rows as parse_vaneck_source_rows,
+)
 from providers.franklintempleton.extract_franklintempleton_fields import (
     INPUT_DIR as FRANKLIN_TEMPLETON_INPUT_DIR,
     extract_rows as extract_franklin_templeton_rows,
@@ -122,6 +134,8 @@ from scrapers.invesco_extractor import download_invesco_file
 from scrapers.ishares_extractor import download_etf_list
 from scrapers.jpmorgan_extractor import download_jpmorgan_file
 from scrapers.LandG_extractor import download_landg_file
+from scrapers.palmersquare_extractor import download_palmersquare_file
+from scrapers.vaneck_extractor import download_etf_list as download_vaneck_file
 from scrapers.spdr_collector import download_spdr_file, parse_xlsx_rows as parse_spdr_source_rows
 from scrapers.wisdomtree_extractor import download_wisdomtree_file
 from scrapers.globalx_extractor import download_globalx_file
@@ -151,6 +165,8 @@ ALL_PROVIDERS = (
     "hsbc",
     "jpmorgan",
     "landg",
+    "palmersquare",
+    "vaneck",
     "franklintempleton",
     "wisdomtree",
     "vanguard",
@@ -580,6 +596,26 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             output_filename="landg_selected_fields.csv",
             latest_download_finder=find_latest_landg_download,
             source_row_parser=parse_landg_source_rows,
+        ),
+        "palmersquare": ProviderPipeline(
+            name="Palmer Square",
+            downloader=download_palmersquare_file,
+            extractor=extract_palmersquare_rows,
+            input_dir=PALMERSQUARE_INPUT_DIR,
+            output_dir=PALMERSQUARE_INPUT_DIR,
+            output_filename="palmersquare_selected_fields.csv",
+            latest_download_finder=find_latest_palmersquare_download,
+            source_row_parser=parse_palmersquare_source_rows,
+        ),
+        "vaneck": ProviderPipeline(
+            name="VanEck",
+            downloader=download_vaneck_file,
+            extractor=extract_vaneck_rows,
+            input_dir=VANECK_INPUT_DIR,
+            output_dir=VANECK_INPUT_DIR,
+            output_filename="vaneck_selected_fields.csv",
+            latest_download_finder=find_latest_vaneck_download,
+            source_row_parser=parse_vaneck_source_rows,
         ),
         "franklintempleton": ProviderPipeline(
             name="Franklin Templeton",
