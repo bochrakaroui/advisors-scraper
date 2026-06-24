@@ -27,6 +27,18 @@ from providers.firsttrust.extract_firsttrust_fields import (
     find_latest_download as find_latest_firsttrust_download,
     parse_snapshot_rows as parse_firsttrust_source_rows,
 )
+from providers.hanetf.extract_hanetf_fields import (
+    INPUT_DIR as HANETF_INPUT_DIR,
+    extract_rows as extract_hanetf_rows,
+    find_latest_download as find_latest_hanetf_download,
+    parse_snapshot_rows as parse_hanetf_source_rows,
+)
+from providers.franklintempleton.extract_franklintempleton_fields import (
+    INPUT_DIR as FRANKLIN_TEMPLETON_INPUT_DIR,
+    extract_rows as extract_franklin_templeton_rows,
+    find_latest_download as find_latest_franklin_templeton_download,
+    parse_snapshot_rows as parse_franklin_templeton_source_rows,
+)
 from providers.hsbc.extract_hsbc_fields import (
     INPUT_DIR as HSBC_INPUT_DIR,
     extract_rows as extract_hsbc_rows,
@@ -68,6 +80,12 @@ from providers.jpmorgan.extract_jpmorgan_fields import (
     find_latest_download as find_latest_jpmorgan_download,
     parse_snapshot_rows as parse_jpmorgan_source_rows,
 )
+from providers.landg.extract_LandG_fields import (
+    INPUT_DIR as LANDG_INPUT_DIR,
+    extract_rows as extract_landg_rows,
+    find_latest_download as find_latest_landg_download,
+    parse_snapshot_rows as parse_landg_source_rows,
+)
 from providers.vanguard.extract_vanguard_fields import (
     INPUT_DIR as VANGUARD_INPUT_DIR,
     extract_rows as extract_vanguard_rows,
@@ -80,18 +98,33 @@ from providers.xtrackers.extract_xtrackers_fields import (
     find_latest_download as find_latest_xtrackers_download,
     parse_xlsx_rows as parse_xtrackers_source_rows,
 )
-from providers.vanguard.download_vanguard import download_vanguard_file
+from providers.globalx.extract_globalx_fields import (
+    INPUT_DIR as GLOBALX_INPUT_DIR,
+    extract_rows as extract_globalx_rows,
+    find_latest_download as find_latest_globalx_download,
+    parse_snapshot_rows as parse_globalx_source_rows,
+)
+try:
+    from providers.vanguard.download_vanguard import download_vanguard_file
+except ModuleNotFoundError:
+    async def download_vanguard_file() -> Path:
+        raise ModuleNotFoundError(
+            "Vanguard downloader module is missing: providers.vanguard.download_vanguard"
+        )
 from scrapers.Amundi_extractor import download_amundi_file
 from scrapers.firsttrust_extractor import download_firsttrust_file
+from scrapers.hanetf_extractor import download_hanetf_file
+from scrapers.franklintempleton_extractor import download_etf_list as download_franklintempleton_file
 from scrapers.UBS_extractor import download_ubs_file
 from scrapers.Xtrackers_extractor import download_xtrackers_file
 from scrapers.hsbc_extractor import download_hsbc_file
 from scrapers.invesco_extractor import download_invesco_file
 from scrapers.ishares_extractor import download_etf_list
 from scrapers.jpmorgan_extractor import download_jpmorgan_file
+from scrapers.LandG_extractor import download_landg_file
 from scrapers.spdr_collector import download_spdr_file, parse_xlsx_rows as parse_spdr_source_rows
 from scrapers.wisdomtree_extractor import download_wisdomtree_file
-
+from scrapers.globalx_extractor import download_globalx_file
 
 BASE_DIR = Path(__file__).resolve().parent
 RUNS_DIR = BASE_DIR / "pipeline_runs"
@@ -117,9 +150,13 @@ ALL_PROVIDERS = (
     "spdr",
     "hsbc",
     "jpmorgan",
+    "landg",
+    "franklintempleton",
     "wisdomtree",
     "vanguard",
     "firsttrust",
+    "hanetf",
+    "globalx",
 )
 Downloader = Callable[[], Awaitable[Path]]
 Extractor = Callable[[Path], list[dict[str, str]]]
@@ -205,6 +242,20 @@ def write_combined_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
         writer = csv.DictWriter(handle, fieldnames=OUTPUT_COLUMNS)
         writer.writeheader()
         writer.writerows(rows)
+
+
+def dedupe_exact_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    seen: set[tuple[str, ...]] = set()
+    deduped_rows: list[dict[str, str]] = []
+
+    for row in rows:
+        key = tuple(str(row.get(column, "")).strip() for column in OUTPUT_COLUMNS)
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped_rows.append(row)
+
+    return deduped_rows
 
 
 def validate_rows(provider_name: str, rows: list[dict[str, str]]) -> dict[str, int]:
@@ -520,6 +571,26 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             latest_download_finder=find_latest_jpmorgan_download,
             source_row_parser=parse_jpmorgan_source_rows,
         ),
+        "landg": ProviderPipeline(
+            name="L&G",
+            downloader=download_landg_file,
+            extractor=extract_landg_rows,
+            input_dir=LANDG_INPUT_DIR,
+            output_dir=LANDG_INPUT_DIR,
+            output_filename="landg_selected_fields.csv",
+            latest_download_finder=find_latest_landg_download,
+            source_row_parser=parse_landg_source_rows,
+        ),
+        "franklintempleton": ProviderPipeline(
+            name="Franklin Templeton",
+            downloader=download_franklintempleton_file,
+            extractor=extract_franklin_templeton_rows,
+            input_dir=FRANKLIN_TEMPLETON_INPUT_DIR,
+            output_dir=FRANKLIN_TEMPLETON_INPUT_DIR,
+            output_filename="franklintempleton_selected_fields.csv",
+            latest_download_finder=find_latest_franklin_templeton_download,
+            source_row_parser=parse_franklin_templeton_source_rows,
+        ),
         "wisdomtree": ProviderPipeline(
             name="WisdomTree",
             downloader=download_wisdomtree_file,
@@ -550,6 +621,26 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             latest_download_finder=find_latest_firsttrust_download,
             source_row_parser=parse_firsttrust_source_rows,
         ),
+        "hanetf": ProviderPipeline(
+            name="HANetf",
+            downloader=download_hanetf_file,
+            extractor=extract_hanetf_rows,
+            input_dir=HANETF_INPUT_DIR,
+            output_dir=HANETF_INPUT_DIR,
+            output_filename="hanetf_selected_fields.csv",
+            latest_download_finder=find_latest_hanetf_download,
+            source_row_parser=parse_hanetf_source_rows,
+        ),
+        "globalx": ProviderPipeline(
+            name="Global X ETFs",
+            downloader=download_globalx_file,
+            extractor=extract_globalx_rows,
+            input_dir=GLOBALX_INPUT_DIR,
+            output_dir=GLOBALX_INPUT_DIR,
+            output_filename="globalx_selected_fields.csv",
+            latest_download_finder=find_latest_globalx_download,
+            source_row_parser=parse_globalx_source_rows,
+        ),
     }
 
 
@@ -568,7 +659,7 @@ async def run_provider(
     print(f"=== {pipeline.name} ===")
     input_path = await prepare_input_file(pipeline, use_latest_downloads)
     source_row_count = len(pipeline.source_row_parser(input_path))
-    rows = pipeline.extractor(input_path)
+    rows = dedupe_exact_rows(pipeline.extractor(input_path))
     missing_counts = validate_rows(pipeline.name, rows)
     output_path = build_provider_output_path(pipeline.output_dir, run_date, pipeline.output_filename)
     write_combined_csv(output_path, rows)
@@ -622,6 +713,7 @@ async def async_main() -> int:
             os.environ[RUN_FOLDER_ENV_VAR] = previous_run_folder_name
 
     filtered_rows, filter_summary = apply_final_isin_whitelist(combined_rows, whitelist_isins)
+    filtered_rows = dedupe_exact_rows(filtered_rows)
     print()
     print("=== Final ISIN Whitelist Filter ===")
     print(f"Whitelist unique ISIN count: {filter_summary.whitelist_unique_isin_count:,}")
