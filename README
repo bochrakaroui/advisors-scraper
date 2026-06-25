@@ -1,120 +1,422 @@
-# ETF Official Website Data Collector
+# ETF Extractor
 
 ## Overview
 
-This repository contains a Python project that collects ETF data from official ETF provider websites.
+This project downloads ETF data from official provider websites, extracts a standard set of fields, and builds one combined CSV filtered by a whitelist of ISINs.
 
-The goal is to automatically download ETF files such as Excel, XLS, XLSX, or CSV files from trusted official sources, then extract the important ETF information needed for storage and analysis.
+It is designed for repeatable daily or ad hoc runs where you want:
 
-## Purpose
+- raw provider exports downloaded from official sources
+- provider-specific extraction logic for different file formats
+- one normalized output schema across all providers
+- one final combined CSV filtered by `ISIN-list.xlsx`
 
-ETF providers regularly update their websites with new products, updated listings, AUM values, currencies, and other fund information.
+The examples in this README use Windows PowerShell because that matches the current repository setup, but the Python commands can be adapted to other environments.
 
-This project helps automate that process by:
+## What The Pipeline Produces
 
-* Visiting official ETF provider websites
-* Downloading the latest available ETF files
-* Extracting useful ETF data
-* Cleaning and normalizing the data
-* Storing the final results
-* Running periodically to keep the dataset updated
-
-## Main Idea
-
-The project follows this simple flow:
+Every processed row is normalized to the same output columns:
 
 ```text
-Official ETF Website
-        ↓
-Download ETF File
-        ↓
-Extract ETF Data
-        ↓
-Clean and Normalize
-        ↓
-Store Final Dataset
+ETF Name,Issuer,ISIN,CCY,TER(bps),AUM(M),Date
 ```
 
-## Data to Extract
+Field meaning:
 
-The project focuses on extracting key ETF information such as:
+- `ETF Name`: fund or share class name from the provider source
+- `Issuer`: provider name
+- `ISIN`: security identifier
+- `CCY`: currency code
+- `TER(bps)`: total expense ratio in basis points
+- `AUM(M)`: assets under management in millions
+- `Date`: date inferred from the downloaded source or snapshot
 
-* ETF name
-* Issuer / provider
-* Currency
-* TER
-* AUM in millions
-* Download file date
+## Supported Providers
 
-## Use of Agents and LLMs
+The main pipeline currently supports these providers:
 
-Agents and LLMs can be used to help extract data from files that have different formats depending on the provider.
+| Provider key | Provider name | Raw source type | Downloader entrypoint | Extractor entrypoint |
+| --- | --- | --- | --- | --- |
+| `ishares` | iShares | `.xls` | `scrapers\ishares_extractor.py` | `providers\ishares\extract_ishares_fields.py` |
+| `xtrackers` | Xtrackers | `.xlsx` | `scrapers\Xtrackers_extractor.py` | `providers\xtrackers\extract_xtrackers_fields.py` |
+| `amundi` | Amundi | `.xlsx` | `scrapers\Amundi_extractor.py` | `providers\amundi\extract_amundi_fields.py` |
+| `invesco` | Invesco | `.xlsx` | `scrapers\invesco_extractor.py` | `providers\invesco\extract_invesco_fields.py` |
+| `ubs` | UBS | `.xlsx` | `scrapers\UBS_extractor.py` | `providers\UBS\extract_ubs_fields.py` |
+| `spdr` | SPDR / State Street | `.xlsx` | `scrapers\spdr_collector.py` | `providers\SPDR\extract_spdr_fields.py` |
+| `hsbc` | HSBC Asset Management | `.json` | `scrapers\hsbc_extractor.py` | `providers\hsbc\extract_hsbc_fields.py` |
+| `jpmorgan` | J.P. Morgan | `.json` | `scrapers\jpmorgan_extractor.py` | `providers\jpmorgan\extract_jpmorgan_fields.py` |
+| `landg` | L&G | export file | `scrapers\LandG_extractor.py` | `providers\landg\extract_LandG_fields.py` |
+| `palmersquare` | Palmer Square | `.csv` | `scrapers\palmersquare_extractor.py` | `providers\palmersquare\extract_palmersquare_fields.py` |
+| `vaneck` | VanEck | `.xls` | `scrapers\vaneck_extractor.py` | `providers\vaneck\extract_vaneck_fields.py` |
+| `franklintempleton` | Franklin Templeton | `.xlsx` | `scrapers\franklintempleton_extractor.py` | `providers\franklintempleton\extract_franklintempleton_fields.py` |
+| `wisdomtree` | WisdomTree | `.json` | `scrapers\wisdomtree_extractor.py` | `providers\wisdomtree\extract_wisdomtree_fields.py` |
+| `vanguard` | Vanguard | `.json` | `providers\vanguard\download_vanguard.py` | `providers\vanguard\extract_vanguard_fields.py` |
+| `firsttrust` | First Trust | `.json` | `scrapers\firsttrust_extractor.py` | `providers\firsttrust\extract_firsttrust_fields.py` |
+| `hanetf` | HANetf | `.csv` | `scrapers\hanetf_extractor.py` | `providers\hanetf\extract_hanetf_fields.py` |
+| `globalx` | Global X ETFs | `.json` | `scrapers\globalx_extractor.py` | `providers\globalx\extract_globalx_fields.py` |
 
-They can help with:
+## How The Project Works
 
-* Understanding column names
-* Mapping provider-specific fields to standard fields
-* Detecting useful sheets in Excel files
-* Handling inconsistent file structures
-* Preparing clean structured output
+At a high level the pipeline does this:
 
-## Periodic Updates
+```text
+Official provider source
+        ->
+Download or capture the latest raw file
+        ->
+Extract the standard ETF fields
+        ->
+Combine rows from all selected providers
+        ->
+Filter by ISIN-list.xlsx
+        ->
+Write one final combined CSV
+```
 
-The project is designed to run periodically, for example daily, weekly, or monthly.
+Important behavior to know before you run it:
 
-This allows the system to stay updated with:
+- The final combined output is always filtered by the root file `ISIN-list.xlsx`.
+- Rows are deduplicated when identical across all output columns.
+- No FX conversion is performed during extraction.
+- The pipeline can either download fresh files or reuse the latest files already present in each provider folder.
 
-* Newly launched ETFs
-* Updated AUM values
-* Updated currencies
-* New listings
-* Changes in provider data
+## Requirements
 
-## Example Providers
+### Python
 
-The project can be extended to support official sources such as:
+Use Python `3.10+`.
 
-* iShares
-* Xtrackers
-* Amundi
-* Invesco
-* UBS
-* Vanguard
-* First Trust
-* SPDR
+This matters because the codebase uses modern type syntax such as `list[str]` and `Path | None`.
 
-## Project Status
+### Python packages
 
-This project is currently under development.
+The repository now includes a `requirements.txt` file for the Python dependencies used by the downloaders and extractors.
 
-The current version focuses on downloading official ETF source data and extracting a standardized dataset with these columns:
+```powershell
+python -m pip install -r requirements.txt
+```
 
-* ETF Name
-* Issuer
-* ISIN
-* CCY
-* TER(bps)
-* AUM(M)
-* Date
+### Playwright browser
 
-Currently implemented providers include:
+Several downloaders use Playwright. Install Chromium once after installing the Python package:
 
-* iShares
-* Xtrackers
-* Amundi
-* Invesco
-* UBS
-* Vanguard
-* SPDR / State Street
-* HSBC Asset Management
-* J.P. Morgan Asset Management
-* WisdomTree
-* First Trust
+```powershell
+python -m playwright install chromium
+```
 
-To run the full pipeline in one command:
+## Quick Start
+
+From the project root:
 
 ```powershell
 python run_all_etf_pipeline.py
 ```
 
-Each pipeline run creates a new folder under `pipeline_runs\` named like `2026-06-22_10-22-28`, and that folder contains the final combined CSV filtered by the root `ISIN-list.xlsx` whitelist.
+That command will:
+
+1. run all supported providers in sequence
+2. download or capture the latest raw source for each provider
+3. extract the normalized ETF fields
+4. combine all provider outputs
+5. filter the result against `ISIN-list.xlsx`
+6. write the final CSV into a new folder under `pipeline_runs\`
+
+## Installation And First Run
+
+### 1. Open the project root
+
+```powershell
+cd C:\Users\Bochra\OneDrive\Desktop\etf-extractor
+```
+
+### 2. Create and activate a virtual environment
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+### 3. Install dependencies
+
+```powershell
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m playwright install chromium
+```
+
+### 4. Make sure the ISIN whitelist file exists
+
+The file `ISIN-list.xlsx` must be present in the project root. The pipeline uses it as the final whitelist filter.
+
+### 5. Run the full pipeline
+
+```powershell
+python run_all_etf_pipeline.py
+```
+
+## Running The Full Pipeline
+
+### Run all providers
+
+```powershell
+python run_all_etf_pipeline.py
+```
+
+### Run only specific providers
+
+```powershell
+python run_all_etf_pipeline.py --providers ishares xtrackers amundi
+```
+
+### Reuse the latest existing downloads instead of downloading again
+
+```powershell
+python run_all_etf_pipeline.py --use-latest-downloads
+```
+
+### Stop as soon as one provider fails
+
+```powershell
+python run_all_etf_pipeline.py --stop-on-error
+```
+
+### Keep only ETF rows for iShares
+
+By default, iShares keeps all source rows. Use this if you want the iShares extractor to keep ETF rows only:
+
+```powershell
+python run_all_etf_pipeline.py --etf-only
+```
+
+### Example combinations
+
+```powershell
+python run_all_etf_pipeline.py --providers ubs jpmorgan wisdomtree
+python run_all_etf_pipeline.py --providers vaneck franklintempleton globalx --use-latest-downloads
+python run_all_etf_pipeline.py --providers ishares --etf-only
+```
+
+## Output Locations
+
+### Final combined output
+
+Each run creates a new folder under:
+
+```text
+pipeline_runs\
+```
+
+Example:
+
+```text
+pipeline_runs\2026-06-25\
+pipeline_runs\2026-06-25\all_etf_fields.csv
+```
+
+If a folder for that date already exists, the pipeline creates a unique folder such as:
+
+```text
+pipeline_runs\2026-06-25 (1)\
+pipeline_runs\2026-06-25 (1)\all_etf_fields.csv
+```
+
+### Provider-specific outputs
+
+Each provider also writes its extracted CSV into a dated folder under its own directory.
+
+Examples:
+
+```text
+providers\ishares\2026-06-25 (1)\ishares_selected_fields_all_funds.csv
+providers\jpmorgan\2026-06-25 (1)\jpmorgan_selected_fields.csv
+providers\vanguard\2026-06-25 (1)\vanguard_selected_fields.csv
+```
+
+The same dated provider folders usually contain the raw source file that was downloaded or captured for that run.
+
+## Running One Provider Manually
+
+If you do not want the full pipeline, you can run a provider in two steps:
+
+1. download the raw file or snapshot
+2. run the provider extractor
+
+Example with J.P. Morgan:
+
+```powershell
+python scrapers\jpmorgan_extractor.py
+python providers\jpmorgan\extract_jpmorgan_fields.py
+```
+
+Example with Vanguard:
+
+```powershell
+python providers\vanguard\download_vanguard.py
+python providers\vanguard\extract_vanguard_fields.py
+```
+
+Most extractors can auto-detect the latest downloaded file if you do not pass `--input`.
+
+Many of them also accept `--output` if you want to write the processed CSV somewhere specific.
+
+## Common Manual Commands
+
+```powershell
+python scrapers\ishares_extractor.py
+python providers\ishares\extract_ishares_fields.py
+
+python scrapers\Xtrackers_extractor.py
+python providers\xtrackers\extract_xtrackers_fields.py
+
+python scrapers\Amundi_extractor.py
+python providers\amundi\extract_amundi_fields.py
+
+python scrapers\invesco_extractor.py
+python providers\invesco\extract_invesco_fields.py
+
+python scrapers\UBS_extractor.py
+python providers\UBS\extract_ubs_fields.py
+
+python scrapers\spdr_collector.py
+python providers\SPDR\extract_spdr_fields.py
+
+python scrapers\hsbc_extractor.py
+python providers\hsbc\extract_hsbc_fields.py
+
+python scrapers\jpmorgan_extractor.py
+python providers\jpmorgan\extract_jpmorgan_fields.py
+
+python scrapers\LandG_extractor.py
+python providers\landg\extract_LandG_fields.py
+
+python scrapers\palmersquare_extractor.py
+python providers\palmersquare\extract_palmersquare_fields.py
+
+python scrapers\vaneck_extractor.py
+python providers\vaneck\extract_vaneck_fields.py
+
+python scrapers\franklintempleton_extractor.py
+python providers\franklintempleton\extract_franklintempleton_fields.py
+
+python scrapers\wisdomtree_extractor.py
+python providers\wisdomtree\extract_wisdomtree_fields.py
+
+python providers\vanguard\download_vanguard.py
+python providers\vanguard\extract_vanguard_fields.py
+
+python scrapers\firsttrust_extractor.py
+python providers\firsttrust\extract_firsttrust_fields.py
+
+python scrapers\hanetf_extractor.py
+python providers\hanetf\extract_hanetf_fields.py
+
+python scrapers\globalx_extractor.py
+python providers\globalx\extract_globalx_fields.py
+```
+
+## Project Structure
+
+```text
+etf-extractor/
+|-- README
+|-- WORKFLOW.md
+|-- ISIN-list.xlsx
+|-- run_all_etf_pipeline.py
+|-- docs/
+|   |-- provider_workflows.md
+|   `-- source_notes/
+|-- scrapers/
+|   `-- provider downloaders
+|-- providers/
+|   `-- provider-specific raw files and extracted CSV outputs
+|-- pipeline_runs/
+|   `-- one folder per combined pipeline run
+`-- src/
+    `-- legacy provider wrapper entrypoints
+```
+
+## Important Files
+
+- `run_all_etf_pipeline.py`: main orchestrator for the end-to-end workflow
+- `ISIN-list.xlsx`: required whitelist used for the final filter
+- `scrapers\`: downloaders that fetch official provider data
+- `providers\`: provider-specific extraction logic and dated run outputs
+- `docs\provider_workflows.md`: provider-by-provider source notes and fetch behavior
+- `WORKFLOW.md`: implementation notes for the current pipeline behavior
+
+## Troubleshooting
+
+### `No module named playwright`
+
+Install dependencies and Playwright's browser:
+
+```powershell
+python -m pip install -r requirements.txt
+python -m playwright install chromium
+```
+
+### `Cannot read the ISIN filter file because it is locked`
+
+Close `ISIN-list.xlsx` in Excel and run the pipeline again. The pipeline must be able to read that workbook.
+
+### A provider fails during download
+
+This project depends on live provider websites. Failures can happen when:
+
+- a website layout changes
+- a cookie banner or disclaimer changes
+- an export URL changes
+- the provider temporarily blocks or rate-limits requests
+
+If you want the pipeline to continue with the remaining providers, run without `--stop-on-error`.
+
+If you want to avoid hitting websites again while debugging extraction, use:
+
+```powershell
+python run_all_etf_pipeline.py --use-latest-downloads
+```
+
+### A provider has files already, but the extractor picks the wrong one
+
+Most extractors auto-select the newest matching file under the provider folder. If needed, run the extractor with an explicit `--input` path.
+
+Example:
+
+```powershell
+python providers\jpmorgan\extract_jpmorgan_fields.py --input "providers\jpmorgan\2026-06-25 (1)\jpmorgan_etf_export.json"
+```
+
+### You want to inspect one provider before running everything
+
+Run the downloader and extractor for that provider manually first. Once the output looks correct, include it in the full pipeline run.
+
+## Verification
+
+If you want a quick syntax check for the codebase, you can compile the Python files:
+
+```powershell
+python -m py_compile run_all_etf_pipeline.py
+```
+
+For deeper provider-specific checks, see `WORKFLOW.md`.
+
+## Notes For Contributors
+
+- Keep provider logic isolated in that provider's folder whenever possible.
+- Prefer official provider sources only.
+- Preserve the normalized output schema:
+
+```text
+ETF Name,Issuer,ISIN,CCY,TER(bps),AUM(M),Date
+```
+
+- If a provider source changes, update both the downloader and the extractor.
+- If you add a new provider, wire it into `run_all_etf_pipeline.py` and document it here.
+
+## Additional Documentation
+
+- [WORKFLOW.md](WORKFLOW.md)
+- [docs/provider_workflows.md](docs/provider_workflows.md)
+- [docs/source_notes/wisdomtree.md](docs/source_notes/wisdomtree.md)
+- [docs/source_notes/vanguard.md](docs/source_notes/vanguard.md)
+- [docs/source_notes/firsttrust.md](docs/source_notes/firsttrust.md)
