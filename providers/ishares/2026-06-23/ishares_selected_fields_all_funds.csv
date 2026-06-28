@@ -1,5 +1,5 @@
 ﻿ETF Name,Issuer,ISIN,CCY,TER(bps),AUM(M),Date
-iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFG1TN78,USD,17.00,5127.64,23/06/2026 00:00:00
+iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFG1TN78,USD,17.00,5100.30,23/06/2026 00:00:00
 iShares Spain Govt Bond UCITS ETF,iShares V plc,IE00BFMM8Y81,USD,22.00,242.70,23/06/2026 00:00:00
 iShares S&P 500 GBP Hedged UCITS ETF (Acc),iShares V plc,IE00B3Y8X563,GBP,20.00,1180.66,23/06/2026 00:00:00
 iShares Global Clean Energy Transition UCITS ETF,iShares II plc,IE00B1XNHC34,USD,65.00,4433.42,23/06/2026 00:00:00
@@ -26,9 +26,9 @@ iShares STOXX Europe 600 Health Care UCITS ETF (DE),iShares (DE) I Investmentakt
 iShares STOXX Europe 600 Food & Beverage UCITS ETF (DE),iShares (DE) I Investmentaktiengesellschaft mit TGV,DE000A0H08H3,EUR,46.00,286.33,23/06/2026 00:00:00
 iShares $ Treasury Bond 0-1yr UCITS ETF,iShares plc,IE00BGR7L912,USD,7.00,26417.34,23/06/2026 00:00:00
 iShares STOXX Europe 600 Insurance UCITS ETF (DE),iShares (DE) I Investmentaktiengesellschaft mit TGV,DE000A0H08K7,EUR,46.00,553.78,23/06/2026 00:00:00
-iShares $ Treasury Bond 0-1yr UCITS ETF,iShares plc,IE00BGSF1X88,USD,7.00,26417.34,23/06/2026 00:00:00
 iShares STOXX Europe 600 Industrial Goods & Services UCITS ETF (DE),iShares (DE) I Investmentaktiengesellschaft mit TGV,DE000A0H08J9,EUR,46.00,584.23,23/06/2026 00:00:00
-iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0006WLE232,GBP,11.00,1570.69,23/06/2026 00:00:00
+iShares $ Treasury Bond 0-1yr UCITS ETF,iShares plc,IE00BGSF1X88,USD,7.00,26417.34,23/06/2026 00:00:00
+iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0006WLE232,GBP,11.00,1581.12,23/06/2026 00:00:00
 iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0004QCXJQ1,GBP,11.00,1581.12,23/06/2026 00:00:00
 iShares STOXX Europe 600 Oil & Gas UCITS ETF (DE),iShares (DE) I Investmentaktiengesellschaft mit TGV,DE000A0H08M3,EUR,47.00,535.54,23/06/2026 00:00:00
 iShares STOXX Europe 600 Media UCITS ETF (DE),iShares (DE) I Investmentaktiengesellschaft mit TGV,DE000A0H08L5,EUR,46.00,27.85,23/06/2026 00:00:00
@@ -42,15 +42,15 @@ iShares UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08ZR66,GBP,4
 iShares STOXX Europe 600 Utilities UCITS ETF (DE),iShares (DE) I Investmentaktiengesellschaft mit TGV,DE000A0Q4R02,EUR,46.00,818.87,23/06/2026 00:00:00
 iShares Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B5MMQ552,GBP,21.00,4271.34,23/06/2026 00:00:00
 iShares STOXX Europe 600 Travel & Leisure UCITS ETF (DE),iShares (DE) I Investmentaktiengesellschaft mit TGV,DE000A0H08S0,EUR,46.00,67.75,23/06/2026 00:00:00
-iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08ZP43,GBP,16.00,4230.92,23/06/2026 00:00:00
+iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08ZP43,GBP,15.00,4230.92,23/06/2026 00:00:00
 iShares UK Gilts All Stocks Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08ZS73,GBP,6.00,6853.72,23/06/2026 00:00:00
 iShares € Ultrashort Bond UCITS ETF,iShares IV plc,IE00BCRY6557,EUR,9.00,5942.82,23/06/2026 00:00:00
 iShares Continental European Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08ZM12,GBP,5.00,7298.29,23/06/2026 00:00:00
 iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B4M5NH84,GBP,27.00,4230.92,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08ZQ59,GBP,9.00,3288.61,23/06/2026 00:00:00
 iShares JP Morgan Advanced $ EM Bond UCITS ETF,iShares II plc,IE00BDDRDW15,USD,45.00,3619.36,23/06/2026 00:00:00
-iShares JP Morgan Advanced $ EM Bond UCITS ETF,iShares II plc,IE00BF553838,USD,45.00,3619.36,23/06/2026 00:00:00
 iShares $ Ultrashort Bond UCITS ETF,iShares IV plc,IE00BCRY6227,USD,9.00,2453.60,23/06/2026 00:00:00
+iShares JP Morgan Advanced $ EM Bond UCITS ETF,iShares II plc,IE00BF553838,USD,45.00,3619.36,23/06/2026 00:00:00
 iShares Japan Govt Bond UCITS ETF,iShares V plc,IE00056AT4A2,USD,9.00,171156.37,23/06/2026 00:00:00
 iShares India INR Govt Bond UCITS ETF,iShares IV plc,IE0004L9EID2,USD,35.00,32.85,23/06/2026 00:00:00
 iShares Broad Global Govt Bond UCITS ETF,iShares III plc,IE000I0U8OO3,USD,10.00,5876.48,23/06/2026 00:00:00
@@ -64,16 +64,16 @@ iShares World Islamic Multifactor Equity Index Fund (IE),BlackRock Asset Managem
 iShares $ Short Duration High Yield Corp Bond UCITS ETF,iShares IV plc,IE00BCRY6003,USD,45.00,2608.90,23/06/2026 00:00:00
 iShares World Islamic Multifactor Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0008IZRUJ4,USD,41.00,518.90,23/06/2026 00:00:00
 iShares Global Corp Bond UCITS ETF,iShares plc,IE000PLCL3C9,EUR,25.00,4382.08,23/06/2026 00:00:00
-iShares Global Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364139,USD,23.00,1264.81,23/06/2026 00:00:00
+iShares Global Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364139,USD,22.00,1264.81,23/06/2026 00:00:00
 iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364055,USD,22.00,4785.06,23/06/2026 00:00:00
-iShares North America Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811363917,EUR,22.00,665.13,23/06/2026 00:00:00
+iShares North America Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811363917,EUR,22.00,669.85,23/06/2026 00:00:00
 iShares Emerging Markets Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364212,USD,34.00,485.54,23/06/2026 00:00:00
 iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364568,USD,25.00,124.20,23/06/2026 00:00:00
 iShares Over 15 Years Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFBFX434,GBP,12.00,196.55,23/06/2026 00:00:00
-iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0000F26BG9,SGD,8.00,3624.71,23/06/2026 00:00:00
-iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091719,GBP,12.00,6219.63,23/06/2026 00:00:00
+iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0000F26BG9,SGD,8.00,3613.48,23/06/2026 00:00:00
+iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091719,GBP,12.00,6265.66,23/06/2026 00:00:00
 iShares Over 15 Years Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFBFX657,GBP,22.00,196.55,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00075MQFI5,GBP,3.00,1989.09,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00075MQFI5,GBP,3.00,1987.35,23/06/2026 00:00:00
 iShares Emerging Markets Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364303,EUR,34.00,485.54,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000NNYZMJ7,SGD,12.00,29706.29,23/06/2026 00:00:00
 iShares Over 15 Years Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFBFX541,GBP,22.00,196.55,23/06/2026 00:00:00
@@ -85,22 +85,22 @@ iShares S&P 500 Scored and Screened UCITS ETF,iShares III plc,IE000R9FA4A0,USD,7
 iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00B64FQP94,GBP,22.00,6219.63,23/06/2026 00:00:00
 iShares UK Property UCITS ETF,iShares II plc,IE000FI414K7,EUR,42.00,460.02,23/06/2026 00:00:00
 iShares Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B08HDJ29,GBP,21.00,4452.43,23/06/2026 00:00:00
-iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00B848DD97,GBP,18.00,6219.63,23/06/2026 00:00:00
-iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B08HD588,GBP,20.00,18284.02,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1064902957,USD,24.00,1775.61,23/06/2026 00:00:00
+iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00B848DD97,GBP,18.00,6265.66,23/06/2026 00:00:00
+iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B08HD588,GBP,20.00,17879.61,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B08HD695,GBP,23.00,3288.61,23/06/2026 00:00:00
-iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091594,GBP,3.00,2892.80,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1064902957,USD,24.00,1775.61,23/06/2026 00:00:00
+iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091594,GBP,4.00,2894.79,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B62NX656,USD,16.00,29706.29,23/06/2026 00:00:00
-iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B59HT769,GBP,21.00,3281.02,23/06/2026 00:00:00
-iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091370,GBP,9.00,2892.80,23/06/2026 00:00:00
-iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091487,GBP,7.00,2892.80,23/06/2026 00:00:00
+iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B59HT769,GBP,21.00,3313.52,23/06/2026 00:00:00
+iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091370,GBP,9.00,2894.79,23/06/2026 00:00:00
+iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091487,GBP,7.00,2894.79,23/06/2026 00:00:00
 iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091602,GBP,3.00,3281.02,23/06/2026 00:00:00
 iShares Listed Private Equity UCITS ETF,iShares II plc,IE000D8FCSD8,USD,75.00,913.78,23/06/2026 00:00:00
 iShares $ Development Bank Bonds UCITS ETF,iShares III plc,IE00BKRWN659,USD,15.00,183.47,23/06/2026 00:00:00
 iShares UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B08HD810,GBP,21.00,15108.01,23/06/2026 00:00:00
 iShares Core UK Gilts UCITS ETF,iShares II plc,IE0004J6PFL7,USD,9.00,4066.25,23/06/2026 00:00:00
 iShares MSCI Europe Energy Sector UCITS ETF,iShares VI plc,IE000UDV9YG1,EUR,18.00,271.69,23/06/2026 00:00:00
-iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000YP3OC13,JPY,15.00,1053.63,23/06/2026 00:00:00
+iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000YP3OC13,JPY,15.00,1087.12,23/06/2026 00:00:00
 iShares Core UK Gilts UCITS ETF,iShares II plc,IE000BI0GCN3,EUR,9.00,4066.25,23/06/2026 00:00:00
 iShares UK Gilts All Stocks Index Fund (UK),BlackRock Fund Managers Ltd,GB00B08HD364,GBP,21.00,6853.72,23/06/2026 00:00:00
 iShares $ Corp Bond UCITS ETF,iShares plc,IE00BLF5J438,MXN,25.00,9499.27,23/06/2026 00:00:00
@@ -118,14 +118,14 @@ iShares $ Treasury Bond 20+yr UCITS ETF,iShares IV plc,IE00BK5MT033,GBP,10.00,57
 iShares $ High Yield Corp Bond ESG SRI UCITS ETF,iShares II plc,IE00BMDFDY08,EUR,27.00,1914.45,23/06/2026 00:00:00
 iShares JP Morgan Advanced $ EM Bond UCITS ETF,iShares II plc,IE00BKP5L730,EUR,50.00,3619.36,23/06/2026 00:00:00
 iShares $ Development Bank Bonds UCITS ETF,iShares III plc,IE00BMCZLH06,EUR,18.00,183.47,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000PKMKVX7,GBP,14.00,4369.47,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000PKMKVX7,GBP,14.00,4341.42,23/06/2026 00:00:00
 iShares S&P U.S. Banks UCITS ETF,iShares V plc,IE00BD3V0B10,USD,35.00,1017.76,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364725,USD,24.00,205.57,23/06/2026 00:00:00
 iShares Russell 1000 Growth UCITS ETF,iShares VII plc,IE000NITTFF2,USD,18.00,1151.12,23/06/2026 00:00:00
-iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08ZT80,GBP,7.00,18284.02,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811365292,EUR,27.00,1779.30,23/06/2026 00:00:00
-iShares Pacific ex Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364998,EUR,24.00,205.95,23/06/2026 00:00:00
-iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364642,EUR,26.00,122.17,23/06/2026 00:00:00
+iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08ZT80,GBP,7.00,17879.61,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811365292,EUR,27.00,1775.61,23/06/2026 00:00:00
+iShares Pacific ex Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364998,EUR,24.00,205.57,23/06/2026 00:00:00
+iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811364642,EUR,26.00,124.20,23/06/2026 00:00:00
 iShares Russell 1000 Value UCITS ETF,iShares VII plc,IE0002EKOXU6,USD,18.00,594.73,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1811365029,USD,27.00,1775.61,23/06/2026 00:00:00
 iShares Continental European Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV49ZM62,GBP,6.00,7298.29,23/06/2026 00:00:00
@@ -152,12 +152,12 @@ iShares US Mortgage Backed Securities UCITS ETF,iShares IV plc,IE000MFEI2J0,GBP,
 iShares MSCI Europe Screened UCITS ETF,iShares IV plc,IE00BFNM3F38,EUR,12.00,5380.62,23/06/2026 00:00:00
 iShares Core UK Gilts UCITS ETF,iShares II plc,IE000578J297,USD,9.00,4066.25,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKFVZB33,GBP,20.00,3551.34,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000WZQMNC9,USD,9.00,4369.47,23/06/2026 00:00:00
-iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKFVZC40,GBP,25.00,2151.55,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000WZQMNC9,USD,9.00,4341.42,23/06/2026 00:00:00
+iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKFVZC40,GBP,25.00,2145.75,23/06/2026 00:00:00
 iShares MSCI Europe Screened UCITS ETF,iShares IV plc,IE00BFNM3D14,EUR,12.00,5380.62,23/06/2026 00:00:00
 iShares Developed Markets Property Yield UCITS ETF,iShares II plc,IE00BFM6T921,USD,59.00,1668.16,23/06/2026 00:00:00
-iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPWSS48,GBP,19.00,1581.12,23/06/2026 00:00:00
 iShares $ Treasury Bond 20+yr UCITS ETF,iShares IV plc,IE00BFM6TC58,USD,7.00,5765.61,23/06/2026 00:00:00
+iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPWSS48,GBP,19.00,1581.12,23/06/2026 00:00:00
 iShares Global Corp Bond UCITS ETF,iShares plc,IE00BFM6TB42,USD,20.00,4382.08,23/06/2026 00:00:00
 iShares € Corp Bond 0-3Yr ESG SRI UCITS ETF,iShares II plc,IE000AK4O3W6,EUR,12.00,3773.23,23/06/2026 00:00:00
 iShares € Corp Bond ex-Financials UCITS ETF,iShares III plc,IE0000BH4WF5,EUR,20.00,993.85,23/06/2026 00:00:00
@@ -170,8 +170,8 @@ iShares Global Aggregate Bond ESG SRI UCITS ETF,iShares III plc,IE000HQY8R78,USD
 iShares S&P 500 3% Capped UCITS ETF,iShares VII plc,IE000AY6KP29,USD,20.00,248.34,23/06/2026 00:00:00
 iShares MSCI Japan Screened UCITS ETF,iShares IV plc,IE00BFNM3L97,USD,15.00,2943.43,23/06/2026 00:00:00
 iShares Global Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836513852,USD,52.00,1264.81,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00058C1MX3,EUR,3.00,4369.47,23/06/2026 00:00:00
-iShares Europe Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836512706,EUR,53.00,409.01,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00058C1MX3,EUR,3.00,4341.42,23/06/2026 00:00:00
+iShares Europe Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836512706,EUR,54.00,409.01,23/06/2026 00:00:00
 iShares S&P 500 3% Capped UCITS ETF,iShares VII plc,IE000YIXESS9,USD,20.00,248.34,23/06/2026 00:00:00
 iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836512615,USD,52.00,4785.06,23/06/2026 00:00:00
 iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836515634,USD,26.00,124.20,23/06/2026 00:00:00
@@ -182,15 +182,15 @@ iShares Europe Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836515550,E
 iShares S&P 500 Scored and Screened UCITS ETF,iShares III plc,IE000CR7DJI8,EUR,10.00,946.31,23/06/2026 00:00:00
 iShares US Equity Enhanced Active UCITS ETF,iShares III plc,IE000R7HJVO6,EUR,20.00,1573.64,23/06/2026 00:00:00
 iShares Euro Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836513266,EUR,54.00,142.14,23/06/2026 00:00:00
-iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836514231,USD,23.00,124.20,23/06/2026 00:00:00
-iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000ZJMM9R3,CHF,5.00,1086.52,23/06/2026 00:00:00
-iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836512888,USD,56.00,124.20,23/06/2026 00:00:00
+iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836514231,USD,24.00,124.20,23/06/2026 00:00:00
+iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000ZJMM9R3,CHF,5.00,1087.12,23/06/2026 00:00:00
+iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836512888,USD,57.00,124.20,23/06/2026 00:00:00
 iShares World Equity Enhanced Active UCITS ETF,iShares III plc,IE000P1IQS65,EUR,30.00,2338.44,23/06/2026 00:00:00
-iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000NGHY476,GBP,17.00,1570.69,23/06/2026 00:00:00
+iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000NGHY476,GBP,17.00,1581.12,23/06/2026 00:00:00
 iShares MSCI World Screened UCITS ETF,iShares IV plc,IE00BFNM3K80,USD,20.00,7484.07,23/06/2026 00:00:00
 iShares MSCI World Quality Factor Advanced UCITS ETF,iShares IV plc,IE000U1MQKJ2,USD,25.00,71.57,23/06/2026 00:00:00
-iShares MSCI World Screened UCITS ETF,iShares IV plc,IE00BFNM3J75,USD,20.00,7484.07,23/06/2026 00:00:00
 iShares Global Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836517176,USD,22.00,1264.81,23/06/2026 00:00:00
+iShares MSCI World Screened UCITS ETF,iShares IV plc,IE00BFNM3J75,USD,20.00,7484.07,23/06/2026 00:00:00
 iShares NASDAQ 100 Swap UCITS ETF,iShares VI plc,IE0001ZFMLN7,USD,20.00,2003.22,23/06/2026 00:00:00
 iShares North America Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836514405,USD,19.00,669.85,23/06/2026 00:00:00
 iShares North America Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836515808,USD,22.00,669.85,23/06/2026 00:00:00
@@ -205,9 +205,9 @@ iShares US Equity Enhanced Active UCITS ETF,iShares III plc,IE000IX54FW5,GBP,20.
 iShares € Corp Bond 0-3Yr ESG SRI UCITS ETF,iShares II plc,IE00BYZTVV78,EUR,12.00,3773.23,23/06/2026 00:00:00
 iShares Euro Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0839963237,EUR,21.00,142.14,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836515717,USD,24.00,205.57,23/06/2026 00:00:00
-iShares $ Treasury Bond 3-7yr UCITS ETF,iShares VII plc,IE00BGPP6473,EUR,10.00,10795.21,23/06/2026 00:00:00
 iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFWVNS42,GBP,17.00,1581.12,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836512961,USD,54.00,205.57,23/06/2026 00:00:00
+iShares $ Treasury Bond 3-7yr UCITS ETF,iShares VII plc,IE00BGPP6473,EUR,10.00,10795.21,23/06/2026 00:00:00
 iShares $ Treasury Bond 3-7yr UCITS ETF,iShares VII plc,IE00BJJPVP04,GBP,10.00,10795.21,23/06/2026 00:00:00
 iShares $ Treasury Bond 7-10yr UCITS ETF,iShares II plc,IE00BGPP6697,EUR,10.00,7292.48,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836514314,USD,18.00,205.57,23/06/2026 00:00:00
@@ -235,7 +235,7 @@ iShares iBonds Dec 2028 Term $ High Yield Corp UCITS ETF,iShares II plc,IE0008YW
 iShares iBonds Dec 2028 Term $ High Yield Corp UCITS ETF,iShares II plc,IE000AYEFBK6,USD,25.00,49.50,23/06/2026 00:00:00
 iShares iBonds Dec 2028 Term € Corp Crossover UCITS ETF,iShares II plc,IE000Q0UH3Y7,EUR,20.00,66.20,23/06/2026 00:00:00
 iShares iBonds Dec 2029 Term $ High Yield Corp UCITS ETF,iShares II plc,IE000N4E8XZ6,USD,25.00,57.58,23/06/2026 00:00:00
-iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDR08N26,EUR,10.00,3280.39,23/06/2026 00:00:00
+iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDR08N26,EUR,10.00,3295.43,23/06/2026 00:00:00
 iShares Nasdaq 100 ex-Top 30 UCITS ETF,iShares VII plc,IE000SVXJH05,USD,30.00,7.45,23/06/2026 00:00:00
 iShares Nasdaq 100 Top 30 UCITS ETF,iShares VII plc,IE000Z7P04F4,USD,30.00,57.61,23/06/2026 00:00:00
 iShares iBonds Dec 2029 Term $ High Yield Corp UCITS ETF,iShares II plc,IE00094KNQN4,USD,25.00,57.58,23/06/2026 00:00:00
@@ -246,23 +246,23 @@ iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Irel
 iShares iBonds Dec 2028 Term € Corp Crossover UCITS ETF,iShares II plc,IE0003HV7CS6,EUR,20.00,66.20,23/06/2026 00:00:00
 iShares Pacific Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000B3F3DT7,USD,10.00,809.13,23/06/2026 00:00:00
 iShares US Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B8KPH982,GBP,21.00,3682.85,23/06/2026 00:00:00
-iShares MSCI World CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BHZPJ569,USD,20.00,6298.61,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0916237901,EUR,24.00,1775.61,23/06/2026 00:00:00
-iShares MSCI World CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BG11HV38,USD,20.00,6298.61,23/06/2026 00:00:00
+iShares MSCI World CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BHZPJ569,USD,20.00,6298.61,23/06/2026 00:00:00
 iShares Euro Aggregate Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0916238545,EUR,8.00,257.63,23/06/2026 00:00:00
+iShares MSCI World CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BG11HV38,USD,20.00,6298.61,23/06/2026 00:00:00
 iShares Euro Aggregate Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836513423,EUR,53.00,257.63,23/06/2026 00:00:00
 iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000BTYQKC7,USD,8.00,1611.87,23/06/2026 00:00:00
-iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000VEXC766,EUR,6.00,4882.38,23/06/2026 00:00:00
+iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000VEXC766,EUR,6.00,4897.12,23/06/2026 00:00:00
 iShares 100 UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B6SV3L84,GBP,21.00,883.00,23/06/2026 00:00:00
-iShares Mid Cap UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B89GPC17,GBP,22.00,275.66,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000C8OF6M7,USD,6.00,1989.09,23/06/2026 00:00:00
+iShares Mid Cap UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B89GPC17,GBP,21.00,275.66,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000C8OF6M7,USD,6.00,1987.35,23/06/2026 00:00:00
 iShares Index Linked Gilt Index Fund (UK),BlackRock Fund Managers Ltd,GB00B8B5QN46,GBP,21.00,1334.60,23/06/2026 00:00:00
 iShares MSCI Europe CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BHZPJ783,EUR,12.00,7334.19,23/06/2026 00:00:00
 iShares MSCI Europe CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BHZPJ676,EUR,12.00,7334.19,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836513696,USD,52.00,1775.61,23/06/2026 00:00:00
 iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852472983,EUR,15.00,4785.06,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836513696,USD,52.00,1775.61,23/06/2026 00:00:00
 iShares Euro Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852473791,EUR,21.00,142.14,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0004NQWYG0,USD,3.00,4369.47,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0004NQWYG0,USD,3.00,4341.42,23/06/2026 00:00:00
 iShares iBonds Dec 2029 Term € Corp Crossover UCITS ETF,iShares II plc,IE000BUSGFL9,EUR,20.00,140.70,23/06/2026 00:00:00
 iShares S&P 500 Equal Weight Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCS453,GBP,8.00,252.00,23/06/2026 00:00:00
 iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852473015,EUR,15.00,4785.06,23/06/2026 00:00:00
@@ -274,28 +274,28 @@ iShares Pacific ex Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU08
 iShares iBonds Dec 2029 Term € Corp Crossover UCITS ETF,iShares II plc,IE000UJSC3C9,EUR,20.00,140.70,23/06/2026 00:00:00
 iShares iBonds Dec 2030 Term $ Corp UCITS ETF,iShares V plc,IE000WZJ38F1,GBP,15.00,653.23,23/06/2026 00:00:00
 iShares MSCI Japan CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BHZPJ346,USD,15.00,2646.30,23/06/2026 00:00:00
-iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852473288,EUR,23.00,124.20,23/06/2026 00:00:00
-iShares Europe Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852473106,EUR,20.00,409.01,23/06/2026 00:00:00
+iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852473288,EUR,24.00,124.20,23/06/2026 00:00:00
+iShares Europe Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852473106,EUR,21.00,409.01,23/06/2026 00:00:00
 iShares North America Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852473445,EUR,19.00,669.85,23/06/2026 00:00:00
 iShares Global Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852473874,EUR,19.00,1264.81,23/06/2026 00:00:00
 iShares S&P 500 Industrials Sector UCITS ETF,iShares V plc,IE00B4LN9N13,USD,15.00,754.39,23/06/2026 00:00:00
 iShares € Corp Bond ESG SRI UCITS ETF,iShares II plc,IE00BK74KV56,GBP,16.00,5973.48,23/06/2026 00:00:00
 iShares S&P 500 Materials Sector UCITS ETF,iShares V plc,IE00B4MKCJ84,USD,15.00,229.32,23/06/2026 00:00:00
 iShares MSCI EMU CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BHZPHZ28,EUR,12.00,3919.61,23/06/2026 00:00:00
-iShares Over 15 Years Gilts Index Fund (UK),BlackRock Fund Managers Ltd,GB00BF338G29,GBP,11.00,2841.08,23/06/2026 00:00:00
 iShares Physical Silver ETC,iShares Physical Metals plc,IE00B4NCWG09,USD,20.00,3171.88,23/06/2026 00:00:00
+iShares Over 15 Years Gilts Index Fund (UK),BlackRock Fund Managers Ltd,GB00BF338G29,GBP,11.00,2841.08,23/06/2026 00:00:00
 iShares Physical Platinum ETC,iShares Physical Metals plc,IE00B4LHWP62,USD,20.00,346.31,23/06/2026 00:00:00
 iShares Physical Gold ETC,iShares Physical Metals plc,IE00B4ND3602,USD,12.00,35310.28,23/06/2026 00:00:00
 iShares Global Aggregate Bond ESG SRI UCITS ETF,iShares III plc,IE000U6US1Q0,USD,10.00,4659.58,23/06/2026 00:00:00
-iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000DVGRQC1,GBP,6.00,792.75,23/06/2026 00:00:00
+iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000DVGRQC1,GBP,6.00,799.30,23/06/2026 00:00:00
 iShares S&P 500 Utilities Sector UCITS ETF,iShares V plc,IE00B4KBBD01,USD,15.00,1297.76,23/06/2026 00:00:00
 iShares MSCI Europe SRI UCITS ETF,iShares II plc,IE000CR424L6,EUR,23.00,3508.64,23/06/2026 00:00:00
 iShares MSCI Europe Health Care Sector UCITS ETF,iShares VI plc,IE00BMW42181,EUR,18.00,805.62,23/06/2026 00:00:00
 iShares Emerging Markets Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836513183,USD,64.00,485.54,23/06/2026 00:00:00
-iShares Emerging Markets Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836514587,USD,23.00,485.54,23/06/2026 00:00:00
+iShares Emerging Markets Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836514587,USD,24.00,485.54,23/06/2026 00:00:00
 iShares MSCI Europe Consumer Staples Sector UCITS ETF,iShares VI plc,IE00BMW42074,EUR,18.00,437.81,23/06/2026 00:00:00
-iShares MSCI Europe Financials Sector UCITS ETF,iShares VI plc,IE00BMW42306,EUR,18.00,1510.46,23/06/2026 00:00:00
 iShares Emerging Markets Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0852473528,EUR,31.00,485.54,23/06/2026 00:00:00
+iShares MSCI Europe Financials Sector UCITS ETF,iShares VI plc,IE00BMW42306,EUR,18.00,1510.46,23/06/2026 00:00:00
 iShares MSCI Europe Consumer Discretionary Sector UCITS ETF,iShares VI plc,IE00BMW42298,EUR,18.00,91.41,23/06/2026 00:00:00
 iShares Digital Entertainment and Education UCITS ETF,iShares IV plc,IE00023EZQ82,USD,40.00,65.83,23/06/2026 00:00:00
 iShares MSCI Europe Industrials Sector UCITS ETF,iShares VI plc,IE00BMW42520,EUR,18.00,1321.15,23/06/2026 00:00:00
@@ -314,27 +314,27 @@ iShares iBonds Dec 2035 Term $ Corp UCITS ETF,iShares V plc,IE000Y9XFN19,USD,12.
 iShares Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN090851,GBP,9.00,1497.82,23/06/2026 00:00:00
 iShares US Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN090D08,GBP,5.00,5653.20,23/06/2026 00:00:00
 iShares Euro Government Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000HJNEE12,SEK,12.00,87.20,23/06/2026 00:00:00
-iShares Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN090745,GBP,9.00,1497.82,23/06/2026 00:00:00
+iShares Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN090745,GBP,8.00,1497.82,23/06/2026 00:00:00
 iShares US Large Cap Max Buffer Dec UCITS ETF,iShares VI plc,IE000Y1595P8,USD,50.00,25.19,23/06/2026 00:00:00
-iShares Pacific ex Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Investment Management (UK) Limited,GB00BN090J69,GBP,10.00,509.85,23/06/2026 00:00:00
+iShares Pacific ex Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Investment Management (UK) Limited,GB00BN090J69,GBP,11.00,509.85,23/06/2026 00:00:00
 iShares € AAA CLO Active UCITS ETF,iShares II plc,IE000Y3ON470,EUR,25.00,226.78,23/06/2026 00:00:00
 iShares MSCI EMU CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BHZPJ015,EUR,12.00,3919.61,23/06/2026 00:00:00
 iShares S&P 500 3% Capped UCITS ETF,iShares VII plc,IE0001ARVVZ9,EUR,23.00,248.34,23/06/2026 00:00:00
-iShares US Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN090C90,GBP,5.00,5653.20,23/06/2026 00:00:00
+iShares US Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN090C90,GBP,5.00,5563.15,23/06/2026 00:00:00
 iShares MSCI World ex-USA UCITS ETF,iShares III plc,IE000ZDDJWZ5,USD,15.00,3443.47,23/06/2026 00:00:00
 iShares Continental European Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08ZZ41,GBP,6.00,1436.80,23/06/2026 00:00:00
-iShares Pacific ex Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Investment Management (UK) Limited,GB00BN090H46,GBP,11.00,509.85,23/06/2026 00:00:00
+iShares Pacific ex Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Investment Management (UK) Limited,GB00BN090H46,GBP,10.00,509.85,23/06/2026 00:00:00
 iShares Continental European Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN090075,GBP,6.00,1436.80,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1333800438,USD,24.00,1775.61,23/06/2026 00:00:00
 iShares MSCI EM CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BHZPJ122,USD,18.00,11260.39,23/06/2026 00:00:00
 iShares Broad $ Corp Bond UCITS ETF,iShares III plc,IE000J4DNAA7,GBP,10.00,34.07,23/06/2026 00:00:00
-iShares Pacific Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJ1K4320,GBP,19.00,818.15,23/06/2026 00:00:00
+iShares Pacific Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJ1K4320,GBP,19.00,809.13,23/06/2026 00:00:00
 iShares $ AAA CLO Active UCITS ETF,iShares II plc,IE0001GX77Y5,JPY,25.00,80.33,23/06/2026 00:00:00
 iShares $ AAA CLO Active UCITS ETF,iShares II plc,IE000NVEFL43,JPY,25.00,80.33,23/06/2026 00:00:00
 iShares Broad $ High Yield Corp Bond UCITS ETF,iShares III plc,IE00BG0J4957,USD,20.00,2905.77,23/06/2026 00:00:00
 iShares MSCI EM CTB Enhanced ESG UCITS ETF,iShares IV plc,IE00BHZPJ239,USD,18.00,11260.39,23/06/2026 00:00:00
 iShares MSCI USA Quality Dividend Advanced UCITS ETF,iShares II plc,IE00BKM4H312,USD,35.00,743.59,23/06/2026 00:00:00
-iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000J642SM6,USD,5.00,201.65,23/06/2026 00:00:00
+iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000J642SM6,USD,5.00,201.38,23/06/2026 00:00:00
 iShares Index Linked Gilt Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV4B0B62,GBP,6.00,1334.60,23/06/2026 00:00:00
 iShares MSCI EM Consumer Growth UCITS ETF,iShares V plc,IE00BKM4H197,USD,60.00,40.81,23/06/2026 00:00:00
 iShares Core MSCI EM IMI UCITS ETF,iShares plc,IE00BKM4GZ66,USD,18.00,46291.79,23/06/2026 00:00:00
@@ -345,15 +345,15 @@ iShares MSCI World Value Factor Advanced UCITS ETF,iShares IV plc,IE000H1H16W5,U
 iShares $ TIPS 0-5 UCITS ETF,iShares II plc,IE00BDQYWQ65,USD,10.00,3515.14,23/06/2026 00:00:00
 iShares Broad € High Yield Corp Bond UCITS ETF,iShares III plc,IE00BG0J4B71,EUR,20.00,353.23,23/06/2026 00:00:00
 iShares Edge MSCI EM Value Factor UCITS ETF,iShares IV plc,IE00BG0SKF03,USD,40.00,1908.28,23/06/2026 00:00:00
-iShares J.P. Morgan Advanced $ EM Investment Grade Bond UCITS ETF,iShares VI plc,IE00BKPT2T41,USD,30.00,425.65,23/06/2026 00:00:00
 iShares Digital Security UCITS ETF,iShares IV plc,IE00BG0J4841,USD,40.00,1840.81,23/06/2026 00:00:00
+iShares J.P. Morgan Advanced $ EM Investment Grade Bond UCITS ETF,iShares VI plc,IE00BKPT2T41,USD,30.00,425.65,23/06/2026 00:00:00
 iShares MSCI EMU SRI UCITS ETF,iShares IV plc,IE00BJLKK341,EUR,20.00,38.46,23/06/2026 00:00:00
 iShares Broad € High Yield Corp Bond UCITS ETF,iShares III plc,IE00089J8KM1,USD,22.00,353.23,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJ9MTQ85,EUR,25.00,3551.34,23/06/2026 00:00:00
 iShares Global Aggregate Bond ESG SRI UCITS ETF,iShares III plc,IE000OH3HT45,AUD,12.00,4659.58,23/06/2026 00:00:00
 iShares $ TIPS 0-5 UCITS ETF,iShares II plc,IE000JXFRNI0,USD,10.00,3515.14,23/06/2026 00:00:00
 iShares MSCI Japan CTB Enhanced ESG UCITS ETF,iShares IV plc,IE0002SCQ8X0,EUR,18.00,2646.30,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000Y1LWY25,AUD,14.00,4369.47,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000Y1LWY25,AUD,14.00,4341.42,23/06/2026 00:00:00
 iShares China CNY Bond UCITS ETF,iShares IV plc,IE00BKPSFD61,USD,35.00,2350.54,23/06/2026 00:00:00
 iShares MSCI World Quality Dividend Advanced UCITS ETF,iShares II plc,IE00BKPSFC54,USD,38.00,2070.85,23/06/2026 00:00:00
 iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BMXD9Y66,NOK,19.00,5100.30,23/06/2026 00:00:00
@@ -364,11 +364,11 @@ iShares Edge MSCI USA Momentum Factor UCITS ETF,iShares IV plc,IE00BD1F4N50,USD,
 iShares Edge MSCI USA Quality Factor UCITS ETF,iShares IV plc,IE00BD1F4L37,USD,20.00,2187.78,23/06/2026 00:00:00
 iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1055041369,EUR,22.00,4785.06,23/06/2026 00:00:00
 iShares Emerging Markets Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1055028937,EUR,34.00,485.54,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0001KKUL12,EUR,25.00,172.16,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000ITHXRL9,USD,3.00,172.16,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000FBSWBF8,USD,18.00,172.16,23/06/2026 00:00:00
-iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFG1TM61,EUR,17.00,5127.64,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000X7X53I1,USD,23.00,172.16,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0001KKUL12,EUR,25.00,171.92,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000ITHXRL9,USD,3.00,171.92,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000FBSWBF8,USD,18.00,171.92,23/06/2026 00:00:00
+iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFG1TM61,EUR,17.00,5100.30,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000X7X53I1,USD,23.00,171.92,23/06/2026 00:00:00
 iShares Core MSCI Europe UCITS ETF,iShares II plc,IE000MAO75G5,EUR,12.00,12109.85,23/06/2026 00:00:00
 iShares Core S&P 500 UCITS ETF,iShares VII plc,IE00BL3J3G74,MXN,12.00,152658.78,23/06/2026 00:00:00
 iShares Core MSCI Europe UCITS ETF,iShares II plc,IE00BL4KKW48,MXN,17.00,12109.85,23/06/2026 00:00:00
@@ -386,7 +386,7 @@ iShares US Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCRV59,GBP,4
 iShares Core FTSE 100 UCITS ETF,iShares plc,IE00BYZ28W67,USD,20.00,15957.94,23/06/2026 00:00:00
 iShares Global Govt Bond UCITS ETF,iShares III plc,IE00BYZ28V50,USD,20.00,3153.99,23/06/2026 00:00:00
 iShares Automation & Robotics UCITS ETF,iShares IV plc,IE00BYWZ0333,USD,40.00,5510.39,23/06/2026 00:00:00
-iShares Japan Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000TOBHQ26,JPY,17.00,2115.19,23/06/2026 00:00:00
+iShares Japan Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000TOBHQ26,JPY,17.00,2140.85,23/06/2026 00:00:00
 iShares MSCI Europe Small Cap UCITS ETF,iShares III plc,IE0000N55FP4,EUR,25.00,6.68,23/06/2026 00:00:00
 iShares US Mortgage Backed Securities UCITS ETF,iShares IV plc,IE00BYXYYN70,USD,28.00,3971.68,23/06/2026 00:00:00
 iShares J.P. Morgan $ EM Bond UCITS ETF,iShares II plc,IE00BYXYYK40,USD,45.00,7988.11,23/06/2026 00:00:00
@@ -399,8 +399,8 @@ iShares Core MSCI EMU UCITS ETF,iShares VII plc,IE00BYXZ2585,EUR,12.00,7865.58,2
 iShares $ Corp Bond UCITS ETF,iShares plc,IE00BYXYYJ35,USD,20.00,9499.27,23/06/2026 00:00:00
 iShares US Aggregate Bond UCITS ETF,iShares II plc,IE00BYXYYM63,USD,25.00,6018.59,23/06/2026 00:00:00
 iShares Global Corp Bond EUR Hedged UCITS ETF (Dist),iShares VI plc,IE00B9M6SJ31,EUR,25.00,1103.82,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000LQ8YC86,GBP,15.00,1989.09,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0009MUJ3F4,USD,12.00,1989.09,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000LQ8YC86,GBP,15.00,1987.35,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0009MUJ3F4,USD,12.00,1987.35,23/06/2026 00:00:00
 iShares Core MSCI EMU UCITS ETF,iShares VII plc,IE00BG0J9Y53,GBP,12.00,7865.58,23/06/2026 00:00:00
 iShares $ High Yield Corp Bond UCITS ETF,iShares II plc,IE00BYXYYL56,USD,50.00,5864.13,23/06/2026 00:00:00
 iShares Nasdaq US Biotechnology UCITS ETF,iShares IV plc,IE00BYXG2H39,USD,35.00,983.07,23/06/2026 00:00:00
@@ -420,14 +420,14 @@ iShares World Islamic Multifactor Equity Index Fund (IE),BlackRock Asset Managem
 iShares World Islamic Multifactor Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000M9BA434,USD,45.00,518.90,23/06/2026 00:00:00
 iShares iBonds Dec 2030 Term € Corp UCITS ETF,iShares V plc,IE000Y2BJVK9,EUR,12.00,1075.98,23/06/2026 00:00:00
 iShares MSCI India UCITS ETF,iShares IV plc,IE00BZCQB185,USD,65.00,5193.15,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BMC44015,EUR,3.00,4369.47,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BMC44015,EUR,3.00,4341.42,23/06/2026 00:00:00
 iShares World Islamic Multifactor Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000LKK01B1,USD,35.00,518.90,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00023YVIY1,USD,12.00,29706.29,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000A45CKB8,HKD,1.00,29706.29,23/06/2026 00:00:00
 iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BNB74B95,GBP,11.00,2892.80,23/06/2026 00:00:00
 iShares Mid Cap UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BNB74C03,GBP,17.00,275.66,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000T2H0069,SEK,12.00,1989.09,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0009YAQF71,SGD,12.00,1989.09,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000T2H0069,SEK,12.00,1987.35,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0009YAQF71,SGD,12.00,1987.35,23/06/2026 00:00:00
 iShares MSCI World Communication Services Sector Advanced UCITS ETF,iShares V plc,IE00BJ5JP436,USD,18.00,138.83,23/06/2026 00:00:00
 iShares Global Aggregate Bond ESG SRI UCITS ETF,iShares III plc,IE000ZIGXVF2,NZD,15.00,4659.58,23/06/2026 00:00:00
 iShares Global Aggregate Bond ESG SRI UCITS ETF,iShares III plc,IE000APK27S2,EUR,10.00,4659.58,23/06/2026 00:00:00
@@ -437,7 +437,7 @@ iShares $ Treasury Bond 7-10yr UCITS ETF,iShares II plc,IE000K1VI152,EUR,10.00,7
 iShares Core FTSE 100 UCITS ETF,iShares plc,IE000HARJEE2,EUR,10.00,15957.94,23/06/2026 00:00:00
 iShares MSCI China A UCITS ETF,iShares IV plc,IE00099GAJC6,EUR,45.00,3450.28,23/06/2026 00:00:00
 iShares Japan Govt Bond UCITS ETF,iShares V plc,IE0009SA6OY7,GBP,9.00,171156.37,23/06/2026 00:00:00
-iShares Euro Long Duration Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000XHDJXE4,EUR,10.00,1142.33,23/06/2026 00:00:00
+iShares Euro Long Duration Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000XHDJXE4,EUR,10.00,1148.66,23/06/2026 00:00:00
 iShares $ Short Duration High Yield Corp Bond UCITS ETF,iShares IV plc,IE0000BQ75C2,EUR,47.00,2608.90,23/06/2026 00:00:00
 iShares Asia Pacific Dividend UCITS ETF,iShares plc,IE000AN258G4,USD,59.00,643.43,23/06/2026 00:00:00
 iShares $ High Yield Corp Bond ESG SRI UCITS ETF,iShares II plc,IE00BKF09C98,USD,25.00,1914.45,23/06/2026 00:00:00
@@ -461,22 +461,22 @@ iShares World Islamic Real Estate Equity Index Fund (IE),BlackRock Asset Managem
 iShares J.P. Morgan $ EM Corp Bond UCITS ETF,iShares V plc,IE00BFM6TD65,USD,50.00,3233.41,23/06/2026 00:00:00
 iShares MSCI World Industrials Sector Advanced UCITS ETF,iShares V plc,IE00BJ5JP659,USD,18.00,127.22,23/06/2026 00:00:00
 iShares Emerging Asia Local Govt Bond UCITS ETF,iShares III plc,IE00BFM6T814,USD,50.00,51.69,23/06/2026 00:00:00
-iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0960941911,USD,22.00,124.20,23/06/2026 00:00:00
+iShares Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0960941911,USD,23.00,124.20,23/06/2026 00:00:00
 iShares Europe Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0960941838,USD,19.00,409.01,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0960942059,USD,21.00,205.57,23/06/2026 00:00:00
 iShares UK Gilts All Stocks Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSD43,GBP,6.00,6853.72,23/06/2026 00:00:00
 iShares Emerging Markets Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0960941754,USD,31.00,485.54,23/06/2026 00:00:00
 iShares Developed World Fossil Fuel Screened Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSH80,GBP,8.00,859.13,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1373035580,EUR,52.00,1775.61,23/06/2026 00:00:00
-iShares Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSC36,GBP,7.00,1497.82,23/06/2026 00:00:00
-iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000LUZEWK5,USD,17.00,1570.69,23/06/2026 00:00:00
+iShares Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSC36,GBP,6.00,1497.82,23/06/2026 00:00:00
+iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000LUZEWK5,USD,17.00,1581.12,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1373035663,EUR,24.00,1775.61,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000VN2TQC4,GBP,3.00,3551.34,23/06/2026 00:00:00
-iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000A8DUDZ3,GBP,10.00,2151.55,23/06/2026 00:00:00
+iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000A8DUDZ3,GBP,10.00,2145.75,23/06/2026 00:00:00
 iShares Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BLBP3P65,GBP,21.00,4452.43,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000AODOWS0,GBP,3.00,3551.34,23/06/2026 00:00:00
-iShares Continental European Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BLBP3R89,GBP,22.00,7298.29,23/06/2026 00:00:00
-iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BLBNVK18,GBP,27.00,4230.92,23/06/2026 00:00:00
+iShares Continental European Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BLBP3R89,GBP,21.00,7298.29,23/06/2026 00:00:00
+iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BLBNVK18,GBP,26.00,4230.92,23/06/2026 00:00:00
 iShares US Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BLBP3L28,GBP,21.00,3682.85,23/06/2026 00:00:00
 iShares USD Sukuk Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000WUZ32I5,USD,15.00,139.76,23/06/2026 00:00:00
 iShares STOXX World Equity Multifactor UCITS ETF,iShares IV plc,IE00BZ0PKT83,USD,30.00,863.36,23/06/2026 00:00:00
@@ -491,27 +491,27 @@ iShares MSCI World ex-USA UCITS ETF,iShares III plc,IE000R4ZNTN3,USD,15.00,3443.
 iShares Developed Markets Property Yield UCITS ETF,iShares II plc,IE00BDZVHC96,GBP,64.00,1668.16,23/06/2026 00:00:00
 iShares MSCI World Utilities Sector Advanced UCITS ETF,iShares V plc,IE000A89Y2G7,USD,18.00,12.30,23/06/2026 00:00:00
 iShares Core MSCI EM IMI UCITS ETF,iShares plc,IE00BD45KH83,USD,18.00,46291.79,23/06/2026 00:00:00
-iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFX1VK15,EUR,22.00,1611.87,23/06/2026 00:00:00
 iShares $ TIPS 0-5 UCITS ETF,iShares II plc,IE00BDZVHB89,GBP,12.00,3515.14,23/06/2026 00:00:00
-iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000SG9CMM7,GBP,11.00,3280.39,23/06/2026 00:00:00
+iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFX1VK15,EUR,22.00,1611.87,23/06/2026 00:00:00
+iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000SG9CMM7,GBP,11.00,3295.43,23/06/2026 00:00:00
 iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFX1VJ00,GBP,22.00,1611.87,23/06/2026 00:00:00
 iShares Nasdaq US Biotechnology UCITS ETF,iShares IV plc,IE00BDZVHG35,USD,35.00,983.07,23/06/2026 00:00:00
 iShares $ TIPS UCITS ETF,iShares II plc,IE00BDZVH966,EUR,12.00,5656.62,23/06/2026 00:00:00
 iShares $ TIPS UCITS ETF,iShares II plc,IE00BDZVH859,GBP,12.00,5656.62,23/06/2026 00:00:00
-iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BMY53838,EUR,3.00,1415.01,23/06/2026 00:00:00
-iShares Pacific Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCP86,USD,15.00,818.15,23/06/2026 00:00:00
-iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCR01,EUR,10.00,3280.39,23/06/2026 00:00:00
-iShares US Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSB29,GBP,5.00,5653.20,23/06/2026 00:00:00
-iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCQ93,GBP,7.00,792.75,23/06/2026 00:00:00
-iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCT25,USD,8.00,3624.71,23/06/2026 00:00:00
+iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BMY53838,EUR,3.00,1410.00,23/06/2026 00:00:00
+iShares Pacific Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCP86,USD,15.00,809.13,23/06/2026 00:00:00
+iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCR01,EUR,10.00,3295.43,23/06/2026 00:00:00
+iShares US Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSB29,GBP,5.00,5563.15,23/06/2026 00:00:00
+iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCQ93,GBP,7.00,799.30,23/06/2026 00:00:00
+iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCT25,USD,8.00,3613.48,23/06/2026 00:00:00
 iShares Physical Gold EUR Hedged ETC,iShares Physical Metals plc,IE0009JOT9U1,EUR,25.00,599.98,23/06/2026 00:00:00
-iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSG73,GBP,9.00,2892.80,23/06/2026 00:00:00
-iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSF66,GBP,6.00,2892.80,23/06/2026 00:00:00
+iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSG73,GBP,9.00,2894.79,23/06/2026 00:00:00
+iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCSF66,GBP,7.00,2892.80,23/06/2026 00:00:00
 iShares $ Treasury Bond 1-3yr UCITS ETF,iShares plc,IE000KN6U873,GBP,10.00,12390.54,23/06/2026 00:00:00
 iShares $ Treasury Bond 7-10yr UCITS ETF,iShares II plc,IE000R4RN8C3,GBP,10.00,7292.48,23/06/2026 00:00:00
 iShares MSCI China A UCITS ETF,iShares IV plc,IE00BQT3WG13,USD,40.00,3450.28,23/06/2026 00:00:00
 iShares Physical Gold GBP Hedged ETC,iShares Physical Metals plc,IE000Q2P3ZQ3,GBP,25.00,935.14,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDQYPB20,USD,36.00,9539.34,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDQYPB20,USD,36.00,10372.28,23/06/2026 00:00:00
 iShares $ TIPS UCITS ETF,iShares II plc,IE000B3NURO6,GBP,12.00,5656.62,23/06/2026 00:00:00
 iShares $ Treasury Bond 20+yr UCITS ETF,iShares IV plc,IE0006NB6WZ4,GBP,10.00,5765.61,23/06/2026 00:00:00
 iShares China CNY Bond UCITS ETF,iShares IV plc,IE000W336086,EUR,40.00,2350.54,23/06/2026 00:00:00
@@ -525,7 +525,7 @@ iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1396764083,GB
 iShares MSCI Europe Climate Transition Aware UCITS ETF,iShares V plc,IE000ZQF1PE1,EUR,12.00,7.23,23/06/2026 00:00:00
 iShares AI Innovation Active UCITS ETF,iShares III plc,IE000G0E83X3,USD,73.00,413.15,23/06/2026 00:00:00
 iShares AI Infrastructure UCITS ETF,iShares III plc,IE000X59ZHE2,USD,35.00,1100.77,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000H4Z3PW7,GBP,12.00,1989.09,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000H4Z3PW7,GBP,12.00,1987.35,23/06/2026 00:00:00
 iShares MSCI EMU Climate Transition Aware UCITS ETF,iShares V plc,IE0006PTRUI8,EUR,12.00,5.36,23/06/2026 00:00:00
 iShares MSCI World Climate Transition Aware UCITS ETF,iShares V plc,IE0001YGXFO5,USD,20.00,13.70,23/06/2026 00:00:00
 iShares MSCI World Climate Transition Aware UCITS ETF,iShares V plc,IE000YNE6S57,USD,20.00,13.70,23/06/2026 00:00:00
@@ -533,22 +533,22 @@ iShares MSCI Global Telecommunication Services UCITS ETF,iShares V plc,IE000E9W0
 iShares Developed World Fossil Fuel Screened Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFK3MV83,GBP,11.00,859.13,23/06/2026 00:00:00
 iShares AI Adopters & Applications UCITS ETF,iShares III plc,IE000Q9W2IR3,USD,35.00,177.83,23/06/2026 00:00:00
 iShares Developed World Fossil Fuel Screened Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFK3MW90,GBP,21.00,859.13,23/06/2026 00:00:00
-iShares Developed World Fossil Fuel Screened Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFK3MT61,GBP,11.00,859.13,23/06/2026 00:00:00
+iShares Developed World Fossil Fuel Screened Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFK3MT61,GBP,12.00,859.13,23/06/2026 00:00:00
 iShares $ Asia Investment Grade Corp Bond UCITS ETF,iShares III plc,IE000Z0Z10N9,SGD,22.00,279.63,23/06/2026 00:00:00
 iShares Core MSCI World UCITS ETF,iShares III plc,IE000OHHIBC6,USD,20.00,145193.93,23/06/2026 00:00:00
 iShares $ Treasury Bond UCITS ETF,iShares plc,IE00BKTN1T54,GBP,10.00,701.06,23/06/2026 00:00:00
-iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BNNLPT42,GBP,10.00,1030.57,23/06/2026 00:00:00
+iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BNNLPT42,GBP,10.00,1038.24,23/06/2026 00:00:00
 iShares Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BJL5BZ80,GBP,8.00,4452.43,23/06/2026 00:00:00
 iShares Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BJL5BV43,GBP,11.00,4271.34,23/06/2026 00:00:00
 iShares Digital Security UCITS ETF,iShares IV plc,IE00BG0J4C88,USD,40.00,1840.81,23/06/2026 00:00:00
-iShares Core DAX® UCITS ETF (DE),BlackRock Asset Management Deutschland AG,DE000A2QP331,EUR,16.00,8717.36,23/06/2026 00:00:00
 iShares Continental European Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B83MH186,GBP,5.00,7298.29,23/06/2026 00:00:00
+iShares Core DAX® UCITS ETF (DE),BlackRock Asset Management Deutschland AG,DE000A2QP331,EUR,16.00,8717.36,23/06/2026 00:00:00
 iShares MDAX® UCITS ETF (DE),BlackRock Asset Management Deutschland AG,DE000A2QP349,EUR,51.00,1600.92,23/06/2026 00:00:00
-iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BJL5BW59,GBP,19.00,4230.92,23/06/2026 00:00:00
+iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BJL5BW59,GBP,18.00,4230.92,23/06/2026 00:00:00
 iShares 100 UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B7W4GQ69,GBP,7.00,883.00,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BJL5C004,GBP,11.00,3288.61,23/06/2026 00:00:00
-iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BGR7K831,EUR,17.00,1415.01,23/06/2026 00:00:00
-iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B84DY642,GBP,19.00,4230.92,23/06/2026 00:00:00
+iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B84DY642,GBP,18.00,4230.92,23/06/2026 00:00:00
+iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BGR7K831,EUR,17.00,1410.00,23/06/2026 00:00:00
 iShares Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B7J60R40,GBP,11.00,4271.34,23/06/2026 00:00:00
 iShares Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B84DSW83,GBP,11.00,4271.34,23/06/2026 00:00:00
 iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00B5BFJG71,GBP,18.00,6219.63,23/06/2026 00:00:00
@@ -560,64 +560,64 @@ iShares Space Technologies UCITS ETF,iShares IV plc,IE000A9G9R73,USD,50.00,11.32
 iShares Mid Cap UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B7VT0938,GBP,17.00,275.66,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B849FB47,GBP,11.00,3288.61,23/06/2026 00:00:00
 iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BL6VHF72,USD,20.00,1611.87,23/06/2026 00:00:00
-iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B849C803,GBP,11.00,3281.02,23/06/2026 00:00:00
-iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BL6VHD58,EUR,17.00,1340.68,23/06/2026 00:00:00
+iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B849C803,GBP,11.00,3313.52,23/06/2026 00:00:00
 iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B58YKH53,GBP,11.00,2892.80,23/06/2026 00:00:00
-iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B7QK1Y37,GBP,7.00,18284.02,23/06/2026 00:00:00
+iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BL6VHD58,EUR,17.00,1336.38,23/06/2026 00:00:00
+iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B7QK1Y37,GBP,7.00,17879.61,23/06/2026 00:00:00
 iShares $ Intermediate Credit Bond UCITS ETF,iShares III plc,IE0002O230L3,GBP,18.00,822.68,23/06/2026 00:00:00
-iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BMZ3NN11,EUR,17.00,1613.09,23/06/2026 00:00:00
+iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BMZ3NN11,EUR,17.00,1611.87,23/06/2026 00:00:00
 iShares US Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B5VRGY09,GBP,5.00,3682.85,23/06/2026 00:00:00
-iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC037,EUR,10.00,4882.38,23/06/2026 00:00:00
+iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC037,EUR,10.00,4897.12,23/06/2026 00:00:00
 iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD575K12,USD,8.00,3125.10,23/06/2026 00:00:00
 iShares UK Gilts All Stocks Index Fund (UK),BlackRock Fund Managers Ltd,GB00B83HGR24,GBP,11.00,6853.72,23/06/2026 00:00:00
-iShares Euro Credit Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC698,EUR,12.00,562.42,23/06/2026 00:00:00
 iShares UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00B7C44X99,GBP,5.00,15108.01,23/06/2026 00:00:00
+iShares Euro Credit Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC698,EUR,12.00,563.62,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BF2N5T53,USD,18.00,3551.34,23/06/2026 00:00:00
-iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1N7ZB00,EUR,13.00,4882.38,23/06/2026 00:00:00
+iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1N7ZB00,EUR,13.00,4897.12,23/06/2026 00:00:00
 iShares $ Intermediate Credit Bond UCITS ETF,iShares III plc,IE000JEHORH6,EUR,18.00,822.68,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYWYC907,USD,20.00,10301.01,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYWYCC39,EUR,20.00,10301.01,23/06/2026 00:00:00
-iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC706,USD,12.00,1340.68,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYWYC907,USD,20.00,10372.28,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYWYCC39,EUR,20.00,10372.28,23/06/2026 00:00:00
+iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC706,USD,12.00,1336.38,23/06/2026 00:00:00
 iShares Euro Government Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC144,EUR,10.00,87.20,23/06/2026 00:00:00
 iShares Fallen Angels High Yield Corp Bond UCITS ETF,iShares IV plc,IE00BF3N7219,EUR,55.00,818.59,23/06/2026 00:00:00
 iShares UK Credit Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC474,GBP,10.00,363.65,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCL49,GBP,12.00,29706.29,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC367,USD,12.00,1989.09,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC367,USD,12.00,1987.35,23/06/2026 00:00:00
 iShares Europe Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836514744,EUR,23.00,409.01,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU2723594235,EUR,24.00,1775.61,23/06/2026 00:00:00
-iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BMTMD893,GBP,20.00,1086.52,23/06/2026 00:00:00
+iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BMTMD893,GBP,20.00,1087.12,23/06/2026 00:00:00
 iShares Japan Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCS18,USD,15.00,2140.85,23/06/2026 00:00:00
-iShares Euro Corporate Bond ESG SRI Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0004CHBHI7,GBP,14.00,2296.29,23/06/2026 00:00:00
+iShares Euro Corporate Bond ESG SRI Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0004CHBHI7,GBP,14.00,2286.26,23/06/2026 00:00:00
 iShares GiltTrak Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC250,GBP,10.00,645.63,23/06/2026 00:00:00
 iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NC581,USD,12.00,1410.00,23/06/2026 00:00:00
 iShares Global AAA-AA Govt Bond UCITS ETF,iShares VI plc,IE00BZ171348,USD,20.00,240.34,23/06/2026 00:00:00
 iShares $ Corp Bond Interest Rate Hedged UCITS ETF,iShares plc,IE00BZ173W74,USD,25.00,213.56,23/06/2026 00:00:00
 iShares Global Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0875157884,EUR,22.00,1264.81,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000D41SHP3,GBP,17.00,172.16,23/06/2026 00:00:00
-iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYWHDP26,GBP,3.00,4882.38,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000D41SHP3,GBP,17.00,171.92,23/06/2026 00:00:00
+iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYWHDP26,GBP,3.00,4897.12,23/06/2026 00:00:00
 iShares € High Yield Corp Bond UCITS ETF,iShares plc,IE00BF3NC260,USD,55.00,7463.49,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCN62,USD,12.00,29706.29,23/06/2026 00:00:00
 iShares $ Short Duration High Yield Corp Bond UCITS ETF,iShares IV plc,IE00BZ17CN18,USD,45.00,2608.90,23/06/2026 00:00:00
-iShares $ High Yield Corp Bond UCITS ETF,iShares II plc,IE00BF3N7102,EUR,55.00,5864.13,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0NCM55,EUR,12.00,29706.29,23/06/2026 00:00:00
+iShares $ High Yield Corp Bond UCITS ETF,iShares II plc,IE00BF3N7102,EUR,55.00,5864.13,23/06/2026 00:00:00
 iShares $ Ultrashort Bond UCITS ETF,iShares IV plc,IE00BGCSB447,USD,9.00,2453.60,23/06/2026 00:00:00
 iShares $ Treasury Bond 3-7yr UCITS ETF,iShares VII plc,IE00BFXYHY63,USD,7.00,10795.21,23/06/2026 00:00:00
 iShares MSCI China Tech UCITS ETF,iShares IV plc,IE000NFR7C63,USD,45.00,2454.86,23/06/2026 00:00:00
 iShares MSCI USA SRI UCITS ETF,iShares IV plc,IE00BYVJRR92,USD,20.00,3964.86,23/06/2026 00:00:00
 iShares MSCI World Paris-Aligned Climate UCITS ETF,iShares III plc,IE00BN92ZL31,USD,20.00,683.68,23/06/2026 00:00:00
+iShares Asia Property Yield UCITS ETF,iShares II plc,IE00BGDPWV87,USD,59.00,214.02,23/06/2026 00:00:00
 iShares MSCI World Paris-Aligned Climate UCITS ETF,iShares III plc,IE00BMXC7W70,USD,20.00,683.68,23/06/2026 00:00:00
 iShares Global Inflation Linked Govt Bond UCITS ETF,iShares III plc,IE00BMDBML89,GBP,20.00,1459.84,23/06/2026 00:00:00
-iShares Asia Property Yield UCITS ETF,iShares II plc,IE00BGDPWV87,USD,59.00,214.02,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000UTDLUA5,EUR,17.00,172.16,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000UTDLUA5,EUR,17.00,171.92,23/06/2026 00:00:00
 iShares Blockchain Technology UCITS ETF,iShares III plc,IE000RDRMSD1,USD,50.00,330.91,23/06/2026 00:00:00
-iShares MSCI USA SRI UCITS ETF,iShares IV plc,IE00BZ173V67,EUR,23.00,3964.86,23/06/2026 00:00:00
 iShares GiltTrak Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0030308773,GBP,13.00,645.63,23/06/2026 00:00:00
+iShares MSCI USA SRI UCITS ETF,iShares IV plc,IE00BZ173V67,EUR,23.00,3964.86,23/06/2026 00:00:00
 iShares Euro Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0839964631,EUR,19.00,142.14,23/06/2026 00:00:00
 iShares Global Corp Bond UCITS ETF,iShares plc,IE00BDFK3G24,GBP,25.00,4382.08,23/06/2026 00:00:00
 iShares Core € Corp Bond UCITS ETF,iShares III plc,IE00BDFJYN35,GBP,11.00,14124.47,23/06/2026 00:00:00
+iShares J.P. Morgan $ EM Bond CHF Hedged UCITS ETF (Dist),iShares VI plc,IE00B9M04V95,CHF,50.00,290.89,23/06/2026 00:00:00
 iShares MSCI Europe SRI UCITS ETF,iShares II plc,IE00BMDBMG37,USD,20.00,3508.64,23/06/2026 00:00:00
 iShares MSCI EMU CHF Hedged UCITS ETF (Acc),iShares VII plc,IE00BWK1SP74,CHF,38.00,175.45,23/06/2026 00:00:00
-iShares J.P. Morgan $ EM Bond CHF Hedged UCITS ETF (Dist),iShares VI plc,IE00B9M04V95,CHF,50.00,290.89,23/06/2026 00:00:00
 iShares European Property Yield UCITS ETF,iShares plc,IE00BGDQ0L74,EUR,40.00,1055.24,23/06/2026 00:00:00
 iShares S&P 500 Paris-Aligned Climate UCITS ETF,iShares VII plc,IE00BMXC7V63,USD,7.00,403.80,23/06/2026 00:00:00
 iShares $ Floating Rate Bond UCITS ETF,iShares II plc,IE00BDFGJ627,USD,10.00,4899.00,23/06/2026 00:00:00
@@ -627,7 +627,7 @@ iShares Core Global Aggregate Bond UCITS ETF,iShares III plc,IE00BDBRDM35,EUR,10
 iShares Core Global Aggregate Bond UCITS ETF,iShares III plc,IE00BF540Y54,GBP,10.00,14350.05,23/06/2026 00:00:00
 iShares € Corp Bond ESG SRI UCITS ETF,iShares II plc,IE00BYZTVT56,EUR,14.00,5973.48,23/06/2026 00:00:00
 iShares Global Govt Bond UCITS ETF,iShares III plc,IE00BDFK3H31,GBP,25.00,3153.99,23/06/2026 00:00:00
-iShares Europe Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1722863724,USD,23.00,409.01,23/06/2026 00:00:00
+iShares Europe Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1722863724,USD,24.00,409.01,23/06/2026 00:00:00
 iShares North America Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1722863641,USD,22.00,669.85,23/06/2026 00:00:00
 iShares S&P 500 Equal Weight UCITS ETF,iShares III plc,IE0003WV2ME7,GBP,17.00,5227.43,23/06/2026 00:00:00
 iShares $ High Yield Corp Bond UCITS ETF,iShares II plc,IE00BDFJYL11,GBP,55.00,5864.13,23/06/2026 00:00:00
@@ -651,8 +651,8 @@ iShares Global Govt Bond UCITS ETF,iShares III plc,IE000VMQ8IH9,USD,25.00,3153.9
 iShares MSCI World Swap UCITS ETF,iShares VI plc,IE000N921WJ6,CHF,12.00,2100.28,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BGL88775,GBP,14.00,29706.29,23/06/2026 00:00:00
 iShares S&P 500 Swap UCITS ETF,iShares VI plc,IE000WJJTA81,CHF,5.00,16488.37,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B2PPWQ36,USD,3.00,1987.35,23/06/2026 00:00:00
 iShares Core MSCI World UCITS ETF,iShares III plc,IE00BD45YS76,GBP,30.00,145193.93,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B2PPWQ36,USD,3.00,1989.09,23/06/2026 00:00:00
 iShares MSCI World Swap UCITS ETF,iShares VI plc,IE000512B9Q8,GBP,12.00,2100.28,23/06/2026 00:00:00
 iShares MSCI Europe Mid Cap UCITS ETF,iShares VI plc,IE00BYXYX745,EUR,15.00,552.91,23/06/2026 00:00:00
 iShares MSCI Europe Mid Cap UCITS ETF,iShares VI plc,IE00BF20LF40,EUR,15.00,552.91,23/06/2026 00:00:00
@@ -667,22 +667,22 @@ iShares £ UltraShort Bond ESG SRI UCITS ETF,iShares IV plc,IE00BJP26F04,GBP,9.0
 iShares STOXX USA Equity Multifactor UCITS ETF,iShares IV plc,IE00BZ0PKS76,USD,20.00,114.40,23/06/2026 00:00:00
 iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0007SUF6S0,USD,17.00,1611.87,23/06/2026 00:00:00
 iShares $ UltraShort Bond ESG SRI UCITS ETF,iShares IV plc,IE00BJP26C72,USD,9.00,27.34,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000H2D8E66,SGD,14.00,4369.47,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000H2D8E66,SGD,14.00,4341.42,23/06/2026 00:00:00
 iShares Bloomberg Enhanced Roll Yield Commodity Swap UCITS ETF,iShares VI plc,IE00BZ1NCS44,USD,28.00,1533.38,23/06/2026 00:00:00
-iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000OZZKBN3,USD,30.00,2151.55,23/06/2026 00:00:00
+iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000OZZKBN3,USD,30.00,2145.75,23/06/2026 00:00:00
 iShares Global Govt Bond UCITS ETF,iShares III plc,IE00BKT6FT27,EUR,25.00,3153.99,23/06/2026 00:00:00
 iShares Core MSCI Japan IMI UCITS ETF,iShares III plc,IE00BKT6FV49,EUR,17.00,8401.58,23/06/2026 00:00:00
-iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDFVDR63,EUR,17.00,3624.71,23/06/2026 00:00:00
+iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDFVDR63,EUR,17.00,3613.48,23/06/2026 00:00:00
 iShares Emerging Markets Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0836515980,USD,34.00,485.54,23/06/2026 00:00:00
 iShares € UltraShort Bond ESG SRI UCITS ETF,iShares IV plc,IE00BJP26D89,EUR,9.00,1339.45,23/06/2026 00:00:00
-iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000MNP86F4,EUR,19.00,5127.64,23/06/2026 00:00:00
+iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000MNP86F4,EUR,19.00,5100.30,23/06/2026 00:00:00
 iShares Global High Yield Corp Bond UCITS ETF,iShares plc,IE000KB8X7I9,USD,55.00,3135.00,23/06/2026 00:00:00
-iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000BY61XI5,CHF,17.00,1613.09,23/06/2026 00:00:00
+iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000BY61XI5,CHF,17.00,1611.87,23/06/2026 00:00:00
 iShares MSCI EM Latin America UCITS ETF,iShares II plc,IE000QZF7EX2,USD,20.00,2074.95,23/06/2026 00:00:00
-iShares iBonds Dec 2027 Term $ Corp UCITS ETF,iShares V plc,IE000I1Q42S9,USD,12.00,446.25,23/06/2026 00:00:00
 iShares US Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCQZ23,GBP,4.00,5653.20,23/06/2026 00:00:00
+iShares iBonds Dec 2027 Term $ Corp UCITS ETF,iShares V plc,IE000I1Q42S9,USD,12.00,446.25,23/06/2026 00:00:00
 iShares Euro Investment Grade Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3XPCW80,EUR,15.00,1906.86,23/06/2026 00:00:00
-iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD5D0B54,GBP,3.00,1427.14,23/06/2026 00:00:00
+iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD5D0B54,GBP,3.00,1410.00,23/06/2026 00:00:00
 iShares US Large Cap Moderate Buffer Mar UCITS ETF,iShares VI plc,IE000AY2ERH5,USD,50.00,17.80,23/06/2026 00:00:00
 iShares UK Foreign Focus UCITS ETF,iShares II plc,IE000GW6RB11,GBP,25.00,2.47,23/06/2026 00:00:00
 iShares iBonds Dec 2028 Term € Corp UCITS ETF,iShares V plc,IE0008UEVOE0,EUR,12.00,2435.15,23/06/2026 00:00:00
@@ -690,17 +690,17 @@ iShares iBonds Dec 2026 Term € Corp UCITS ETF,iShares V plc,IE000WA6L436,EUR,1
 iShares US Mortgage Backed Securities UCITS ETF,iShares IV plc,IE00BZ6V7883,USD,28.00,3971.68,23/06/2026 00:00:00
 iShares Japan Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091T33,GBP,6.00,1497.82,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BZ1NTF08,USD,23.00,3551.34,23/06/2026 00:00:00
-iShares € Green Bond UCITS ETF,iShares II plc,IE00BMDBMN04,EUR,20.00,139.97,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU1400680390,GBP,24.00,1775.61,23/06/2026 00:00:00
+iShares € Green Bond UCITS ETF,iShares II plc,IE00BMDBMN04,EUR,20.00,139.97,23/06/2026 00:00:00
 iShares Europe Domestic Focus UCITS ETF,iShares II plc,IE000P2CI9P3,EUR,25.00,10.24,23/06/2026 00:00:00
 iShares Edge S&P 500 Minimum Volatility UCITS ETF,iShares VI plc,IE00BYX8XD24,EUR,25.00,1821.24,23/06/2026 00:00:00
 iShares MSCI Pacific ex-Japan CTB Enhanced ESG UCITS ETF,iShares III plc,IE00BMDBMK72,USD,20.00,121.25,23/06/2026 00:00:00
 iShares US Large Cap Max Buffer Mar UCITS ETF,iShares VI plc,IE000INTB8Q8,USD,50.00,20.34,23/06/2026 00:00:00
-iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B7W1N443,USD,23.00,1570.69,23/06/2026 00:00:00
+iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B7W1N443,USD,23.00,1581.12,23/06/2026 00:00:00
 iShares S&P 500 Health Care Sector UCITS ETF,iShares V plc,IE00BMBKBZ46,EUR,18.00,2757.57,23/06/2026 00:00:00
 iShares S&P U.S. Banks UCITS ETF,iShares V plc,IE00043CMIN7,EUR,40.00,1017.76,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B62HNT07,GBP,16.00,29706.29,23/06/2026 00:00:00
-iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B89M2V73,USD,23.00,1570.69,23/06/2026 00:00:00
+iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B89M2V73,USD,23.00,1581.12,23/06/2026 00:00:00
 iShares Euro Government Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B4WXT857,EUR,13.00,87.20,23/06/2026 00:00:00
 iShares Global Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU3124424428,USD,10.00,1264.81,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B62WCL09,EUR,16.00,29706.29,23/06/2026 00:00:00
@@ -708,28 +708,28 @@ iShares MSCI USA Leaders UCITS ETF,iShares IV plc,IE000C5YJ791,USD,12.00,18.14,2
 iShares EMU Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3B2KT45,EUR,29.00,93.67,23/06/2026 00:00:00
 iShares MSCI USA Leaders UCITS ETF,iShares IV plc,IE0004OXDQN6,USD,12.00,18.14,23/06/2026 00:00:00
 iShares EMU Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3B2KS38,EUR,33.00,93.67,23/06/2026 00:00:00
-iShares Euro Credit Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1N7Z987,EUR,15.00,562.42,23/06/2026 00:00:00
+iShares Euro Credit Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1N7Z987,EUR,15.00,563.62,23/06/2026 00:00:00
 iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07K68,USD,32.00,10372.28,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07G23,USD,32.00,10301.01,23/06/2026 00:00:00
-iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B7MSLV86,EUR,17.00,792.75,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07G23,USD,32.00,10372.28,23/06/2026 00:00:00
+iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B7MSLV86,EUR,17.00,799.30,23/06/2026 00:00:00
 iShares Pacific Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B56H2V49,EUR,19.00,809.13,23/06/2026 00:00:00
 iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B78CT216,EUR,17.00,3125.10,23/06/2026 00:00:00
 iShares UK Domestic Focus UCITS ETF,iShares II plc,IE000KXMLOD6,GBP,25.00,2.56,23/06/2026 00:00:00
 iShares Japan Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B6RVWW34,EUR,17.00,2140.85,23/06/2026 00:00:00
 iShares Europe Foreign Focus UCITS ETF,iShares II plc,IE00078SFIQ6,EUR,25.00,10.48,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BLF0J488,GBP,23.00,3551.34,23/06/2026 00:00:00
+iShares Euro Investment Grade Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DTB36,SEK,3.00,1906.86,23/06/2026 00:00:00
 iShares iBonds Dec 2031 Term € Corp UCITS ETF,iShares V plc,IE000D9WMGF0,EUR,12.00,393.65,23/06/2026 00:00:00
-iShares Euro Investment Grade Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DTB36,SEK,3.00,1891.00,23/06/2026 00:00:00
 iShares iBonds Dec 2031 Term € Corp UCITS ETF,iShares V plc,IE000I2WYEU9,EUR,12.00,393.65,23/06/2026 00:00:00
-iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BM9G6X72,GBP,30.00,2151.55,23/06/2026 00:00:00
-iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DT800,SEK,3.00,4882.38,23/06/2026 00:00:00
-iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DT917,SEK,3.00,1340.68,23/06/2026 00:00:00
-iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDZS0987,EUR,8.00,3624.71,23/06/2026 00:00:00
+iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BM9G6X72,GBP,30.00,2145.75,23/06/2026 00:00:00
+iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DT800,SEK,3.00,4897.12,23/06/2026 00:00:00
+iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DT917,SEK,3.00,1336.38,23/06/2026 00:00:00
+iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDZS0987,EUR,8.00,3613.48,23/06/2026 00:00:00
 iShares Japan Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDRK7T12,EUR,15.00,2140.85,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYWYCF69,GBP,20.00,10301.01,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3C8NT28,USD,15.00,1989.09,23/06/2026 00:00:00
-iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDRK7P73,EUR,17.00,1570.69,23/06/2026 00:00:00
-iShares Pacific Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDRK7R97,EUR,15.00,818.15,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYWYCF69,GBP,20.00,10372.28,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3C8NT28,USD,15.00,1987.35,23/06/2026 00:00:00
+iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDRK7P73,EUR,17.00,1581.12,23/06/2026 00:00:00
+iShares Pacific Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDRK7R97,EUR,15.00,809.13,23/06/2026 00:00:00
 iShares Europe Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDRK7L36,EUR,10.00,214.30,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B62C5H76,GBP,16.00,29706.29,23/06/2026 00:00:00
 iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0004ZP1ND3,EUR,8.00,1611.87,23/06/2026 00:00:00
@@ -744,11 +744,11 @@ iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Irel
 iShares Essential Metals Producers UCITS ETF,iShares IV plc,IE000ROSD5J6,USD,55.00,986.43,23/06/2026 00:00:00
 iShares MSCI World Sector & Country Neutral Equal Weight UCITS ETF,iShares III plc,IE000Z1PCR88,USD,20.00,22.91,23/06/2026 00:00:00
 iShares MSCI Brazil UCITS ETF (DE),iShares (DE) I Investmentaktiengesellschaft mit TGV,DE000A0Q4R85,USD,27.00,4644.21,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000ZSEF059,USD,10.00,1989.09,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000ZSEF059,USD,10.00,1987.35,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000ZYRH0Q7,EUR,6.00,29706.29,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000QAZP7L2,EUR,16.00,10301.01,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000QAZP7L2,EUR,16.00,10372.28,23/06/2026 00:00:00
 iShares MSCI USA SRI UCITS ETF,iShares IV plc,IE000ATRYEA4,EUR,23.00,3964.86,23/06/2026 00:00:00
-iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000N4ZYX28,EUR,5.00,3624.71,23/06/2026 00:00:00
+iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000N4ZYX28,EUR,5.00,3613.48,23/06/2026 00:00:00
 iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000NWZMWU9,EUR,2.00,5100.30,23/06/2026 00:00:00
 iShares $ Floating Rate Bond UCITS ETF,iShares II plc,IE00BDDRDZ46,MXN,15.00,4899.00,23/06/2026 00:00:00
 iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0003IV3OJ8,USD,11.00,1581.12,23/06/2026 00:00:00
@@ -757,32 +757,32 @@ iShares Bitcoin ETP,iShares Digital Assets AG,XS2940466316,USD,15.00,1005.44,23/
 iShares Global Government Bond Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0965779233,EUR,19.00,1264.81,23/06/2026 00:00:00
 iShares $ Corp Bond ESG SRI​ UCITS ETF,iShares II plc,IE00BK4W7N32,USD,15.00,1857.69,23/06/2026 00:00:00
 iShares Core Global Aggregate Bond UCITS ETF,iShares III plc,IE00BYV3HN70,NZD,15.00,14350.05,23/06/2026 00:00:00
-iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU2060767121,USD,19.00,4785.06,23/06/2026 00:00:00
 iShares J.P. Morgan $ EM Bond UCITS ETF,iShares II plc,IE00BDDRH417,MXN,50.00,7988.11,23/06/2026 00:00:00
+iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU2060767121,USD,19.00,4785.06,23/06/2026 00:00:00
 iShares $ High Yield Corp Bond UCITS ETF,iShares II plc,IE00BDDRH961,MXN,55.00,5864.13,23/06/2026 00:00:00
 iShares $ Corp Bond ESG SRI​ UCITS ETF,iShares II plc,IE00BH4G7D40,EUR,17.00,1857.69,23/06/2026 00:00:00
 iShares Emerging Markets Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFK3MD02,GBP,19.00,4230.92,23/06/2026 00:00:00
 iShares $ Short Duration Corp Bond UCITS ETF,iShares IV plc,IE00BDDRH631,MXN,25.00,8627.09,23/06/2026 00:00:00
-iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BNG2TZ85,GBP,17.00,5127.64,23/06/2026 00:00:00
+iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BNG2TZ85,GBP,17.00,5100.30,23/06/2026 00:00:00
 iShares $ Treasury Bond 1-3yr UCITS ETF,iShares plc,IE00BDDRHB81,MXN,10.00,12390.54,23/06/2026 00:00:00
 iShares $ Corp Bond ESG SRI​ UCITS ETF,iShares II plc,IE000FZ1S3M3,EUR,17.00,1857.69,23/06/2026 00:00:00
 iShares U.S. Equity High Income Active UCITS ETF,iShares III plc,IE0007FM00T9,USD,35.00,69.05,23/06/2026 00:00:00
-iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPTWT46,EUR,35.00,1030.57,23/06/2026 00:00:00
+iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPTWT46,EUR,35.00,1038.24,23/06/2026 00:00:00
 iShares € Govt Bond 0-1yr UCITS ETF,iShares III plc,IE000WV38GP5,EUR,9.00,1230.70,23/06/2026 00:00:00
 iShares iBonds Dec 2032 Term € Corp UCITS ETF,iShares V plc,IE0000MR4GH9,EUR,12.00,234.01,23/06/2026 00:00:00
-iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPTWZ06,USD,20.00,1030.57,23/06/2026 00:00:00
+iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPTWZ06,USD,20.00,1038.24,23/06/2026 00:00:00
 iShares iBonds Dec 2032 Term € Corp UCITS ETF,iShares V plc,IE000I660ZF8,EUR,12.00,234.01,23/06/2026 00:00:00
 iShares U.S. Equity High Income Active UCITS ETF,iShares III plc,IE000WHL2ZK1,USD,35.00,69.05,23/06/2026 00:00:00
-iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0008Y8KAO6,EUR,14.00,1415.01,23/06/2026 00:00:00
+iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0008Y8KAO6,EUR,14.00,1410.00,23/06/2026 00:00:00
 iShares Fallen Angels High Yield Corp Bond UCITS ETF,iShares IV plc,IE00BYM31M36,USD,50.00,818.59,23/06/2026 00:00:00
 iShares NASDAQ 100 UCITS ETF,iShares VII plc,IE00BYVQ9F29,EUR,33.00,30020.74,23/06/2026 00:00:00
 iShares FTSE All World UCITS ETF,iShares II plc,IE00097WZHZ9,USD,12.00,29.51,23/06/2026 00:00:00
 iShares iBonds Dec 2032 Term $ Corp UCITS ETF,iShares V plc,IE00049LEBV0,USD,12.00,143.82,23/06/2026 00:00:00
 iShares iBonds Dec 2032 Term $ Corp UCITS ETF,iShares V plc,IE0007YBWBE5,USD,12.00,143.82,23/06/2026 00:00:00
-iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPTWX81,USD,10.00,1030.57,23/06/2026 00:00:00
+iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPTWX81,USD,10.00,1038.24,23/06/2026 00:00:00
 iShares Japan Dividend UCITS ETF,iShares II plc,IE000HT8JEW8,USD,25.00,10.07,23/06/2026 00:00:00
-iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPTWV67,EUR,35.00,1030.57,23/06/2026 00:00:00
-iShares Euro Corporate Bond ESG SRI Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJP12Y80,EUR,6.00,2296.29,23/06/2026 00:00:00
+iShares Emerging Market Screened Equity Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BKPTWV67,EUR,35.00,1038.24,23/06/2026 00:00:00
+iShares Euro Corporate Bond ESG SRI Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJP12Y80,EUR,6.00,2286.26,23/06/2026 00:00:00
 iShares World Equity High Income Active UCITS ETF,iShares III plc,IE000KJPDY61,USD,35.00,482.85,23/06/2026 00:00:00
 iShares Core UK Gilts UCITS ETF,iShares II plc,IE000PYIUPH0,EUR,9.00,4066.25,23/06/2026 00:00:00
 iShares World Equity High Income Active UCITS ETF,iShares III plc,IE0000P0RPE6,USD,35.00,482.85,23/06/2026 00:00:00
@@ -793,7 +793,7 @@ iShares MSCI EMU Mid Cap UCITS ETF,iShares IV plc,IE00BCLWRD08,EUR,49.00,557.97,
 iShares MSCI Saudi Arabia Capped UCITS ETF,iShares III plc,IE00BJ5JPJ87,USD,60.00,534.46,23/06/2026 00:00:00
 iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091933,GBP,12.00,6219.63,23/06/2026 00:00:00
 iShares Europe Defence UCITS ETF,iShares V plc,IE000IAXNM41,EUR,35.00,367.13,23/06/2026 00:00:00
-iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYVZVL92,EUR,3.00,1340.68,23/06/2026 00:00:00
+iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYVZVL92,EUR,3.00,1336.38,23/06/2026 00:00:00
 iShares STOXX Europe 600 UCITS ETF,iShares II plc,IE0004YCLDW1,EUR,7.00,7.75,23/06/2026 00:00:00
 iShares MSCI USA CTB Enhanced ESG UCITS ETF,iShares IV plc,IE000LZ4F7J0,GBP,10.00,28412.64,23/06/2026 00:00:00
 iShares € High Yield Corp Bond Enhanced Active UCITS ETF,iShares III plc,IE000CZJPCH1,EUR,30.00,21.18,23/06/2026 00:00:00
@@ -805,33 +805,33 @@ iShares $ Corp Bond ESG SRI​ UCITS ETF,iShares II plc,IE00BKKKWJ26,USD,15.00,1
 iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD8QG133,CHF,20.00,1087.12,23/06/2026 00:00:00
 iShares MSCI Europe Quality Dividend Advanced UCITS ETF,iShares II plc,IE000PYEKKW0,EUR,28.00,882.98,23/06/2026 00:00:00
 iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000CLK5V01,GBP,5.00,3125.10,23/06/2026 00:00:00
-iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0000L89XL9,GBP,5.00,3125.10,23/06/2026 00:00:00
 iShares MSCI Europe Quality Dividend Advanced UCITS ETF,iShares II plc,IE00BYYHSM20,EUR,28.00,882.98,23/06/2026 00:00:00
 iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DT578,EUR,20.00,1087.12,23/06/2026 00:00:00
+iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0000L89XL9,GBP,5.00,3125.10,23/06/2026 00:00:00
 iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD8QG463,USD,20.00,1087.12,23/06/2026 00:00:00
-iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD8QG026,CHF,20.00,1086.52,23/06/2026 00:00:00
-iShares Euro Corporate Bond ESG SRI Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000KDUZ5O6,EUR,15.00,2296.29,23/06/2026 00:00:00
+iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD8QG026,CHF,20.00,1087.12,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07J53,EUR,32.00,10372.28,23/06/2026 00:00:00
 iShares MSCI Japan SRI UCITS ETF,iShares IV plc,IE00BYX8XC17,USD,20.00,602.33,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07J53,EUR,32.00,10301.01,23/06/2026 00:00:00
+iShares Euro Corporate Bond ESG SRI Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000KDUZ5O6,EUR,15.00,2286.26,23/06/2026 00:00:00
 iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV49ZV53,GBP,3.00,2892.80,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07F16,EUR,32.00,10301.01,23/06/2026 00:00:00
-iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DT685,EUR,5.00,1086.52,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07F16,EUR,32.00,10372.28,23/06/2026 00:00:00
+iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DT685,EUR,5.00,1087.12,23/06/2026 00:00:00
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B62WG306,USD,16.00,29706.29,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07L75,GBP,32.00,10301.01,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07L75,GBP,32.00,10372.28,23/06/2026 00:00:00
 iShares $ TIPS 0-5 UCITS ETF,iShares II plc,IE000WIQIPT2,EUR,12.00,3515.14,23/06/2026 00:00:00
-iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07H30,GBP,32.00,10301.01,23/06/2026 00:00:00
-iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DT792,EUR,21.00,1086.52,23/06/2026 00:00:00
+iShares Emerging Markets Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B3D07H30,GBP,32.00,10372.28,23/06/2026 00:00:00
+iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD0DT792,EUR,21.00,1087.12,23/06/2026 00:00:00
 iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000FZW9C08,GBP,10.00,3295.43,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0000M1O857,EUR,17.00,3551.34,23/06/2026 00:00:00
 iShares MSCI EM SRI UCITS ETF,iShares IV plc,IE00BYVJRP78,USD,25.00,4160.84,23/06/2026 00:00:00
 iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000J7IEZK4,EUR,8.00,3295.43,23/06/2026 00:00:00
 iShares $ Corp Bond Interest Rate Hedged UCITS ETF,iShares plc,IE00BCLWRB83,USD,25.00,213.56,23/06/2026 00:00:00
 iShares Continental European Equity ESG Screened and Optimised Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091V54,GBP,5.00,1436.80,23/06/2026 00:00:00
-iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0875157702,EUR,22.00,4769.87,23/06/2026 00:00:00
+iShares World Equity Index Fund (LU),BlackRock (Luxembourg) S.A.,LU0875157702,EUR,22.00,4785.06,23/06/2026 00:00:00
 iShares MSCI EMU USD Hedged UCITS ETF (Acc),iShares VII plc,IE00BWZN1T31,USD,38.00,306.55,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000HOCKMW8,GBP,17.00,3551.34,23/06/2026 00:00:00
-iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091P94,GBP,13.00,3281.02,23/06/2026 00:00:00
-iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091N70,GBP,13.00,2892.80,23/06/2026 00:00:00
+iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091P94,GBP,13.00,3313.52,23/06/2026 00:00:00
+iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091N70,GBP,13.00,2894.79,23/06/2026 00:00:00
 iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091Q02,GBP,13.00,3281.02,23/06/2026 00:00:00
 iShares € Corp Bond ESG Paris-Aligned Climate UCITS ETF,iShares III plc,IE000ZX8CQG2,EUR,15.00,1145.86,23/06/2026 00:00:00
 iShares € Corp Bond ESG Paris-Aligned Climate UCITS ETF,iShares III plc,IE000SE6KPV2,EUR,15.00,1145.86,23/06/2026 00:00:00
@@ -839,12 +839,12 @@ iShares MSCI EM ex-China UCITS ETF,iShares IV plc,IE000W8RYVC0,USD,18.00,7311.67
 iShares OMX Stockholm Capped UCITS ETF,iShares IV plc,IE00BD3RYZ16,SEK,10.00,2075.48,23/06/2026 00:00:00
 iShares $ Treasury Bond 3-7yr UCITS ETF,iShares VII plc,IE0000U2ASV9,GBP,10.00,10795.21,23/06/2026 00:00:00
 iShares MSCI World Swap UCITS ETF,iShares VI plc,IE0002VEN3U3,EUR,12.00,2100.28,23/06/2026 00:00:00
+iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B58Z2382,GBP,21.00,2894.79,23/06/2026 00:00:00
 iShares $ Ultrashort Bond UCITS ETF,iShares IV plc,IE00BMWB9302,MXN,12.00,2453.60,23/06/2026 00:00:00
-iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00B58Z2382,GBP,21.00,2892.80,23/06/2026 00:00:00
 iShares Global Corp Bond UCITS ETF,iShares plc,IE00BJSFQW37,EUR,25.00,4382.08,23/06/2026 00:00:00
 iShares Core Global Aggregate Bond UCITS ETF,iShares III plc,IE000FHBZDZ8,USD,10.00,14350.05,23/06/2026 00:00:00
 iShares J.P. Morgan $ EM Bond UCITS ETF,iShares II plc,IE000X1JN6A2,SGD,50.00,7988.11,23/06/2026 00:00:00
-iShares Europe Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B4K9F548,EUR,31.00,212.97,23/06/2026 00:00:00
+iShares Europe Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B4K9F548,EUR,31.00,214.30,23/06/2026 00:00:00
 iShares iBonds Dec 2028 Term € Italy Govt Bond UCITS ETF,iShares V plc,IE000Q2EQ5K8,EUR,12.00,14.37,23/06/2026 00:00:00
 iShares US Mortgage Backed Securities UCITS ETF,iShares IV plc,IE00BMWB9419,MXN,30.00,3971.68,23/06/2026 00:00:00
 iShares MSCI World Swap UCITS ETF,iShares VI plc,IE000F9IDGB5,USD,12.00,2100.28,23/06/2026 00:00:00
@@ -853,22 +853,22 @@ iShares $ Treasury Bond 7-10yr UCITS ETF,iShares II plc,IE00BMWB9294,MXN,10.00,7
 iShares $ Treasury Bond 20+yr UCITS ETF,iShares IV plc,IE00BMWB9526,MXN,10.00,5765.61,23/06/2026 00:00:00
 iShares € Corp Bond Financials UCITS ETF,iShares VI plc,IE00B87RLX93,EUR,20.00,483.59,23/06/2026 00:00:00
 iShares iBonds Dec 2029 Term $ Treasury UCITS ETF,iShares V plc,IE00076HZIP3,USD,10.00,17.67,23/06/2026 00:00:00
-iShares GiltTrak Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0009N6IG93,GBP,3.00,643.61,23/06/2026 00:00:00
+iShares GiltTrak Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0009N6IG93,GBP,3.00,645.63,23/06/2026 00:00:00
 iShares iBonds Dec 2034 Term € Corp UCITS ETF,iShares V plc,IE000SBJO6L2,EUR,12.00,130.19,23/06/2026 00:00:00
 iShares iBonds Dec 2026 Term € Italy Govt Bond UCITS ETF,iShares V plc,IE000LZ7BZW8,EUR,12.00,9.69,23/06/2026 00:00:00
 iShares iBonds Dec 2034 Term € Corp UCITS ETF,iShares V plc,IE000UY6XF65,EUR,12.00,130.19,23/06/2026 00:00:00
 iShares € High Yield Corp Bond UCITS ETF,iShares plc,IE000GE2BEZ9,USD,55.00,7463.49,23/06/2026 00:00:00
-iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJD859,GBP,11.00,3281.02,23/06/2026 00:00:00
+iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJD859,GBP,11.00,3313.52,23/06/2026 00:00:00
 iShares iBonds Dec 2033 Term € Corp UCITS ETF,iShares V plc,IE000E0NL9T3,EUR,12.00,99.30,23/06/2026 00:00:00
 iShares Core € Corp Bond UCITS ETF,iShares III plc,IE000WYX67F4,USD,11.00,14124.47,23/06/2026 00:00:00
 iShares UK Gilts All Stocks Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJDD09,GBP,11.00,6853.72,23/06/2026 00:00:00
 iShares € High Yield Corp Bond UCITS ETF,iShares plc,IE000KJVA5F6,GBP,55.00,7463.49,23/06/2026 00:00:00
 iShares Index Linked Gilt Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJDG30,GBP,11.00,1334.60,23/06/2026 00:00:00
 iShares iBonds Dec 2030 Term $ Corp UCITS ETF,iShares V plc,IE000BZXJJ24,USD,12.00,653.23,23/06/2026 00:00:00
-iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJCN32,GBP,18.00,6219.63,23/06/2026 00:00:00
-iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV49ZR18,GBP,3.00,3281.02,23/06/2026 00:00:00
+iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJCN32,GBP,18.00,6265.66,23/06/2026 00:00:00
+iShares Overseas Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV49ZR18,GBP,2.00,3313.52,23/06/2026 00:00:00
 iShares iBonds Dec 2033 Term $ Corp UCITS ETF,iShares V plc,IE000LETV955,USD,12.00,80.76,23/06/2026 00:00:00
-iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJD529,GBP,11.00,2892.80,23/06/2026 00:00:00
+iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJD529,GBP,11.00,2894.79,23/06/2026 00:00:00
 iShares iBonds Dec 2033 Term $ Corp UCITS ETF,iShares V plc,IE000K44CW70,USD,12.00,80.76,23/06/2026 00:00:00
 iShares iBonds Dec 2027 Term $ Treasury UCITS ETF,iShares V plc,IE0006UGU3X3,USD,10.00,35.58,23/06/2026 00:00:00
 iShares ESG Screened Overseas Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJD743,GBP,11.00,2892.80,23/06/2026 00:00:00
@@ -878,24 +878,24 @@ iShares UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJDB84,GBP,5
 iShares UK Gilts All Stocks Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJDF23,GBP,11.00,6853.72,23/06/2026 00:00:00
 iShares Global High Yield Corp Bond UCITS ETF,iShares plc,IE00091SR7N7,EUR,55.00,3135.00,23/06/2026 00:00:00
 iShares iBonds Dec 2029 Term $ Corp UCITS ETF,iShares V plc,IE000Y247W99,USD,12.00,604.92,23/06/2026 00:00:00
-iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJCF57,GBP,18.00,6219.63,23/06/2026 00:00:00
+iShares Environment & Low Carbon Tilt Real Estate Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJCF57,GBP,18.00,6265.66,23/06/2026 00:00:00
 iShares J.P. Morgan $ EM Corp Bond UCITS ETF,iShares V plc,IE000D352U62,GBP,53.00,3233.41,23/06/2026 00:00:00
 iShares iBonds Dec 2029 Term € Corp UCITS ETF,iShares V plc,IE000IHURBR0,EUR,12.00,882.38,23/06/2026 00:00:00
 iShares € Corp Bond 1-5yr UCITS ETF,iShares III plc,IE000XFCOS45,USD,25.00,4628.53,23/06/2026 00:00:00
-iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJD412,GBP,7.00,18284.02,23/06/2026 00:00:00
+iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BPFJD412,GBP,7.00,17879.61,23/06/2026 00:00:00
 iShares € Corp Bond 1-5yr UCITS ETF,iShares III plc,IE000WY37YU4,GBP,25.00,4628.53,23/06/2026 00:00:00
 iShares Core MSCI Japan IMI UCITS ETF,iShares III plc,IE00BFM15T99,USD,12.00,8401.58,23/06/2026 00:00:00
 iShares MSCI Japan SRI UCITS ETF,iShares IV plc,IE00BGDQ0V72,USD,20.00,602.33,23/06/2026 00:00:00
 iShares € Corp Bond 1-5yr UCITS ETF,iShares III plc,IE0009XKZC98,USD,25.00,4628.53,23/06/2026 00:00:00
-iShares MSCI USA SRI UCITS ETF,iShares IV plc,IE00BMWPV470,GBP,23.00,3964.86,23/06/2026 00:00:00
 iShares MSCI Europe SRI UCITS ETF,iShares II plc,IE00BGDPWW94,EUR,20.00,3508.64,23/06/2026 00:00:00
+iShares MSCI USA SRI UCITS ETF,iShares IV plc,IE00BMWPV470,GBP,23.00,3964.86,23/06/2026 00:00:00
 iShares MSCI EM SRI UCITS ETF,iShares IV plc,IE00BGDQ0T50,USD,25.00,4160.84,23/06/2026 00:00:00
-iShares MSCI USA SRI UCITS ETF,iShares IV plc,IE00BZ173T46,USD,20.00,3964.86,23/06/2026 00:00:00
 iShares Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BKF2KH76,GBP,11.00,4271.34,23/06/2026 00:00:00
+iShares MSCI USA SRI UCITS ETF,iShares IV plc,IE00BZ173T46,USD,20.00,3964.86,23/06/2026 00:00:00
 iShares $ Corp Bond ESG SRI​ UCITS ETF,iShares II plc,IE00BMWPV702,GBP,17.00,1857.69,23/06/2026 00:00:00
 iShares Core S&P 500 UCITS ETF,iShares VII plc,IE00BD8KRH84,GBP,10.00,152658.78,23/06/2026 00:00:00
 iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYZ8K068,GBP,15.00,5100.30,23/06/2026 00:00:00
-iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYZ8K175,USD,15.00,5127.64,23/06/2026 00:00:00
+iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BYZ8K175,USD,15.00,5100.30,23/06/2026 00:00:00
 iShares Global High Yield Corp Bond UCITS ETF,iShares plc,IE00BJSFQX44,GBP,55.00,3135.00,23/06/2026 00:00:00
 iShares Global High Yield Corp Bond UCITS ETF,iShares plc,IE00BJSFR200,EUR,55.00,3135.00,23/06/2026 00:00:00
 iShares MSCI World Quality Dividend Advanced UCITS ETF,iShares II plc,IE00BYYHSQ67,USD,38.00,2070.85,23/06/2026 00:00:00
@@ -907,19 +907,19 @@ iShares USD Sukuk Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0
 iShares Asia ex Japan Equity Enhanced Active UCITS ETF,iShares III plc,IE000D5R9C23,USD,30.00,105.60,23/06/2026 00:00:00
 iShares World Equity Enhanced Active UCITS ETF,iShares III plc,IE000D8XC064,USD,30.00,2338.44,23/06/2026 00:00:00
 iShares $ Floating Rate Bond UCITS ETF,iShares II plc,IE00BF11F458,EUR,12.00,4899.00,23/06/2026 00:00:00
-iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD575G75,EUR,8.00,3239.06,23/06/2026 00:00:00
+iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BD575G75,EUR,8.00,3125.10,23/06/2026 00:00:00
 iShares Europe Equity Enhanced Active UCITS ETF,iShares III plc,IE00000EF730,EUR,25.00,554.91,23/06/2026 00:00:00
 iShares Emerging Markets Equity Enhanced Active UCITS ETF,iShares III plc,IE000OVF8Q66,USD,30.00,1608.98,23/06/2026 00:00:00
 iShares Global Corp Bond UCITS ETF,iShares plc,IE00BF3N6Z78,USD,25.00,4382.08,23/06/2026 00:00:00
 iShares MSCI USA Quality Dividend Advanced UCITS ETF,iShares II plc,IE000D6810F1,USD,35.00,743.59,23/06/2026 00:00:00
 iShares iBonds Dec 2034 Term $ Corp UCITS ETF,iShares V plc,IE000RC18FG8,USD,12.00,182.70,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0005JGQ5P6,EUR,3.00,1989.09,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0005JGQ5P6,EUR,3.00,1987.35,23/06/2026 00:00:00
 iShares MSCI Saudi Arabia Capped UCITS ETF,iShares III plc,IE00BYYR0489,USD,60.00,534.46,23/06/2026 00:00:00
 iShares Broad € High Yield Corp Bond UCITS ETF,iShares III plc,IE000RKSAPB9,USD,22.00,353.23,23/06/2026 00:00:00
 iShares iBonds Dec 2034 Term $ Corp UCITS ETF,iShares V plc,IE000VVBM1F6,USD,12.00,182.70,23/06/2026 00:00:00
-iShares Global Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV4B0K53,GBP,,,23/06/2026 00:00:00
-iShares Smart City Infrastructure UCITS ETF,iShares IV plc,IE00BKTLJB70,USD,40.00,476.48,23/06/2026 00:00:00
+iShares Global Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV4B0K53,GBP,13.00,,23/06/2026 00:00:00
 iShares 350 UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BCDPB465,GBP,21.00,924.81,23/06/2026 00:00:00
+iShares Smart City Infrastructure UCITS ETF,iShares IV plc,IE00BKTLJB70,USD,40.00,476.48,23/06/2026 00:00:00
 iShares Smart City Infrastructure UCITS ETF,iShares IV plc,IE00BKTLJC87,USD,40.00,476.48,23/06/2026 00:00:00
 iShares 350 UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BCDPB572,GBP,21.00,924.81,23/06/2026 00:00:00
 iShares € Overnight Rate Swap UCITS ETF,iShares VI plc,IE0005RKXDO7,EUR,10.00,6.12,23/06/2026 00:00:00
@@ -930,44 +930,44 @@ iShares Broad Global Govt Bond UCITS ETF,iShares III plc,IE000XFP47S2,EUR,13.00,
 iShares MSCI Europe Paris-Aligned Climate UCITS ETF,iShares II plc,IE00BL6K8C82,EUR,15.00,200.34,23/06/2026 00:00:00
 iShares € Green Bond UCITS ETF,iShares II plc,IE000IZO7033,EUR,20.00,139.97,23/06/2026 00:00:00
 iShares S&P 500 Swap UCITS ETF,iShares VI plc,IE000Z3S26J2,EUR,5.00,16488.37,23/06/2026 00:00:00
-iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFG1TS24,GBP,17.00,5127.64,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJN4RJ97,EUR,10.00,4369.47,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJN4RG66,EUR,14.00,4369.47,23/06/2026 00:00:00
+iShares Developed World Screened Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFG1TS24,GBP,17.00,5100.30,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJN4RJ97,EUR,10.00,4341.42,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJN4RG66,EUR,14.00,4341.42,23/06/2026 00:00:00
 iShares Japan Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BL1GW748,JPY,17.00,2140.85,23/06/2026 00:00:00
-iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BL1GW631,GBP,17.00,792.75,23/06/2026 00:00:00
+iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BL1GW631,GBP,17.00,799.30,23/06/2026 00:00:00
 iShares World Equity Factor Rotation Active UCITS ETF,iShares III plc,IE0009Y1MQJ2,USD,30.00,257.59,23/06/2026 00:00:00
 iShares MSCI EMU Paris-Aligned Climate UCITS ETF,iShares VII plc,IE00BL6K8D99,EUR,15.00,2262.92,23/06/2026 00:00:00
-iShares Core Global Aggregate Bond UCITS ETF,iShares III plc,IE00BMGNVD65,USD,10.00,14350.05,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJN4RF59,GBP,14.00,4369.47,23/06/2026 00:00:00
 iShares Inclusion and Diversity UCITS ETF,iShares IV plc,IE00BD0B9B76,USD,25.00,61.26,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJN4RF59,GBP,14.00,4341.42,23/06/2026 00:00:00
+iShares Core Global Aggregate Bond UCITS ETF,iShares III plc,IE00BMGNVD65,USD,10.00,14350.05,23/06/2026 00:00:00
 iShares € Govt Bond Climate UCITS ETF,iShares III plc,IE000M9FJ295,GBP,12.00,2580.78,23/06/2026 00:00:00
 iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJN4S634,GBP,3.00,4341.42,23/06/2026 00:00:00
 iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJN4RH73,USD,15.00,4341.42,23/06/2026 00:00:00
 iShares India INR Govt Bond UCITS ETF,iShares IV plc,IE000ANOU8J3,USD,35.00,32.85,23/06/2026 00:00:00
 iShares S&P 500 Swap UCITS ETF,iShares VI plc,IE0001OGLP52,GBP,5.00,16488.37,23/06/2026 00:00:00
-iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BL1GW524,EUR,7.00,792.75,23/06/2026 00:00:00
+iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BL1GW524,EUR,7.00,799.30,23/06/2026 00:00:00
 iShares $ UltraShort Bond ESG SRI UCITS ETF,iShares IV plc,IE0005QL4147,USD,9.00,27.34,23/06/2026 00:00:00
 iShares $ Corp Bond 0-3Yr ESG SRI UCITS ETF,iShares II plc,IE00098ZGGO6,USD,12.00,1285.35,23/06/2026 00:00:00
 iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BL6KD459,EUR,10.00,3125.10,23/06/2026 00:00:00
 iShares MSCI Japan USD Hedged UCITS ETF (Acc),iShares plc,IE00BCLWRG39,USD,64.00,594.88,23/06/2026 00:00:00
 iShares Edge S&P 500 Minimum Volatility UCITS ETF,iShares VI plc,IE00B6SPMN59,USD,20.00,1821.24,23/06/2026 00:00:00
-iShares $ Corp Bond UCITS ETF,iShares plc,IE00BDFK3736,GBP,25.00,9499.27,23/06/2026 00:00:00
 iShares Global High Yield Corp Bond CHF Hedged UCITS ETF (Dist),iShares VI plc,IE00B988C465,CHF,55.00,176.86,23/06/2026 00:00:00
+iShares $ Corp Bond UCITS ETF,iShares plc,IE00BDFK3736,GBP,25.00,9499.27,23/06/2026 00:00:00
 iShares Edge MSCI World Minimum Volatility UCITS ETF,iShares VI plc,IE00B8FHGS14,USD,30.00,2882.00,23/06/2026 00:00:00
 iShares Edge MSCI Europe Minimum Volatility UCITS ETF,iShares VI plc,IE00B86MWN23,EUR,25.00,887.31,23/06/2026 00:00:00
 iShares Edge MSCI EM Minimum Volatility UCITS ETF,iShares VI plc,IE00B8KGV557,USD,40.00,430.80,23/06/2026 00:00:00
 iShares J.P. Morgan $ EM Bond UCITS ETF,iShares II plc,IE00BDFGJ734,GBP,50.00,7988.11,23/06/2026 00:00:00
 iShares USD Sukuk Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000RAHCAJ4,GBP,3.00,139.76,23/06/2026 00:00:00
-iShares Global Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV4B0N84,GBP,,,23/06/2026 00:00:00
-iShares Global Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV4B0M77,GBP,,,23/06/2026 00:00:00
+iShares Global Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV4B0N84,GBP,10.00,,23/06/2026 00:00:00
+iShares Global Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV4B0M77,GBP,8.00,,23/06/2026 00:00:00
 iShares MSCI France UCITS ETF,iShares IV plc,IE00BP3QZJ36,EUR,25.00,204.05,23/06/2026 00:00:00
 iShares MSCI World Islamic UCITS ETF,iShares II plc,IE00B27YCN58,USD,30.00,1453.34,23/06/2026 00:00:00
-iShares Global Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV4B0P09,GBP,,,23/06/2026 00:00:00
+iShares Global Government Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV4B0P09,GBP,3.00,,23/06/2026 00:00:00
 iShares MSCI USA Islamic UCITS ETF,iShares II plc,IE00B296QM64,USD,30.00,480.02,23/06/2026 00:00:00
 iShares MSCI EM Islamic UCITS ETF,iShares II plc,IE00B27YCP72,USD,35.00,861.18,23/06/2026 00:00:00
 iShares € Corp Bond Enhanced Active UCITS ETF,iShares III plc,IE000BUIVY49,EUR,20.00,86.13,23/06/2026 00:00:00
 iShares $ Corp Bond Enhanced Active UCITS ETF,iShares III plc,IE000RJL5A30,USD,20.00,40.23,23/06/2026 00:00:00
-iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000FRSK426,SEK,12.00,4882.38,23/06/2026 00:00:00
+iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000FRSK426,SEK,12.00,4897.12,23/06/2026 00:00:00
 iShares MSCI China UCITS ETF,iShares IV plc,IE00BJ5JPG56,USD,28.00,3111.54,23/06/2026 00:00:00
 iShares € Govt Bond 1-3yr UCITS ETF EUR (Acc),iShares VII plc,IE00B3VTMJ91,EUR,15.00,2272.65,23/06/2026 00:00:00
 iShares Global AAA-AA Govt Bond UCITS ETF,iShares VI plc,IE00B87G8S03,USD,20.00,240.34,23/06/2026 00:00:00
@@ -976,8 +976,8 @@ iShares € Govt Bond 7-10yr UCITS ETF EUR (Acc),iShares VII plc,IE00B3VTN290,EU
 iShares S&P 500 Communication Sector UCITS ETF,iShares V plc,IE00BDDRF478,USD,15.00,1222.18,23/06/2026 00:00:00
 iShares Broad $ Corp Bond UCITS ETF,iShares III plc,IE0003LGI4Z6,USD,7.00,34.07,23/06/2026 00:00:00
 iShares MSCI UK Small Cap UCITS ETF,iShares VII plc,IE00B3VWLG82,GBP,58.00,95.24,23/06/2026 00:00:00
-iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000CW2NLR8,USD,17.00,201.65,23/06/2026 00:00:00
-iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00058RY3Y6,USD,5.00,201.65,23/06/2026 00:00:00
+iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000CW2NLR8,USD,17.00,201.38,23/06/2026 00:00:00
+iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00058RY3Y6,USD,5.00,201.38,23/06/2026 00:00:00
 iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000VJMUIV7,USD,20.00,201.38,23/06/2026 00:00:00
 iShares US Medical Devices UCITS ETF,iShares V plc,IE00BMX0DF60,USD,25.00,151.77,23/06/2026 00:00:00
 iShares S&P 500 Swap UCITS ETF,iShares VI plc,IE000D3BWBR2,USD,5.00,16488.37,23/06/2026 00:00:00
@@ -992,7 +992,7 @@ iShares MSCI EMU Small Cap UCITS ETF,iShares VII plc,IE00B3VWMM18,EUR,58.00,947.
 iShares iBonds Dec 2037 Term $ Corp UCITS ETF,iShares V plc,IE00002QW7P5,USD,12.00,15.21,23/06/2026 00:00:00
 iShares Healthcare Innovation UCITS ETF,iShares IV plc,IE00BYZK4776,USD,40.00,999.69,23/06/2026 00:00:00
 iShares Digitalisation UCITS ETF,iShares IV plc,IE00BYZK4883,USD,40.00,715.94,23/06/2026 00:00:00
-iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000720VRP1,USD,15.00,201.65,23/06/2026 00:00:00
+iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000720VRP1,USD,15.00,201.38,23/06/2026 00:00:00
 iShares Ageing Population UCITS ETF,iShares IV plc,IE00BYZK4669,USD,40.00,806.65,23/06/2026 00:00:00
 iShares iBonds Dec 2037 Term $ Corp UCITS ETF,iShares V plc,IE00004OA765,USD,12.00,15.21,23/06/2026 00:00:00
 iShares Automation & Robotics UCITS ETF,iShares IV plc,IE00BYZK4552,USD,40.00,5510.39,23/06/2026 00:00:00
@@ -1009,10 +1009,10 @@ iShares iBonds Dec 2036 Term € Corp UCITS ETF,iShares V plc,IE000AD2AYN2,EUR,1
 iShares AEX UCITS ETF,iShares plc,IE00BMTX2B82,EUR,30.00,835.20,23/06/2026 00:00:00
 iShares iBonds Dec 2036 Term € Corp UCITS ETF,iShares V plc,IE000RQJBQI6,EUR,12.00,21.89,23/06/2026 00:00:00
 iShares € Govt Bond 0-1yr UCITS ETF,iShares III plc,IE00BMVJSC76,MXN,9.00,1230.70,23/06/2026 00:00:00
-iShares S&P 500 Equal Weight Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCS347,GBP,14.00,252.00,23/06/2026 00:00:00
+iShares S&P 500 Equal Weight Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCS347,GBP,14.00,250.00,23/06/2026 00:00:00
 iShares Core € Corp Bond UCITS ETF,iShares III plc,IE00093GOJ04,USD,11.00,14124.47,23/06/2026 00:00:00
 iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BF2MW460,USD,17.00,1613.09,23/06/2026 00:00:00
-iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BF2MW791,USD,22.00,1613.09,23/06/2026 00:00:00
+iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BF2MW791,USD,22.00,1611.87,23/06/2026 00:00:00
 iShares Core £ Corp Bond UCITS ETF,iShares plc,IE000H22E3N8,EUR,25.00,1390.93,23/06/2026 00:00:00
 iShares Core £ Corp Bond UCITS ETF,iShares plc,IE000UCFZI88,USD,25.00,1390.93,23/06/2026 00:00:00
 iShares MSCI World Financials Sector Advanced UCITS ETF,iShares V plc,IE00BJ5JP097,USD,18.00,142.02,23/06/2026 00:00:00
@@ -1058,32 +1058,32 @@ iShares $ Corp Bond 0-3Yr ESG SRI UCITS ETF,iShares II plc,IE00BG5QQ390,EUR,14.0
 iShares € Flexible Income Bond Active UCITS ETF,iShares III plc,IE00095FLAP4,USD,42.00,290.79,23/06/2026 00:00:00
 iShares Edge MSCI Europe Value Factor UCITS ETF,iShares IV plc,IE00BQN1K901,EUR,25.00,2652.71,23/06/2026 00:00:00
 iShares € Ultrashort Bond UCITS ETF,iShares IV plc,IE000RHYOR04,EUR,9.00,5942.82,23/06/2026 00:00:00
-iShares Euro Credit Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0031080645,EUR,15.00,562.42,23/06/2026 00:00:00
-iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0031080868,EUR,13.00,4882.38,23/06/2026 00:00:00
+iShares Euro Credit Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0031080645,EUR,15.00,563.62,23/06/2026 00:00:00
+iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0031080868,EUR,13.00,4897.12,23/06/2026 00:00:00
 iShares Edge MSCI USA Value Factor UCITS ETF,iShares IV plc,IE00BFF5RX68,USD,20.00,5147.56,23/06/2026 00:00:00
-iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0001197916,EUR,2.00,3280.39,23/06/2026 00:00:00
-iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0007DDUVE7,SGD,3.00,1415.01,23/06/2026 00:00:00
-iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W56Q79,EUR,17.00,3280.39,23/06/2026 00:00:00
+iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0001197916,EUR,2.00,3295.43,23/06/2026 00:00:00
+iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0007DDUVE7,SGD,3.00,1410.00,23/06/2026 00:00:00
+iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W56Q79,EUR,17.00,3295.43,23/06/2026 00:00:00
 iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B0407Y83,EUR,2.00,3295.43,23/06/2026 00:00:00
 iShares Edge MSCI USA Momentum Factor UCITS ETF,iShares IV plc,IE00BFF5RZ82,USD,20.00,764.62,23/06/2026 00:00:00
 iShares Edge MSCI USA Quality Factor UCITS ETF,iShares IV plc,IE00BF2QSQ20,USD,20.00,2187.78,23/06/2026 00:00:00
-iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000EX26BP5,SGD,3.00,4882.38,23/06/2026 00:00:00
+iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000EX26BP5,SGD,3.00,4897.12,23/06/2026 00:00:00
 iShares STOXX Europe Equity Multifactor UCITS ETF,iShares IV plc,IE00BG13YL86,EUR,25.00,785.98,23/06/2026 00:00:00
-iShares Europe Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B4L8GV30,USD,30.00,212.97,23/06/2026 00:00:00
+iShares Europe Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B4L8GV30,USD,30.00,214.30,23/06/2026 00:00:00
 iShares Europe ex-UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W56P62,EUR,17.00,3295.43,23/06/2026 00:00:00
 iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0004XHEGT6,GBP,19.00,1581.12,23/06/2026 00:00:00
 iShares BIC 50 UCITS ETF,iShares II plc,IE00B1W57M07,USD,74.00,115.24,23/06/2026 00:00:00
 iShares Edge S&P 500 Minimum Volatility UCITS ETF,iShares VI plc,IE00BD93YH54,USD,20.00,1821.24,23/06/2026 00:00:00
-iShares 100 UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BYW2JY82,GBP,21.00,883.00,23/06/2026 00:00:00
+iShares 100 UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BYW2JY82,GBP,20.00,883.00,23/06/2026 00:00:00
 iShares GiltTrak Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0007410420,GBP,13.00,645.63,23/06/2026 00:00:00
 iShares Japan Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W56M32,USD,17.00,2140.85,23/06/2026 00:00:00
-iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W56K18,USD,17.00,3239.06,23/06/2026 00:00:00
+iShares North America Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W56K18,USD,17.00,3125.10,23/06/2026 00:00:00
 iShares Edge MSCI World Quality Factor UCITS ETF,iShares IV plc,IE00BP3QZ601,USD,25.00,5490.00,23/06/2026 00:00:00
 iShares STOXX USA Equity Multifactor UCITS ETF,iShares IV plc,IE00BG13YZ23,USD,20.00,114.40,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000L5DHVW2,GBP,10.00,4369.47,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000L5DHVW2,GBP,10.00,4341.42,23/06/2026 00:00:00
 iShares Green Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000RIFQ564,EUR,18.00,1087.12,23/06/2026 00:00:00
-iShares Mid Cap UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BYW2K127,GBP,21.00,280.65,23/06/2026 00:00:00
 iShares Edge MSCI World Value Factor UCITS ETF,iShares IV plc,IE00BP3QZB59,USD,25.00,7896.84,23/06/2026 00:00:00
+iShares Mid Cap UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BYW2K127,GBP,21.00,275.66,23/06/2026 00:00:00
 iShares China CNY Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000WV9SR42,GBP,17.00,201.38,23/06/2026 00:00:00
 iShares UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BYW2K341,GBP,21.00,15108.01,23/06/2026 00:00:00
 iShares Edge MSCI World Momentum Factor UCITS ETF,iShares IV plc,IE00BP3QZ825,USD,25.00,5730.37,23/06/2026 00:00:00
@@ -1100,17 +1100,17 @@ iShares Japan Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00015
 iShares $ Floating Rate Bond UCITS ETF,iShares II plc,IE00BZ048462,USD,10.00,4899.00,23/06/2026 00:00:00
 iShares Ultra High Quality Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B4XCK338,EUR,13.00,220.99,23/06/2026 00:00:00
 iShares US Mortgage Backed Securities UCITS ETF,iShares IV plc,IE000EEJLWG1,EUR,30.00,3971.68,23/06/2026 00:00:00
-iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W56R86,GBP,17.00,792.75,23/06/2026 00:00:00
+iShares UK Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W56R86,GBP,17.00,799.30,23/06/2026 00:00:00
 iShares iBonds Dec 2026 Term $ Corp UCITS ETF,iShares V plc,IE000KM34187,GBP,15.00,723.74,23/06/2026 00:00:00
 iShares US Aggregate Bond UCITS ETF,iShares II plc,IE00093SKUY4,EUR,30.00,6018.59,23/06/2026 00:00:00
 iShares MSCI World Small Cap CTB Enhanced ESG UCITS ETF,iShares III plc,IE000T9EOCL3,USD,35.00,436.18,23/06/2026 00:00:00
 iShares Edge MSCI Europe Quality Factor UCITS ETF,iShares IV plc,IE00BG13YG34,EUR,25.00,772.77,23/06/2026 00:00:00
-iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W4R501,USD,15.00,1340.68,23/06/2026 00:00:00
+iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W4R501,USD,15.00,1336.38,23/06/2026 00:00:00
 iShares $ EM Bond Active UCITS ETF,iShares III plc,IE000D9S4LT3,USD,45.00,26.44,23/06/2026 00:00:00
 iShares Edge MSCI Europe Value Factor UCITS ETF,iShares IV plc,IE00BG13YH41,EUR,25.00,2652.71,23/06/2026 00:00:00
 iShares Edge MSCI Europe Minimum Volatility UCITS ETF,iShares VI plc,IE00BG13YK79,EUR,25.00,887.31,23/06/2026 00:00:00
 iShares $ Treasury Bond 20+yr UCITS ETF,iShares IV plc,IE00BSKRJZ44,USD,7.00,5765.61,23/06/2026 00:00:00
-iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W4R493,USD,15.00,1415.01,23/06/2026 00:00:00
+iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W4R493,USD,15.00,1410.00,23/06/2026 00:00:00
 iShares US Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00B1W56J03,USD,17.00,3613.48,23/06/2026 00:00:00
 iShares iBonds Dec 2028 Term $ Corp UCITS ETF,iShares V plc,IE000VVQWC23,GBP,15.00,1366.57,23/06/2026 00:00:00
 iShares Global Aggregate Bond ESG SRI UCITS ETF,iShares III plc,IE000ZXYID24,GBP,10.00,4659.58,23/06/2026 00:00:00
@@ -1149,7 +1149,7 @@ iShares $ Treasury Bond 7-10yr UCITS ETF USD (Acc),iShares VII plc,IE00B3VWN518,
 iShares $ Treasury Bond 3-7yr UCITS ETF,iShares VII plc,IE00B3VWN393,USD,7.00,10795.21,23/06/2026 00:00:00
 iShares Agribusiness UCITS ETF,iShares V plc,IE00B6R52143,USD,55.00,454.63,23/06/2026 00:00:00
 iShares Global Timber & Forestry UCITS ETF,iShares II plc,IE0003ZXNJY5,USD,65.00,85.33,23/06/2026 00:00:00
-iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000XJ730F3,CHF,3.00,1415.01,23/06/2026 00:00:00
+iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000XJ730F3,CHF,3.00,1410.00,23/06/2026 00:00:00
 iShares MSCI World Health Care Sector Advanced UCITS ETF,iShares V plc,IE0009QS7W62,USD,18.00,890.33,23/06/2026 00:00:00
 iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BFYB7576,CHF,22.00,1611.87,23/06/2026 00:00:00
 iShares Fallen Angels High Yield Corp Bond UCITS ETF,iShares IV plc,IE00BDFK1680,GBP,55.00,818.59,23/06/2026 00:00:00
@@ -1158,17 +1158,17 @@ iShares Global Aggregate Bond ESG SRI UCITS ETF,iShares III plc,IE000BCCS0X1,SEK
 iShares Fallen Angels High Yield Corp Bond UCITS ETF,iShares IV plc,IE00BDFJYP58,USD,50.00,818.59,23/06/2026 00:00:00
 iShares € High Yield Corp Bond UCITS ETF,iShares plc,IE00BF3N7094,EUR,50.00,7463.49,23/06/2026 00:00:00
 iShares Core € Corp Bond UCITS ETF,iShares III plc,IE00BF11F565,EUR,9.00,14124.47,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000HWGVU96,USD,17.00,4369.47,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000HWGVU96,USD,17.00,4341.42,23/06/2026 00:00:00
 iShares $ Treasury Bond 1-3yr UCITS ETF,iShares plc,IE00BDFK1573,EUR,10.00,12390.54,23/06/2026 00:00:00
 iShares $ Treasury Bond 1-3yr UCITS ETF,iShares plc,IE00B14X4S71,USD,7.00,12390.54,23/06/2026 00:00:00
 iShares Broad $ High Yield Corp Bond UCITS ETF,iShares III plc,IE000EVUY6K9,EUR,22.00,2905.77,23/06/2026 00:00:00
 iShares $ TIPS UCITS ETF,iShares II plc,IE00B1FZSC47,USD,10.00,5656.62,23/06/2026 00:00:00
 iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000JWH7DS4,USD,17.00,4341.42,23/06/2026 00:00:00
 iShares $ Corp Bond UCITS ETF,iShares plc,IE00BF3N6Y61,EUR,25.00,9499.27,23/06/2026 00:00:00
-iShares US Aggregate Bond UCITS ETF,iShares II plc,IE00BDFGJ841,GBP,30.00,6018.59,23/06/2026 00:00:00
 iShares AEX UCITS ETF,iShares plc,IE00B0M62Y33,EUR,30.00,835.20,23/06/2026 00:00:00
+iShares US Aggregate Bond UCITS ETF,iShares II plc,IE00BDFGJ841,GBP,30.00,6018.59,23/06/2026 00:00:00
 iShares MSCI World CTB Enhanced ESG UCITS ETF,iShares IV plc,IE000R3K9FF7,EUR,23.00,6298.61,23/06/2026 00:00:00
-iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000QNA29G5,CHF,3.00,4882.38,23/06/2026 00:00:00
+iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000QNA29G5,CHF,3.00,4897.12,23/06/2026 00:00:00
 iShares £ Index-Linked Gilts UCITS ETF,iShares II plc,IE00B1FZSD53,GBP,10.00,495.67,23/06/2026 00:00:00
 iShares $ Treasury Bond 1-3yr UCITS ETF,iShares plc,IE00BDFK1N50,GBP,10.00,12390.54,23/06/2026 00:00:00
 iShares $ Treasury Bond 7-10yr UCITS ETF,iShares II plc,IE00B1FZS798,USD,7.00,7292.48,23/06/2026 00:00:00
@@ -1179,9 +1179,9 @@ iShares UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCS909,GBP,4
 iShares US Aggregate Bond UCITS ETF,iShares II plc,IE00BDFJYM28,EUR,30.00,6018.59,23/06/2026 00:00:00
 iShares Core € Corp Bond UCITS ETF,iShares III plc,IE00B3F81R35,EUR,9.00,14124.47,23/06/2026 00:00:00
 iShares Global Aggregate 1-5 Year Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000O9PL4G9,AUD,3.00,1611.87,23/06/2026 00:00:00
-iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000239FXR9,SGD,18.00,3558.41,23/06/2026 00:00:00
-iShares UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFBFVX86,GBP,5.00,15108.01,23/06/2026 00:00:00
 iShares € Aggregate Bond ESG SRI UCITS ETF,iShares III plc,IE00B3DKXQ41,EUR,16.00,1706.92,23/06/2026 00:00:00
+iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000239FXR9,SGD,18.00,3551.34,23/06/2026 00:00:00
+iShares UK Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BFBFVX86,GBP,5.00,15108.01,23/06/2026 00:00:00
 iShares Corporate Bond Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCS784,GBP,7.00,4271.34,23/06/2026 00:00:00
 iShares J.P. Morgan EM Local Govt Bond UCITS ETF,iShares III plc,IE00B5M4WH52,USD,50.00,5413.57,23/06/2026 00:00:00
 iShares € Corp Bond ex-Financials 1-5Yr ESG SRI UCITS ETF,iShares III plc,IE00B4L5ZY03,EUR,20.00,1337.19,23/06/2026 00:00:00
@@ -1189,21 +1189,21 @@ iShares Developed Real Estate Index Fund (IE),BlackRock Asset Management Ireland
 iShares € Corp Bond ex-Financials UCITS ETF,iShares III plc,IE00B4L5ZG21,EUR,20.00,993.85,23/06/2026 00:00:00
 iShares € Corp Bond 1-5yr UCITS ETF,iShares III plc,IE00B4L60045,EUR,20.00,4628.53,23/06/2026 00:00:00
 iShares € Govt Bond 15-30yr UCITS ETF,iShares II plc,IE00B1FZS913,EUR,15.00,985.10,23/06/2026 00:00:00
-iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCS891,GBP,5.00,18284.02,23/06/2026 00:00:00
+iShares North American Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BRTCS891,GBP,5.00,17879.61,23/06/2026 00:00:00
 iShares € Govt Bond 10-15yr UCITS ETF,iShares III plc,IE00B4WXJH41,EUR,15.00,341.40,23/06/2026 00:00:00
 iShares € Govt Bond 1-3yr UCITS ETF,iShares plc,IE00B14X4Q57,EUR,15.00,1724.42,23/06/2026 00:00:00
 iShares € Corp Bond Interest Rate Hedged ESG SRI UCITS ETF,iShares V plc,IE00B6X2VY59,EUR,25.00,220.52,23/06/2026 00:00:00
 iShares Broad Global Govt Bond UCITS ETF,iShares III plc,IE0001JK8FV4,USD,13.00,5876.48,23/06/2026 00:00:00
 iShares € Inflation Linked Govt Bond UCITS ETF,iShares plc,IE00B0M62X26,EUR,9.00,1947.19,23/06/2026 00:00:00
 iShares Broad Global Govt Bond UCITS ETF,iShares III plc,IE000S6ZDHA0,GBP,13.00,5876.48,23/06/2026 00:00:00
-iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJ023R69,EUR,18.00,29706.29,23/06/2026 00:00:00
 iShares € Govt Bond 7-10yr UCITS ETF,iShares II plc,IE00B1FZS806,EUR,15.00,990.89,23/06/2026 00:00:00
+iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BJ023R69,EUR,18.00,29706.29,23/06/2026 00:00:00
 iShares € Govt Bond 5-7yr UCITS ETF,iShares III plc,IE00B4WXJG34,EUR,15.00,612.72,23/06/2026 00:00:00
 iShares € Govt Bond 3-5yr UCITS ETF,iShares II plc,IE00B1FZS681,EUR,15.00,2153.09,23/06/2026 00:00:00
 iShares France Govt Bond UCITS ETF,iShares V plc,IE00B7LGZ558,EUR,20.00,108.41,23/06/2026 00:00:00
 iShares € Govt Bond 0-1yr UCITS ETF,iShares III plc,IE00B3FH7618,EUR,7.00,1230.70,23/06/2026 00:00:00
 iShares Broad Global Govt Bond UCITS ETF,iShares III plc,IE000J8Z5N74,USD,10.00,5876.48,23/06/2026 00:00:00
-iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BP2C1Z01,GBP,17.00,4369.47,23/06/2026 00:00:00
+iShares Screened Global Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BP2C1Z01,GBP,17.00,4341.42,23/06/2026 00:00:00
 iShares Core € Govt Bond UCITS ETF,iShares III plc,IE00B4WXJJ64,EUR,7.00,6030.01,23/06/2026 00:00:00
 iShares £ Corp Bond 0-5yr UCITS ETF,iShares plc,IE000WJWZK35,EUR,25.00,1613.03,23/06/2026 00:00:00
 iShares Italy Govt Bond UCITS ETF,iShares V plc,IE00B7LW6Y90,EUR,20.00,1026.54,23/06/2026 00:00:00
@@ -1242,16 +1242,16 @@ iShares $ High Yield Corp Bond ESG Paris-Aligned Climate UCITS ETF,iShares III p
 iShares Developed World Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000XUK0R09,SGD,14.00,29706.29,23/06/2026 00:00:00
 iShares € High Yield Corp Bond ESG Paris-Aligned Climate UCITS ETF,iShares III plc,IE000H92C4B8,EUR,25.00,446.22,23/06/2026 00:00:00
 iShares $ Short Duration Corp Bond UCITS ETF,iShares IV plc,IE000VNGJFV0,EUR,25.00,8627.09,23/06/2026 00:00:00
-iShares S&P U.S. Banks UCITS ETF,iShares V plc,IE000ZPUEP93,USD,35.00,1017.76,23/06/2026 00:00:00
 iShares Edge MSCI Europe Minimum Volatility Advanced UCITS ETF,iShares VI plc,IE00BKVL7D31,EUR,25.00,27.82,23/06/2026 00:00:00
+iShares S&P U.S. Banks UCITS ETF,iShares V plc,IE000ZPUEP93,USD,35.00,1017.76,23/06/2026 00:00:00
 iShares € Ultrashort Bond UCITS ETF,iShares IV plc,IE0004WPSAM9,CHF,12.00,5942.82,23/06/2026 00:00:00
 iShares Core EURO STOXX 50 UCITS ETF EUR (Dist),iShares II plc,IE0008471009,EUR,10.00,5708.14,23/06/2026 00:00:00
 iShares Metaverse UCITS ETF,iShares IV plc,IE000RN58M26,USD,50.00,120.44,23/06/2026 00:00:00
 iShares Edge MSCI World Minimum Volatility Advanced UCITS ETF,iShares VI plc,IE00BKVL7778,USD,30.00,397.71,23/06/2026 00:00:00
-iShares ESG Screened Sterling Corporate Bond Index Fund (UK,BlackRock Fund Managers Ltd,GB00BN08YZ75,GBP,12.00,1664.43,23/06/2026 00:00:00
 iShares Euro Dividend UCITS ETF,iShares plc,IE00B0M62S72,EUR,40.00,1535.65,23/06/2026 00:00:00
-iShares ESG Screened Sterling Corporate Bond Index Fund (UK,BlackRock Fund Managers Ltd,GB00BN08Z092,GBP,12.00,1664.43,23/06/2026 00:00:00
+iShares ESG Screened Sterling Corporate Bond Index Fund (UK,BlackRock Fund Managers Ltd,GB00BN08YZ75,GBP,12.00,1664.43,23/06/2026 00:00:00
 iShares EURO STOXX Mid UCITS ETF,iShares plc,IE00B02KXL92,EUR,40.00,511.39,23/06/2026 00:00:00
+iShares ESG Screened Sterling Corporate Bond Index Fund (UK,BlackRock Fund Managers Ltd,GB00BN08Z092,GBP,12.00,1664.43,23/06/2026 00:00:00
 iShares ESG Screened Sterling Corporate Bond Index Fund (UK,BlackRock Fund Managers Ltd,GB00BN08Z100,GBP,11.00,1664.43,23/06/2026 00:00:00
 iShares Listed Private Equity UCITS ETF,iShares II plc,IE000GXN71U1,GBP,80.00,913.78,23/06/2026 00:00:00
 iShares ESG Screened Sterling Corporate Bond Index Fund (UK,BlackRock Fund Managers Ltd,GB00BN08Z217,GBP,11.00,1664.43,23/06/2026 00:00:00
@@ -1260,7 +1260,7 @@ iShares € Cash UCITS ETF,iShares III plc,IE000JJPY166,EUR,10.00,1207.14,23/06/
 iShares Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0007IZFCL5,USD,3.00,4897.12,23/06/2026 00:00:00
 iShares Global Infrastructure UCITS ETF,iShares II plc,IE000TCZMZM8,GBP,70.00,2673.64,23/06/2026 00:00:00
 iShares EURO STOXX Small UCITS ETF,iShares plc,IE00B02KXM00,EUR,40.00,421.14,23/06/2026 00:00:00
-iShares ESG Screened Sterling Corporate Bond Index Fund (UK,BlackRock Fund Managers Ltd,GB00BN08Z431,GBP,22.00,1664.43,23/06/2026 00:00:00
+iShares ESG Screened Sterling Corporate Bond Index Fund (UK,BlackRock Fund Managers Ltd,GB00BN08Z431,GBP,21.00,1664.43,23/06/2026 00:00:00
 iShares $ Treasury Bond 10-20yr UCITS ETF,iShares II plc,IE00043L4HU0,EUR,10.00,28.27,23/06/2026 00:00:00
 iShares Core FTSE 100 UCITS ETF,iShares plc,IE0005042456,GBP,7.00,15957.94,23/06/2026 00:00:00
 iShares Global Inflation Linked Govt Bond UCITS ETF,iShares III plc,IE00BD8PH174,EUR,20.00,1459.84,23/06/2026 00:00:00
@@ -1273,11 +1273,11 @@ iShares UK Property UCITS ETF,iShares II plc,IE00B1TXLS18,GBP,40.00,460.02,23/06
 iShares Emerging Markets Government Bond Advanced Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0009I5ZTL5,EUR,3.00,171.92,23/06/2026 00:00:00
 iShares Developed Markets Property Yield UCITS ETF,iShares II plc,IE00B1FZS350,USD,59.00,1668.16,23/06/2026 00:00:00
 iShares Asia Property Yield UCITS ETF,iShares II plc,IE00B1FZS244,USD,59.00,214.02,23/06/2026 00:00:00
-iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0001JCX718,USD,3.00,1415.01,23/06/2026 00:00:00
-iShares Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08Z761,GBP,8.00,4452.43,23/06/2026 00:00:00
+iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0001JCX718,USD,3.00,1410.00,23/06/2026 00:00:00
 iShares UK Dividend UCITS ETF,iShares plc,IE00B0M63060,GBP,40.00,1259.51,23/06/2026 00:00:00
-iShares $ Treasury Bond 20+yr UCITS ETF,iShares IV plc,IE00BD8PGZ49,EUR,10.00,5765.61,23/06/2026 00:00:00
+iShares Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN08Z761,GBP,8.00,4452.43,23/06/2026 00:00:00
 iShares Core UK Gilts UCITS ETF,iShares II plc,IE00B1FZSB30,GBP,7.00,4066.25,23/06/2026 00:00:00
+iShares $ Treasury Bond 20+yr UCITS ETF,iShares IV plc,IE00BD8PGZ49,EUR,10.00,5765.61,23/06/2026 00:00:00
 iShares FTSE MIB UCITS ETF EUR (Dist),iShares II plc,IE00B1XNH568,EUR,35.00,173.69,23/06/2026 00:00:00
 iShares UK Gilts 0-5yr UCITS ETF,iShares III plc,IE00B4WXJK79,GBP,7.00,2934.62,23/06/2026 00:00:00
 iShares € High Yield Corp Bond ESG SRI UCITS ETF,iShares II plc,IE000YZVB4R7,GBP,27.00,3912.77,23/06/2026 00:00:00
@@ -1302,9 +1302,9 @@ iShares iBonds Dec 2027 Term $ Treasury UCITS ETF,iShares V plc,IE0004OYBZA6,USD
 iShares iBonds Dec 2026 Term € Corp UCITS ETF,iShares V plc,IE000SIZJ2B2,EUR,12.00,1259.10,23/06/2026 00:00:00
 iShares € Floating Rate Bond Advanced UCITS ETF,iShares II plc,IE000NVM56L3,EUR,10.00,1488.58,23/06/2026 00:00:00
 iShares Russell 2000 Swap UCITS ETF,iShares VI plc,IE000OYABFQ2,EUR,20.00,182.42,23/06/2026 00:00:00
-iShares S&P 500 Information Technology Sector UCITS ETF,iShares V plc,IE00B3WJKG14,USD,15.00,18436.90,23/06/2026 00:00:00
 iShares $ High Yield Corp Bond UCITS ETF,iShares II plc,IE00B4PY7Y77,USD,50.00,5864.13,23/06/2026 00:00:00
-iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000HDKMJN5,EUR,25.00,2151.55,23/06/2026 00:00:00
+iShares S&P 500 Information Technology Sector UCITS ETF,iShares V plc,IE00B3WJKG14,USD,15.00,18436.90,23/06/2026 00:00:00
+iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000HDKMJN5,EUR,25.00,2145.75,23/06/2026 00:00:00
 iShares $ Corp Bond UCITS ETF,iShares plc,IE0032895942,USD,20.00,9499.27,23/06/2026 00:00:00
 iShares S&P 500 Equal Weight UCITS ETF,iShares III plc,IE000IKMJDQ6,USD,15.00,5227.43,23/06/2026 00:00:00
 iShares Core £ Corp Bond UCITS ETF,iShares plc,IE00B00FV011,GBP,20.00,1390.93,23/06/2026 00:00:00
@@ -1318,21 +1318,21 @@ iShares € High Yield Corp Bond UCITS ETF,iShares plc,IE00B66F4759,EUR,50.00,74
 iShares € Covered Bond UCITS ETF,iShares III plc,IE00B3B8Q275,EUR,20.00,1562.26,23/06/2026 00:00:00
 iShares EURO STOXX 50 ESG UCITS ETF,iShares V plc,IE000LXEN6X4,EUR,10.00,110.39,23/06/2026 00:00:00
 iShares £ Corp Bond ex-Financials UCITS ETF,iShares III plc,IE00B4L60H17,GBP,20.00,41.51,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000DSA11G0,EUR,3.00,1989.09,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE000DSA11G0,EUR,3.00,1987.35,23/06/2026 00:00:00
 iShares £ Corp Bond 0-5yr UCITS ETF,iShares plc,IE00B5L65R35,GBP,20.00,1613.03,23/06/2026 00:00:00
 iShares Pacific ex Japan Equity Index Fund (UK),BlackRock Fund Managers Ltd,GB00BV49YW95,GBP,11.00,3288.61,23/06/2026 00:00:00
 iShares iBonds Dec 2028 Term $ Corp UCITS ETF,iShares V plc,IE00004FVB93,MXN,15.00,1366.57,23/06/2026 00:00:00
 iShares J.P. Morgan $ EM Corp Bond UCITS ETF,iShares V plc,IE00B6TLBW47,USD,50.00,3233.41,23/06/2026 00:00:00
 iShares iBonds Dec 2028 Term $ Corp UCITS ETF,iShares V plc,IE0000VITHT2,USD,12.00,1366.57,23/06/2026 00:00:00
-iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDZRPS94,EUR,12.00,1340.68,23/06/2026 00:00:00
+iShares US Corporate Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDZRPS94,EUR,12.00,1336.38,23/06/2026 00:00:00
 iShares MDAX® UCITS ETF (DE),BlackRock Asset Management Deutschland AG,DE0005933923,EUR,51.00,1600.92,23/06/2026 00:00:00
 iShares iBonds Dec 2028 Term $ Corp UCITS ETF,iShares V plc,IE0000UJ3480,USD,12.00,1366.57,23/06/2026 00:00:00
-iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDZRS805,EUR,12.00,1415.01,23/06/2026 00:00:00
+iShares World ex-Euro Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BDZRS805,EUR,12.00,1410.00,23/06/2026 00:00:00
 iShares MSCI Australia UCITS ETF,iShares III plc,IE00B5377D42,USD,50.00,583.26,23/06/2026 00:00:00
 iShares MSCI ACWI UCITS ETF,iShares V plc,IE00B6R52259,USD,20.00,35027.11,23/06/2026 00:00:00
-iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BF2N5W82,USD,25.00,2151.55,23/06/2026 00:00:00
-iShares S&P 500 Consumer Discretionary Sector UCITS ETF,iShares V plc,IE00B4MCHD36,USD,15.00,818.63,23/06/2026 00:00:00
 iShares MSCI AC Far East ex-Japan Small Cap UCITS ETF,iShares II plc,IE00B2QWDR12,USD,74.00,77.97,23/06/2026 00:00:00
+iShares Emerging Markets Local Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE00BF2N5W82,USD,25.00,2145.75,23/06/2026 00:00:00
+iShares S&P 500 Consumer Discretionary Sector UCITS ETF,iShares V plc,IE00B4MCHD36,USD,15.00,818.63,23/06/2026 00:00:00
 iShares MSCI AC Far East ex-Japan UCITS ETF,iShares plc,IE00B0M63730,USD,74.00,2237.09,23/06/2026 00:00:00
 iShares MSCI Brazil UCITS ETF USD (Dist),iShares plc,IE00B0M63516,USD,74.00,479.38,23/06/2026 00:00:00
 iShares S&P 500 Financials Sector UCITS ETF,iShares V plc,IE00B4JNQZ49,USD,15.00,2228.16,23/06/2026 00:00:00
@@ -1344,36 +1344,36 @@ iShares Up to 10 Years Index Linked Gilt Index Fund (UK),BlackRock Fund Managers
 iShares MSCI EM UCITS ETF USD (Dist),iShares plc,IE00B0M63177,USD,18.00,10778.46,23/06/2026 00:00:00
 iShares Up To 10 Years Gilts Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091F96,GBP,8.00,578.86,23/06/2026 00:00:00
 iShares MSCI EM Latin America UCITS ETF,iShares II plc,IE00B27YCK28,USD,20.00,2074.95,23/06/2026 00:00:00
-iShares Global Govt Bond UCITS ETF,iShares III plc,IE00BK7Y2P34,USD,25.00,3153.99,23/06/2026 00:00:00
 iShares MSCI Europe ex-UK UCITS ETF,iShares plc,IE00B14X4N27,EUR,40.00,1479.74,23/06/2026 00:00:00
+iShares Global Govt Bond UCITS ETF,iShares III plc,IE00BK7Y2P34,USD,25.00,3153.99,23/06/2026 00:00:00
 iShares Core MSCI Europe UCITS ETF EUR (Acc),iShares III plc,IE00B4K48X80,EUR,12.00,15619.36,23/06/2026 00:00:00
 iShares Core MSCI Europe UCITS ETF,iShares II plc,IE00B1YZSC51,EUR,12.00,12109.85,23/06/2026 00:00:00
 iShares Core MSCI Japan IMI UCITS ETF,iShares III plc,IE00B4L5YX21,USD,12.00,8401.58,23/06/2026 00:00:00
-iShares Up To 10 Years Gilts Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091B58,GBP,13.00,578.86,23/06/2026 00:00:00
+iShares Up To 10 Years Gilts Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091B58,GBP,13.00,580.33,23/06/2026 00:00:00
 iShares MSCI Japan UCITS ETF USD (Dist),iShares plc,IE00B02KXH56,USD,12.00,3167.07,23/06/2026 00:00:00
 iShares $ Corp Bond 0-3Yr ESG SRI UCITS ETF,iShares II plc,IE00BK7Y2S64,GBP,14.00,1285.35,23/06/2026 00:00:00
 iShares Up to 10 Years Index Linked Gilt Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091J35,GBP,13.00,938.74,23/06/2026 00:00:00
 iShares MSCI Korea UCITS ETF USD (Dist),iShares plc,IE00B0M63391,USD,65.00,1461.49,23/06/2026 00:00:00
-iShares Up to 10 Years Index Linked Gilt Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091M63,GBP,3.00,938.74,23/06/2026 00:00:00
+iShares Up to 10 Years Index Linked Gilt Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091M63,GBP,3.00,941.20,23/06/2026 00:00:00
 iShares MSCI Japan Small Cap UCITS ETF,iShares III plc,IE00B2QWDY88,USD,58.00,539.78,23/06/2026 00:00:00
 iShares Up to 10 Years Index Linked Gilt Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091K40,GBP,8.00,938.74,23/06/2026 00:00:00
 iShares MSCI Japan GBP Hedged UCITS ETF (Acc),iShares V plc,IE00B7XYN974,GBP,64.00,203.00,23/06/2026 00:00:00
 iShares Up to 10 Years Index Linked Gilt Index Fund (UK),BlackRock Fund Managers Ltd,GB00BN091H11,GBP,13.00,938.74,23/06/2026 00:00:00
 iShares MSCI Japan EUR Hedged UCITS ETF (Acc),iShares V plc,IE00B42Z5J44,EUR,64.00,1346.94,23/06/2026 00:00:00
-iShares MSCI AC Far East ex-Japan UCITS ETF,iShares plc,IE00BKPX3K41,USD,74.00,2237.09,23/06/2026 00:00:00
 iShares MSCI Poland UCITS ETF,iShares V plc,IE00B4M7GH52,USD,74.00,880.26,23/06/2026 00:00:00
+iShares MSCI AC Far East ex-Japan UCITS ETF,iShares plc,IE00BKPX3K41,USD,74.00,2237.09,23/06/2026 00:00:00
 iShares Energy Storage & Hydrogen UCITS ETF,iShares IV plc,IE000DR59CI3,USD,50.00,59.88,23/06/2026 00:00:00
-iShares Global Inflation Linked Govt Bond UCITS ETF,iShares III plc,IE00BKPT2S34,EUR,20.00,1459.84,23/06/2026 00:00:00
 iShares MSCI Pacific ex-Japan UCITS ETF,iShares III plc,IE00B4WXJD03,USD,60.00,177.17,23/06/2026 00:00:00
-iShares MSCI China UCITS ETF,iShares IV plc,IE00BL977C92,USD,28.00,3111.54,23/06/2026 00:00:00
+iShares Global Inflation Linked Govt Bond UCITS ETF,iShares III plc,IE00BKPT2S34,EUR,20.00,1459.84,23/06/2026 00:00:00
 iShares MSCI North America UCITS ETF,iShares plc,IE00B14X4M10,USD,40.00,1423.41,23/06/2026 00:00:00
+iShares MSCI China UCITS ETF,iShares IV plc,IE00BL977C92,USD,28.00,3111.54,23/06/2026 00:00:00
 iShares MSCI Turkey UCITS ETF,iShares II plc,IE00B1FZS574,USD,74.00,127.35,23/06/2026 00:00:00
 iShares MSCI Taiwan UCITS ETF,iShares plc,IE00B0M63623,USD,74.00,1847.71,23/06/2026 00:00:00
 iShares MSCI South Africa UCITS ETF,iShares III plc,IE00B52XQP83,USD,65.00,260.67,23/06/2026 00:00:00
 iShares US Property Yield UCITS ETF,iShares II plc,IE00BKPT2R27,USD,40.00,682.18,23/06/2026 00:00:00
 iShares Core MSCI World UCITS ETF,iShares III plc,IE00B4L5Y983,USD,20.00,145193.93,23/06/2026 00:00:00
 iShares MSCI World UCITS ETF,iShares plc,IE00B0M62Q58,USD,50.00,9293.33,23/06/2026 00:00:00
-iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0004XHE738,USD,3.00,1989.09,23/06/2026 00:00:00
+iShares Global Inflation-Linked Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0004XHE738,USD,3.00,1987.35,23/06/2026 00:00:00
 iShares Emerging Markets Government Bond Index Fund (IE),BlackRock Asset Management Ireland Limited,IE0000J01ZR0,EUR,20.00,3551.34,23/06/2026 00:00:00
 iShares MSCI World EUR Hedged UCITS ETF (Acc),iShares V plc,IE00B441G979,EUR,55.00,5322.86,23/06/2026 00:00:00
 iShares MSCI World GBP Hedged UCITS ETF (Acc),iShares V plc,IE00B42YS929,GBP,55.00,463.28,23/06/2026 00:00:00

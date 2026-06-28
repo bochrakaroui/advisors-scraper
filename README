@@ -54,6 +54,8 @@ The main pipeline currently supports these providers:
 | `firsttrust` | First Trust | `.json` | `scrapers\firsttrust_extractor.py` | `providers\firsttrust\extract_firsttrust_fields.py` |
 | `hanetf` | HANetf | `.csv` | `scrapers\hanetf_extractor.py` | `providers\hanetf\extract_hanetf_fields.py` |
 | `globalx` | Global X ETFs | `.json` | `scrapers\globalx_extractor.py` | `providers\globalx\extract_globalx_fields.py` |
+| `finex` | FinEx | `.json` | `scrapers\finex_extractor.py` | `providers\finex\extract_finex_fields.py` |
+| `imgp` | iM Global Partner | `.json` | `scrapers\imgp_extractor.py` | `providers\imgp\extract_imgp_fields.py` |
 
 ## How The Project Works
 

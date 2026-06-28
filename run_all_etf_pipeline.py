@@ -116,6 +116,18 @@ from providers.globalx.extract_globalx_fields import (
     find_latest_download as find_latest_globalx_download,
     parse_snapshot_rows as parse_globalx_source_rows,
 )
+from providers.finex.extract_finex_fields import (
+    INPUT_DIR as FINEX_INPUT_DIR,
+    extract_rows as extract_finex_rows,
+    find_latest_download as find_latest_finex_download,
+    parse_snapshot_rows as parse_finex_source_rows,
+)
+from providers.imgp.extract_imgp_fields import (
+    INPUT_DIR as IMGP_INPUT_DIR,
+    extract_rows as extract_imgp_rows,
+    find_latest_download as find_latest_imgp_download,
+    parse_snapshot_rows as parse_imgp_source_rows,
+)
 try:
     from providers.vanguard.download_vanguard import download_vanguard_file
 except ModuleNotFoundError:
@@ -139,6 +151,8 @@ from scrapers.vaneck_extractor import download_etf_list as download_vaneck_file
 from scrapers.spdr_collector import download_spdr_file, parse_xlsx_rows as parse_spdr_source_rows
 from scrapers.wisdomtree_extractor import download_wisdomtree_file
 from scrapers.globalx_extractor import download_globalx_file
+from scrapers.finex_extractor import download_finex_file
+from scrapers.imgp_extractor import download_imgp_file
 
 BASE_DIR = Path(__file__).resolve().parent
 RUNS_DIR = BASE_DIR / "pipeline_runs"
@@ -173,6 +187,8 @@ ALL_PROVIDERS = (
     "firsttrust",
     "hanetf",
     "globalx",
+    "finex",
+    "imgp",
 )
 Downloader = Callable[[], Awaitable[Path]]
 Extractor = Callable[[Path], list[dict[str, str]]]
@@ -676,6 +692,26 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             output_filename="globalx_selected_fields.csv",
             latest_download_finder=find_latest_globalx_download,
             source_row_parser=parse_globalx_source_rows,
+        ),
+        "finex": ProviderPipeline(
+            name="FinEx",
+            downloader=download_finex_file,
+            extractor=extract_finex_rows,
+            input_dir=FINEX_INPUT_DIR,
+            output_dir=FINEX_INPUT_DIR,
+            output_filename="finex_selected_fields.csv",
+            latest_download_finder=find_latest_finex_download,
+            source_row_parser=parse_finex_source_rows,
+        ),
+        "imgp": ProviderPipeline(
+            name="iM Global Partner",
+            downloader=download_imgp_file,
+            extractor=extract_imgp_rows,
+            input_dir=IMGP_INPUT_DIR,
+            output_dir=IMGP_INPUT_DIR,
+            output_filename="imgp_selected_fields.csv",
+            latest_download_finder=find_latest_imgp_download,
+            source_row_parser=parse_imgp_source_rows,
         ),
     }
 
