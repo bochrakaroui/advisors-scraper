@@ -15,11 +15,13 @@ import json
 import logging
 import os
 import re
+import time
 from datetime import datetime
 from pathlib import Path
 
 from bs4 import BeautifulSoup
-from playwright.sync_api import Page, sync_playwright
+from playwright.sync_api import Error as PlaywrightError, Page, sync_playwright
+import requests
 
 
 PAGE_URL = "https://www.imgp.com/funds/"
@@ -28,6 +30,22 @@ ISSUER = "iM Global Partner"
 BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "imgp"
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+DETAIL_PAGE_TIMEOUT_S = 45
+NAVIGATION_TIMEOUT_MS = 60_000
+NAVIGATION_RETRIES = 3
+NAVIGATION_RETRY_DELAY_S = 2.0
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept-Language": "en-GB,en;q=0.9",
+}
+
+DETAIL_PAGE_SESSION = requests.Session()
+DETAIL_PAGE_SESSION.headers.update(HEADERS)
 
 
 # ---------------------------------------------------------------------------
@@ -38,16 +56,11 @@ def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
     run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
     if run_folder_name:
         output_dir = base_dir / run_folder_name
-        output_dir.mkdir(parents=True, exist_ok=True)
-        return output_dir
+    else:
+        output_dir = base_dir / run_date
+        os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
 
-    output_dir = base_dir / run_date
-    suffix = 1
-    while output_dir.exists():
-        output_dir = base_dir / f"{run_date} ({suffix})"
-        suffix += 1
-    output_dir.mkdir(parents=True, exist_ok=False)
-    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    output_dir.mkdir(parents=True, exist_ok=True)
     return output_dir
 
 
@@ -75,6 +88,28 @@ def clean_text(value: object | None) -> str:
     return "" if cleaned in {"", "-", "--", "- ", " -"} else cleaned
 
 
+def percentage_to_bps(raw_value: object | None) -> str:
+    cleaned = clean_text(raw_value).replace("%", "").replace(",", ".")
+    if not cleaned:
+        return ""
+
+    try:
+        numeric_value = float(cleaned)
+    except ValueError:
+        return ""
+
+    if "%" in str(raw_value):
+        bps = numeric_value * 100
+    elif numeric_value <= 0.05:
+        bps = numeric_value * 10000
+    elif numeric_value <= 5:
+        bps = numeric_value * 100
+    else:
+        bps = numeric_value
+
+    return f"{bps:.2f}"
+
+
 def is_etf_share_class(name: str) -> bool:
     return "ucits etf" in name.lower()
 
@@ -94,6 +129,31 @@ def safe_click(page: Page, selectors: list[str], *, timeout: int = 3_000) -> boo
         except Exception:
             continue
     return False
+
+
+def navigate_with_retry(page: Page, url: str) -> None:
+    last_error: Exception | None = None
+    for attempt in range(1, NAVIGATION_RETRIES + 1):
+        try:
+            page.goto(url, wait_until="domcontentloaded", timeout=NAVIGATION_TIMEOUT_MS)
+            return
+        except PlaywrightError as exc:
+            last_error = exc
+            message = str(exc)
+            is_retryable = "ERR_NETWORK_CHANGED" in message or "ERR_ABORTED" in message
+            if attempt >= NAVIGATION_RETRIES or not is_retryable:
+                raise
+            logging.warning(
+                "Transient navigation error while loading %s (attempt %s/%s): %s",
+                url,
+                attempt,
+                NAVIGATION_RETRIES,
+                message,
+            )
+            time.sleep(NAVIGATION_RETRY_DELAY_S)
+
+    if last_error is not None:
+        raise last_error
 
 
 def dismiss_imgp_modals(page: Page) -> None:
@@ -155,7 +215,7 @@ def dismiss_imgp_modals(page: Page) -> None:
 def fetch_rendered_html(page: Page) -> str:
     """Navigate to the funds page and return the fully-rendered HTML."""
     logging.info("Navigating to %s ...", PAGE_URL)
-    page.goto(PAGE_URL, wait_until="networkidle", timeout=60_000)
+    navigate_with_retry(page, PAGE_URL)
     page.wait_for_timeout(3_000)
 
     dismiss_imgp_modals(page)
@@ -210,9 +270,59 @@ def parse_fund_size(raw: str) -> tuple[str, str]:
     return ccy, f"{val:.2f}"
 
 
+def extract_fee_from_detail_html(html: str) -> str:
+    soup = BeautifulSoup(html, "html.parser")
+
+    fee_priority = (
+        "Total Fees",
+        "Annual Fund Operating Expenses",
+        "Net Expense Ratio",
+        "Gross Expense Ratio",
+        "Adjusted Expense Ratio",
+        "Management Fee",
+    )
+
+    fee_values: dict[str, str] = {}
+    for fee_block in soup.select(".fees-content .fee"):
+        title = clean_text(fee_block.select_one(".title").get_text() if fee_block.select_one(".title") else "")
+        content = clean_text(fee_block.select_one(".content").get_text() if fee_block.select_one(".content") else "")
+        if title and content:
+            fee_values[title] = content
+
+    for label in fee_priority:
+        fee_value = fee_values.get(label, "")
+        if fee_value:
+            return percentage_to_bps(fee_value)
+
+    embedded_patterns = (
+        r'"total_fees":"([^"]+)"',
+        r'"annual_fund_operating_expenses":"([^"]+)"',
+        r'"net_exp_ratio":"([^"]+)"',
+        r'"gross_exp_ratio":"([^"]+)"',
+        r'"adjust_exp_ratio":"([^"]+)"',
+        r'"management_fee":"([^"]+)"',
+    )
+    for pattern in embedded_patterns:
+        match = re.search(pattern, html, flags=re.IGNORECASE)
+        if not match:
+            continue
+        fee_value = clean_text(match.group(1))
+        if fee_value and fee_value.lower() != "null":
+            return percentage_to_bps(fee_value)
+
+    return ""
+
+
+def fetch_fee_bps(product_url: str) -> str:
+    response = DETAIL_PAGE_SESSION.get(product_url, timeout=DETAIL_PAGE_TIMEOUT_S)
+    response.raise_for_status()
+    return extract_fee_from_detail_html(response.text)
+
+
 def extract_listing_rows(html: str) -> list[dict[str, str]]:
     soup = BeautifulSoup(html, "html.parser")
     rows: list[dict[str, str]] = []
+    fee_cache: dict[str, str] = {}
 
     fund_blocks = soup.find_all("div", class_="sub-fund-item")
     logging.info("Parsing %s fund blocks ...", len(fund_blocks))
@@ -250,6 +360,14 @@ def extract_listing_rows(html: str) -> list[dict[str, str]]:
 
             href = link.get("href", "")
             product_url = href if href.startswith("http") else f"https://www.imgp.com{href}"
+            ter_bps = fee_cache.get(product_url, "")
+            if product_url and product_url not in fee_cache:
+                try:
+                    ter_bps = fetch_fee_bps(product_url)
+                except Exception as exc:
+                    logging.warning("Could not fetch iMGP fee for %s: %s", product_url, exc)
+                    ter_bps = ""
+                fee_cache[product_url] = ter_bps
 
             if not isin:
                 logging.warning("ETF share class '%s' has no ISIN — skipping.", sc_name)
@@ -269,7 +387,7 @@ def extract_listing_rows(html: str) -> list[dict[str, str]]:
                     "share_class_inception": sc_inception,
                     "share_price_raw": share_price_raw,
                     "product_url": product_url,
-                    "ter_bps": "",  # not exposed on the listing page
+                    "ter_bps": ter_bps,
                 }
             )
 

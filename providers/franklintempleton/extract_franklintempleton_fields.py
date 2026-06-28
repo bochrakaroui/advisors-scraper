@@ -74,25 +74,15 @@ def parse_args() -> argparse.Namespace:
 
 def build_run_output_dir(base_dir: Path) -> Path:
     run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
-
     if run_folder_name:
         output_dir = base_dir / run_folder_name
-        output_dir.mkdir(parents=True, exist_ok=True)
-        return output_dir
+    else:
+        run_date = datetime.now().strftime("%Y-%m-%d")
+        output_dir = base_dir / run_date
+        os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
 
-    run_date = datetime.now().strftime("%Y-%m-%d")
-    output_dir = base_dir / run_date
-
-    suffix = 1
-    while output_dir.exists():
-        output_dir = base_dir / f"{run_date} ({suffix})"
-        suffix += 1
-
-    output_dir.mkdir(parents=True, exist_ok=False)
-    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
-
+    output_dir.mkdir(parents=True, exist_ok=True)
     return output_dir
-
 
 def find_latest_download(input_dir: Path) -> Path:
     candidates = sorted(
@@ -107,9 +97,8 @@ def find_latest_download(input_dir: Path) -> Path:
     return candidates[0]
 
 
-def build_output_path(output_dir: Path) -> Path:
-    dated_output_dir = build_run_output_dir(output_dir)
-    return dated_output_dir / "franklintempleton_selected_fields.csv"
+def build_output_path(input_path: Path) -> Path:
+    return input_path.parent / "franklintempleton_selected_fields.csv"
 
 
 def clean_text(value: object | None) -> str:
@@ -376,7 +365,7 @@ def process_file(
     sheets: list[str] | None = None,
 ) -> Path:
     resolved_input = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
-    resolved_output = output_path.resolve() if output_path else build_output_path(OUTPUT_DIR)
+    resolved_output = output_path.resolve() if output_path else build_output_path(resolved_input)
 
     rows = extract_rows(resolved_input, sheets=sheets)
     write_csv(resolved_output, rows)

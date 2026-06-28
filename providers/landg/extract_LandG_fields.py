@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 import re
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import Iterable
 
@@ -136,6 +136,13 @@ def extract_date_from_path(path: Path) -> str:
 
     # 3) fallback
     return date.today().isoformat()
+
+
+def format_display_date(value: str) -> str:
+    try:
+        return datetime.strptime(value, "%Y-%m-%d").strftime("%d/%m/%Y")
+    except ValueError:
+        return value
 
 
 # -----------------------------------------------------------------------------
@@ -459,7 +466,7 @@ def extract_fields(input_path: Path, debug_columns: bool = False) -> pd.DataFram
     else:
         out["AUM(M)"] = ""
 
-    out["Date"] = export_date
+    out["Date"] = format_display_date(export_date)
 
     # Keep only valid ETF listing rows.
     out = out[out["ISIN"].astype(str).str.fullmatch(ISIN_RE, na=False)].copy()

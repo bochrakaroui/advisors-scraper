@@ -99,7 +99,7 @@ def normalize_ter_bps(raw_value: str) -> str:
 
 
 def normalize_amount_text(raw_value: str) -> str:
-    compact = clean_text(raw_value).replace("Â", "").replace(" ", "")
+    compact = clean_text(raw_value).replace("Ã‚", "").replace(" ", "")
     if "," in compact and "." not in compact:
         parts = compact.split(",")
         if len(parts) > 2 or len(parts[-1]) == 3:
@@ -109,12 +109,12 @@ def normalize_amount_text(raw_value: str) -> str:
 
 
 def normalize_aum_millions(raw_value: str) -> tuple[str, str]:
-    cleaned = clean_text(raw_value).replace("â‚¬", "€").replace("Â£", "£")
+    cleaned = clean_text(raw_value).replace("Ã¢â€šÂ¬", "â‚¬").replace("Ã‚Â£", "Â£")
     if not cleaned:
         return "", ""
 
     currency_code = ""
-    for symbol, code in (("€", "EUR"), ("$", "USD"), ("£", "GBP")):
+    for symbol, code in (("â‚¬", "EUR"), ("$", "USD"), ("Â£", "GBP")):
         if symbol in cleaned:
             currency_code = code
             cleaned = cleaned.replace(symbol, "")

@@ -82,17 +82,13 @@ def build_output_path(input_path: Path) -> Path:
 def extract_file_date(input_path: Path) -> str:
     parent_date_match = re.match(r"(\d{4}-\d{2}-\d{2})", input_path.parent.name)
     if parent_date_match:
-        return datetime.strptime(parent_date_match.group(1), "%Y-%m-%d").strftime(
-            "%d/%m/%Y 00:00:00"
-        )
+        return datetime.strptime(parent_date_match.group(1), "%Y-%m-%d").strftime("%d/%m/%Y")
 
     timestamp_match = re.search(r"(\d{8}_\d{6})", input_path.stem)
     if timestamp_match:
         timestamp = timestamp_match.group(1)
         try:
-            return datetime.strptime(timestamp, "%Y%m%d_%H%M%S").strftime(
-                "%d/%m/%Y %H:%M:%S"
-            )
+            return datetime.strptime(timestamp, "%Y%m%d_%H%M%S").strftime("%d/%m/%Y")
         except ValueError:
             return timestamp
 
@@ -104,8 +100,8 @@ def normalize_date(raw_value: str, fallback: str = "") -> str:
     if not cleaned:
         return fallback
 
-    if re.fullmatch(r"\d{2}/\d{2}/\d{4} 00:00:00", cleaned):
-        return cleaned
+    if re.fullmatch(r"\d{2}/\d{2}/\d{4}(?: 00:00:00)?", cleaned):
+        return cleaned[:10]
 
     match = re.search(r"\b\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4}\b", cleaned)
     if match:
@@ -113,7 +109,7 @@ def normalize_date(raw_value: str, fallback: str = "") -> str:
 
     for fmt in ("%d %b %Y", "%d %B %Y"):
         try:
-            return datetime.strptime(cleaned, fmt).strftime("%d/%m/%Y 00:00:00")
+            return datetime.strptime(cleaned, fmt).strftime("%d/%m/%Y")
         except ValueError:
             continue
 

@@ -228,18 +228,14 @@ def extract_file_date(input_path: Path) -> str:
     match = re.search(r"(\d{8}_\d{6})", input_path.stem)
     if match:
         try:
-            return datetime.strptime(match.group(1), "%Y%m%d_%H%M%S").strftime(
-                "%d/%m/%Y %H:%M:%S"
-            )
+            return datetime.strptime(match.group(1), "%Y%m%d_%H%M%S").strftime("%d/%m/%Y")
         except ValueError:
             pass
 
     # Pattern: YYYY-MM-DD in the parent folder name
     parent_match = re.match(r"(\d{4}-\d{2}-\d{2})", input_path.parent.name)
     if parent_match:
-        return datetime.strptime(parent_match.group(1), "%Y-%m-%d").strftime(
-            "%d/%m/%Y 00:00:00"
-        )
+        return datetime.strptime(parent_match.group(1), "%Y-%m-%d").strftime("%d/%m/%Y")
 
     return ""
 
@@ -299,23 +295,16 @@ def build_run_output_dir(base_dir: Path) -> Path:
     run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
     if run_folder_name:
         output_dir = base_dir / run_folder_name
-        output_dir.mkdir(parents=True, exist_ok=True)
-        return output_dir
+    else:
+        run_date = datetime.now().strftime("%Y-%m-%d")
+        output_dir = base_dir / run_date
+        os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
 
-    run_date = datetime.now().strftime("%Y-%m-%d")
-    output_dir = base_dir / run_date
-    suffix = 1
-    while output_dir.exists():
-        output_dir = base_dir / f"{run_date} ({suffix})"
-        suffix += 1
-    output_dir.mkdir(parents=True, exist_ok=False)
-    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    output_dir.mkdir(parents=True, exist_ok=True)
     return output_dir
 
-
-def build_output_path(output_dir: Path) -> Path:
-    dated_output_dir = build_run_output_dir(output_dir)
-    return dated_output_dir / "vaneck_selected_fields.csv"
+def build_output_path(input_path: Path) -> Path:
+    return input_path.parent / "vaneck_selected_fields.csv"
 
 
 def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
@@ -361,7 +350,7 @@ def process_file(
 ) -> Path:
     resolved_input = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
     resolved_output = (
-        output_path.resolve() if output_path else build_output_path(OUTPUT_DIR)
+        output_path.resolve() if output_path else build_output_path(resolved)
     )
 
     output_rows = extract_rows(resolved_input)

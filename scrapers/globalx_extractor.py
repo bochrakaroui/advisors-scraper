@@ -12,6 +12,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import shutil
 import re
 from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
@@ -55,12 +56,12 @@ FUND_URL_HINTS = ("fund", "etf", "explore", "product", "nav", "holding")
 def build_run_output_dir(base: Path, run_date: str) -> Path:
     name = os.environ.get(RUN_FOLDER_ENV_VAR)
     if name:
-        d = base / name; d.mkdir(parents=True, exist_ok=True); return d
-    d = base / run_date; n = 1
-    while d.exists():
-        d = base / f"{run_date} ({n})"; n += 1
-    d.mkdir(parents=True, exist_ok=False)
-    os.environ[RUN_FOLDER_ENV_VAR] = d.name
+        d = base / name
+    else:
+        d = base / run_date
+        os.environ[RUN_FOLDER_ENV_VAR] = d.name
+
+    d.mkdir(parents=True, exist_ok=True)
     return d
 
 def build_output_path(now: datetime) -> Path:

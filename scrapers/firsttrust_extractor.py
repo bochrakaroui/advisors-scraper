@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import shutil
 import re
 from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
@@ -42,16 +43,11 @@ def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
     run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
     if run_folder_name:
         output_dir = base_dir / run_folder_name
-        output_dir.mkdir(parents=True, exist_ok=True)
-        return output_dir
+    else:
+        output_dir = base_dir / run_date
+        os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
 
-    output_dir = base_dir / run_date
-    suffix = 1
-    while output_dir.exists():
-        output_dir = base_dir / f"{run_date} ({suffix})"
-        suffix += 1
-    output_dir.mkdir(parents=True, exist_ok=False)
-    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    output_dir.mkdir(parents=True, exist_ok=True)
     return output_dir
 
 

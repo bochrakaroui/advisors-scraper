@@ -7,6 +7,7 @@ import asyncio
 import csv
 import os
 import re
+import shutil
 import zipfile
 from dataclasses import dataclass
 from datetime import datetime
@@ -122,6 +123,12 @@ from providers.finex.extract_finex_fields import (
     find_latest_download as find_latest_finex_download,
     parse_snapshot_rows as parse_finex_source_rows,
 )
+from providers.fidelity.extract_fidelity_fields import (
+    INPUT_DIR as FIDELITY_INPUT_DIR,
+    extract_rows as extract_fidelity_rows,
+    find_latest_download as find_latest_fidelity_download,
+    parse_snapshot_rows as parse_fidelity_source_rows,
+)
 from providers.imgp.extract_imgp_fields import (
     INPUT_DIR as IMGP_INPUT_DIR,
     extract_rows as extract_imgp_rows,
@@ -152,6 +159,7 @@ from scrapers.spdr_collector import download_spdr_file, parse_xlsx_rows as parse
 from scrapers.wisdomtree_extractor import download_wisdomtree_file
 from scrapers.globalx_extractor import download_globalx_file
 from scrapers.finex_extractor import download_finex_file
+from scrapers.fidelity_international_extractor import download_fidelity_file
 from scrapers.imgp_extractor import download_imgp_file
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -168,11 +176,13 @@ HEADER_NORMALIZE_PATTERN = re.compile(r"[^a-z0-9]+")
 INTERNAL_SPACE_PATTERN = re.compile(r"\s+")
 ISIN_HEADER_CANDIDATES = ("isin", "isincode")
 INVISIBLE_ISIN_CHARACTERS = ("\u00A0", "\u2007", "\u202F", "\u200B", "\uFEFF")
+ISIN_FILTER_BYPASS_ISSUERS = {"Fidelity International"}
 
 ALL_PROVIDERS = (
     "ishares",
     "xtrackers",
     "amundi",
+    "fidelity",
     "invesco",
     "ubs",
     "spdr",
@@ -250,11 +260,7 @@ def parse_args() -> argparse.Namespace:
 
 def build_unique_date_dir(base_dir: Path, run_date: str) -> Path:
     candidate = base_dir / run_date
-    suffix = 1
-    while candidate.exists():
-        candidate = base_dir / f"{run_date} ({suffix})"
-        suffix += 1
-    candidate.mkdir(parents=True, exist_ok=False)
+    candidate.mkdir(parents=True, exist_ok=True)
     return candidate
 
 
@@ -274,6 +280,24 @@ def write_combined_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
         writer = csv.DictWriter(handle, fieldnames=OUTPUT_COLUMNS)
         writer.writeheader()
         writer.writerows(rows)
+
+
+def write_csv_with_fallback(
+    output_path: Path,
+    rows: list[dict[str, str]],
+    output_label: str = "provider output",
+) -> Path:
+    try:
+        write_combined_csv(output_path, rows)
+        return output_path
+    except PermissionError:
+        fallback_path = output_path.with_name(f"{output_path.stem}_latest{output_path.suffix}")
+        write_combined_csv(fallback_path, rows)
+        print(
+            f"[WARN] Could not overwrite locked file: {output_path}. "
+            f"Saved the latest {output_label} to: {fallback_path}"
+        )
+        return fallback_path
 
 
 def dedupe_exact_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -476,8 +500,16 @@ def collect_normalized_isins(rows: list[dict[str, str]], isin_column_name: str) 
     }
 
 
+def should_bypass_final_isin_filter(row: dict[str, str]) -> bool:
+    issuer = str(row.get("Issuer", "")).strip()
+    return issuer in ISIN_FILTER_BYPASS_ISSUERS
+
+
 def validate_whitelisted_rows(rows: list[dict[str, str]], isin_column_name: str, whitelist_isins: set[str]) -> list[str]:
-    final_isins = collect_normalized_isins(rows, isin_column_name)
+    final_isins = collect_normalized_isins(
+        [row for row in rows if not should_bypass_final_isin_filter(row)],
+        isin_column_name,
+    )
     return sorted(final_isins - whitelist_isins)
 
 
@@ -493,6 +525,10 @@ def apply_final_isin_whitelist(
     filtered_rows: list[dict[str, str]] = []
     removed_rows: list[dict[str, str]] = []
     for row in rows:
+        if should_bypass_final_isin_filter(row):
+            filtered_rows.append(row)
+            continue
+
         normalized_isin = normalize_isin(row.get(isin_column_name))
         if normalized_isin and normalized_isin in whitelist_isins:
             filtered_rows.append(row)
@@ -552,6 +588,16 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             output_filename="amundi_selected_fields.csv",
             latest_download_finder=find_latest_amundi_download,
             source_row_parser=parse_amundi_source_rows,
+        ),
+        "fidelity": ProviderPipeline(
+            name="Fidelity",
+            downloader=download_fidelity_file,
+            extractor=extract_fidelity_rows,
+            input_dir=FIDELITY_INPUT_DIR,
+            output_dir=FIDELITY_INPUT_DIR,
+            output_filename="fidelity_selected_fields.csv",
+            latest_download_finder=find_latest_fidelity_download,
+            source_row_parser=parse_fidelity_source_rows,
         ),
         "spdr": ProviderPipeline(
             name="SPDR",
@@ -734,7 +780,7 @@ async def run_provider(
     rows = dedupe_exact_rows(pipeline.extractor(input_path))
     missing_counts = validate_rows(pipeline.name, rows)
     output_path = build_provider_output_path(pipeline.output_dir, run_date, pipeline.output_filename)
-    write_combined_csv(output_path, rows)
+    output_path = write_csv_with_fallback(output_path, rows)
     print(f"Input file   : {input_path}")
     print(f"Output file  : {output_path}")
     print(f"Source rows  : {source_row_count:,}")
@@ -811,7 +857,11 @@ async def async_main() -> int:
             + ", ".join(unexpected_isins_pre_save[:25])
         )
 
-    write_combined_csv(combined_output_path, filtered_rows)
+    combined_output_path = write_csv_with_fallback(
+        combined_output_path,
+        filtered_rows,
+        output_label="combined pipeline output",
+    )
 
     print()
     print("=== Summary ===")

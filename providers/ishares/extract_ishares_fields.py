@@ -58,19 +58,13 @@ def build_run_output_dir(base_dir: Path) -> Path:
     run_folder_name = os.environ.get(RUN_FOLDER_ENV_VAR)
     if run_folder_name:
         output_dir = base_dir / run_folder_name
-        output_dir.mkdir(parents=True, exist_ok=True)
-        return output_dir
+    else:
+        run_date = datetime.now().strftime("%Y-%m-%d")
+        output_dir = base_dir / run_date
+        os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
 
-    run_date = datetime.now().strftime("%Y-%m-%d")
-    output_dir = base_dir / run_date
-    suffix = 1
-    while output_dir.exists():
-        output_dir = base_dir / f"{run_date} ({suffix})"
-        suffix += 1
-    output_dir.mkdir(parents=True, exist_ok=False)
-    os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
+    output_dir.mkdir(parents=True, exist_ok=True)
     return output_dir
-
 
 def find_latest_download(input_dir: Path) -> Path:
     candidates = sorted((path for path in input_dir.rglob("*.xls") if path.is_file()), key=lambda path: path.stat().st_mtime, reverse=True)
@@ -79,10 +73,9 @@ def find_latest_download(input_dir: Path) -> Path:
     return candidates[0]
 
 
-def build_output_path(output_dir: Path, include_all_funds: bool) -> Path:
-    dated_output_dir = build_run_output_dir(output_dir)
+def build_output_path(input_path: Path, include_all_funds: bool) -> Path:
     mode = "all_funds" if include_all_funds else "etf_only"
-    return dated_output_dir / f"ishares_selected_fields_{mode}.csv"
+    return input_path.parent / f"ishares_selected_fields_{mode}.csv"
 
 
 def read_sparse_row(row_element: ET.Element) -> dict[int, str]:
@@ -146,11 +139,11 @@ def extract_file_date(input_path: Path) -> str:
         parent_date_match = re.match(r"(\d{4}-\d{2}-\d{2})", input_path.parent.name)
         if not parent_date_match:
             return ""
-        return datetime.strptime(parent_date_match.group(1), "%Y-%m-%d").strftime("%d/%m/%Y 00:00:00")
+        return datetime.strptime(parent_date_match.group(1), "%Y-%m-%d").strftime("%d/%m/%Y")
 
     timestamp = match.group(1)
     try:
-        return datetime.strptime(timestamp, "%Y%m%d_%H%M%S").strftime("%d/%m/%Y %H:%M:%S")
+        return datetime.strptime(timestamp, "%Y%m%d_%H%M%S").strftime("%d/%m/%Y")
     except ValueError:
         return timestamp
 
@@ -244,7 +237,7 @@ def process_file(
     resolved_output_path = (
         output_path.resolve()
         if output_path
-        else build_output_path(OUTPUT_DIR, include_all_funds=include_all_funds)
+        else build_output_path(resolved_input_path, include_all_funds=include_all_funds)
     )
 
     output_rows = extract_rows(resolved_input_path, include_all_funds=include_all_funds)
