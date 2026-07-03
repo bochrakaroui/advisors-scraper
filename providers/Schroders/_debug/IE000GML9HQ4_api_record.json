@@ -1,0 +1,12 @@
+{
+  "name": "Schroder ETFs(ICAV) Schroder Global Equity Custom Active UCITS ETF Accumulation USD",
+  "nameUntranslated": "Schroder ETFs(ICAV) Schroder Global Equity Custom Active UCITS ETF Accumulation USD",
+  "externalId": "SCHDR_F00001T8VY",
+  "parentExternalId": "SCHDR_FS0000KI55",
+  "baseCurrency": "USD",
+  "legalStructure": "euro-etf",
+  "fundRange": "SCHRODER ETFs ICAV",
+  "shareclassExternalId": "SCHDR_F00001T8VY",
+  "fundExternalId": "SCHDR_FS0000KI55",
+  "isin": "IE000GML9HQ4"
+}

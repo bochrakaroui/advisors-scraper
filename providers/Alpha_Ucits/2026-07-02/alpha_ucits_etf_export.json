@@ -1,0 +1,67 @@
+{
+  "captured_at": "2026-07-02T14:59:42.908233+00:00",
+  "provider": "Alpha UCITS",
+  "manager": "Fair Oaks Capital",
+  "method": "Primary daily source: Fair Oaks official Cision pressroom Net Asset Value(s) release. Static share-class metadata validated against the official Fair Oaks factsheet.",
+  "official_pages": [
+    "https://news.cision.com/fair-oaks-capital-etfs",
+    "https://www.clo-etf.com/faaa-clo-etf/",
+    "https://www.clo-etf.com/wp-content/uploads/2026/06/FAAA-ETF-Factsheet-May-26.pdf"
+  ],
+  "source_article_urls": [
+    "https://news.cision.com/fair-oaks-capital-etfs/r/net-asset-value-s-,c4368378"
+  ],
+  "target_isins": [
+    "LU2785470191",
+    "LU2825557270"
+  ],
+  "row_count": 2,
+  "listing_rows": [
+    {
+      "ETF Name": "Fair Oaks AAA CLO Fund - UCITS ETF EUR Dist.",
+      "Issuer": "Alpha UCITS",
+      "ISIN": "LU2785470191",
+      "CCY": "EUR",
+      "TER(bps)": "35",
+      "AUM(M)": "126.21",
+      "AUM CCY": "EUR",
+      "Date": "26/06/2026",
+      "Manager": "Fair Oaks Capital",
+      "Fund name": "Fair Oaks AAA CLO Fund",
+      "Share class name": "UCITS ETF EUR Dist.",
+      "NAV per share": "1 015.92",
+      "Shares outstanding": "37 446.00",
+      "Fund total net assets (EUR)": "126 214 371.42",
+      "AUM Source URL": "https://news.cision.com/fair-oaks-capital-etfs/r/net-asset-value-s-,c4368378",
+      "Reference Static URL": "https://www.clo-etf.com/faaa-clo-etf/",
+      "Reference Factsheet URL": "https://www.clo-etf.com/wp-content/uploads/2026/06/FAAA-ETF-Factsheet-May-26.pdf",
+      "Factsheet Tickers": "LSEG: FAAA; Xetra: LAAA",
+      "Factsheet Listings": "LSEG; Xetra",
+      "Fund Structure": "Luxembourg SICAV (Alpha UCITS SICAV)",
+      "Share class launch date": "11-Sep-24"
+    },
+    {
+      "ETF Name": "Fair Oaks AAA CLO Fund - UCITS ETF GBP Hedged Acc.",
+      "Issuer": "Alpha UCITS",
+      "ISIN": "LU2825557270",
+      "CCY": "GBP",
+      "TER(bps)": "35",
+      "AUM(M)": "126.21",
+      "AUM CCY": "EUR",
+      "Date": "26/06/2026",
+      "Manager": "Fair Oaks Capital",
+      "Fund name": "Fair Oaks AAA CLO Fund",
+      "Share class name": "UCITS ETF GBP Hedged Acc.",
+      "NAV per share": "10.7101",
+      "Shares outstanding": "156 822.00",
+      "Fund total net assets (EUR)": "126 214 371.42",
+      "AUM Source URL": "https://news.cision.com/fair-oaks-capital-etfs/r/net-asset-value-s-,c4368378",
+      "Reference Static URL": "https://www.clo-etf.com/faaa-clo-etf/",
+      "Reference Factsheet URL": "https://www.clo-etf.com/wp-content/uploads/2026/06/FAAA-ETF-Factsheet-May-26.pdf",
+      "Factsheet Tickers": "LSEG: XAAA",
+      "Factsheet Listings": "LSEG",
+      "Fund Structure": "Luxembourg SICAV (Alpha UCITS SICAV)",
+      "Share class launch date": "04-Feb-25"
+    }
+  ]
+}

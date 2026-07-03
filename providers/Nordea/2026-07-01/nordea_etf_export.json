@@ -1,0 +1,34 @@
+{
+  "captured_at": "2026-07-01T21:10:19.790676",
+  "provider": "Nordea",
+  "discovered_fund_pages": 3,
+  "listing_rows": [
+    {
+      "ETF Name": "BetaPlus Enhanced Global Developed Sustainable Equity UCITS ETF - USD Acc ETF",
+      "Issuer": "Nordea",
+      "ISIN": "IE00060Z4AE1",
+      "CCY": "USD",
+      "TER(bps)": "25",
+      "AUM(M)": "",
+      "Date": "30/06/2026"
+    },
+    {
+      "ETF Name": "BetaPlus Enhanced Global Sustainable Equity UCITS ETF - USD Acc ETF",
+      "Issuer": "Nordea",
+      "ISIN": "IE000ASNLWH9",
+      "CCY": "USD",
+      "TER(bps)": "25",
+      "AUM(M)": "",
+      "Date": "30/06/2026"
+    },
+    {
+      "ETF Name": "BetaPlus Enhanced European Select Equity UCITS ETF - EUR Acc ETF",
+      "Issuer": "Nordea",
+      "ISIN": "IE000OJF8NN4",
+      "CCY": "EUR",
+      "TER(bps)": "25",
+      "AUM(M)": "",
+      "Date": "30/06/2026"
+    }
+  ]
+}

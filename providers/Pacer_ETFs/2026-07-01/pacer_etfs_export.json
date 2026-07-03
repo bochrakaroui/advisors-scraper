@@ -1,0 +1,735 @@
+{
+  "source": {
+    "provider": "Pacer ETFs",
+    "products_url": "https://www.paceretfs.com/products"
+  },
+  "method": "Official products page detail discovery + per-detail-page DOM extraction",
+  "captured_at": "2026-07-01T12:11:06.512412",
+  "detail_url_count": 72,
+  "row_count": 72,
+  "status_counts": {
+    "failed": 72
+  },
+  "listing_rows": [
+    {
+      "etf_name": "Pacer Barings CLO Market Flex ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "AAAP",
+      "detail_url": "https://www.paceretfs.com/products/aaap",
+      "listing_name": "Pacer Barings CLO Market Flex ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Lunt Large Cap Alternator ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "ALTL",
+      "detail_url": "https://www.paceretfs.com/products/altl",
+      "listing_name": "Pacer Lunt Large Cap Alternator ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer US Cash Cows Growth ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "BUL",
+      "detail_url": "https://www.paceretfs.com/products/bul",
+      "listing_name": "Pacer US Cash Cows Growth ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer BlueStar Engineering the Future ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "BULD",
+      "detail_url": "https://www.paceretfs.com/products/buld",
+      "listing_name": "Pacer BlueStar Engineering the Future ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer US Small Cap Cash Cows Growth Leaders ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "CAFG",
+      "detail_url": "https://www.paceretfs.com/products/cafg",
+      "listing_name": "Pacer US Small Cap Cash Cows Growth Leaders ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer US Small Cap Cash Cows 100 ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "CALF",
+      "detail_url": "https://www.paceretfs.com/products/calf",
+      "listing_name": "Pacer US Small Cap Cash Cows 100 ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer US Large Cap Cash Cows Growth Leaders ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "COWG",
+      "detail_url": "https://www.paceretfs.com/products/cowg",
+      "listing_name": "Pacer US Large Cap Cash Cows Growth Leaders ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer US Cash Cows 100 ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "COWZ",
+      "detail_url": "https://www.paceretfs.com/products/cowz",
+      "listing_name": "Pacer US Cash Cows 100 ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Developed Markets Cash Cows Growth Leaders ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "EAFG",
+      "detail_url": "https://www.paceretfs.com/products/eafg",
+      "listing_name": "Pacer Developed Markets Cash Cows Growth Leaders ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Emerging Markets Cash Cows 100 ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "ECOW",
+      "detail_url": "https://www.paceretfs.com/products/ecow",
+      "listing_name": "Pacer Emerging Markets Cash Cows 100 ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Aristotle Pacific Floating Rate High Income ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "FLRT",
+      "detail_url": "https://www.paceretfs.com/products/flrt",
+      "listing_name": "Pacer Aristotle Pacific Floating Rate High Income ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Solactive Whitney Future of Warfare ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "FOWF",
+      "detail_url": "https://www.paceretfs.com/products/fowf",
+      "listing_name": "Pacer Solactive Whitney Future of Warfare ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Global Cash Cows Dividend ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "GCOW",
+      "detail_url": "https://www.paceretfs.com/products/gcow",
+      "listing_name": "Pacer Global Cash Cows Dividend ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer MSCI World Industry Advantage ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "GLBL",
+      "detail_url": "https://www.paceretfs.com/products/glbl",
+      "listing_name": "Pacer MSCI World Industry Advantage ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Cash Cows Fund of Funds ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "HERD",
+      "detail_url": "https://www.paceretfs.com/products/herd",
+      "listing_name": "Pacer Cash Cows Fund of Funds ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Developed Markets International Cash Cows 100 ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "ICOW",
+      "detail_url": "https://www.paceretfs.com/products/icow",
+      "listing_name": "Pacer Developed Markets International Cash Cows 100 ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer ActiveAlpha India Quality ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "INDQ",
+      "detail_url": "https://www.paceretfs.com/products/indq",
+      "listing_name": "Pacer ActiveAlpha India Quality ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Industrial Real Estate ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "INDS",
+      "detail_url": "https://www.paceretfs.com/products/inds",
+      "listing_name": "Pacer Industrial Real Estate ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Laddered Moderate ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "LADM",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/ladm",
+      "listing_name": "Pacer Swan SOS Laddered Moderate ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer S&P 500 Quality FCF Aristocrats ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "LCOW",
+      "detail_url": "https://www.paceretfs.com/products/lcow",
+      "listing_name": "Pacer S&P 500 Quality FCF Aristocrats ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate (August) ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MAUG",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/maug",
+      "listing_name": "Pacer Swan SOS Moderate (August) ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer S&P MidCap 400 Quality FCF Aristocrats ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MCOW",
+      "detail_url": "https://www.paceretfs.com/products/mcow",
+      "listing_name": "Pacer S&P MidCap 400 Quality FCF Aristocrats ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate (December) ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MDCR",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/mdcr",
+      "listing_name": "Pacer Swan SOS Moderate (December) ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate (February) ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MFEB",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/mfeb",
+      "listing_name": "Pacer Swan SOS Moderate (February) ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer US Cash Cows Bond Fund ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MILK",
+      "detail_url": "https://www.paceretfs.com/products/milk",
+      "listing_name": "Pacer US Cash Cows Bond Fund ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate (June) ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MJUN",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/mjun",
+      "listing_name": "Pacer Swan SOS Moderate (June) ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate (March) ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MMAR",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/mmar",
+      "listing_name": "Pacer Swan SOS Moderate (March) ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate (May) ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MMAY",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/mmay",
+      "listing_name": "Pacer Swan SOS Moderate (May) ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate (November) ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MNVR",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/mnvr",
+      "listing_name": "Pacer Swan SOS Moderate (November) ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate (September) ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "MSEP",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/msep",
+      "listing_name": "Pacer Swan SOS Moderate (September) ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer BlueStar Digital Entertainment ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "ODDS",
+      "detail_url": "https://www.paceretfs.com/products/odds",
+      "listing_name": "Pacer BlueStar Digital Entertainment ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Lunt Large Cap Multi-Factor Alternator ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PALC",
+      "detail_url": "https://www.paceretfs.com/products/palc",
+      "listing_name": "Pacer Lunt Large Cap Multi-Factor Alternator ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Lunt Mid Cap Multi-Factor Alternator ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PAMC",
+      "detail_url": "https://www.paceretfs.com/products/pamc",
+      "listing_name": "Pacer Lunt Mid Cap Multi-Factor Alternator ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "PATN Pacer Nasdaq International Patent Leaders ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PATN",
+      "detail_url": "https://www.paceretfs.com/products/patn",
+      "listing_name": "PATN Pacer Nasdaq International Patent Leaders ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Barings Secured Credit Flex ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PBSC",
+      "detail_url": "https://www.paceretfs.com/products/pbsc",
+      "listing_name": "Pacer Barings Secured Credit Flex ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer PE/VC ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PEVC",
+      "detail_url": "https://www.paceretfs.com/products/pevc",
+      "listing_name": "Pacer PE/VC ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer US Export Leaders ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PEXL",
+      "detail_url": "https://www.paceretfs.com/products/pexl",
+      "listing_name": "Pacer US Export Leaders ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer International Export Leaders ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PIEL",
+      "detail_url": "https://www.paceretfs.com/products/piel",
+      "listing_name": "Pacer International Export Leaders ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer S&P 500 3AI Top 100 ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSAI",
+      "detail_url": "https://www.paceretfs.com/products/psai",
+      "listing_name": "Pacer S&P 500 3AI Top 100 ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Conservative July ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSCJ",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/pscj",
+      "listing_name": "Pacer Swan SOS Conservative July ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Conservative October ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSCQ",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/pscq",
+      "listing_name": "Pacer Swan SOS Conservative October ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Conservative April ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSCW",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/pscw",
+      "listing_name": "Pacer Swan SOS Conservative April ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Conservative January ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSCX",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/pscx",
+      "listing_name": "Pacer Swan SOS Conservative January ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Flex January ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSFD",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/psfd",
+      "listing_name": "Pacer Swan SOS Flex January ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Fund of Funds ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSFF",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/psff",
+      "listing_name": "Pacer Swan SOS Fund of Funds ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Flex July ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSFJ",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/psfj",
+      "listing_name": "Pacer Swan SOS Flex July ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Flex April ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSFM",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/psfm",
+      "listing_name": "Pacer Swan SOS Flex April ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Flex October ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSFO",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/psfo",
+      "listing_name": "Pacer Swan SOS Flex October ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate January ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSMD",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/psmd",
+      "listing_name": "Pacer Swan SOS Moderate January ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate July ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSMJ",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/psmj",
+      "listing_name": "Pacer Swan SOS Moderate July ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate October ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSMO",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/psmo",
+      "listing_name": "Pacer Swan SOS Moderate October ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Swan SOS Moderate April ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PSMR",
+      "detail_url": "https://www.paceretfs.com/products/structured-outcome-strategies/psmr",
+      "listing_name": "Pacer Swan SOS Moderate April ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Trendpilot US Bond ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PTBD",
+      "detail_url": "https://www.paceretfs.com/products/ptbd",
+      "listing_name": "Pacer Trendpilot US Bond ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Trendpilot European Index ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PTEU",
+      "detail_url": "https://www.paceretfs.com/products/pteu",
+      "listing_name": "Pacer Trendpilot European Index ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Trendpilot International ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PTIN",
+      "detail_url": "https://www.paceretfs.com/products/ptin",
+      "listing_name": "Pacer Trendpilot International ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Trendpilot US Large Cap ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PTLC",
+      "detail_url": "https://www.paceretfs.com/products/ptlc",
+      "listing_name": "Pacer Trendpilot US Large Cap ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Trendpilot US Mid Cap ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PTMC",
+      "detail_url": "https://www.paceretfs.com/products/ptmc",
+      "listing_name": "Pacer Trendpilot US Mid Cap ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Trendpilot 100 ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PTNQ",
+      "detail_url": "https://www.paceretfs.com/products/ptnq",
+      "listing_name": "Pacer Trendpilot 100 ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer WealthShield ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "PWS",
+      "detail_url": "https://www.paceretfs.com/products/pws",
+      "listing_name": "Pacer WealthShield ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Metaurus US Large Cap Dividend Multiplier 400 ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "QDPL",
+      "detail_url": "https://www.paceretfs.com/products/qdpl",
+      "listing_name": "Pacer Metaurus US Large Cap Dividend Multiplier 400 ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer S&P 500 Quality FCF High Dividend ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "QFHD",
+      "detail_url": "https://www.paceretfs.com/products/qfhd",
+      "listing_name": "Pacer S&P 500 Quality FCF High Dividend ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer S&P 500 Quality FCF R&D Leaders ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "QFRD",
+      "detail_url": "https://www.paceretfs.com/products/qfrd",
+      "listing_name": "Pacer S&P 500 Quality FCF R&D Leaders ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Nasdaq-100 Top 50 Cash Cows Growth Leaders ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "QQQG",
+      "detail_url": "https://www.paceretfs.com/products/qqqg",
+      "listing_name": "Pacer Nasdaq-100 Top 50 Cash Cows Growth Leaders ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Cash COWZ 100-Nasdaq 100 Rotator ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "QQWZ",
+      "detail_url": "https://www.paceretfs.com/products/qqwz",
+      "listing_name": "Pacer Cash COWZ 100-Nasdaq 100 Rotator ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Metaurus Nasdaq-100 Dividend Multiplier 600 ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "QSIX",
+      "detail_url": "https://www.paceretfs.com/products/qsix",
+      "listing_name": "Pacer Metaurus Nasdaq-100 Dividend Multiplier 600 ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer S&P SmallCap 600 Quality FCF Aristocrats ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "SCOW",
+      "detail_url": "https://www.paceretfs.com/products/scow",
+      "listing_name": "Pacer S&P SmallCap 600 Quality FCF Aristocrats ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Industrials and Logistics ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "SHPP",
+      "detail_url": "https://www.paceretfs.com/products/shpp",
+      "listing_name": "Pacer Industrials and Logistics ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Data & Infrastructure Real Estate ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "SRVR",
+      "detail_url": "https://www.paceretfs.com/products/srvr",
+      "listing_name": "Pacer Data & Infrastructure Real Estate ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Data and Digital Revolution ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "TRFK",
+      "detail_url": "https://www.paceretfs.com/products/trfk",
+      "listing_name": "Pacer Data and Digital Revolution ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer Trendpilot Fund of Funds ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "TRND",
+      "detail_url": "https://www.paceretfs.com/products/trnd",
+      "listing_name": "Pacer Trendpilot Fund of Funds ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer American Energy Infrastructure ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "USAI",
+      "detail_url": "https://www.paceretfs.com/products/usai",
+      "listing_name": "Pacer American Energy Infrastructure ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    },
+    {
+      "etf_name": "Pacer S&P World 3AI Top 300 ETF",
+      "issuer": "Pacer ETFs",
+      "ticker": "WDAI",
+      "detail_url": "https://www.paceretfs.com/products/wdai",
+      "listing_name": "Pacer S&P World 3AI Top 300 ETF",
+      "source_kind": "detail_page_dom",
+      "fetch_status": "failed",
+      "error": "Page.wait_for_function: Timeout 60000ms exceeded."
+    }
+  ]
+}

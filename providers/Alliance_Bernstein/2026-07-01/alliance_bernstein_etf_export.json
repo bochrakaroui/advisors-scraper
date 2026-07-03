@@ -1,0 +1,53 @@
+{
+  "captured_at": "2026-07-01T20:09:45.659690+00:00",
+  "provider": "AllianceBernstein",
+  "detail_url_count": 5,
+  "row_count": 5,
+  "listing_rows": [
+    {
+      "ETF Name": "AB Euro Corporate Bond UCITS ETF EUR Acc",
+      "Issuer": "AllianceBernstein",
+      "ISIN": "LU3322521785",
+      "CCY": "EUR",
+      "TER(bps)": "29",
+      "AUM(M)": "199.88",
+      "Date": "31/05/2026"
+    },
+    {
+      "ETF Name": "AB Global Corporate Bond UCITS ETF USD Acc",
+      "Issuer": "AllianceBernstein",
+      "ISIN": "LU3322522080",
+      "CCY": "USD",
+      "TER(bps)": "29",
+      "AUM(M)": "51.74",
+      "Date": "31/05/2026"
+    },
+    {
+      "ETF Name": "AB Global Disruptors UCITS ETF USD Acc",
+      "Issuer": "AllianceBernstein",
+      "ISIN": "LU3322522163",
+      "CCY": "USD",
+      "TER(bps)": "78",
+      "AUM(M)": "5.09",
+      "Date": "31/05/2026"
+    },
+    {
+      "ETF Name": "AB Global Research Advanced Equity UCITS ETF USD Acc",
+      "Issuer": "AllianceBernstein",
+      "ISIN": "LU3322522247",
+      "CCY": "USD",
+      "TER(bps)": "25",
+      "AUM(M)": "10.07",
+      "Date": "31/05/2026"
+    },
+    {
+      "ETF Name": "AB USD Corporate Bond UCITS ETF USD Acc",
+      "Issuer": "AllianceBernstein",
+      "ISIN": "LU3322522593",
+      "CCY": "USD",
+      "TER(bps)": "29",
+      "AUM(M)": "46.79",
+      "Date": "31/05/2026"
+    }
+  ]
+}

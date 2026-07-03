@@ -1,0 +1,4870 @@
+{
+  "routeParams": {
+    "*": "/"
+  },
+  "query": {
+    "language": "en",
+    "location": "uk",
+    "channel": "institutional",
+    "clientId": "schdr",
+    "clientVersion": "v1",
+    "externalId": "SCHDR_F00001RRIQ",
+    "r": "/fund/SCHDR_F00001RRIQ/",
+    "fundName": "Schroder-ETFs-ICAV-Schroder-Global-Equity-Active-UCITS-ETF-Accumulation-USD",
+    "tabIndex": "0"
+  },
+  "dataUrl": "https://fev2-vite.schdr.eu-central-1.isgdigital.com",
+  "clientBasePath": "",
+  "search": "?language=en&location=uk&channel=institutional&clientId=schdr&clientVersion=v1&externalId=SCHDR_F00001RRIQ&r=%2Ffund%2FSCHDR_F00001RRIQ%2F&fundName=Schroder-ETFs-ICAV-Schroder-Global-Equity-Active-UCITS-ETF-Accumulation-USD",
+  "requestUrl": "/?language=en&location=uk&channel=institutional&clientId=schdr&clientVersion=v1&externalId=SCHDR_F00001RRIQ&r=%2Ffund%2FSCHDR_F00001RRIQ%2F&fundName=Schroder-ETFs-ICAV-Schroder-Global-Equity-Active-UCITS-ETF-Accumulation-USD",
+  "internalPageRoute": "/fund/SCHDR_F00001RRIQ/",
+  "internalPageName": "FundDetailView",
+  "handlerStages": [
+    {
+      "name": "/index.pageContext.json*",
+      "stage": 1,
+      "req.appQuery.r": "/fund/SCHDR_F00001RRIQ/"
+    },
+    {
+      "name": "/index.pageContext.json*",
+      "stage": 2,
+      "req.appQuery.r": "/fund/SCHDR_F00001RRIQ/",
+      "internalPageName": "FundDetailView"
+    }
+  ],
+  "errorWhileRendering": null,
+  "simulateIntegration": false,
+  "doNotHydrate": false,
+  "themeData": {
+    "fonts": {
+      "heading": "Schroders Circular, schroders-circular, SchrodersCircularWeb-Book, sans-serif, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Helvetica, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+      "body": "Schroders Circular, schroders-circular, SchrodersCircularWeb-Book, sans-serif, Noto Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Helvetica, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol"
+    },
+    "colors": {
+      "brandScheme": {
+        "50": "#ebf8ff",
+        "100": "#bee3f8",
+        "200": "#90cdf4",
+        "300": "#63b3ed",
+        "400": "#4299e1",
+        "500": "#3182ce",
+        "600": "#2b6cb0",
+        "700": "#2c5282",
+        "800": "#2a4365",
+        "900": "#1A365D"
+      },
+      "shade": {
+        "100": "#fff",
+        "200": "#F3F6F9",
+        "300": "#E9ECEF",
+        "400": "#dee3eb",
+        "500": "#b8c1d0",
+        "600": "#878787",
+        "700": "#2F3A4B",
+        "800": "#545454",
+        "900": "#000"
+      },
+      "shadeAlpha": {
+        "800": "#00295e1a"
+      },
+      "brand": {
+        "dark": "#001E41",
+        "primary": "#002A5E",
+        "primaryAccent": "#14E6F1",
+        "secondary": "#2D55B2",
+        "secondaryAccent": "#075994"
+      },
+      "backgrounds": {
+        "article": "#F6A82B",
+        "accent": "#5d3297",
+        "barBgColor": "#E9ECEF",
+        "lightGrey": "#f2f2f2",
+        "lightGrey2": "#00295e1a",
+        "lightGrey3": "#f6f8fc",
+        "lightGrey4": "#e1e6ea",
+        "lightGrey5": "#f7f8fc",
+        "lightGrey6": "#e1e3e7",
+        "lightGrey7": "#e2e2e2",
+        "lightGrey8": "#EEEEEE"
+      },
+      "text": {
+        "heading": "#2b2b2a",
+        "label": "#898989",
+        "content": "#4a4a4a",
+        "subtle": "#9e9e9e",
+        "subtext": "#646464"
+      },
+      "borders": {
+        "light": "#DFDEE3",
+        "medium": "#B7B7B7",
+        "dark": "#505A68"
+      },
+      "chartSeriesKey": {
+        "positive": "#338808",
+        "negative": "#E31D16"
+      }
+    },
+    "components": {
+      "StickyBar": {
+        "baseStyle": {
+          "root": {
+            "zIndex": "sticky"
+          }
+        }
+      },
+      "ConfirmationModal": {
+        "baseStyle": {
+          "footer": {
+            "justifyContent": "flex-end",
+            "gap": 4
+          },
+          "confirmButton": {
+            "minW": "120px"
+          },
+          "cancelButton": {
+            "color": "brand.secondary",
+            "minW": "120px",
+            "props": {
+              "colorScheme": "brand.secondary",
+              "variant": "outline"
+            }
+          }
+        }
+      },
+      "Modal": {
+        "baseStyle": {
+          "dialog": {
+            "borderRadius": "sm"
+          },
+          "header": {
+            "borderBottom": "1px solid",
+            "borderColor": "gray.300",
+            "fontWeight": "normal"
+          }
+        }
+      },
+      "Divider": {
+        "baseStyle": {
+          "borderColor": "#bbb"
+        }
+      },
+      "Checkbox": {
+        "baseStyle": {
+          "control": {
+            "borderColor": "shade.500",
+            "borderWidth": "1px",
+            "bgColor": "shade.100",
+            "_checked": {
+              "borderColor": "brand.primary",
+              "bgColor": "brand.primary",
+              "color": "brand.primaryAccent"
+            }
+          },
+          "label": {
+            "color": "shade.800",
+            "display": "flex",
+            "width": "100%",
+            "justifyContent": "space-between"
+          }
+        },
+        "sizes": {
+          "md": {
+            "control": {
+              "width": "16px",
+              "height": "16px"
+            },
+            "label": {
+              "fontSize": "14px"
+            },
+            "icon": {
+              "fontSize": "8px"
+            }
+          }
+        }
+      },
+      "Table": {
+        "baseStyle": {
+          "th": {
+            "textTransform": "initial"
+          }
+        }
+      },
+      "FundListShareclass": {
+        "baseStyle": {
+          "header": {
+            "color": "brand.primary"
+          },
+          "linkContainer": {
+            "_hover": {
+              "color": "inherit"
+            }
+          }
+        }
+      },
+      "AllocationBarWeightingBreakdownRow": {
+        "baseStyle": {
+          "negativeSectorBarBg": {
+            "backgroundColor": "brand.primary"
+          }
+        }
+      }
+    }
+  },
+  "configData": {
+    "scrollConfig": {
+      "enabled": true
+    }
+  },
+  "length": "!undefined",
+  "abortReason": "!undefined",
+  "_urlRewrite": null,
+  "_urlRedirect": "!undefined",
+  "abortStatusCode": "!undefined",
+  "_abortCall": "!undefined",
+  "_pageContextInitIsPassedToClient": true,
+  "_pageId": "/pages/index",
+  "data": {
+    "status": 200,
+    "routeParams": {
+      "*": "/"
+    },
+    "query": {
+      "language": "en",
+      "location": "uk",
+      "channel": "institutional",
+      "clientId": "schdr",
+      "clientVersion": "v1",
+      "externalId": "SCHDR_F00001RRIQ",
+      "r": "/fund/SCHDR_F00001RRIQ/",
+      "fundName": "Schroder-ETFs-ICAV-Schroder-Global-Equity-Active-UCITS-ETF-Accumulation-USD",
+      "tabIndex": "0"
+    },
+    "contentType": "application/json",
+    "isErr": false,
+    "body": {
+      "shareClass": {
+        "name": "Schroder ETFs (ICAV) - Schroder Global Equity Active UCITS ETF Accumulation USD",
+        "nameUntranslated": "Schroder ETFs (ICAV) - Schroder Global Equity Active UCITS ETF Accumulation USD",
+        "externalId": "SCHDR_F00001RRIQ",
+        "parentExternalId": "SCHDR_FS0000JVX1",
+        "baseCurrency": "USD",
+        "legalStructure": "euro-etf",
+        "shareclassExternalId": "SCHDR_F00001RRIQ",
+        "fundExternalId": "SCHDR_FS0000JVX1",
+        "isin": "IE000BNLRWE6"
+      },
+      "fundDetailTopNavigation": {
+        "linkLabel": "Back to funds",
+        "title": "Schroder ETFs ICAV",
+        "subTitle": "Dashboard",
+        "hideCloseButton": 1,
+        "fontSize": 16
+      },
+      "investmentFigureUnitSelection": {
+        "description": "Show investment figures as",
+        "percentageLabel": "Percentage",
+        "currencyLabel": "USD",
+        "tooltip": "By entering an amount into the box this will generate a past hypothetical return based on the value you input, calculated using the past performance of the fund. Past performance is not a guide to future performance and may not be repeated. The value of investments and the income from them may go down as well as up and investors may not get back the amounts originally invested.",
+        "investmentValueLabel": "Input hypothetical investment",
+        "saveLabel": "Save",
+        "baseCurrencySymbol": "&dollar;",
+        "unitTypeLabel": ""
+      },
+      "translations": {
+        "searchPlaceholder": "Search by name or code",
+        "searchHeader": "The following industry recognised codes and identifiers can be used: ISIN, APIR Code, SEDOL, CUSIP, NASDAQ, Bloomberg ticker, mFund Code, Valorennumer, Ticker, Wertpapierkennummer, Reuters Code and Kofia Code",
+        "searchSuggestions": "Suggestions",
+        "noResults": "No Results",
+        "results": "",
+        "seeResults": "",
+        "searchSuggestionTip1": "Make sure that all words are spelled correctly",
+        "searchSuggestionTip2": "Try different keywords",
+        "searchSuggestionTip3": "Try more general keywords",
+        "searchSuggestionTip4": "Try fewer keywords",
+        "searchSuggestionTip5": "Enter a product number to search for a specific product",
+        "clearHistory": "Clear History",
+        "recentSearches": "Recent Searches",
+        "mostCommonSearchedTerms": "Most common searched terms",
+        "fund": "Fund",
+        "showMore": "Show more",
+        "showLess": "Show less",
+        "selectedFilters": "Selected filters",
+        "clearAll": "Clear all",
+        "applyChanges": "",
+        "selectAll": "Select All",
+        "deselectAll": "Unselect all",
+        "back": "Back",
+        "next": "Next",
+        "close": "Close",
+        "filters": "Refine",
+        "customiseDownload": "Customise your data download",
+        "selectItems": "Select items",
+        "dataAttributes": "Data Attributes",
+        "dividendsDownloadStep2Description": "",
+        "step": "Step",
+        "generateData": "Generate data",
+        "generatingData": "Generating Data",
+        "dividendsDownloadStep3Description": "Your data is currently being generated",
+        "dividendsDownloadStep3Description2": "It shouldn&rsquo;t take longer than a few minutes",
+        "overview": "Overview",
+        "dividends": "Dividends",
+        "name": "Name",
+        "unitNav": "Unit NAV",
+        "unitNavChange": "NAV % Change",
+        "actions": "Actions",
+        "distributionDividendIncome": "Dividend per unit",
+        "distributionDividendIncomePayDate": "Last Dividend Date",
+        "distributionFrequency": "Distribution frequency",
+        "moreInfo": "More Info",
+        "moreInformation": "",
+        "effectiveDate": "Effective Date",
+        "basicInfoTooltip": "For more details please refer to the KIID or Prospectus",
+        "statusTitle": "Basic information",
+        "refine": "Refine",
+        "collection": "Collection",
+        "compare": "Compare",
+        "showingResult": "Showing {{totalResults}} results",
+        "addToCollection": "Add to collections",
+        "removeFromCollection": "",
+        "addToComparison": "Add to comparison",
+        "removeFromComparison": "Remove from comparison",
+        "of": "of",
+        "showing": "Showing",
+        "downloadPrice": "Download Price",
+        "chartView": "Chart View",
+        "tableView": "Table View",
+        "from": "From",
+        "to": "To",
+        "custom": "Custom",
+        "apply": "Apply",
+        "cancel": "Cancel",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "date": "Date",
+        "price": "Price",
+        "dailyChange": "Daily change",
+        "today": "Today",
+        "change": "Change",
+        "priceHistory": "Price History",
+        "stageTitle1": "Select Price Period",
+        "stageTitle2": "Select File Type",
+        "stageTitle3": "Generate data",
+        "stageTitle4": "Download Historic Price",
+        "previous": "Previous Versions",
+        "shareClass": "Shareclass",
+        "selectPricePeriod": "Select Price Period",
+        "viewGeneratedData": "View Generated Data",
+        "selectFileType": "Select your file type:",
+        "selectFileTypeDescription": "Select the type of data file you want to download",
+        "excel": "Excel",
+        "csv": "CSV",
+        "dataBeingGenerated": "Your data is currently being generated",
+        "dataBeingGeneratedDescription": "It shouldn&rsquo;t take longer than a few minutes",
+        "pricePeriod": "Price period",
+        "fileReadyDownload": "Your file is ready to download!",
+        "multipleLanguages": "Multiple Languages",
+        "allCollections": "All collections",
+        "myCollections": "My Collections",
+        "collectionsDescription": "Collection items may vary depending on selected localisation settings.",
+        "createNewCollection": "Create new collection",
+        "noCollections": "Create your collection",
+        "createCollection": "Create new collection",
+        "enterPlaylistName": "Enter a collection name:",
+        "enterPlaylistNamePlaceholder": "Enter a new collection name",
+        "collectionNameRequired": "Collection name is required.",
+        "enterCollectionNameDescription": "Enter the name of the collection you want to create",
+        "create": "Create",
+        "editCollection": "Rename collection",
+        "playlistRenamePlaceholder": "Enter a new collection name",
+        "update": "Update",
+        "charactersRemaining": "{{ count }} characters left",
+        "deleteCollectionTitle": "Delete collection",
+        "deleteCollectionDescription": "Do you want to delete this collection group?",
+        "delete": "Delete",
+        "created": "Created",
+        "updated": "Updated",
+        "items": "{{ count }} items",
+        "noCollection": "No collections yet",
+        "addProducts": "Add products",
+        "noProductsAddedToCollection": "No products added to this collection",
+        "compareSelectUptoFunds": "Select up to 3 funds to compare",
+        "addToCompare": "Add funds to compare",
+        "clear": "",
+        "addFund": "Add fund",
+        "add": "Add",
+        "viewFund": "View fund",
+        "submit": "Submit",
+        "search": "Search&hellip;",
+        "historicalTitle": "Factsheets - Previous Versions",
+        "documentsTitle": "Documents",
+        "documentsTitleTooltip": "",
+        "selectedFiles": "selected | Compressed file",
+        "download": "Download",
+        "compareButtonTooltip": "This is where you will compare your funds. Please select a minimum of 2 to compare",
+        "collectionButtonTooltip": "This is where you can view your collections, and add or remove funds from them",
+        "watchlistButtonTooltip": "This is where you can see you watchlist buckets. Please select a minimum of 1 fund to begin",
+        "allWatchlists": "All watchlists",
+        "watchlist": "Watchlist",
+        "addToWatchlist": "Add to watchlist",
+        "removeFromWatchlist": "",
+        "myWatchlists": "My watchlists",
+        "watchlistsDescription": "Watchlist items may vary depending on selected localisation settings.",
+        "createNewWatchlist": "Create new watchlist",
+        "noWatchlists": "Create your watchlist",
+        "createWatchlist": "Create new watchlist",
+        "enterWatchlistName": "Enter a watchlist name",
+        "enterWatchlistNamePlaceholder": "Enter a new watchlist name",
+        "watchlistNameRequired": "Watchlist name is required",
+        "watchlistNameDuplicated": "",
+        "enterWatchlistNameDescription": "Enter watchlist name description",
+        "editWatchlist": "Rename watchlist",
+        "deleteWatchlistTitle": "Delete watchlist",
+        "deleteWatchlistDescription": "Do you want to delete this watchlist group?",
+        "noProductsAddedToWatchlist": "No products added to this watchlist",
+        "noWatchlistsInfo": "No watchlists found",
+        "jan": "January",
+        "feb": "February",
+        "mar": "March",
+        "apr": "April",
+        "jun": "June",
+        "jul": "July",
+        "aug": "August",
+        "sep": "September",
+        "oct": "October",
+        "nov": "November",
+        "dec": "December",
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December",
+        "performanceType": "",
+        "downloadPrices": "Download prices",
+        "noData": "",
+        "readMore": "Read more",
+        "readLess": "Read less",
+        "expandView": "",
+        "collapseView": "",
+        "dividendsInformationTitle": "Important Information",
+        "menu": "Menu",
+        "keyDocuments": "",
+        "bannerURL": "Banner",
+        "isin": "ISIN",
+        "inceptionDate": "Share class launch date",
+        "downloadDividends": "Download dividends data",
+        "viewFundDashboard": "View fund dashboard",
+        "history": "History",
+        "viewDividendHistory": "View Dividend History",
+        "downloadDividendsData": "Download dividends data",
+        "showMoreShareClasses": "Show more shareclasses",
+        "showLessShareClasses": "Show less shareclasses",
+        "yearsShort": "Yrs",
+        "dataDownloadSubtitle": "Select the type of data to include into the data download",
+        "selectTenInvestments": "",
+        "compareIITitle": "",
+        "selectInvestmentInfo": "",
+        "addInvestmentsButtonTitle": "",
+        "funds": "",
+        "searchTerm": "",
+        "selected": "",
+        "view": "View",
+        "selectedFunds": "",
+        "clearAllSelections": "",
+        "backToFunds": "",
+        "index": "",
+        "fundTags": "",
+        "showOnly": "",
+        "quickFiltersHint": "",
+        "hideLegend": "",
+        "showLegend": "",
+        "investNow": "",
+        "viewDetails": "",
+        "compareAlreadySelected": "",
+        "comparePageHeaderTitle": "",
+        "chartAsOfLabel": "As of",
+        "title(fxRiskScorePanel)": "Synthetic risk & reward indicator (SRRI)",
+        "title(fxDocumentGroupPanel)": "",
+        "documentAction": ""
+      },
+      "deviceSupport": {
+        "mobile": {},
+        "tablet": {},
+        "desktop": {}
+      },
+      "fxProfileHeroPanel": {
+        "header": {
+          "heading": "Schroder ETFs (ICAV) - Schroder Global Equity Active UCITS ETF Accumulation USD",
+          "headingColor": "#fff",
+          "identifier": "IE000BNLRWE6",
+          "identifierLabel": "ISIN",
+          "backgroundImage": "https://d34fe5a0fstv5z.cloudfront.net/production/node_09668673326113a65bca158d0ff3e9263dcf2c8f",
+          "brandIcon": "https://d34fe5a0fstv5z.cloudfront.net/production/node_fa9afb5e88ae3c99924e3d923867a8d359f5e873",
+          "date": "24.09.2025",
+          "dateLabel": "Inception",
+          "baseDateLabel": "Base date",
+          "companyInceptionDate": "-",
+          "companyInceptionDateLabel": "",
+          "compareEnabled": true,
+          "companyInceptionDateEnabled": true,
+          "isinEnabled": true,
+          "inceptionDateEnabled": true
+        },
+        "changeShareclass": {
+          "heading": "Share class"
+        },
+        "metricList": {
+          "items": [
+            {
+              "id": "priceEndValue",
+              "title": "Unit NAV (USD)",
+              "value": "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 11.4558</span></span>",
+              "date": "29.06.2026",
+              "asOfLabel": "As of",
+              "tooltip": "The value of an entity&rsquo;s assets minus the value of its liabilities."
+            },
+            {
+              "id": "fundSizeDailyEndValue",
+              "title": "Total NAV (USD)",
+              "value": "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 1,182.12<span class=\"unit\"> m</span></span></span>",
+              "date": "29.06.2026",
+              "asOfLabel": "As of",
+              "tooltip": "Total NAV"
+            }
+          ]
+        }
+      },
+      "fxObjectivePanel": {
+        "heading": "Fund objectives and investment policy",
+        "tooltip": "",
+        "content": "The fund aims to provide capital growth and income in excess of the MSCI World (Net TR) index after fees have been deducted over a three to five year period by investing in equity and equity-related securities of companies worldwide. There can be no assurance that the fund will achieve its investment objective.<br /><p><strong>Above is the Investment Objective of the fund. For details on the fund&rsquo;s Investment Policy please see the KID.</strong> <br><strong>Relevant risks associated with an investment in this fund are shown below and should be carefully considered before making any investment.</strong></p>",
+        "numberOfLines": 4,
+        "more": "Read more",
+        "less": "Read less"
+      },
+      "fxManagerPanel": {
+        "heading": "Fund manager",
+        "tooltip": "Fund Manager(s). Please refer to the fund factsheet for a full list of fund managers.",
+        "items": [
+          {
+            "imageUrl": null,
+            "name": "Lukas Kamblevicius",
+            "startDate": "9/24/2025",
+            "date": "24.09.2025",
+            "includeTerm": true,
+            "disabled": true
+          }
+        ],
+        "managerLabel": "Fund manager",
+        "managerStartDateLabel": "Managed fund since",
+        "managerTermLabel": "Term"
+      },
+      "fxRiskScorePanel": {
+        "sections": [
+          {
+            "title": "Summary risk indicator (SRI)",
+            "asOf": "24.09.2025",
+            "asOfLabel": "As of",
+            "tooltip": "The Summary Risk Indicator is a number between 1 and 7 shown on all Key Information Documents to allow investors to compare funds' risk profiles. 1 is the lowest risk rating and 7 is the highest. The as at date reflects the date at which the data provider, Accudelta, last updated the SRI figure. This as at date will not always reflect the exact date the figure was updated internally",
+            "helperText": "<p>The risk category was calculated using historical performance data (or indicative fund performance during periods of suspension) and may not be a reliable indicator of the fund&rsquo;s future risk profile. The fund&rsquo;s risk category is not guaranteed to remain fixed. Please see the Key Information Document for more information.</p>",
+            "riskScales": [
+              {
+                "items": [
+                  {
+                    "riskValue": 1,
+                    "isSelected": false,
+                    "helperText": "",
+                    "hasNotch": false
+                  },
+                  {
+                    "riskValue": 2,
+                    "isSelected": false,
+                    "helperText": "",
+                    "hasNotch": false
+                  },
+                  {
+                    "riskValue": 3,
+                    "isSelected": false,
+                    "helperText": "",
+                    "hasNotch": false
+                  },
+                  {
+                    "riskValue": 4,
+                    "isSelected": true,
+                    "helperText": "",
+                    "hasNotch": true
+                  },
+                  {
+                    "riskValue": 5,
+                    "isSelected": false,
+                    "helperText": "",
+                    "hasNotch": false
+                  },
+                  {
+                    "riskValue": 6,
+                    "isSelected": false,
+                    "helperText": "",
+                    "hasNotch": false
+                  },
+                  {
+                    "riskValue": 7,
+                    "isSelected": false,
+                    "helperText": "",
+                    "hasNotch": false
+                  }
+                ],
+                "type": "sri"
+              }
+            ]
+          }
+        ]
+      },
+      "fxDefinitionListPanel": {
+        "id": "feesAndExpenses",
+        "title": "Fees & expenses",
+        "tooltip": "",
+        "categoryItems": [
+          {
+            "id": "priipOGC",
+            "title": "Ongoing charge",
+            "value": "<span class=\"percentage\">0.25%</span>",
+            "tooltip": "The ongoing charge figure is made up of the annual management charge (AMC), the administration charges and all other operating expenses (excluding performance fee payable). This is expressed as a percentage of the average daily net asset values during the year",
+            "asOf": "",
+            "asOfDateTitle": "As of",
+            "actions": null
+          }
+        ],
+        "type": "feesAndExpenses",
+        "hasDividendsDownload": false,
+        "asOfLabel": "As of",
+        "navMenuItems": [
+          {
+            "label": "Fees and Expenses",
+            "href": "#fxDefinitionListGroupPanel_feesAndExpenses"
+          }
+        ]
+      },
+      "fxRiskConsiderationsPanel": {
+        "heading": "Risk considerations",
+        "tooltip": "",
+        "content": "<div><p><strong>Capital risk / distribution policy: </strong>As the fund intends to pay dividends regardless of its performance, a dividend may represent a return of part of the amount you invested.</p> <p><strong>China risk: </strong>If the fund invests in the China Interbank Bond Market via the Bond Connect or in China \"A\" shares via the Shanghai-Hong Kong Stock Connect and Shenzhen-Hong Kong Stock Connect or in shares listed on the STAR Board or the ChiNext, this may involve clearing and settlement, regulatory, operational and counterparty risks. If the fund invests in onshore renminbi-denominated securities, currency control decisions made by the Chinese government could affect the value of the fund's investments and could cause the fund to defer or suspend redemptions of its shares.</p> <p><strong>Counterparty risk: </strong>The portfolio may have contractual agreements with counterparties. If a counterparty is unable to fulfil their obligations, the sum that they owe to the portfolio may be lost in part or in whole.</p> <p><strong>Currency risk: </strong>If the fund&rsquo;s investments are denominated in currencies different to the fund&rsquo;s base currency, the fund may lose value as a result of movements in foreign exchange rates, otherwise known as currency rates. If the investor holds a share class in a different currency to the base currency of the fund, investors may be exposed to losses as a result of movements in currency rates.</p> <p><strong>Higher volatility risk: </strong>The price of this fund may be more volatile as it may take higher risks in search of higher rewards, meaning the price may go up and down to a greater extent.</p> <p><strong>Liquidity risk: </strong>In difficult market conditions, the fund may not be able to sell a security for full value or at all. This could affect performance and could cause the fund to defer or suspend redemptions of its shares, meaning investors may not be able to have immediate access to their holdings.</p> <p><strong>Liquidity Risk: </strong>The price of shares in the Fund is determined by market supply and demand, and this may be different to the net asset value of the Fund.&nbsp;In difficult market conditions, investors may not be able to find a buyer for their shares or may not get back the amount that they originally invested.&nbsp; &nbsp;Certain investments of the Fund, in particular the unquoted investments, may be less liquid and more difficult to value.&nbsp;In difficult market conditions, the Fund may not be able to sell an investment for full value or at all and this could affect performance of the Fund.</p></div><div> <p><strong>Market Risk: </strong>The value of investments can go up and down and an investor may not get back the amount initially invested.</p> <p><strong>Operational risk: </strong>Operational processes, including those related to the safekeeping of assets, may fail. This may result in losses to the fund.</p> <p><strong>Performance risk: </strong> Investment objectives express an intended result but there is no guarantee that such a result will be achieved. Depending on market conditions and the macro economic environment, investment objectives may become more difficult to achieve.</p> <p><strong>Share Price risk: </strong>The price of shares in the Fund is determined by market supply and demand, and this may be different to the net asset value of the Fund. This means the price may be volatile, meaning the price may go up and down to a greater extent in response to changes in demand.</p> <p><strong>Sustainability risk: </strong>The fund has environmental and/or social characteristics. This means it may have limited exposure to some companies, industries or sectors and may forego certain investment opportunities, or dispose of certain holdings, that do not align with its sustainability criteria chosen by the investment manager. The fund may invest in companies that do not reflect the beliefs and values of any particular investor.</p></p></div>",
+        "columnCount": 2
+      },
+      "fxPerformanceTablePanel": {
+        "heading": "Performance",
+        "sections": [
+          {
+            "id": "cumulative",
+            "heading": "Cumulative performance",
+            "tooltip": "Total return over a given period.",
+            "data": {
+              "header": [
+                "<span class=\"asoflabel\">As of  <span class=\"asofdate\" style=\"padding-left: 1px\">31.05.2026</span></span>",
+                "1 month",
+                "3 months",
+                "YTD",
+                "1 year",
+                "3 years",
+                "5 years",
+                "Since inception"
+              ],
+              "rows": [
+                [
+                  "Share Price",
+                  4.8170952553422675,
+                  7.443846296640073,
+                  10.944987540732235,
+                  null,
+                  null,
+                  null,
+                  14.69335182799961
+                ],
+                [
+                  "Target  ",
+                  4.55211,
+                  7.28237,
+                  10.48669,
+                  null,
+                  null,
+                  null,
+                  14.777105
+                ]
+              ],
+              "rowTypes": [
+                "marketCalculatedReturn",
+                "benchmarkTotalReturn"
+              ],
+              "rowKeys": [
+                "Schroder ETFs (ICAV) - Schroder Global Equity Active UCITS ETF Accumulation USD",
+                "MSCI World NR"
+              ],
+              "cellFormatter": {
+                "type": "number",
+                "decimalPlaces": 1,
+                "showPercentage": true,
+                "includePercentageSymbol": true
+              },
+              "title": "Cumulative performance"
+            },
+            "disclaimer": "<p><strong>There is insufficient data to provide a useful indication of past performance to investors. Share class launch date: 24.09.2025</strong></p>",
+            "asOf": "<span class=\"asoflabel\">As of  <span class=\"asofdate\" style=\"padding-left: 1px\">31.05.2026</span></span>"
+          },
+          {
+            "id": "annualised",
+            "heading": "Annualised performance (%)",
+            "tooltip": "",
+            "data": {
+              "header": [
+                "<span class=\"asoflabel\">As of  <span class=\"asofdate\" style=\"padding-left: 1px\">31.05.2026</span></span>",
+                "1 year",
+                "3 years",
+                "5 years",
+                "Since inception"
+              ],
+              "rows": [
+                [
+                  "Target  ",
+                  null,
+                  null,
+                  null,
+                  14.777105
+                ]
+              ],
+              "rowTypes": [
+                "benchmarkTotalTrailingReturn"
+              ],
+              "rowKeys": [
+                "MSCI World NR"
+              ],
+              "cellFormatter": {
+                "type": "number",
+                "decimalPlaces": 1,
+                "showPercentage": true,
+                "includePercentageSymbol": true
+              },
+              "title": "Annualised performance (%)"
+            },
+            "disclaimer": "<p><strong>There is insufficient data to provide a useful indication of past performance to investors. Share class launch date: 24.09.2025</strong></p>",
+            "asOf": "<span class=\"asoflabel\">As of  <span class=\"asofdate\" style=\"padding-left: 1px\">31.05.2026</span></span>"
+          }
+        ],
+        "translations": {
+          "viewDividendHistory": "View Dividend History"
+        },
+        "options": {
+          "hasDividends": false
+        },
+        "noPerformanceDisclaimer": "<p>There is insufficient data to provide investors with a useful indication of the fund's past performance. Share class launch date: 24.09.2025. Fund launch date: 24.09.2025</p>"
+      },
+      "fxPerformancePriipsScenariosPanel": {
+        "periodOptions": [
+          {
+            "value": "0",
+            "label": "November 2025"
+          }
+        ],
+        "investmentLabel": "Example Investment",
+        "investmentValue": "USD 10.000,00",
+        "periodLabel": "Month from:",
+        "recommendedHoldingPeriodLabel": "Recommended Holding Period",
+        "scenariosLabel": "Scenarios",
+        "minimumLabel": "Minimum",
+        "minimumDisclaimer": "<p>There is no minimum guaranteed return. You could lose some or all of your investment</p>",
+        "downloadDataLabel": "Download Data",
+        "sections": [
+          {
+            "recommendedHoldingPeriod": "5 years",
+            "scenariosItems": [
+              "If you exit after <strong>1 years</strong>",
+              "If you exit after <strong>5 years</strong>"
+            ],
+            "categoryItems": [
+              {
+                "value": "Stress",
+                "label": "Stress",
+                "rows": [
+                  [
+                    "What you might get back after costs",
+                    "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 0</span></span>",
+                    "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 10</span></span>"
+                  ],
+                  [
+                    "Average return each year",
+                    "<span><span class=\"percentage\">-100.0%</span></span>",
+                    "<span><span class=\"percentage\">-75.6%</span></span>"
+                  ]
+                ]
+              },
+              {
+                "value": "Unfavorable",
+                "label": "Unfavorable",
+                "rows": [
+                  [
+                    "What you might get back after costs",
+                    "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 10</span></span>",
+                    "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 10</span></span>"
+                  ],
+                  [
+                    "Average return each year",
+                    "<span><span class=\"percentage\">-99.9%</span></span>",
+                    "<span><span class=\"percentage\">-75.6%</span></span>"
+                  ]
+                ]
+              },
+              {
+                "value": "Moderate",
+                "label": "Moderate",
+                "rows": [
+                  [
+                    "What you might get back after costs",
+                    "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 11,360</span></span>",
+                    "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 17,640</span></span>"
+                  ],
+                  [
+                    "Average return each year",
+                    "<span><span class=\"percentage\">13.6%</span></span>",
+                    "<span><span class=\"percentage\">12.0%</span></span>"
+                  ]
+                ]
+              },
+              {
+                "value": "Favorable",
+                "label": "Favorable",
+                "rows": [
+                  [
+                    "What you might get back after costs",
+                    "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 15,400</span></span>",
+                    "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 21,120</span></span>"
+                  ],
+                  [
+                    "Average return each year",
+                    "<span><span class=\"percentage\">54.0%</span></span>",
+                    "<span><span class=\"percentage\">16.1%</span></span>"
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "downloadUrl": "https://frontend.schdr.eu-central-1.isgdigital.com/api/fund/SCHDR_F00001RRIQ/performance/download-priips/?applicationName=uk&distribution=uk.institutional&environment=production&installationName=uk.institutional&language=en&hash=1e1c03f3a13fff0ec4fbc046f27d10030cac6a43",
+        "selectLabel": ""
+      },
+      "fxChangeBenchmarkModal": {
+        "heading": "Select an alternative benchmark",
+        "submitLabel": "Save"
+      },
+      "downloadPriceModal": {
+        "documentData": {
+          "shareClassName": "Schroder ETFs ICAV",
+          "creationDate": 1758672000,
+          "endDate": 1782691200,
+          "shareClassExternalId": "SCHDR_F00001RRIQ",
+          "dateRanges": [
+            {
+              "value": "1M",
+              "label": "1M",
+              "range": [
+                1780012800,
+                1782691200
+              ]
+            },
+            {
+              "value": "3M",
+              "label": "3M",
+              "range": [
+                1774742400,
+                1782691200
+              ]
+            },
+            {
+              "value": "6M",
+              "label": "6M",
+              "range": [
+                1766966400,
+                1782691200
+              ]
+            },
+            {
+              "value": "SI",
+              "label": "SI",
+              "range": [
+                1758672000,
+                1782691200
+              ]
+            }
+          ],
+          "supportedFileTypes": [
+            "excel",
+            "csv"
+          ],
+          "params": {
+            "externalId": "SCHDR_F00001RRIQ",
+            "language": "en",
+            "location": "uk",
+            "channel": "institutional"
+          },
+          "priceFormat": {
+            "type": "monetary",
+            "decimalPlaces": 4
+          }
+        }
+      },
+      "fxPricePanel": {
+        "heading": "Price History",
+        "series": [
+          {
+            "type": "line",
+            "name": "Share class (Net)",
+            "color": "#002A5E",
+            "data": [
+              [
+                1758672000000,
+                10,
+                100
+              ],
+              [
+                1758758400000,
+                9.9481,
+                100
+              ],
+              [
+                1758844800000,
+                10.001,
+                100
+              ],
+              [
+                1759104000000,
+                10.0286,
+                100
+              ],
+              [
+                1759190400000,
+                10.0802,
+                100
+              ],
+              [
+                1759276800000,
+                10.1181,
+                100
+              ],
+              [
+                1759363200000,
+                10.1292,
+                100
+              ],
+              [
+                1759449600000,
+                10.1432,
+                100
+              ],
+              [
+                1759708800000,
+                10.1773,
+                100
+              ],
+              [
+                1759795200000,
+                10.132,
+                100
+              ],
+              [
+                1759881600000,
+                10.1909,
+                100
+              ],
+              [
+                1759968000000,
+                10.1623,
+                100
+              ],
+              [
+                1760054400000,
+                9.9287,
+                100
+              ],
+              [
+                1760313600000,
+                10.0447,
+                100
+              ],
+              [
+                1760400000000,
+                10.0242,
+                100
+              ],
+              [
+                1760486400000,
+                10.0789,
+                100
+              ],
+              [
+                1760572800000,
+                10.053,
+                100
+              ],
+              [
+                1760659200000,
+                10.0639,
+                100
+              ],
+              [
+                1760918400000,
+                10.1758,
+                100
+              ],
+              [
+                1761004800000,
+                10.1621,
+                100
+              ],
+              [
+                1761091200000,
+                10.1164,
+                100
+              ],
+              [
+                1761177600000,
+                10.1733,
+                100
+              ],
+              [
+                1761264000000,
+                10.2464,
+                100
+              ],
+              [
+                1761523200000,
+                10.3697,
+                100
+              ],
+              [
+                1761609600000,
+                10.3877,
+                100
+              ],
+              [
+                1761696000000,
+                10.3938,
+                100
+              ],
+              [
+                1761782400000,
+                10.3108,
+                100
+              ],
+              [
+                1761868800000,
+                10.3268,
+                100
+              ],
+              [
+                1762128000000,
+                10.3371,
+                100
+              ],
+              [
+                1762214400000,
+                10.2256,
+                100
+              ],
+              [
+                1762300800000,
+                10.2449,
+                100
+              ],
+              [
+                1762387200000,
+                10.173,
+                100
+              ],
+              [
+                1762473600000,
+                10.1703,
+                100
+              ],
+              [
+                1762732800000,
+                10.318,
+                100
+              ],
+              [
+                1762819200000,
+                10.3502,
+                100
+              ],
+              [
+                1762905600000,
+                10.3795,
+                100
+              ],
+              [
+                1762992000000,
+                10.2445,
+                100
+              ],
+              [
+                1763078400000,
+                10.2166,
+                100
+              ],
+              [
+                1763337600000,
+                10.1406,
+                100
+              ],
+              [
+                1763424000000,
+                10.0277,
+                100
+              ],
+              [
+                1763510400000,
+                10.0521,
+                100
+              ],
+              [
+                1763596800000,
+                9.9347,
+                100
+              ],
+              [
+                1763683200000,
+                9.983,
+                100
+              ],
+              [
+                1763942400000,
+                10.1202,
+                100
+              ],
+              [
+                1764028800000,
+                10.2125,
+                100
+              ],
+              [
+                1764115200000,
+                10.2999,
+                100
+              ],
+              [
+                1764201600000,
+                10.3042,
+                100
+              ],
+              [
+                1764288000000,
+                10.3569,
+                100
+              ],
+              [
+                1764547200000,
+                10.3013,
+                100
+              ],
+              [
+                1764633600000,
+                10.3183,
+                100
+              ],
+              [
+                1764720000000,
+                10.3455,
+                100
+              ],
+              [
+                1764806400000,
+                10.3785,
+                100
+              ],
+              [
+                1764892800000,
+                10.3755,
+                100
+              ],
+              [
+                1765152000000,
+                10.3468,
+                100
+              ],
+              [
+                1765238400000,
+                10.3284,
+                100
+              ],
+              [
+                1765324800000,
+                10.3847,
+                100
+              ],
+              [
+                1765411200000,
+                10.4291,
+                100
+              ],
+              [
+                1765497600000,
+                10.3338,
+                100
+              ],
+              [
+                1765756800000,
+                10.336,
+                100
+              ],
+              [
+                1765843200000,
+                10.2988,
+                100
+              ],
+              [
+                1765929600000,
+                10.1915,
+                100
+              ],
+              [
+                1766016000000,
+                10.2707,
+                100
+              ],
+              [
+                1766102400000,
+                10.3547,
+                100
+              ],
+              [
+                1766361600000,
+                10.4253,
+                100
+              ],
+              [
+                1766448000000,
+                10.4776,
+                100
+              ],
+              [
+                1766534400000,
+                10.5015,
+                100
+              ],
+              [
+                1766966400000,
+                10.4691,
+                100
+              ],
+              [
+                1767052800000,
+                10.4578,
+                100
+              ],
+              [
+                1767139200000,
+                10.393,
+                100
+              ],
+              [
+                1767312000000,
+                10.4352,
+                100
+              ],
+              [
+                1767571200000,
+                10.5082,
+                100
+              ],
+              [
+                1767657600000,
+                10.5792,
+                100
+              ],
+              [
+                1767744000000,
+                10.5424,
+                100
+              ],
+              [
+                1767830400000,
+                10.5068,
+                100
+              ],
+              [
+                1767916800000,
+                10.5642,
+                100
+              ],
+              [
+                1768176000000,
+                10.5942,
+                100
+              ],
+              [
+                1768262400000,
+                10.5924,
+                100
+              ],
+              [
+                1768348800000,
+                10.5596,
+                100
+              ],
+              [
+                1768435200000,
+                10.5857,
+                100
+              ],
+              [
+                1768521600000,
+                10.5864,
+                100
+              ],
+              [
+                1768780800000,
+                10.5757,
+                100
+              ],
+              [
+                1768867200000,
+                10.4101,
+                100
+              ],
+              [
+                1768953600000,
+                10.4803,
+                100
+              ],
+              [
+                1769040000000,
+                10.544,
+                100
+              ],
+              [
+                1769126400000,
+                10.5543,
+                100
+              ],
+              [
+                1769385600000,
+                10.6287,
+                100
+              ],
+              [
+                1769472000000,
+                10.7094,
+                100
+              ],
+              [
+                1769558400000,
+                10.6962,
+                100
+              ],
+              [
+                1769644800000,
+                10.6922,
+                100
+              ],
+              [
+                1769731200000,
+                10.6466,
+                100
+              ],
+              [
+                1769990400000,
+                10.6862,
+                100
+              ],
+              [
+                1770076800000,
+                10.6658,
+                100
+              ],
+              [
+                1770163200000,
+                10.5795,
+                100
+              ],
+              [
+                1770249600000,
+                10.4636,
+                100
+              ],
+              [
+                1770336000000,
+                10.6665,
+                100
+              ],
+              [
+                1770595200000,
+                10.7777,
+                100
+              ],
+              [
+                1770681600000,
+                10.7671,
+                100
+              ],
+              [
+                1770768000000,
+                10.7795,
+                100
+              ],
+              [
+                1770854400000,
+                10.65,
+                100
+              ],
+              [
+                1770940800000,
+                10.6339,
+                100
+              ],
+              [
+                1771200000000,
+                10.6353,
+                100
+              ],
+              [
+                1771286400000,
+                10.6392,
+                100
+              ],
+              [
+                1771372800000,
+                10.7176,
+                100
+              ],
+              [
+                1771459200000,
+                10.6924,
+                100
+              ],
+              [
+                1771545600000,
+                10.7559,
+                100
+              ],
+              [
+                1771804800000,
+                10.6759,
+                100
+              ],
+              [
+                1771891200000,
+                10.734,
+                100
+              ],
+              [
+                1771977600000,
+                10.8325,
+                100
+              ],
+              [
+                1772064000000,
+                10.7951,
+                100
+              ],
+              [
+                1772150400000,
+                10.7696,
+                100
+              ],
+              [
+                1772409600000,
+                10.7175,
+                100
+              ],
+              [
+                1772496000000,
+                10.5268,
+                100
+              ],
+              [
+                1772582400000,
+                10.5908,
+                100
+              ],
+              [
+                1772668800000,
+                10.5171,
+                100
+              ],
+              [
+                1772755200000,
+                10.389,
+                100
+              ],
+              [
+                1773014400000,
+                10.4248,
+                100
+              ],
+              [
+                1773100800000,
+                10.4882,
+                100
+              ],
+              [
+                1773187200000,
+                10.4674,
+                100
+              ],
+              [
+                1773273600000,
+                10.3152,
+                100
+              ],
+              [
+                1773360000000,
+                10.2317,
+                100
+              ],
+              [
+                1773619200000,
+                10.3273,
+                100
+              ],
+              [
+                1773705600000,
+                10.3664,
+                100
+              ],
+              [
+                1773792000000,
+                10.2704,
+                100
+              ],
+              [
+                1773878400000,
+                10.1892,
+                100
+              ],
+              [
+                1773964800000,
+                10.0293,
+                100
+              ],
+              [
+                1774224000000,
+                10.1139,
+                100
+              ],
+              [
+                1774310400000,
+                10.1138,
+                100
+              ],
+              [
+                1774396800000,
+                10.203,
+                100
+              ],
+              [
+                1774483200000,
+                10.0221,
+                100
+              ],
+              [
+                1774569600000,
+                9.8799,
+                100
+              ],
+              [
+                1774828800000,
+                9.8316,
+                100
+              ],
+              [
+                1774915200000,
+                10.0632,
+                100
+              ],
+              [
+                1775001600000,
+                10.2333,
+                100
+              ],
+              [
+                1775088000000,
+                10.2116,
+                100
+              ],
+              [
+                1775520000000,
+                10.2515,
+                100
+              ],
+              [
+                1775606400000,
+                10.5788,
+                100
+              ],
+              [
+                1775692800000,
+                10.6191,
+                100
+              ],
+              [
+                1775779200000,
+                10.6268,
+                100
+              ],
+              [
+                1776038400000,
+                10.6912,
+                100
+              ],
+              [
+                1776124800000,
+                10.8317,
+                100
+              ],
+              [
+                1776211200000,
+                10.8776,
+                100
+              ],
+              [
+                1776297600000,
+                10.8912,
+                100
+              ],
+              [
+                1776384000000,
+                11.0221,
+                100
+              ],
+              [
+                1776643200000,
+                10.9835,
+                100
+              ],
+              [
+                1776729600000,
+                10.9043,
+                100
+              ],
+              [
+                1776816000000,
+                10.9732,
+                100
+              ],
+              [
+                1776902400000,
+                10.9447,
+                100
+              ],
+              [
+                1776988800000,
+                11.0087,
+                100
+              ],
+              [
+                1777248000000,
+                11.0253,
+                100
+              ],
+              [
+                1777334400000,
+                10.9647,
+                100
+              ],
+              [
+                1777420800000,
+                10.9439,
+                100
+              ],
+              [
+                1777507200000,
+                11.081,
+                100
+              ],
+              [
+                1777593600000,
+                11.112,
+                100
+              ],
+              [
+                1777852800000,
+                11.052,
+                100
+              ],
+              [
+                1777939200000,
+                11.134,
+                100
+              ],
+              [
+                1778025600000,
+                11.3168,
+                100
+              ],
+              [
+                1778112000000,
+                11.2831,
+                100
+              ],
+              [
+                1778198400000,
+                11.3273,
+                100
+              ],
+              [
+                1778457600000,
+                11.3602,
+                100
+              ],
+              [
+                1778544000000,
+                11.3266,
+                100
+              ],
+              [
+                1778630400000,
+                11.4095,
+                100
+              ],
+              [
+                1778716800000,
+                11.4752,
+                100
+              ],
+              [
+                1778803200000,
+                11.312,
+                100
+              ],
+              [
+                1779062400000,
+                11.2925,
+                100
+              ],
+              [
+                1779148800000,
+                11.2288,
+                100
+              ],
+              [
+                1779235200000,
+                11.3433,
+                100
+              ],
+              [
+                1779321600000,
+                11.3758,
+                100
+              ],
+              [
+                1779408000000,
+                11.4259,
+                100
+              ],
+              [
+                1779667200000,
+                11.4687,
+                100
+              ],
+              [
+                1779753600000,
+                11.5137,
+                100
+              ],
+              [
+                1779840000000,
+                11.4943,
+                100
+              ],
+              [
+                1779926400000,
+                11.5272,
+                100
+              ],
+              [
+                1780012800000,
+                11.5618,
+                100
+              ],
+              [
+                1780272000000,
+                11.5622,
+                100
+              ],
+              [
+                1780358400000,
+                11.6082,
+                100
+              ],
+              [
+                1780444800000,
+                11.5457,
+                100
+              ],
+              [
+                1780531200000,
+                11.5882,
+                100
+              ],
+              [
+                1780617600000,
+                11.328,
+                100
+              ],
+              [
+                1780876800000,
+                11.3283,
+                100
+              ],
+              [
+                1780963200000,
+                11.3021,
+                100
+              ],
+              [
+                1781049600000,
+                11.1452,
+                100
+              ],
+              [
+                1781136000000,
+                11.3085,
+                100
+              ],
+              [
+                1781222400000,
+                11.4094,
+                100
+              ],
+              [
+                1781481600000,
+                11.597,
+                100
+              ],
+              [
+                1781568000000,
+                11.5581,
+                100
+              ],
+              [
+                1781654400000,
+                11.4879,
+                100
+              ],
+              [
+                1781740800000,
+                11.5636,
+                100
+              ],
+              [
+                1781827200000,
+                11.5487,
+                100
+              ],
+              [
+                1782086400000,
+                11.5474,
+                100
+              ],
+              [
+                1782172800000,
+                11.3743,
+                100
+              ],
+              [
+                1782259200000,
+                11.342,
+                100
+              ],
+              [
+                1782345600000,
+                11.3712,
+                100
+              ],
+              [
+                1782432000000,
+                11.3427,
+                100
+              ],
+              [
+                1782691200000,
+                11.4558,
+                100
+              ]
+            ]
+          }
+        ],
+        "priceFormat": {
+          "type": "monetary",
+          "decimalPlaces": 4
+        },
+        "dateRanges": [
+          {
+            "value": "1M",
+            "label": "1M",
+            "range": [
+              1780012800,
+              1782691200
+            ]
+          },
+          {
+            "value": "3M",
+            "label": "3M",
+            "range": [
+              1774742400,
+              1782691200
+            ]
+          },
+          {
+            "value": "6M",
+            "label": "6M",
+            "range": [
+              1766966400,
+              1782691200
+            ]
+          },
+          {
+            "value": "SI",
+            "label": "SI",
+            "range": [
+              1758672000,
+              1782691200
+            ]
+          }
+        ],
+        "initialDateRange": {
+          "value": "SI",
+          "label": "SI",
+          "range": [
+            1758672000,
+            1782691200
+          ]
+        },
+        "currency": "USD"
+      },
+      "fxBreakdownPanel": {
+        "heading": "Asset allocation",
+        "sections": [
+          {
+            "id": "sector",
+            "name": "Sector",
+            "assetAllocation": {
+              "enabled": false
+            },
+            "enabled": 1,
+            "viewAllButtonText": "View all Sector (13)",
+            "items": [
+              {
+                "name": "Information Technology",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 27.7133,
+                "source": "schroders",
+                "sector": [
+                  "Information Technology"
+                ],
+                "sectorName": "Information Technology",
+                "benchmarkWeighting": 30.6603614667,
+                "type": "sector",
+                "code": "Information Technology",
+                "id": "Information Technology",
+                "weighting": 30.8346,
+                "weightingFormatted": "<span class=\"percentage\">30.83%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.17423853329999872,
+                  "weightingFormatted": "<span class=\"percentage\">0.17%</span>"
+                },
+                "benchmark": {
+                  "id": "Information Technology",
+                  "name": "Information Technology",
+                  "weighting": 30.6603614667,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 27.6113497272,
+                  "source": "schroders",
+                  "sector": "Information Technology",
+                  "sectorName": "Information Technology",
+                  "position": 1,
+                  "weightingFormatted": "<span class=\"percentage\">30.66%</span>"
+                }
+              },
+              {
+                "name": "Financials",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 16.4239,
+                "source": "schroders",
+                "sector": [
+                  "Financials"
+                ],
+                "sectorName": "Financials",
+                "benchmarkWeighting": 15.3340214196,
+                "type": "sector",
+                "code": "Financials",
+                "id": "Financials",
+                "weighting": 16.0625,
+                "weightingFormatted": "<span class=\"percentage\">16.06%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.7284785803999991,
+                  "weightingFormatted": "<span class=\"percentage\">0.73%</span>"
+                },
+                "benchmark": {
+                  "id": "Financials",
+                  "name": "Financials",
+                  "weighting": 15.3340214196,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 15.9890861969,
+                  "source": "schroders",
+                  "sector": "Financials",
+                  "sectorName": "Financials",
+                  "position": 2,
+                  "weightingFormatted": "<span class=\"percentage\">15.33%</span>"
+                }
+              },
+              {
+                "name": "Industrials",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 12.8111,
+                "source": "schroders",
+                "sector": [
+                  "Industrials"
+                ],
+                "sectorName": "Industrials",
+                "benchmarkWeighting": 11.2501581976,
+                "type": "sector",
+                "code": "Industrials",
+                "id": "Industrials",
+                "weighting": 11.9871,
+                "weightingFormatted": "<span class=\"percentage\">11.99%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.7369418024000005,
+                  "weightingFormatted": "<span class=\"percentage\">0.74%</span>"
+                },
+                "benchmark": {
+                  "id": "Industrials",
+                  "name": "Industrials",
+                  "weighting": 11.2501581976,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 11.7548774908,
+                  "source": "schroders",
+                  "sector": "Industrials",
+                  "sectorName": "Industrials",
+                  "position": 3,
+                  "weightingFormatted": "<span class=\"percentage\">11.25%</span>"
+                }
+              },
+              {
+                "name": "Communication Services",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 9.0657,
+                "source": "schroders",
+                "sector": [
+                  "Communication Services"
+                ],
+                "sectorName": "Communication Services",
+                "benchmarkWeighting": 8.656826945,
+                "type": "sector",
+                "code": "Communication Services",
+                "id": "Communication Services",
+                "weighting": 8.8534,
+                "weightingFormatted": "<span class=\"percentage\">8.85%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.196573055,
+                  "weightingFormatted": "<span class=\"percentage\">0.20%</span>"
+                },
+                "benchmark": {
+                  "id": "Communication Services",
+                  "name": "Communication Services",
+                  "weighting": 8.656826945,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 9.0399475131,
+                  "source": "schroders",
+                  "sector": "Communication Services",
+                  "sectorName": "Communication Services",
+                  "position": 5,
+                  "weightingFormatted": "<span class=\"percentage\">8.66%</span>"
+                }
+              },
+              {
+                "name": "Health Care",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 8.7711,
+                "source": "schroders",
+                "sector": [
+                  "Health Care"
+                ],
+                "sectorName": "Health Care",
+                "benchmarkWeighting": 8.5463644042,
+                "type": "sector",
+                "code": "Health Care",
+                "id": "Health Care",
+                "weighting": 8.6356,
+                "weightingFormatted": "<span class=\"percentage\">8.64%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.08923559579999996,
+                  "weightingFormatted": "<span class=\"percentage\">0.09%</span>"
+                },
+                "benchmark": {
+                  "id": "Health Care",
+                  "name": "Health Care",
+                  "weighting": 8.5463644042,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 8.7694247157,
+                  "source": "schroders",
+                  "sector": "Health Care",
+                  "sectorName": "Health Care",
+                  "position": 6,
+                  "weightingFormatted": "<span class=\"percentage\">8.55%</span>"
+                }
+              },
+              {
+                "name": "Consumer Discretionary",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 8.394,
+                "source": "schroders",
+                "sector": [
+                  "Consumer Discretionary"
+                ],
+                "sectorName": "Consumer Discretionary",
+                "benchmarkWeighting": 9.202484505,
+                "type": "sector",
+                "code": "Consumer Discretionary",
+                "id": "Consumer Discretionary",
+                "weighting": 8.3733,
+                "weightingFormatted": "<span class=\"percentage\">8.37%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.8291845049999989,
+                  "weightingFormatted": "<span class=\"percentage\">-0.83%</span>"
+                },
+                "benchmark": {
+                  "id": "Consumer Discretionary",
+                  "name": "Consumer Discretionary",
+                  "weighting": 9.202484505,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 9.3030597666,
+                  "source": "schroders",
+                  "sector": "Consumer Discretionary",
+                  "sectorName": "Consumer Discretionary",
+                  "position": 4,
+                  "weightingFormatted": "<span class=\"percentage\">9.20%</span>"
+                }
+              },
+              {
+                "name": "Consumer Staples",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 4.4126,
+                "source": "schroders",
+                "sector": [
+                  "Consumer Staples"
+                ],
+                "sectorName": "Consumer Staples",
+                "benchmarkWeighting": 4.9662689624,
+                "type": "sector",
+                "code": "Consumer Staples",
+                "id": "Consumer Staples",
+                "weighting": 4.1144,
+                "weightingFormatted": "<span class=\"percentage\">4.11%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.8518689624000002,
+                  "weightingFormatted": "<span class=\"percentage\">-0.85%</span>"
+                },
+                "benchmark": {
+                  "id": "Consumer Staples",
+                  "name": "Consumer Staples",
+                  "weighting": 4.9662689624,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 5.307165368,
+                  "source": "schroders",
+                  "sector": "Consumer Staples",
+                  "sectorName": "Consumer Staples",
+                  "position": 7,
+                  "weightingFormatted": "<span class=\"percentage\">4.97%</span>"
+                }
+              },
+              {
+                "name": "Energy",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 4.2128,
+                "source": "schroders",
+                "sector": [
+                  "Energy"
+                ],
+                "sectorName": "Energy",
+                "benchmarkWeighting": 3.7827624418,
+                "type": "sector",
+                "code": "Energy",
+                "id": "Energy",
+                "weighting": 3.7845,
+                "weightingFormatted": "<span class=\"percentage\">3.78%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.001737558199999878,
+                  "weightingFormatted": "<span class=\"percentage\">0.00%</span>"
+                },
+                "benchmark": {
+                  "id": "Energy",
+                  "name": "Energy",
+                  "weighting": 3.7827624418,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 4.2063380242,
+                  "source": "schroders",
+                  "sector": "Energy",
+                  "sectorName": "Energy",
+                  "position": 8,
+                  "weightingFormatted": "<span class=\"percentage\">3.78%</span>"
+                }
+              },
+              {
+                "name": "Materials",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 2.9966,
+                "source": "schroders",
+                "sector": [
+                  "Materials"
+                ],
+                "sectorName": "Materials",
+                "benchmarkWeighting": 3.4026323242,
+                "type": "sector",
+                "code": "Materials",
+                "id": "Materials",
+                "weighting": 3.0114,
+                "weightingFormatted": "<span class=\"percentage\">3.01%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.39123232419999976,
+                  "weightingFormatted": "<span class=\"percentage\">-0.39%</span>"
+                },
+                "benchmark": {
+                  "id": "Materials",
+                  "name": "Materials",
+                  "weighting": 3.4026323242,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 3.4488169944,
+                  "source": "schroders",
+                  "sector": "Materials",
+                  "sectorName": "Materials",
+                  "position": 9,
+                  "weightingFormatted": "<span class=\"percentage\">3.40%</span>"
+                }
+              },
+              {
+                "name": "Utilities",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 3.0072,
+                "source": "schroders",
+                "sector": [
+                  "Utilities"
+                ],
+                "sectorName": "Utilities",
+                "benchmarkWeighting": 2.4834351097,
+                "type": "sector",
+                "code": "Utilities",
+                "id": "Utilities",
+                "weighting": 2.4095,
+                "weightingFormatted": "<span class=\"percentage\">2.41%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.07393510969999983,
+                  "weightingFormatted": "<span class=\"percentage\">-0.07%</span>"
+                },
+                "benchmark": {
+                  "id": "Utilities",
+                  "name": "Utilities",
+                  "weighting": 2.4834351097,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 2.7393945328,
+                  "source": "schroders",
+                  "sector": "Utilities",
+                  "sectorName": "Utilities",
+                  "position": 10,
+                  "weightingFormatted": "<span class=\"percentage\">2.48%</span>"
+                }
+              },
+              {
+                "name": "Real estate",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 1.9377,
+                "source": "schroders",
+                "sector": [
+                  "Real Estate"
+                ],
+                "sectorName": "Real Estate",
+                "benchmarkWeighting": 1.7146841587,
+                "type": "sector",
+                "code": "Real Estate",
+                "id": "Real Estate",
+                "weighting": 1.6703,
+                "weightingFormatted": "<span class=\"percentage\">1.67%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.04438415870000001,
+                  "weightingFormatted": "<span class=\"percentage\">-0.04%</span>"
+                },
+                "benchmark": {
+                  "id": "Real Estate",
+                  "name": "Real Estate",
+                  "weighting": 1.7146841587,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 1.8304090217,
+                  "source": "schroders",
+                  "sector": "Real Estate",
+                  "sectorName": "Real Estate",
+                  "position": 11,
+                  "weightingFormatted": "<span class=\"percentage\">1.71%</span>"
+                }
+              },
+              {
+                "name": "Liquid Assets",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 0.2535,
+                "source": "schroders",
+                "sector": [
+                  "Liquid Assets"
+                ],
+                "sectorName": "Liquid Assets",
+                "benchmarkWeighting": 0,
+                "type": "sector",
+                "code": "Liquid Assets",
+                "id": "Liquid Assets",
+                "weighting": 0.2338,
+                "weightingFormatted": "<span class=\"percentage\">0.23%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.2338,
+                  "weightingFormatted": "<span class=\"percentage\">0.23%</span>"
+                },
+                "benchmark": {
+                  "weighting": 0,
+                  "weightingFormatted": "<span class=\"percentage\">0.00%</span>"
+                }
+              },
+              {
+                "name": "Other",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "source": "schroders",
+                "sector": [
+                  "Other"
+                ],
+                "sectorName": "Other",
+                "benchmarkWeighting": 0,
+                "type": "sector",
+                "code": "Other",
+                "id": "Other",
+                "weighting": 0.029,
+                "weightingFormatted": "<span class=\"percentage\">0.03%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.029,
+                  "weightingFormatted": "<span class=\"percentage\">0.03%</span>"
+                },
+                "benchmark": {
+                  "weighting": 0,
+                  "weightingFormatted": "<span class=\"percentage\">0.00%</span>"
+                }
+              }
+            ],
+            "keys": [
+              {
+                "value": "fund",
+                "label": "Fund",
+                "color": "#002A5E"
+              },
+              {
+                "value": "benchmark",
+                "label": "Target  ",
+                "color": "#A446BA"
+              }
+            ],
+            "asOf": "31.05.2026"
+          },
+          {
+            "id": "regionType",
+            "name": "Region",
+            "enabled": 1,
+            "viewAllButtonText": "View all Region (9)",
+            "items": [
+              {
+                "name": "Americas",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 78.2355,
+                "source": "schroders",
+                "regionType": [
+                  "Americas"
+                ],
+                "regionTypeName": "Americas",
+                "benchmarkWeighting": 77.2261285798,
+                "type": "regionType",
+                "code": "Americas",
+                "id": "Americas",
+                "weighting": 78.2381,
+                "weightingFormatted": "<span class=\"percentage\">78.24%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 1.0119714201999983,
+                  "weightingFormatted": "<span class=\"percentage\">1.01%</span>"
+                },
+                "benchmark": {
+                  "id": "Americas",
+                  "name": "Americas",
+                  "weighting": 77.2261285798,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 77.2026951814,
+                  "source": "schroders",
+                  "regionType": "Americas",
+                  "regionTypeName": "Americas",
+                  "position": 1,
+                  "weightingFormatted": "<span class=\"percentage\">77.23%</span>"
+                }
+              },
+              {
+                "name": "Europe ex-UK/Middle East",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 10.1841,
+                "source": "schroders",
+                "regionType": [
+                  "Europe ex-UK/Middle East"
+                ],
+                "regionTypeName": "Europe ex-UK/Middle East",
+                "benchmarkWeighting": 11.1721221264,
+                "type": "regionType",
+                "code": "Europe ex-UK/Middle East",
+                "id": "Europe ex-UK/Middle East",
+                "weighting": 10.6422,
+                "weightingFormatted": "<span class=\"percentage\">10.64%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.5299221263999989,
+                  "weightingFormatted": "<span class=\"percentage\">-0.53%</span>"
+                },
+                "benchmark": {
+                  "id": "Europe ex-UK/Middle East",
+                  "name": "Europe ex-UK/Middle East",
+                  "weighting": 11.1721221264,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 11.0202712732,
+                  "source": "schroders",
+                  "regionType": "Europe ex-UK/Middle East",
+                  "regionTypeName": "Europe ex-UK/Middle East",
+                  "position": 2,
+                  "weightingFormatted": "<span class=\"percentage\">11.17%</span>"
+                }
+              },
+              {
+                "name": "Japan",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 5.8983,
+                "source": "schroders",
+                "regionType": [
+                  "Japan"
+                ],
+                "regionTypeName": "Japan",
+                "benchmarkWeighting": 5.7091471096,
+                "type": "regionType",
+                "code": "Japan",
+                "id": "Japan",
+                "weighting": 5.6704,
+                "weightingFormatted": "<span class=\"percentage\">5.67%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.03874710960000005,
+                  "weightingFormatted": "<span class=\"percentage\">-0.04%</span>"
+                },
+                "benchmark": {
+                  "id": "Japan",
+                  "name": "Japan",
+                  "weighting": 5.7091471096,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 5.6795721621,
+                  "source": "schroders",
+                  "regionType": "Japan",
+                  "regionTypeName": "Japan",
+                  "position": 3,
+                  "weightingFormatted": "<span class=\"percentage\">5.71%</span>"
+                }
+              },
+              {
+                "name": "United Kingdom",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 2.4904,
+                "source": "schroders",
+                "regionType": [
+                  "United Kingdom"
+                ],
+                "regionTypeName": "United Kingdom",
+                "benchmarkWeighting": 2.6824997498,
+                "type": "regionType",
+                "code": "United Kingdom",
+                "id": "United Kingdom",
+                "weighting": 2.4179,
+                "weightingFormatted": "<span class=\"percentage\">2.42%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.2645997497999999,
+                  "weightingFormatted": "<span class=\"percentage\">-0.26%</span>"
+                },
+                "benchmark": {
+                  "id": "United Kingdom",
+                  "name": "United Kingdom",
+                  "weighting": 2.6824997498,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 2.8032278711,
+                  "source": "schroders",
+                  "regionType": "United Kingdom",
+                  "regionTypeName": "United Kingdom",
+                  "position": 5,
+                  "weightingFormatted": "<span class=\"percentage\">2.68%</span>"
+                }
+              },
+              {
+                "name": "Pacific ex-Japan",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 1.9846,
+                "source": "schroders",
+                "regionType": [
+                  "Pacific ex-Japan"
+                ],
+                "regionTypeName": "Pacific ex-Japan",
+                "benchmarkWeighting": 2.7159425936,
+                "type": "regionType",
+                "code": "Pacific ex-Japan",
+                "id": "Pacific ex-Japan",
+                "weighting": 2.0742,
+                "weightingFormatted": "<span class=\"percentage\">2.07%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.6417425936000001,
+                  "weightingFormatted": "<span class=\"percentage\">-0.64%</span>"
+                },
+                "benchmark": {
+                  "id": "Pacific ex-Japan",
+                  "name": "Pacific ex-Japan",
+                  "weighting": 2.7159425936,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 2.7953875349,
+                  "source": "schroders",
+                  "regionType": "Pacific ex-Japan",
+                  "regionTypeName": "Pacific ex-Japan",
+                  "position": 4,
+                  "weightingFormatted": "<span class=\"percentage\">2.72%</span>"
+                }
+              },
+              {
+                "name": "Emerging Markets",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 0.9136,
+                "source": "schroders",
+                "regionType": [
+                  "Emerging Markets"
+                ],
+                "regionTypeName": "Emerging Markets",
+                "benchmarkWeighting": 0.4354693916,
+                "type": "regionType",
+                "code": "Emerging Markets",
+                "id": "Emerging Markets",
+                "weighting": 0.6746,
+                "weightingFormatted": "<span class=\"percentage\">0.67%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.2391306084,
+                  "weightingFormatted": "<span class=\"percentage\">0.24%</span>"
+                },
+                "benchmark": {
+                  "id": "Emerging Markets",
+                  "name": "Emerging Markets",
+                  "weighting": 0.4354693916,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 0.4430165625,
+                  "source": "schroders",
+                  "regionType": "Emerging Markets",
+                  "regionTypeName": "Emerging Markets",
+                  "position": 6,
+                  "weightingFormatted": "<span class=\"percentage\">0.44%</span>"
+                }
+              },
+              {
+                "name": "Liquid Assets",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 0.2535,
+                "source": "schroders",
+                "regionType": [
+                  "Liquid Assets"
+                ],
+                "regionTypeName": "Liquid Assets",
+                "benchmarkWeighting": 0,
+                "type": "regionType",
+                "code": "Liquid Assets",
+                "id": "Liquid Assets",
+                "weighting": 0.2338,
+                "weightingFormatted": "<span class=\"percentage\">0.23%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.2338,
+                  "weightingFormatted": "<span class=\"percentage\">0.23%</span>"
+                },
+                "benchmark": {
+                  "weighting": 0,
+                  "weightingFormatted": "<span class=\"percentage\">0.00%</span>"
+                }
+              },
+              {
+                "name": "Global",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 0.0397,
+                "source": "schroders",
+                "regionType": [
+                  "Global"
+                ],
+                "regionTypeName": "Global",
+                "benchmarkWeighting": 0,
+                "type": "regionType",
+                "code": "Global",
+                "id": "Global",
+                "weighting": 0.0484,
+                "weightingFormatted": "<span class=\"percentage\">0.05%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.0484,
+                  "weightingFormatted": "<span class=\"percentage\">0.05%</span>"
+                },
+                "benchmark": {
+                  "weighting": 0,
+                  "weightingFormatted": "<span class=\"percentage\">0.00%</span>"
+                }
+              },
+              {
+                "name": "Other",
+                "updated": 0,
+                "modified": 0,
+                "weightingOld": 0,
+                "source": "schroders",
+                "regionType": [
+                  "Other"
+                ],
+                "regionTypeName": "Other",
+                "benchmarkWeighting": 0.0586903841,
+                "type": "regionType",
+                "code": "Other",
+                "id": "Other",
+                "weighting": 0,
+                "weightingFormatted": "<span class=\"percentage\">0.00%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.0586903841,
+                  "weightingFormatted": "<span class=\"percentage\">-0.06%</span>"
+                },
+                "benchmark": {
+                  "id": "Other",
+                  "name": "Other",
+                  "weighting": 0.0586903841,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 0.0558293501,
+                  "source": "schroders",
+                  "regionType": "Other",
+                  "regionTypeName": "Other",
+                  "position": 7,
+                  "weightingFormatted": "<span class=\"percentage\">0.06%</span>"
+                }
+              }
+            ],
+            "keys": [
+              {
+                "value": "fund",
+                "label": "Fund",
+                "color": "#002A5E"
+              },
+              {
+                "value": "benchmark",
+                "label": "Target  ",
+                "color": "#A446BA"
+              }
+            ],
+            "asOf": "31.05.2026"
+          },
+          {
+            "id": "region",
+            "name": "Geographical breakdown",
+            "enabled": 1,
+            "viewAllButtonText": "View all Geographical breakdown (13)",
+            "items": [
+              {
+                "name": "United States",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 74.9729,
+                "source": "schroders",
+                "region": [
+                  "United States"
+                ],
+                "regionName": "United States",
+                "alpha2": "US",
+                "alpha3": "USA",
+                "benchmarkWeighting": 73.9859887105,
+                "type": "region",
+                "code": "United States",
+                "position": 1,
+                "id": "United States",
+                "weighting": 74.9708,
+                "weightingFormatted": "<span class=\"percentage\">74.97%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.9848112895000014,
+                  "weightingFormatted": "<span class=\"percentage\">0.98%</span>"
+                },
+                "benchmark": {
+                  "id": "United States",
+                  "name": "United States",
+                  "weighting": 73.9859887105,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 73.8416762845,
+                  "source": "schroders",
+                  "region": "United States",
+                  "regionName": "United States",
+                  "alpha2": "US",
+                  "alpha3": "USA",
+                  "position": 1,
+                  "weightingFormatted": "<span class=\"percentage\">73.99%</span>"
+                }
+              },
+              {
+                "name": "Japan",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 5.8983,
+                "source": "schroders",
+                "region": [
+                  "Japan"
+                ],
+                "regionName": "Japan",
+                "alpha2": "JP",
+                "alpha3": "JPN",
+                "benchmarkWeighting": 5.7091471096,
+                "type": "region",
+                "code": "Japan",
+                "position": 2,
+                "id": "Japan",
+                "weighting": 5.6704,
+                "weightingFormatted": "<span class=\"percentage\">5.67%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.03874710960000005,
+                  "weightingFormatted": "<span class=\"percentage\">-0.04%</span>"
+                },
+                "benchmark": {
+                  "id": "Japan",
+                  "name": "Japan",
+                  "weighting": 5.7091471096,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 5.6795721621,
+                  "source": "schroders",
+                  "region": "Japan",
+                  "regionName": "Japan",
+                  "alpha2": "JP",
+                  "alpha3": "JPN",
+                  "position": 2,
+                  "weightingFormatted": "<span class=\"percentage\">5.71%</span>"
+                }
+              },
+              {
+                "name": "Canada",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 3.2625,
+                "source": "schroders",
+                "region": [
+                  "Canada"
+                ],
+                "regionName": "Canada",
+                "alpha2": "CA",
+                "alpha3": "CAN",
+                "benchmarkWeighting": 3.2401398693,
+                "type": "region",
+                "code": "Canada",
+                "position": 3,
+                "id": "Canada",
+                "weighting": 3.2673,
+                "weightingFormatted": "<span class=\"percentage\">3.27%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.027160130700000007,
+                  "weightingFormatted": "<span class=\"percentage\">0.03%</span>"
+                },
+                "benchmark": {
+                  "id": "Canada",
+                  "name": "Canada",
+                  "weighting": 3.2401398693,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 3.3610188969,
+                  "source": "schroders",
+                  "region": "Canada",
+                  "regionName": "Canada",
+                  "alpha2": "CA",
+                  "alpha3": "CAN",
+                  "position": 3,
+                  "weightingFormatted": "<span class=\"percentage\">3.24%</span>"
+                }
+              },
+              {
+                "name": "Other",
+                "benchmarkWeighting": 3.8040990552999996,
+                "position": 13,
+                "source": "schroders",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "type": "region",
+                "region": [],
+                "regionName": "Other",
+                "id": "other",
+                "weighting": 2.9182999999999995,
+                "weightingFormatted": "<span class=\"percentage\">2.92%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.8857990553000001,
+                  "weightingFormatted": "<span class=\"percentage\">-0.89%</span>"
+                },
+                "benchmark": {
+                  "id": "other",
+                  "weighting": 3.8040990552999996,
+                  "source": "schroders",
+                  "updated": 1780182000,
+                  "modified": 1782465557,
+                  "items": [
+                    {
+                      "id": "Singapore",
+                      "name": "Singapore",
+                      "weighting": 0.4371186112,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.4302447107,
+                      "source": "schroders",
+                      "region": "Singapore",
+                      "regionName": "Singapore",
+                      "alpha2": "SG",
+                      "alpha3": "SGP",
+                      "position": 13
+                    },
+                    {
+                      "id": "Finland",
+                      "name": "Finland",
+                      "weighting": 0.3132414859,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.3139821859,
+                      "source": "schroders",
+                      "region": "Finland",
+                      "regionName": "Finland",
+                      "alpha2": "FI",
+                      "alpha3": "FIN",
+                      "position": 16
+                    },
+                    {
+                      "id": "Hong Kong",
+                      "name": "Hong Kong",
+                      "weighting": 0.414969277,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.447902453,
+                      "source": "schroders",
+                      "region": "Hong Kong",
+                      "regionName": "Hong Kong",
+                      "alpha2": "HK",
+                      "alpha3": "HKG",
+                      "position": 14
+                    },
+                    {
+                      "id": "Denmark",
+                      "name": "Denmark",
+                      "weighting": 0.3906780804,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.3964944398,
+                      "source": "schroders",
+                      "region": "Denmark",
+                      "regionName": "Denmark",
+                      "alpha2": "DK",
+                      "alpha3": "DNK",
+                      "position": 15
+                    },
+                    {
+                      "id": "China",
+                      "name": "China",
+                      "weighting": 0.1143908711,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.1234475193,
+                      "source": "schroders",
+                      "region": "China",
+                      "regionName": "China",
+                      "alpha2": "CN",
+                      "alpha3": "CHN",
+                      "position": 21
+                    },
+                    {
+                      "id": "Sweden",
+                      "name": "Sweden",
+                      "weighting": 0.7758835612,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.7950306101,
+                      "source": "schroders",
+                      "region": "Sweden",
+                      "regionName": "Sweden",
+                      "alpha2": "SE",
+                      "alpha3": "SWE",
+                      "position": 12
+                    },
+                    {
+                      "id": "South Korea",
+                      "name": "South Korea",
+                      "weighting": 0.0092614331,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0053842171,
+                      "source": "schroders",
+                      "region": "South Korea",
+                      "regionName": "South Korea",
+                      "position": 34
+                    },
+                    {
+                      "id": "Brazil",
+                      "name": "Brazil",
+                      "weighting": 0.1622344441,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.1706511348,
+                      "source": "schroders",
+                      "region": "Brazil",
+                      "regionName": "Brazil",
+                      "alpha2": "BR",
+                      "alpha3": "BRA",
+                      "position": 19
+                    },
+                    null,
+                    {
+                      "id": "Belgium",
+                      "name": "Belgium",
+                      "weighting": 0.217803648,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.2167941859,
+                      "source": "schroders",
+                      "region": "Belgium",
+                      "regionName": "Belgium",
+                      "alpha2": "BE",
+                      "alpha3": "BEL",
+                      "position": 18
+                    },
+                    {
+                      "id": "Austria",
+                      "name": "Austria",
+                      "weighting": 0.0809766658,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0802148603,
+                      "source": "schroders",
+                      "region": "Austria",
+                      "regionName": "Austria",
+                      "alpha2": "AT",
+                      "alpha3": "AUT",
+                      "position": 23
+                    },
+                    null,
+                    {
+                      "id": "South Africa",
+                      "name": "South Africa",
+                      "weighting": 0.0661823601,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0626268715,
+                      "source": "schroders",
+                      "region": "South Africa",
+                      "regionName": "South Africa",
+                      "alpha2": "ZA",
+                      "alpha3": "ZAF",
+                      "position": 24
+                    },
+                    {
+                      "id": "Poland",
+                      "name": "Poland",
+                      "weighting": 0.0049295736,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0051250973,
+                      "source": "schroders",
+                      "region": "Poland",
+                      "regionName": "Poland",
+                      "alpha2": "PL",
+                      "alpha3": "POL",
+                      "position": 36
+                    },
+                    {
+                      "id": "Luxembourg",
+                      "name": "Luxembourg",
+                      "weighting": 0.0457036526,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0413913892,
+                      "source": "schroders",
+                      "region": "Luxembourg",
+                      "regionName": "Luxembourg",
+                      "alpha2": "LU",
+                      "alpha3": "LUX",
+                      "position": 27
+                    },
+                    {
+                      "id": "Israel",
+                      "name": "Israel",
+                      "weighting": 0.2794772463,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.2736142129,
+                      "source": "schroders",
+                      "region": "Israel",
+                      "regionName": "Israel",
+                      "alpha2": "IL",
+                      "alpha3": "ISR",
+                      "position": 17
+                    },
+                    {
+                      "id": "Ireland",
+                      "name": "Ireland",
+                      "weighting": 0.1053165377,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.1088814443,
+                      "source": "schroders",
+                      "region": "Ireland",
+                      "regionName": "Ireland",
+                      "alpha2": "IE",
+                      "alpha3": "IRL",
+                      "position": 22
+                    },
+                    {
+                      "id": "Chile",
+                      "name": "Chile",
+                      "weighting": 0.0464397722,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0419393888,
+                      "source": "schroders",
+                      "region": "Chile",
+                      "regionName": "Chile",
+                      "alpha2": "CL",
+                      "alpha3": "CHL",
+                      "position": 26
+                    },
+                    {
+                      "id": "Nigeria",
+                      "name": "Nigeria",
+                      "weighting": 0.0047684349,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0050458585,
+                      "source": "schroders",
+                      "region": "Nigeria",
+                      "regionName": "Nigeria",
+                      "alpha2": "NG",
+                      "alpha3": "NGA",
+                      "position": 37
+                    },
+                    {
+                      "id": "Portugal",
+                      "name": "Portugal",
+                      "weighting": 0.0434158759,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0477094877,
+                      "source": "schroders",
+                      "region": "Portugal",
+                      "regionName": "Portugal",
+                      "alpha2": "PT",
+                      "alpha3": "PRT",
+                      "position": 28
+                    },
+                    {
+                      "id": "Congo, the Democratic Republic of the",
+                      "name": "Congo, the Democratic Republic of the",
+                      "weighting": 0.0076132493,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0072455183,
+                      "source": "schroders",
+                      "region": "Congo, the Democratic Republic of the",
+                      "regionName": "Congo, the Democratic Republic of the",
+                      "alpha2": "CD",
+                      "alpha3": "COD",
+                      "position": 35
+                    },
+                    {
+                      "id": "New Zealand",
+                      "name": "New Zealand",
+                      "weighting": 0.054306494,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0539701992,
+                      "source": "schroders",
+                      "region": "New Zealand",
+                      "regionName": "New Zealand",
+                      "alpha2": "NZ",
+                      "alpha3": "NZL",
+                      "position": 25
+                    },
+                    {
+                      "id": "Mexico",
+                      "name": "Mexico",
+                      "weighting": 0.0107719235,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0111584217,
+                      "source": "schroders",
+                      "region": "Mexico",
+                      "regionName": "Mexico",
+                      "alpha2": "MX",
+                      "alpha3": "MEX",
+                      "position": 33
+                    },
+                    {
+                      "id": "Norway",
+                      "name": "Norway",
+                      "weighting": 0.1510481436,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.1588630254,
+                      "source": "schroders",
+                      "region": "Norway",
+                      "regionName": "Norway",
+                      "alpha2": "NO",
+                      "alpha3": "NOR",
+                      "position": 20
+                    },
+                    {
+                      "id": "Indonesia",
+                      "name": "Indonesia",
+                      "weighting": 0.0118752657,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0126770132,
+                      "source": "schroders",
+                      "region": "Indonesia",
+                      "regionName": "Indonesia",
+                      "alpha2": "ID",
+                      "alpha3": "IDN",
+                      "position": 32
+                    },
+                    {
+                      "id": "Cote d'Ivoire",
+                      "name": "Cote d'Ivoire",
+                      "weighting": 0.013157439,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0133019553,
+                      "source": "schroders",
+                      "region": "Cote d'Ivoire",
+                      "regionName": "Cote d'Ivoire",
+                      "position": 31
+                    },
+                    {
+                      "id": "Macao",
+                      "name": "Macao",
+                      "weighting": 0.0138879015,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0153863494,
+                      "source": "schroders",
+                      "region": "Macao",
+                      "regionName": "Macao",
+                      "alpha2": "MO",
+                      "alpha3": "MAC",
+                      "position": 30
+                    },
+                    {
+                      "id": "Zambia",
+                      "name": "Zambia",
+                      "weighting": 0.0240317943,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0198955271,
+                      "source": "schroders",
+                      "region": "Zambia",
+                      "regionName": "Zambia",
+                      "alpha2": "ZM",
+                      "alpha3": "ZMB",
+                      "position": 29
+                    },
+                    {
+                      "id": "Czech Republic",
+                      "name": "Czech Republic",
+                      "weighting": 0.0046153133,
+                      "updated": 1780182000,
+                      "modified": 1782465405,
+                      "weightingOld": 0.0049610403,
+                      "source": "schroders",
+                      "region": "Czech Republic",
+                      "regionName": "Czech Republic",
+                      "alpha2": "CZ",
+                      "alpha3": "CZE",
+                      "position": 38
+                    }
+                  ],
+                  "weightingFormatted": "<span class=\"percentage\">3.80%</span>"
+                }
+              },
+              {
+                "name": "United Kingdom",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 2.4904,
+                "source": "schroders",
+                "region": [
+                  "United Kingdom"
+                ],
+                "regionName": "United Kingdom",
+                "alpha2": "UK",
+                "alpha3": "GBR",
+                "benchmarkWeighting": 2.6824997498,
+                "type": "region",
+                "code": "United Kingdom",
+                "position": 4,
+                "id": "United Kingdom",
+                "weighting": 2.4179,
+                "weightingFormatted": "<span class=\"percentage\">2.42%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.2645997497999999,
+                  "weightingFormatted": "<span class=\"percentage\">-0.26%</span>"
+                },
+                "benchmark": {
+                  "id": "United Kingdom",
+                  "name": "United Kingdom",
+                  "weighting": 2.6824997498,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 2.8032278711,
+                  "source": "schroders",
+                  "region": "United Kingdom",
+                  "regionName": "United Kingdom",
+                  "alpha2": "UK",
+                  "alpha3": "GBR",
+                  "position": 4,
+                  "weightingFormatted": "<span class=\"percentage\">2.68%</span>"
+                }
+              },
+              {
+                "name": "France",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 1.9668,
+                "source": "schroders",
+                "region": [
+                  "France"
+                ],
+                "regionName": "France",
+                "alpha2": "FR",
+                "alpha3": "FRA",
+                "benchmarkWeighting": 1.9864311754,
+                "type": "region",
+                "code": "France",
+                "position": 5,
+                "id": "France",
+                "weighting": 1.9261,
+                "weightingFormatted": "<span class=\"percentage\">1.93%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.06033117539999999,
+                  "weightingFormatted": "<span class=\"percentage\">-0.06%</span>"
+                },
+                "benchmark": {
+                  "id": "France",
+                  "name": "France",
+                  "weighting": 1.9864311754,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 2.0716516108,
+                  "source": "schroders",
+                  "region": "France",
+                  "regionName": "France",
+                  "alpha2": "FR",
+                  "alpha3": "FRA",
+                  "position": 6,
+                  "weightingFormatted": "<span class=\"percentage\">1.99%</span>"
+                }
+              },
+              {
+                "name": "Germany",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 2.0079,
+                "source": "schroders",
+                "region": [
+                  "Germany"
+                ],
+                "regionName": "Germany",
+                "alpha2": "DE",
+                "alpha3": "DEU",
+                "benchmarkWeighting": 2.167836837,
+                "type": "region",
+                "code": "Germany",
+                "position": 6,
+                "id": "Germany",
+                "weighting": 1.9178,
+                "weightingFormatted": "<span class=\"percentage\">1.92%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.2500368369999999,
+                  "weightingFormatted": "<span class=\"percentage\">-0.25%</span>"
+                },
+                "benchmark": {
+                  "id": "Germany",
+                  "name": "Germany",
+                  "weighting": 2.167836837,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 2.2307045637,
+                  "source": "schroders",
+                  "region": "Germany",
+                  "regionName": "Germany",
+                  "alpha2": "DE",
+                  "alpha3": "DEU",
+                  "position": 5,
+                  "weightingFormatted": "<span class=\"percentage\">2.17%</span>"
+                }
+              },
+              {
+                "name": "Netherlands",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 1.6982,
+                "source": "schroders",
+                "region": [
+                  "Netherlands"
+                ],
+                "regionName": "Netherlands",
+                "alpha2": "NL",
+                "alpha3": "NLD",
+                "benchmarkWeighting": 1.3955146762,
+                "type": "region",
+                "code": "Netherlands",
+                "position": 7,
+                "id": "Netherlands",
+                "weighting": 1.8614,
+                "weightingFormatted": "<span class=\"percentage\">1.86%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.46588532380000003,
+                  "weightingFormatted": "<span class=\"percentage\">0.47%</span>"
+                },
+                "benchmark": {
+                  "id": "Netherlands",
+                  "name": "Netherlands",
+                  "weighting": 1.3955146762,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 1.323026758,
+                  "source": "schroders",
+                  "region": "Netherlands",
+                  "regionName": "Netherlands",
+                  "alpha2": "NL",
+                  "alpha3": "NLD",
+                  "position": 9,
+                  "weightingFormatted": "<span class=\"percentage\">1.40%</span>"
+                }
+              },
+              {
+                "name": "Spain",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 1.495,
+                "source": "schroders",
+                "region": [
+                  "Spain"
+                ],
+                "regionName": "Spain",
+                "alpha2": "ES",
+                "alpha3": "ESP",
+                "benchmarkWeighting": 0.8861211717,
+                "type": "region",
+                "code": "Spain",
+                "position": 8,
+                "id": "Spain",
+                "weighting": 1.4601,
+                "weightingFormatted": "<span class=\"percentage\">1.46%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.5739788282999999,
+                  "weightingFormatted": "<span class=\"percentage\">0.57%</span>"
+                },
+                "benchmark": {
+                  "id": "Spain",
+                  "name": "Spain",
+                  "weighting": 0.8861211717,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 0.9058764688,
+                  "source": "schroders",
+                  "region": "Spain",
+                  "regionName": "Spain",
+                  "alpha2": "ES",
+                  "alpha3": "ESP",
+                  "position": 10,
+                  "weightingFormatted": "<span class=\"percentage\">0.89%</span>"
+                }
+              },
+              {
+                "name": "Italy",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 1.297,
+                "source": "schroders",
+                "region": [
+                  "Italy"
+                ],
+                "regionName": "Italy",
+                "alpha2": "IT",
+                "alpha3": "ITA",
+                "benchmarkWeighting": 0.809757189,
+                "type": "region",
+                "code": "Italy",
+                "position": 9,
+                "id": "Italy",
+                "weighting": 1.3008,
+                "weightingFormatted": "<span class=\"percentage\">1.30%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.4910428109999999,
+                  "weightingFormatted": "<span class=\"percentage\">0.49%</span>"
+                },
+                "benchmark": {
+                  "id": "Italy",
+                  "name": "Italy",
+                  "weighting": 0.809757189,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 0.8270212571,
+                  "source": "schroders",
+                  "region": "Italy",
+                  "regionName": "Italy",
+                  "alpha2": "IT",
+                  "alpha3": "ITA",
+                  "position": 11,
+                  "weightingFormatted": "<span class=\"percentage\">0.81%</span>"
+                }
+              },
+              {
+                "name": "Switzerland",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 0.8108,
+                "source": "schroders",
+                "region": [
+                  "Switzerland"
+                ],
+                "regionName": "Switzerland",
+                "alpha2": "CH",
+                "alpha3": "CHE",
+                "benchmarkWeighting": 1.5229161797,
+                "type": "region",
+                "code": "Switzerland",
+                "position": 10,
+                "id": "Switzerland",
+                "weighting": 1.1621,
+                "weightingFormatted": "<span class=\"percentage\">1.16%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.3608161797,
+                  "weightingFormatted": "<span class=\"percentage\">-0.36%</span>"
+                },
+                "benchmark": {
+                  "id": "Switzerland",
+                  "name": "Switzerland",
+                  "weighting": 1.5229161797,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 1.2290147733,
+                  "source": "schroders",
+                  "region": "Switzerland",
+                  "regionName": "Switzerland",
+                  "alpha2": "CH",
+                  "alpha3": "CHE",
+                  "position": 8,
+                  "weightingFormatted": "<span class=\"percentage\">1.52%</span>"
+                }
+              },
+              {
+                "name": "Australia",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 0.8114,
+                "source": "schroders",
+                "region": [
+                  "Australia"
+                ],
+                "regionName": "Australia",
+                "alpha2": "AU",
+                "alpha3": "AUS",
+                "benchmarkWeighting": 1.8095482114,
+                "type": "region",
+                "code": "Australia",
+                "position": 11,
+                "id": "Australia",
+                "weighting": 0.892,
+                "weightingFormatted": "<span class=\"percentage\">0.89%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": -0.9175482114000001,
+                  "weightingFormatted": "<span class=\"percentage\">-0.92%</span>"
+                },
+                "benchmark": {
+                  "id": "Australia",
+                  "name": "Australia",
+                  "weighting": 1.8095482114,
+                  "updated": 1780182000,
+                  "modified": 1782465405,
+                  "weightingOld": 1.863270172,
+                  "source": "schroders",
+                  "region": "Australia",
+                  "regionName": "Australia",
+                  "alpha2": "AU",
+                  "alpha3": "AUS",
+                  "position": 7,
+                  "weightingFormatted": "<span class=\"percentage\">1.81%</span>"
+                }
+              },
+              {
+                "name": "Liquid Assets",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 0.2535,
+                "source": "schroders",
+                "region": [
+                  "Liquid Assets"
+                ],
+                "regionName": "Liquid Assets",
+                "benchmarkWeighting": 0,
+                "type": "region",
+                "code": "Liquid Assets",
+                "position": 12,
+                "id": "Liquid Assets",
+                "weighting": 0.2338,
+                "weightingFormatted": "<span class=\"percentage\">0.23%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 0.2338,
+                  "weightingFormatted": "<span class=\"percentage\">0.23%</span>"
+                },
+                "benchmark": {
+                  "weighting": 0,
+                  "weightingFormatted": "<span class=\"percentage\">0.00%</span>"
+                }
+              }
+            ],
+            "keys": [
+              {
+                "value": "fund",
+                "label": "Fund",
+                "color": "#002A5E"
+              },
+              {
+                "value": "benchmark",
+                "label": "Target  ",
+                "color": "#A446BA"
+              }
+            ],
+            "asOf": "31.05.2026"
+          },
+          {
+            "id": "holdingTop10",
+            "name": "Top Holdings",
+            "category": "table",
+            "enabled": 1,
+            "includeHeaders": 1,
+            "includePositions": false,
+            "options": {
+              "rules": {
+                "type": "and",
+                "conditions": [
+                  {
+                    "type": "isnull",
+                    "field": "holding(equity)"
+                  },
+                  {
+                    "type": "isnull",
+                    "field": "holding(fixed-income)"
+                  }
+                ]
+              },
+              "width": "halfWidth"
+            },
+            "type": "holding",
+            "viewAllButtonText": "View all Top 10 holdings (10)",
+            "items": [
+              {
+                "name": "NVIDIA Corp",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 5.583,
+                "source": "schroders",
+                "holding": "NVIDIA Corp",
+                "holdingName": "NVIDIA Corp",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "NVIDIA Corp",
+                "weighting": 5.6598,
+                "weightingFormatted": "<span class=\"percentage\">5.66%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 5.6598,
+                  "weightingFormatted": "<span class=\"percentage\">5.66%</span>"
+                }
+              },
+              {
+                "name": "Apple Inc",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 4.5588,
+                "source": "schroders",
+                "holding": "Apple Inc",
+                "holdingName": "Apple Inc",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "Apple Inc",
+                "weighting": 5.0326,
+                "weightingFormatted": "<span class=\"percentage\">5.03%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 5.0326,
+                  "weightingFormatted": "<span class=\"percentage\">5.03%</span>"
+                }
+              },
+              {
+                "name": "Alphabet Inc",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 4.727,
+                "source": "schroders",
+                "holding": "Alphabet Inc",
+                "holdingName": "Alphabet Inc",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "Alphabet Inc",
+                "weighting": 4.4581,
+                "weightingFormatted": "<span class=\"percentage\">4.46%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 4.4581,
+                  "weightingFormatted": "<span class=\"percentage\">4.46%</span>"
+                }
+              },
+              {
+                "name": "Microsoft Corp",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 3.3217,
+                "source": "schroders",
+                "holding": "Microsoft Corp",
+                "holdingName": "Microsoft Corp",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "Microsoft Corp",
+                "weighting": 3.51,
+                "weightingFormatted": "<span class=\"percentage\">3.51%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 3.51,
+                  "weightingFormatted": "<span class=\"percentage\">3.51%</span>"
+                }
+              },
+              {
+                "name": "Amazon.com Inc",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 2.9505,
+                "source": "schroders",
+                "holding": "Amazon.com Inc",
+                "holdingName": "Amazon.com Inc",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "Amazon.com Inc",
+                "weighting": 2.8783,
+                "weightingFormatted": "<span class=\"percentage\">2.88%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 2.8783,
+                  "weightingFormatted": "<span class=\"percentage\">2.88%</span>"
+                }
+              },
+              {
+                "name": "Broadcom Inc",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 2.2528,
+                "source": "schroders",
+                "holding": "Broadcom Inc",
+                "holdingName": "Broadcom Inc",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "Broadcom Inc",
+                "weighting": 2.3148,
+                "weightingFormatted": "<span class=\"percentage\">2.31%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 2.3148,
+                  "weightingFormatted": "<span class=\"percentage\">2.31%</span>"
+                }
+              },
+              {
+                "name": "Meta Platforms Inc",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 1.5448,
+                "source": "schroders",
+                "holding": "Meta Platforms Inc",
+                "holdingName": "Meta Platforms Inc",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "Meta Platforms Inc",
+                "weighting": 1.5024,
+                "weightingFormatted": "<span class=\"percentage\">1.50%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 1.5024,
+                  "weightingFormatted": "<span class=\"percentage\">1.50%</span>"
+                }
+              },
+              {
+                "name": "Tesla Inc",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "weightingOld": 1.2017,
+                "source": "schroders",
+                "holding": "Tesla Inc",
+                "holdingName": "Tesla Inc",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "Tesla Inc",
+                "weighting": 1.3242,
+                "weightingFormatted": "<span class=\"percentage\">1.32%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 1.3242,
+                  "weightingFormatted": "<span class=\"percentage\">1.32%</span>"
+                }
+              },
+              {
+                "name": "Micron Technology Inc",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "source": "schroders",
+                "holding": "Micron Technology Inc",
+                "holdingName": "Micron Technology Inc",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "Micron Technology Inc",
+                "weighting": 1.2668,
+                "weightingFormatted": "<span class=\"percentage\">1.27%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 1.2668,
+                  "weightingFormatted": "<span class=\"percentage\">1.27%</span>"
+                }
+              },
+              {
+                "name": "Eli Lilly & Co",
+                "updated": 1780182000,
+                "modified": 1782465557,
+                "source": "schroders",
+                "holding": "Eli Lilly & Co",
+                "holdingName": "Eli Lilly & Co",
+                "benchmarkWeighting": 0,
+                "type": "holding",
+                "id": "Eli Lilly & Co",
+                "weighting": 1.119,
+                "weightingFormatted": "<span class=\"percentage\">1.12%</span>",
+                "weightingNet": null,
+                "weightingNetFormatted": null,
+                "difference": {
+                  "weighting": 1.119,
+                  "weightingFormatted": "<span class=\"percentage\">1.12%</span>"
+                }
+              }
+            ],
+            "keys": [
+              {
+                "value": "fund",
+                "label": "Fund",
+                "color": "#002A5E"
+              }
+            ],
+            "asOf": "31.05.2026"
+          }
+        ],
+        "shortLabel": "Short",
+        "longLabel": "Long",
+        "netLabel": "Net",
+        "currentWeightLabel": "Current Weight",
+        "minimumThresholdLabel": "Min. threshold",
+        "actualThresholdLabel": "Actual",
+        "fundLabel": "Fund",
+        "benchmarkLabel": "Target  ",
+        "differenceLabel": "Difference",
+        "disclaimer": "<p>Source: Schroders. Top holdings and asset allocation are at fund level.</p>",
+        "componentDisclaimer": "",
+        "weightingColor": "#002A5E",
+        "asOfLabel": "As of",
+        "selectLabel": "",
+        "translations": {
+          "fundName": "Fund name",
+          "assetClass": "Asset class",
+          "weighting": "%",
+          "marketView": "Unadjusted view",
+          "schrodersView": "SCILS view"
+        }
+      },
+      "fxListingsPanel": {
+        "heading": "Listings",
+        "tooltip": "",
+        "table": {
+          "cols": [
+            {
+              "key": "exchange",
+              "title": "Exchange"
+            },
+            {
+              "key": "ticker",
+              "title": "Ticker"
+            },
+            {
+              "key": "currency",
+              "title": "Currency"
+            },
+            {
+              "key": "listingDate",
+              "title": "Listing Date"
+            },
+            {
+              "key": "sedol",
+              "title": "SEDOL"
+            },
+            {
+              "key": "bloombergTicker",
+              "title": "Bloomberg Ticker"
+            },
+            {
+              "key": "reutersCode",
+              "title": "RIC (Reuters code)"
+            }
+          ],
+          "values": [
+            {
+              "exchange": "Germany - XETRA",
+              "ticker": "SAHE",
+              "currency": "EUR",
+              "listingDate": "26.09.2025",
+              "sedol": "BTPGTK8",
+              "bloombergTicker": "SAHE GY",
+              "reutersCode": "SAHEG.DE"
+            },
+            {
+              "exchange": "United Kingdom - London Stock Exchange",
+              "ticker": "SAEG",
+              "currency": "GBP",
+              "listingDate": "29.09.2025",
+              "sedol": "BTPGTH5",
+              "bloombergTicker": "SAEG LN",
+              "reutersCode": "SCSAEG.L"
+            },
+            {
+              "exchange": "United Kingdom - London Stock Exchange",
+              "ticker": "SAGE",
+              "currency": "USD",
+              "listingDate": "29.09.2025",
+              "sedol": "BQTWW91",
+              "bloombergTicker": "SAGE LN",
+              "reutersCode": "SAGE.L"
+            },
+            {
+              "exchange": "Italy - Borsa Italiana S.P.A.",
+              "ticker": "SAGE",
+              "currency": "EUR",
+              "listingDate": "06.10.2025",
+              "sedol": "BTPGTL9",
+              "bloombergTicker": "SAGE IM",
+              "reutersCode": "SAGE.IM"
+            },
+            {
+              "exchange": "Switzerland - Six Swiss Exchange",
+              "ticker": "SAGE",
+              "currency": "CHF",
+              "listingDate": "06.10.2025",
+              "sedol": "BTPGTJ7",
+              "bloombergTicker": "SAGE SE",
+              "reutersCode": "SAGE.S"
+            }
+          ]
+        }
+      },
+      "fxAuthorisedParticipantsPanel": {
+        "heading": "Authorised Participants",
+        "tooltip": "",
+        "table": {
+          "cols": [
+            {
+              "key": "name",
+              "title": "Name"
+            }
+          ],
+          "values": [
+            {
+              "name": "Jane Street Financial Limited"
+            },
+            {
+              "name": "Flow Traders"
+            },
+            {
+              "name": "JPMorgan Securities PLC"
+            },
+            {
+              "name": "Goldman Sachs International"
+            },
+            {
+              "name": "RBC Europe Limited"
+            }
+          ]
+        }
+      },
+      "fxDefinitionListGroupPanel": {
+        "categories": [
+          {
+            "id": "fxDefinitionListGroupPanel_keyFacts",
+            "title": "Fund facts",
+            "tooltip": "",
+            "categoryItems": [
+              {
+                "id": "managerName",
+                "title": "Fund manager",
+                "value": "Lukas Kamblevicius",
+                "tooltip": "Fund manager",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "managementCompany",
+                "title": "Fund management company",
+                "value": "Schroder Investment Management (Europe) S.A.",
+                "tooltip": "Management Company",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "domicile",
+                "title": "Domicile",
+                "value": "Ireland",
+                "tooltip": "A fund&rsquo;s domicile is its country of residence. It determines how a fund is to be treated from a tax perspective.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "fundInceptionDate",
+                "title": "Fund launch date",
+                "value": "<time class=\"timestamp\">24.09.2025</time>",
+                "tooltip": "Fund launch date",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "inceptionDate",
+                "title": "Share class launch date",
+                "value": "<time class=\"timestamp\">24.09.2025</time>",
+                "tooltip": "Share class launch date",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "fundBaseCurrency",
+                "title": "Fund base currency",
+                "value": "USD",
+                "tooltip": "The currency in which the units, the accounts and the unit-holder&rsquo;s statement are expressed.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "baseCurrency",
+                "title": "Share class currency",
+                "value": "USD",
+                "tooltip": "Share class currency",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "shareOutstanding",
+                "title": "Shares Outstanding",
+                "value": "<span class=\"number \"><span class=\"monetary\">97,000,000</span></span>",
+                "tooltip": "Shares Outstanding",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "fundSize",
+                "title": "Fund size (Million)",
+                "value": "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 1,121.50</span></span>",
+                "tooltip": "Fund size (Million)",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "numberOfHoldings",
+                "title": "Number of holdings",
+                "value": "469",
+                "tooltip": "Number of Holdings",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "benchmarkName",
+                "title": "Target  ",
+                "value": "MSCI World NR",
+                "tooltip": "Target  ",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "distributionFrequency",
+                "title": "Distribution frequency",
+                "value": "No Distribution",
+                "tooltip": "The regularity with which the earnings of the fund (from dividends, for example) are paid to investors who are invested in a distribution share class.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "pricingFrequency",
+                "title": "Pricing Frequency",
+                "value": "Daily",
+                "tooltip": "The regularity with which a fund&rsquo;s price &ndash; or Net Asset Value (NAV) &ndash; is calculated.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "fiscalYearEnd",
+                "title": "Fiscal Year End",
+                "value": "September",
+                "tooltip": "The end of a 12-month accounting period.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "creditQualitySensitivity",
+                "title": "Credit Quality / Interest Rate Sensitivity",
+                "value": "-",
+                "tooltip": "Credit Quality / Interest Rate Sensitivity",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "investmentStyle",
+                "title": "Investment Style",
+                "value": "Large Blend",
+                "tooltip": "Investment Style",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "legalStructure",
+                "title": "Legal Structure",
+                "value": "ICAV",
+                "tooltip": "Legal Structure",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "broadAssetClass",
+                "title": "Broad Asset Class",
+                "value": "Equity",
+                "tooltip": "Broad investment categories that offer differing levels of risk and return, such as equities (also known as shares or stocks), bonds, property and cash. Non-traditional asset classes are known as alternative investments.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "ukReportingStatus",
+                "title": "UK Reporting Status",
+                "value": "Yes",
+                "tooltip": "UK Reporting Status",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              }
+            ],
+            "type": "keyFacts",
+            "hasDividendsDownload": false,
+            "asOfLabel": "As of"
+          },
+          {
+            "id": "fxDefinitionListGroupPanel_priceDetails",
+            "title": "Price",
+            "tooltip": "",
+            "categoryItems": [
+              {
+                "id": "priceEndValue",
+                "title": "Unit NAV",
+                "value": "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 11.4558</span></span>",
+                "tooltip": "The value of an entity&rsquo;s assets minus the value of its liabilities.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": {
+                  "historical": "View Historic Price",
+                  "priceDownload": "Download Price"
+                }
+              },
+              {
+                "id": "pricingFrequency",
+                "title": "Pricing Frequency",
+                "value": "Daily",
+                "tooltip": "The regularity with which a fund&rsquo;s price &ndash; or Net Asset Value (NAV) &ndash; is calculated.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              }
+            ],
+            "type": "priceDetails",
+            "hasDividendsDownload": false,
+            "asOfLabel": "As of"
+          },
+          {
+            "id": "fxDefinitionListGroupPanel_riskStats",
+            "title": "Risk statistics & financial ratios",
+            "tooltip": "",
+            "categoryItems": [
+              {
+                "id": "dividendYield",
+                "title": "Dividend Yield (%)",
+                "value": [
+                  {
+                    "color": "#002A5E",
+                    "value": "<span class=\"number \"><span class=\"monetary\">1.4</span></span>",
+                    "name": "Schroder ETFs (ICAV) - Schroder Global Equity Active UCITS ETF Accumulation USD"
+                  },
+                  {
+                    "color": "#A446BA",
+                    "value": "-",
+                    "name": "MSCI World NR"
+                  }
+                ],
+                "tooltip": "Dividend Yield",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null,
+                "disclaimer": "<p>Source: Morningstar. The above ratios are based on bid to bid price based performance data. These financial ratios refer to the average of the equity holdings contained in the fund&rsquo;s portfolio and in the benchmark (if mentioned) respectively.</p>"
+              },
+              {
+                "id": "priceBookValue",
+                "title": "Price to book",
+                "value": [
+                  {
+                    "color": "#002A5E",
+                    "value": "<span class=\"number \"><span class=\"monetary\">4.15</span></span>",
+                    "name": "Schroder ETFs (ICAV) - Schroder Global Equity Active UCITS ETF Accumulation USD"
+                  },
+                  {
+                    "color": "#A446BA",
+                    "value": "-",
+                    "name": "MSCI World NR"
+                  }
+                ],
+                "tooltip": "Price to book",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null,
+                "disclaimer": "<p>Source: Morningstar. The above ratios are based on bid to bid price based performance data. These financial ratios refer to the average of the equity holdings contained in the fund&rsquo;s portfolio and in the benchmark (if mentioned) respectively.</p>"
+              },
+              {
+                "id": "priceEarningRatio",
+                "title": "Price to earnings",
+                "value": [
+                  {
+                    "color": "#002A5E",
+                    "value": "<span class=\"number \"><span class=\"monetary\">24.6</span></span>",
+                    "name": "Schroder ETFs (ICAV) - Schroder Global Equity Active UCITS ETF Accumulation USD"
+                  },
+                  {
+                    "color": "#A446BA",
+                    "value": "-",
+                    "name": "MSCI World NR"
+                  }
+                ],
+                "tooltip": "Price to earnings",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null,
+                "disclaimer": "<p>Source: Morningstar. The above ratios are based on bid to bid price based performance data. These financial ratios refer to the average of the equity holdings contained in the fund&rsquo;s portfolio and in the benchmark (if mentioned) respectively.</p>"
+              }
+            ],
+            "template": "tableRow",
+            "disclaimer": "<p>Source: Morningstar. The above ratios are based on bid to bid price based performance data. These financial ratios refer to the average of the equity holdings contained in the fund&rsquo;s portfolio and in the benchmark (if mentioned) respectively.</p>",
+            "type": "riskStats",
+            "hasDividendsDownload": false,
+            "asOfLabel": "As of"
+          },
+          {
+            "id": "fxDefinitionListGroupPanel_purchaseDetails",
+            "title": "Purchase details",
+            "tooltip": "",
+            "categoryItems": [
+              {
+                "id": "minimumInitialSubsequentInvestment",
+                "title": "Minimum initial subscription",
+                "value": "<span class=\"number monetary\"><span class=\"monetary\"><span class=\"currency-code\">USD</span> 100000</span></span> ",
+                "tooltip": "Minimum initial subscription &/or monthly instalments",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              }
+            ],
+            "template": "purchaseDetails",
+            "type": "purchaseDetails",
+            "hasDividendsDownload": false,
+            "asOfLabel": "As of"
+          },
+          {
+            "id": "fxDefinitionListGroupPanel_fundCodes",
+            "title": "Codes",
+            "tooltip": "",
+            "categoryItems": [
+              {
+                "id": "isin",
+                "title": "ISIN",
+                "value": "IE000BNLRWE6",
+                "tooltip": "International Securities Identification Number.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "bloombergTicker",
+                "title": "Bloomberg",
+                "value": "SAGE LN",
+                "tooltip": "Bloomberg Ticker",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              },
+              {
+                "id": "sedol",
+                "title": "SEDOL",
+                "value": "BQTWW91",
+                "tooltip": "An identification code assigned to securities that are traded on the London Stock Exchange and other exchanges in the UK. SEDOL codes are used for unit trusts, investment trusts, insurance-linked securities, and domestic and foreign stocks.",
+                "asOf": "",
+                "asOfDateTitle": "As of",
+                "actions": null
+              }
+            ],
+            "type": "fundCodes",
+            "hasDividendsDownload": false,
+            "asOfLabel": "As of"
+          }
+        ],
+        "downloadPriceModal": {
+          "documentData": {
+            "shareClassName": "Schroder ETFs ICAV",
+            "creationDate": 1758672000,
+            "endDate": 1782691200,
+            "shareClassExternalId": "SCHDR_F00001RRIQ",
+            "dateRanges": [
+              {
+                "value": "1M",
+                "label": "1M",
+                "range": [
+                  1780012800,
+                  1782691200
+                ]
+              },
+              {
+                "value": "3M",
+                "label": "3M",
+                "range": [
+                  1774742400,
+                  1782691200
+                ]
+              },
+              {
+                "value": "6M",
+                "label": "6M",
+                "range": [
+                  1766966400,
+                  1782691200
+                ]
+              },
+              {
+                "value": "SI",
+                "label": "SI",
+                "range": [
+                  1758672000,
+                  1782691200
+                ]
+              }
+            ],
+            "supportedFileTypes": [
+              "excel",
+              "csv"
+            ],
+            "params": {
+              "externalId": "SCHDR_F00001RRIQ",
+              "language": "en",
+              "location": "uk",
+              "channel": "institutional"
+            },
+            "priceFormat": {
+              "type": "monetary",
+              "decimalPlaces": 4
+            }
+          }
+        },
+        "navMenuItems": [
+          {
+            "label": "Key Facts",
+            "href": "#fxDefinitionListGroupPanel_keyFacts"
+          },
+          {
+            "label": "Price Details",
+            "href": "#fxDefinitionListGroupPanel_priceDetails"
+          },
+          {
+            "label": "Risk Stats",
+            "href": "#fxDefinitionListGroupPanel_riskStats"
+          },
+          {
+            "label": "Purchase Details",
+            "href": "#fxDefinitionListGroupPanel_purchaseDetails"
+          },
+          {
+            "label": "Fund Codes",
+            "href": "#fxDefinitionListGroupPanel_fundCodes"
+          }
+        ]
+      },
+      "fxDocumentGroupPanel": {
+        "useExternalSource": true,
+        "allowBulkDownload": true,
+        "hideDocsLanguageInfo": false,
+        "hideDocsDateInfo": false
+      },
+      "fxCommentaryPanel": {
+        "title": "Insights",
+        "tooltip": "Articles from our experts.",
+        "useExternalSource": true,
+        "bgColor": "#F6A82B"
+      },
+      "fxImportantInformationPanel": {
+        "heading": "Important information",
+        "content": "Nothing in this document should be construed as advice and is therefore not a recommendation to buy or sell shares. An investment in the Schroder ETFs ICAV (the \"Company\") entails risks, which are fully described in the prospectus.<br /><br />Subscriptions for shares of the Company can only be made on the basis of its latest Key Information Document (the &ldquo;KID&rdquo;) and prospectus, together with the latest audited annual report (and subsequent unaudited semi-annual report, if published), copies of which can be obtained, free of charge, from Schroder Investment Management (Europe) S.A. An investment concerns the acquisition of shares in the Company, and not the underlying assets. The Company has been registered as an Irish Collective Asset-management Vehicle pursuant to the Irish ICAV Act. The Company has been established for an unlimited period and coordinated with regard to the European regulations and meets the criteria for Undertakings for Collective Investment in Transferable Securities (UCITS). The KIDs are available in Czech, Dutch, English, French, German, Greek and Italian, and the prospectus is available in English, French, German and Italian, free of charge at www.eifs.lu/schroders. The availability of KIDs in the aforementioned languages is subject to the registration of the fund in the respective jurisdiction.<br /><br />The net asset value of the share class is published daily on the following business day and is accessible at the registered office of the administrator and via the following website: https://www.schroders.com/en-ie/ie/individual/fund-centre/. A list of the investments held by the fund is also made available on the same site on a daily basis.<br /><br />Shares purchased on the secondary market cannot usually be sold directly back to the Company. Investors must buy and sell shares on a secondary market with the assistance of an intermediary (e.g. a stockbroker) and may incur fees for doing so. In addition, investors may pay more than the current net asset value when buying shares and may receive less than the current net asset value when selling them. Please refer to the \"Secondary Market Dealings in Shares\" section of the prospectus for further information.<br /><br />Notice to investors in the UK: The prospectus and KIIDs are available in English at https://www.schroders.com/en-gb/uk/individual/fund-centre/.This product is based overseas and is not subject to UK sustainable investment labelling and disclosure requirements. The fund is authorised overseas and recognised in the UK under the Overseas Fund Regime. The UK Financial Ombudsman Service is unlikely to be able to consider complaints relating to this fund, its operator, or its depositary. Any claims for losses relating to the operator or depositary of the fund are unlikely to be covered by the UK Financial Services Compensation Scheme. Prospective investors should consider seeking independent financial advice and review the fund prospectus before making an investment decision.<br /><br />Schroders may decide to cease the distribution of any fund(s) in any EEA country at any time but we will publish our intention to do so on our website, in line with applicable regulatory requirements.<br /><br />The fund has environmental and/or social characteristics within the meaning of Article 8 of Regulation (EU) 2019/2088 on Sustainability-related Disclosures in the Financial Services Sector (the &ldquo;SFDR&rdquo;). For information on sustainability-related aspects of this fund please go to https://www.schroders.com/en/global/individual/all-eu-sites/<br /><br />Any reference to regions/ countries/ sectors/ stocks/ securities is for illustrative purposes only and not a recommendation to buy or sell any financial instruments or adopt a specific investment strategy.<br /><br /><p>Past Performance is not a guide to future performance and may not be repeated.</p><br /><br />The value of investments and the income from them may go down as well as up and investors may not get back the amounts originally invested. Exchange rate changes may cause the value of investments to fall as well as rise.<br /><br />Performance data does not take into account any commissions and costs, if any, charged when units or shares of any fund, as applicable, are issued and redeemed.<br /><br />Schroders has expressed its own views and opinions in this document and these may change.<br /><br />The information contained herein is believed to be reliable. Where third-party data is referenced, it remains subject to the rights of the respective provider and must not be reproduced or used without prior consent.<br /><br /><p>Communications with Schroder&rsquo;s representatives may be recorded for regulatory and monitoring purposes.</p><br /><br />Schroders will be a data controller in respect of your personal data. For information on how Schroders might process your personal data, please view our Privacy Policy available at https://www.schroders.com/en/global/individual/footer/privacy-statement/ or on request should you not have access to this webpage.<br /><br />A summary of investor rights may be obtained in Bulgarian, Czech, Dutch, English, French, German, Greek, Hungarian, Italian, Polish, Portuguese, Slovakian, Spanish and Swedish from https://www.schroders.com/en/global/individual/summary-of-investor-rights/<br /><br />Issued by Schroder Investment Management (Europe) S.A., 5 Heienhaff, L-1736 Senningerberg, Luxembourg. Registration No B 37.799.<br /><br />Distributed in the UK by Schroder Investment Management Ltd, 1 London Wall Place, London EC2Y 5AU. Registration No 1893220 England. Authorised and regulated by the Financial Conduct Authority.<br /><br />The MSCI World (Net TR) index was used by Schroder Investment Management Limited as the reference universe for selection of the companies used as the basis for the Schroder ETFs ICAV &ndash; Schroder Global Equity Active UCITS ETF. MSCI does not in any way sponsor, support, promote or endorse the Schroder ETFs ICAV &ndash; Schroder Global Equity Active UCITS ETF. MSCI was not and is not involved in any way in the creation, calculation, maintenance, or review of the Schroder ETFs ICAV &ndash; Schroder Global Equity Active UCITS ETF. The MSCI World (Net TR) index was provided on an &ldquo;as is&rdquo; basis. MSCI, each of its affiliates and each other person involved in or related to compiling, computing or creating the MSCI World (Net TR) Index (collectively, the &ldquo;MSCI Parties&rdquo;) expressly disclaim all warranties (including, without limitation, any warranties of originality, accuracy, completeness, timeliness, non-infringement, merchantability and fitness for a particular purpose). Without limiting any of the foregoing, in no event shall any of the MSCI Parties have any liability for any direct, indirect, special, incidental, punitive, consequential (including, without limitation, lost profits) or any other damages in connection with the MSCI World (Net TR) Index or the Schroder ETFs ICAV &ndash; Schroder Global Equity Active UCITS ETF.",
+        "initiallyExpanded": true
+      },
+      "fundDetailNavLinks": [
+        {
+          "value": "OVERVIEW",
+          "label": "Overview",
+          "targetSelectors": [
+            "#fxProfileHeroPanel",
+            "#fxObjectivePanel",
+            "#fxManagerPanel",
+            "#fxRiskScorePanel",
+            "#fxDefinitionListPanel"
+          ]
+        },
+        {
+          "value": "RISK_CONSIDERATIONS",
+          "label": "Risk Considerations",
+          "targetSelectors": [
+            "#fxRiskConsiderationsPanel"
+          ]
+        },
+        {
+          "value": "PERFORMANCE",
+          "label": "Performance",
+          "targetSelectors": [
+            "#fxPerformanceTablePanel",
+            "#fxPricePanel"
+          ]
+        },
+        {
+          "value": "BREAKDOWN",
+          "label": "Asset Allocation",
+          "targetSelectors": [
+            "#fxBreakdownPanel"
+          ]
+        },
+        {
+          "value": "LISTINGS",
+          "label": "Listings",
+          "targetSelectors": [
+            "#fxListingsPanel"
+          ]
+        },
+        {
+          "value": "AUTHORISED_PARTICIPANTS",
+          "label": "Authorised Participants",
+          "targetSelectors": [
+            "#fxAuthorisedParticipantsPanel"
+          ]
+        },
+        {
+          "value": "FACTS",
+          "label": "Fund Facts",
+          "targetSelectors": [
+            "#fxDefinitionListGroupPanel"
+          ]
+        },
+        {
+          "value": "DOCUMENTS",
+          "label": "Documents",
+          "targetSelectors": [
+            "#fxDocumentGroupPanel"
+          ]
+        },
+        {
+          "value": "COMMENTARY",
+          "label": "Insights",
+          "targetSelectors": [
+            "#fxCommentaryPanel"
+          ]
+        },
+        {
+          "value": "IMPORTANT_INFO",
+          "label": "Important information",
+          "targetSelectors": [
+            "#fxImportantInformationPanel"
+          ]
+        }
+      ],
+      "layoutHandler": {
+        "items": [
+          {
+            "component": "fxProfileHeroPanel",
+            "cls": "cover",
+            "layout": "SCHDR-Default",
+            "flex": 1
+          },
+          {
+            "component": "fxBannerPanel",
+            "flex": 1
+          },
+          {
+            "items": [
+              {
+                "component": "fxObjectivePanel",
+                "flex": 1
+              },
+              {
+                "component": "fxManagerPanel",
+                "layout": "List",
+                "flex": 1
+              }
+            ],
+            "flex": 1
+          },
+          {
+            "items": [
+              {
+                "flex": 1,
+                "items": [
+                  {
+                    "component": "fxRiskScorePanel"
+                  },
+                  {
+                    "component": "fxRiskScoreRelativePanel"
+                  }
+                ]
+              },
+              {
+                "component": "fxDefinitionListPanel",
+                "layout": "TableView",
+                "type": "feesAndExpenses",
+                "flex": 1
+              }
+            ],
+            "flex": 1
+          },
+          {
+            "component": "fxSdrPanel",
+            "flex": 12
+          },
+          {
+            "component": "fxRiskConsiderationsPanel",
+            "flex": 1
+          },
+          {
+            "component": "fxPerformanceTablePanel",
+            "types": [
+              "cumulative",
+              "discrete",
+              "distribution"
+            ],
+            "flex": 1
+          },
+          {
+            "component": "fxPerformanceDiscretePanel",
+            "disclaimer": 1,
+            "flex": 1
+          },
+          {
+            "component": "fxPerformancePanel",
+            "disclaimer": 1,
+            "flex": 1
+          },
+          {
+            "component": "fxPricePanel"
+          },
+          {
+            "component": "fxFeesAndExpensesRelatedPanel",
+            "flex": 1
+          },
+          {
+            "component": "fxBreakdownPanel",
+            "disclaimer": "empty",
+            "layout": "Layout2",
+            "flex": 1
+          },
+          {
+            "component": "fxListingsPanel",
+            "flex": 1
+          },
+          {
+            "component": "fxAuthorisedParticipantsPanel",
+            "flex": 1
+          },
+          {
+            "component": "fxSustainabilityTablePanel",
+            "flex": 1
+          },
+          {
+            "component": "fxDefinitionListGroupPanel",
+            "types": [
+              "keyFacts",
+              "priceDetails",
+              "riskStats",
+              "financialRatios",
+              "purchaseDetails",
+              "fundCodes",
+              "ratings",
+              "commission",
+              "tradeInformation"
+            ],
+            "flex": 1
+          },
+          {
+            "component": "fxDocumentGroupPanel",
+            "layout": "Default",
+            "flex": 1
+          },
+          {
+            "component": "fxCommentaryPanel",
+            "flex": 1
+          },
+          {
+            "component": "fxBenchmarkInformationPanel",
+            "flex": 1
+          },
+          {
+            "component": "fxSourceRatingInformationPanel",
+            "flex": 1
+          },
+          {
+            "component": "fxCollapsibleDisclaimerReactPanel",
+            "disclaimer": "sdrInformation",
+            "flex": 12
+          },
+          {
+            "component": "fxImportantInformationPanel",
+            "flex": 1
+          }
+        ]
+      },
+      "instanceConfig": {
+        "localisation": {
+          "number": {
+            "decimalSeperator": ".",
+            "thousandSeperator": ",",
+            "units": {
+              "K": "k",
+              "M": "m",
+              "B": "b",
+              "T": "t",
+              "Q": "q"
+            }
+          },
+          "monetary": {
+            "format": "{{ code }} {{ value }}",
+            "subdivisionFormat": "{{ value }} {{ symbol }}",
+            "symbols": {
+              "AUD": "&dollar;",
+              "CAD": "&dollar;",
+              "CHF": null,
+              "CNY": "&yen;",
+              "CZK": null,
+              "EUR": "&euro;",
+              "GBP": "&pound;",
+              "HKD": "&dollar;",
+              "JPY": "&yen;",
+              "NZD": "&dollar;",
+              "SEK": "kr",
+              "SGD": "&dollar;",
+              "THB": "&#3647;",
+              "USD": "&dollar;"
+            },
+            "subdivisionSymbols": {
+              "AUD": "&dollar;",
+              "CAD": "&dollar;",
+              "CHF": null,
+              "CNY": "&yen;",
+              "CZK": null,
+              "EUR": "&euro;",
+              "GBP": "p",
+              "HKD": "&dollar;",
+              "JPY": "&yen;",
+              "NZD": "&dollar;",
+              "SEK": "kr",
+              "SGD": "&dollar;",
+              "THB": "&#3647;",
+              "USD": "&dollar;"
+            }
+          },
+          "date": {
+            "format": {
+              "short": "dd.MM.yyyy",
+              "long": "d F yyyy"
+            }
+          }
+        },
+        "colors": {
+          "brand": {
+            "primary": "#002A5E",
+            "primaryAccent": "#14E6F1",
+            "secondary": "#2d55b2"
+          },
+          "backgrounds": {},
+          "text": {
+            "contentHover": "#002A5E",
+            "buttonHover": "#002A5E"
+          }
+        },
+        "fonts": {
+          "heading": "SchrodersCircularWeb-Bold, sans-serif",
+          "body": "SchrodersCircularWeb-Book, sans-serif"
+        },
+        "misc": {
+          "useH1": 1
+        },
+        "shelf": {
+          "comparison": false,
+          "watchlist": true
+        },
+        "searchList": {
+          "filter": {
+            "items": [
+              "sfdrRating",
+              "sdr",
+              "collection",
+              "assetClass",
+              "distributionStatus",
+              "overallRating",
+              "baseCurrency",
+              "manager",
+              "anbimaCategory",
+              "offshoreRelativeRiskRating"
+            ]
+          },
+          "scrollToSearchContainer": {},
+          "shareClasses": {}
+        },
+        "filters": {
+          "asOf": {
+            "enabled": 1
+          },
+          "baseCurrency": {
+            "collapsed": false
+          },
+          "broadAssetClass": {
+            "collapsed": false
+          },
+          "collection": {
+            "collapsed": false
+          },
+          "distributionStatus": {
+            "collapsed": false
+          },
+          "overallRating": {
+            "collapsed": false
+          }
+        },
+        "meta": {
+          "title": "Schroder ETFs (ICAV) - Schroder Global Equity Active UCITS ETF Accumulation USD"
+        },
+        "compare": {
+          "palette": {
+            "holdingTop10": {}
+          }
+        },
+        "fundComparison": {}
+      },
+      "themeOverrides": {
+        "fonts": {
+          "heading": "\"Schroders Circular\",\"schroders-circular\",\"SchrodersCircularWeb-Book\",\"sans-serif\",\"Noto Sans\",\"-apple-system\",\"BlinkMacSystemFont\",\"Segoe UI\",\"Roboto\",\"Helvetica Neue\",\"Helvetica\",\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\"",
+          "body": "\"Schroders Circular\",\"schroders-circular\",\"SchrodersCircularWeb-Book\",\"sans-serif\",\"Noto Sans\",\"-apple-system\",\"BlinkMacSystemFont\",\"Segoe UI\",\"Roboto\",\"Helvetica Neue\",\"Helvetica\",\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\""
+        }
+      },
+      "analytics": {
+        "tealium": {
+          "baseUrl": null,
+          "dataLayer": {
+            "environment": "production",
+            "user_platform": "web",
+            "region": "EMEA",
+            "country": "United Kingdom",
+            "sub_segment": "Institutional",
+            "language": "en",
+            "tealium_event": "product_view",
+            "page_type": "fund",
+            "authors": "",
+            "capabilities": "",
+            "page_title": "",
+            "post_month": "",
+            "post_topics": "",
+            "post_year": "",
+            "source_id": "",
+            "session_cam_load_rule": "",
+            "Author": "",
+            "postYear": "",
+            "postMonth": "",
+            "postTopics": "",
+            "SourceID": "",
+            "Language": "",
+            "event_name": "",
+            "Fund": "",
+            "previous_page_name": "",
+            "order_id": "",
+            "event_category": "",
+            "event_action": "",
+            "event_label": "",
+            "fire_dc": "",
+            "dc_sendto": "",
+            "dc_visitor_type": "",
+            "dc_page2": "",
+            "content_groupings": "",
+            "fund_isin": "IE000BNLRWE6",
+            "asset_class": "Equity",
+            "distribution_type": "Accumulation",
+            "fund_name": "Schroder ETFs ICAV",
+            "fund_document_type": [],
+            "share_class": "Schroder ETFs (ICAV) - Schroder Global Equity Active UCITS ETF Accumulation USD"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "captured_at": "2026-07-02T15:59:45.414479",
+  "provider": "Nordea",
+  "discovered_fund_pages": 3,
+  "disclosure_source_urls": [
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4370254",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4369685",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4368991",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4368385",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4367820",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4367385",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4366870",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4366394",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4365934",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4365707",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4365276",
+    "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4364782"
+  ],
+  "listing_rows": [
+    {
+      "ETF Name": "BetaPlus Enhanced Global Developed Sustainable Equity UCITS ETF - USD Acc ETF",
+      "Issuer": "Nordea",
+      "ISIN": "IE00060Z4AE1",
+      "CCY": "USD",
+      "TER(bps)": "25",
+      "AUM(M)": "1588.36",
+      "AUM CCY": "USD",
+      "Date": "01/07/2026",
+      "AUM Raw": "1588355520.41",
+      "NAV per Share": "12.4773",
+      "Units Outstanding": "127300000.00",
+      "AUM Source URL": "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4370254"
+    },
+    {
+      "ETF Name": "BetaPlus Enhanced Global Sustainable Equity UCITS ETF - USD Acc ETF",
+      "Issuer": "Nordea",
+      "ISIN": "IE000ASNLWH9",
+      "CCY": "USD",
+      "TER(bps)": "25",
+      "AUM(M)": "2534.64",
+      "AUM CCY": "USD",
+      "Date": "01/07/2026",
+      "AUM Raw": "2534642530.85",
+      "NAV per Share": "12.8077",
+      "Units Outstanding": "197900000.00",
+      "AUM Source URL": "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4370254"
+    },
+    {
+      "ETF Name": "BetaPlus Enhanced European Select Equity UCITS ETF - EUR Acc ETF",
+      "Issuer": "Nordea",
+      "ISIN": "IE000OJF8NN4",
+      "CCY": "EUR",
+      "TER(bps)": "25",
+      "AUM(M)": "",
+      "AUM CCY": "EUR",
+      "Date": "01/07/2026"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "captured_at": "2026-07-02T14:59:12.423233+00:00",
+  "provider": "abrdn",
+  "overview_candidate_count": 3,
+  "row_count": 3,
+  "listing_rows": [
+    {
+      "ETF Name": "abrdn Future Raw Materials UCITS ETF",
+      "Issuer": "abrdn",
+      "ISIN": "IE000J7QYHD8",
+      "CCY": "USD",
+      "TER(bps)": "45",
+      "AUM(M)": "36.82",
+      "Date": "01/07/2026",
+      "_detail_url": "https://www.aberdeeninvestments.com/en-ch/investor/funds/view-all-funds/abrdn-future-raw-materials-ucits-etf-ie000j7qyhd8",
+      "_factsheet_url": "https://abrdn.kurtosysweb.com/pdfs/F_STD_en-gb-NN_IE000J7QYHD8.pdf"
+    },
+    {
+      "ETF Name": "abrdn Future Real Estate UCITS ETF",
+      "Issuer": "abrdn",
+      "ISIN": "IE000GGQK173",
+      "CCY": "USD",
+      "TER(bps)": "40",
+      "AUM(M)": "70.64",
+      "Date": "01/07/2026",
+      "_detail_url": "https://www.aberdeeninvestments.com/en-ch/investor/funds/view-all-funds/abrdn-future-real-estate-ucits-etf-ie000ggqk173",
+      "_factsheet_url": "https://abrdn.kurtosysweb.com/pdfs/F_STD_en-gb-NN_IE000GGQK173.pdf"
+    },
+    {
+      "ETF Name": "abrdn Future Supply Chains UCITS ETF",
+      "Issuer": "abrdn",
+      "ISIN": "IE000G9O8QD4",
+      "CCY": "USD",
+      "TER(bps)": "60",
+      "AUM(M)": "19.66",
+      "Date": "02/07/2026",
+      "_detail_url": "https://www.aberdeeninvestments.com/en-ch/investor/funds/view-all-funds/abrdn-future-supply-chains-ucits-etf-ie000g9o8qd4",
+      "_factsheet_url": "https://abrdn.kurtosysweb.com/pdfs/F_STD_en-gb-NN_IE000G9O8QD4.pdf"
+    }
+  ]
+}

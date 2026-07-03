@@ -1,0 +1,11 @@
+{
+  "name": "Schroder ETFs (ICAV) - Schroder Global Investment Grade Corporate Bond Active UCITS ETF  Accumulation GBP Hedged",
+  "nameUntranslated": "Schroder ETFs (ICAV) - Schroder Global Investment Grade Corporate Bond Active UCITS ETF  Accumulation GBP Hedged",
+  "externalId": "SCHDR_F00001RRIT",
+  "parentExternalId": "SCHDR_FS0000JVX2",
+  "baseCurrency": "GBP",
+  "legalStructure": "euro-etf",
+  "shareclassExternalId": "SCHDR_F00001RRIT",
+  "fundExternalId": "SCHDR_FS0000JVX2",
+  "isin": "IE000AVUROO8"
+}

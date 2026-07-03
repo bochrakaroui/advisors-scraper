@@ -1,0 +1,60 @@
+{
+  "source": {
+    "provider": "Expat Asset Management",
+    "expat_fund_url": "https://expat.bg/en/funds/ExpatBulgariaSOFIX"
+  },
+  "method": "Official Expat Bulgaria SOFIX fund-page HTML parsing plus KID PDF enrichment for the Expat Bulgaria SOFIX UCITS ETF target ISIN.",
+  "captured_at": "2026-06-30T19:05:22.345880",
+  "target_isin_count": 1,
+  "matched_target_isins": [
+    "BG9000011163"
+  ],
+  "missing_target_isins": [],
+  "status_counts": {
+    "ok": 1
+  },
+  "listing_rows": [
+    {
+      "etf_name": "Expat Bulgaria SOFIX UCITS ETF",
+      "issuer": "Expat Asset Management",
+      "isin": "BG9000011163",
+      "ccy": "EUR",
+      "ter_bps": "280.00",
+      "aum_mn": "7.59",
+      "aum_ccy": "EUR",
+      "date": "2026-06-29",
+      "nav": "0.8538",
+      "nav_date": "2026-06-29",
+      "distribution_type": "Accumulating",
+      "fund_type": "UCITS ETF",
+      "fund_domicile": "Bulgaria",
+      "index_name": "SOFIX",
+      "index_ticker": "",
+      "primary_ticker": "BGX",
+      "share_class": "",
+      "management_company": "Expat Asset Management EAD",
+      "product_range": "Expat UCITS ETFs",
+      "objective": "The objective of the Expat Bulgaria SOFIX UCITS ETF is to track the performance of the SOFIX Index (the \"Index\"), which consi sts of the 15 most liquid companies traded on the Bulgarian Stock Exchange - Sofia. The Index is based on the market capitalizatio n of the included issues of common stock, adjusted by the free-float ratio of each. The index is rebalanced quarterly. For more information: www.bse-sofia.bg The Fund seeks to achieve a return on your investment through a combination of income and capital growth (total return) that reflects the performance of the Fund's Reference Index (the \"Index\"). The product's return is directly dependent on the performance of the assets held by the Fund, with the main factors affecting the performance being the investment strategy, the risk profile of the Fund, the recommended holding period, the cost to the investor of making the investment etc. The recommended holding per iod is a function of the Fund's risk profile, investment policy and expected return. The recommended holding period is calculated in accordance with the Fund's investment strategy and the time frame in which the Fund's investment objective is expected to be achieved. This Fund may not be suitable for investors who plan to withdraw their funds prior to the recommended holding period. Each investment should be considered in accordance with your specific investment objectives and risk appetite (see section \"How long should I hold the investment, and can I withdraw my money early?\"). \"Expat Bulgaria SOFIX UCITS ETF is a passively managed fund and adheres to the full physical replication method of an index. The fund invests only in shares of the SOFIX index. The factors that influence the performance of the Fund are the liquidity of the stocks, the performance of the Index constituents, the performance of the market, the costs of the Fund, etc. The expected tracking error on an annualized basis under moderate market conditions is up to 10%.",
+      "factsheet_url": "https://expat.bg/uploads/documents/BulgariaETF-Structure & Basket - 29062026 - EN.pdf",
+      "product_page_url": "https://expat.bg/en/funds/ExpatBulgariaSOFIX?utm_source=chatgpt.com",
+      "kiid_url": "https://expat.bg/uploads/documents/PRIIP Expat Bulgaria SOFIX UCITS ETF EN 04032026.pdf",
+      "launch_date": "2016-09-27",
+      "investment_manager": "Expat Asset Management",
+      "administrator_and_custodian": "",
+      "bbg": "BGX BU; BGX GY; BGX LN",
+      "reuters": "BGXG.DE",
+      "lipper": "",
+      "fetch_status": "ok",
+      "source_kind": "official_fund_page",
+      "yield_ytd": "+6.15%",
+      "yield_previous_year": "+27.93%",
+      "yield_since_public_offering_annualized": "+5.04%",
+      "raw_summary": {
+        "summary_date": "29.06.2026",
+        "Net asset value per share": "EUR 0.8538",
+        "Net asset value": "EUR 7 586 975.09",
+        "Number of outstanding shares": "8 886 189"
+      }
+    }
+  ]
+}

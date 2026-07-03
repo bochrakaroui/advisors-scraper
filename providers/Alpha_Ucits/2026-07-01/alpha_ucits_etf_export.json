@@ -1,0 +1,31 @@
+{
+  "captured_at": "2026-07-01T20:10:15.073984+00:00",
+  "provider": "Alpha UCITS",
+  "official_pages": [
+    "https://www.alpha-ucits.com/",
+    "https://www.alpha-ucits.com/about-us/",
+    "https://www.alpha-ucits.com/achievements/",
+    "https://www.alpha-ucits.com/asset-raising/",
+    "https://www.alpha-ucits.com/awards/",
+    "https://www.alpha-ucits.com/complaints/",
+    "https://www.alpha-ucits.com/contact-us/",
+    "https://www.alpha-ucits.com/cookies/",
+    "https://www.alpha-ucits.com/etf-solutions/",
+    "https://www.alpha-ucits.com/funds-launched/",
+    "https://www.alpha-ucits.com/privacy-policy-2/",
+    "https://www.alpha-ucits.com/privacy-policy/",
+    "https://www.alpha-ucits.com/ucits-solutions/"
+  ],
+  "row_count": 1,
+  "listing_rows": [
+    {
+      "ETF Name": "Fair Oaks AAA CLO Fund : ETF shares",
+      "Issuer": "Alpha UCITS",
+      "ISIN": "",
+      "CCY": "",
+      "TER(bps)": "",
+      "AUM(M)": "",
+      "Date": "01/09/2024"
+    }
+  ]
+}

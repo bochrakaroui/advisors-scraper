@@ -1,0 +1,4440 @@
+{
+  "source": {
+    "provider": "Goldman Sachs Asset Management",
+    "page_url": "https://am.gs.com/en-gb/institutions/funds?locale=en-gb&audience=institutions&eft=true&sf=funds&filters=funds%7CETF",
+    "service_url": "https://am.gs.com/services/funds",
+    "country": "gb",
+    "language": "en",
+    "audience": "institutions",
+    "page_size": 25
+  },
+  "method": "Official Goldman Sachs fund finder GraphQL listing API",
+  "captured_at": "2026-07-02T15:42:14.937386",
+  "total_funds": 20,
+  "total_share_classes_reported": 38,
+  "total_share_classes_captured": 38,
+  "pages": [
+    {
+      "data": {
+        "fundShareClasses": {
+          "facet": {
+            "numberOfFundsAvailable": 20,
+            "numberOfShareClassesAvailable": 38,
+            "filters": [
+              {
+                "label": "fundType",
+                "id": "funds",
+                "options": [
+                  {
+                    "label": "ETF",
+                    "id": "ETF",
+                    "subLabel": "21",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Mutual Fund",
+                    "id": "MF",
+                    "subLabel": "117",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              },
+              {
+                "label": "assetClass",
+                "id": "assetClasses",
+                "options": [
+                  {
+                    "label": "alternatives",
+                    "id": "AT",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "equity",
+                    "id": "EQ",
+                    "subLabel": "8",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "fixedIncome",
+                    "id": "FI",
+                    "subLabel": "13",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "moneyMarkets",
+                    "id": "MM",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "multiAsset",
+                    "id": "MA",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "structuredProducts",
+                    "id": "SP",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              },
+              {
+                "label": "shareClass",
+                "id": "shareClasses",
+                "options": [
+                  {
+                    "label": "A",
+                    "id": "AShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "B",
+                    "id": "BShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "C",
+                    "id": "CShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "D",
+                    "id": "DShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "E",
+                    "id": "EShares",
+                    "subLabel": "16",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "F",
+                    "id": "FShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "G",
+                    "id": "GShares",
+                    "subLabel": "5",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "H",
+                    "id": "HShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "I",
+                    "id": "IShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "J",
+                    "id": "JShares",
+                    "subLabel": "2",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "K",
+                    "id": "KShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "L",
+                    "id": "LShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "M",
+                    "id": "MShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "N",
+                    "id": "NShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "O",
+                    "id": "OShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "P",
+                    "id": "PShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Q",
+                    "id": "QShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "R",
+                    "id": "RShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "S",
+                    "id": "SShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "T",
+                    "id": "TShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "U",
+                    "id": "UShares",
+                    "subLabel": "19",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "V",
+                    "id": "VShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "W",
+                    "id": "WShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "X",
+                    "id": "XShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Y",
+                    "id": "YShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Z",
+                    "id": "ZShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              },
+              {
+                "label": "currency",
+                "id": "currencies",
+                "options": [
+                  {
+                    "label": "AUD",
+                    "id": "AUD",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "CAD",
+                    "id": "CAD",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "CHF",
+                    "id": "CHF",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "CNH",
+                    "id": "CNH",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "CZK",
+                    "id": "CZK",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "DKK",
+                    "id": "DKK",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "EUR",
+                    "id": "EUR",
+                    "subLabel": "16",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "GBP",
+                    "id": "GBP",
+                    "subLabel": "5",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "HKD",
+                    "id": "HKD",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "HUF",
+                    "id": "HUF",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "JPY",
+                    "id": "JPY",
+                    "subLabel": "2",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "NOK",
+                    "id": "NOK",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "PLN",
+                    "id": "PLN",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "RON",
+                    "id": "RON",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "SEK",
+                    "id": "SEK",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "SGD",
+                    "id": "SGD",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "USD",
+                    "id": "USD",
+                    "subLabel": "19",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "ZAR",
+                    "id": "ZAR",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              },
+              {
+                "label": "sfdr",
+                "id": "sfdr",
+                "options": [
+                  {
+                    "label": "Article 6",
+                    "id": "ARTICLE_6",
+                    "subLabel": "9",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Article 8",
+                    "id": "ARTICLE_8",
+                    "subLabel": "33",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Article 9",
+                    "id": "ARTICLE_9",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "N/A",
+                    "id": "ARTICLE_NA",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              }
+            ],
+            "__typename": "Facet"
+          },
+          "funds": [
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 6",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "57.46",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.11",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "51822005.96",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Access China Government Bond UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "7.96",
+                "annualisedReturns3yr": "5.54",
+                "annualisedReturns5yr": "2.62",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "2.87",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV103356",
+              "shareClassId": "IE00BJSBC011",
+              "shareClassNumber": "SC113170",
+              "shareClassInceptionDate": "2021-05-19",
+              "shareClassType": "Class USD (Acc)",
+              "ticker": "CBNX",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 6",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "56.87",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.11",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "59731914.43",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "0.57",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Access China Government Bond UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "7.96",
+                "annualisedReturns3yr": "5.54",
+                "annualisedReturns5yr": "2.62",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "4.44",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV103356",
+              "shareClassId": "IE00BJSBCS90",
+              "shareClassNumber": "SC113168",
+              "shareClassInceptionDate": "2019-10-22",
+              "shareClassType": "Class USD (Dist)",
+              "ticker": "CBND",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "GBP",
+              "scBaseCurrency": "GBP",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 6",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "43.32",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.03",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "762162337.85",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "0.87",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Access UK Gilts 1-10 Years UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "3.52",
+                "annualisedReturns3yr": "3.76",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "-0.18",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV104077",
+              "shareClassId": "IE0003MKK4H3",
+              "shareClassNumber": "SC113930",
+              "shareClassInceptionDate": "2021-09-07",
+              "shareClassType": "Class GBP (Dist)",
+              "ticker": "GBPG",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "51.63",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.23",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "9292946.68",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2025-06-04",
+                  "value": "0.00",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs ActiveBeta® Paris-Aligned Sustainable World Equity UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "26.09",
+                "annualisedReturns3yr": "19.46",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "22.17",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV104524",
+              "shareClassId": "IE000HPBRE54",
+              "shareClassNumber": "SC114299",
+              "shareClassInceptionDate": "2022-10-11",
+              "shareClassType": "Class USD (Acc)",
+              "ticker": "WRLD",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "21.69",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.06",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "216859.87",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-05-29",
+                  "value": "0.04",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Quarterly",
+              "fundName": "Goldman Sachs Alpha Enhanced Emerging Markets Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108357",
+              "shareClassId": "IE00084KY2F2",
+              "shareClassNumber": "SC118118",
+              "shareClassInceptionDate": "2026-04-21",
+              "shareClassType": "Class USD (Dist)",
+              "ticker": "GDEM",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "30.19",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.09",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "430911421.97",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Alpha Enhanced Emerging Markets Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108357",
+              "shareClassId": "IE000KEFZYE7",
+              "shareClassNumber": "SC117340",
+              "shareClassInceptionDate": "2025-06-24",
+              "shareClassType": "Class USD (Acc)",
+              "ticker": "GQEM",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "EUR",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "11.19",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.04",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "499321854.29",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Alpha Enhanced Europe Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108384",
+              "shareClassId": "IE000RITWOD4",
+              "shareClassNumber": "SC117277",
+              "shareClassInceptionDate": "2025-05-07",
+              "shareClassType": "Class EUR (Acc)",
+              "ticker": "GQEU",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "EUR",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.41",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.03",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "104068.05",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-05-29",
+                  "value": "0.07",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Quarterly",
+              "fundName": "Goldman Sachs Alpha Enhanced Europe Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108384",
+              "shareClassId": "IE000DQAQ6J3",
+              "shareClassNumber": "SC118076",
+              "shareClassInceptionDate": "2026-04-21",
+              "shareClassType": "Class EUR (Dist)",
+              "ticker": "GDEU",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "JPY",
+              "scBaseCurrency": "JPY",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "3257.36",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "12.79",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "760187176.98",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-05-29",
+                  "value": "0.57",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Quarterly",
+              "fundName": "Goldman Sachs Alpha Enhanced Japan Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108369",
+              "shareClassId": "IE0006NZSQW7",
+              "shareClassNumber": "SC118073",
+              "shareClassInceptionDate": "2026-04-21",
+              "shareClassType": "Class JPY (Dist)",
+              "ticker": "GDJY",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "JPY",
+              "scBaseCurrency": "JPY",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "4731.88",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "18.58",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "113074158030.23",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Alpha Enhanced Japan Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108369",
+              "shareClassId": "IE000ZUTO1I5",
+              "shareClassNumber": "SC117341",
+              "shareClassInceptionDate": "2025-05-14",
+              "shareClassType": "Class JPY (Acc)",
+              "ticker": "GQJY",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "14.11",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.02",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "312838572.16",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Alpha Enhanced US Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-04-30",
+                "annualisedReturns1yr": "29.85",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "33.57",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108370",
+              "shareClassId": "IE000HYFO765",
+              "shareClassNumber": "SC117274",
+              "shareClassInceptionDate": "2025-04-23",
+              "shareClassType": "Class USD (Acc)",
+              "ticker": "GQUS",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.50",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.02",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "104987.30",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-05-29",
+                  "value": "0.00",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Quarterly",
+              "fundName": "Goldman Sachs Alpha Enhanced US Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108370",
+              "shareClassId": "IE000PH09T78",
+              "shareClassNumber": "SC118074",
+              "shareClassInceptionDate": "2026-04-21",
+              "shareClassType": "Class USD (Dist)",
+              "ticker": "GQUD",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "13.66",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.01",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "254384106.75",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Alpha Enhanced World Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108371",
+              "shareClassId": "IE000UFAX9L6",
+              "shareClassNumber": "SC117276",
+              "shareClassInceptionDate": "2025-05-07",
+              "shareClassType": "Class USD (Acc)",
+              "ticker": "GQWD",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.45",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.01",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "104459.56",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-05-29",
+                  "value": "0.02",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Quarterly",
+              "fundName": "Goldman Sachs Alpha Enhanced World Equity Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV108371",
+              "shareClassId": "IE000PXXRS03",
+              "shareClassNumber": "SC118075",
+              "shareClassInceptionDate": "2026-04-21",
+              "shareClassType": "Class USD (Dist)",
+              "ticker": "GQDW",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "50.82",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.06",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "26081332.43",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "1.29",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Emerging Markets Green and Social Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV106351",
+              "shareClassId": "IE000GZD8ME7",
+              "shareClassNumber": "SC117101",
+              "shareClassInceptionDate": "2025-06-16",
+              "shareClassType": "Class EUR-hedged (Dist)",
+              "ticker": "GAEM",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "51.33",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.11",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "623455.06",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "1.32",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Emerging Markets Green and Social Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV106351",
+              "shareClassId": "IE000EC86C06",
+              "shareClassNumber": "SC117100",
+              "shareClassInceptionDate": "2025-06-16",
+              "shareClassType": "Class USD (Dist)",
+              "ticker": "GEMS",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.38",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.02",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "518910.25",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Emerging Markets Hard Currency Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109433",
+              "shareClassId": "IE000M3UHD88",
+              "shareClassNumber": "SC117528",
+              "shareClassInceptionDate": "2025-12-08",
+              "shareClassType": "Class USD (Acc)",
+              "ticker": "GEMB",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.26",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.02",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "16879719.24",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Emerging Markets Hard Currency Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109433",
+              "shareClassId": "IE000UZO4IC7",
+              "shareClassNumber": "SC117531",
+              "shareClassInceptionDate": "2025-12-08",
+              "shareClassType": "Class EUR-Hedged (Acc.)",
+              "ticker": "GAEB",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "EUR",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.09",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.01",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "30272410.31",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs EUR Government Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109431",
+              "shareClassId": "IE0000MK7GG1",
+              "shareClassNumber": "SC117529",
+              "shareClassInceptionDate": "2025-12-03",
+              "shareClassType": "Class EUR (Acc)",
+              "ticker": "GEUR",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "EUR",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "50.74",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.00",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "101991253.26",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "1.15",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs EUR High Yield Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-04-30",
+                "annualisedReturns1yr": "4.28",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "3.62",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV106353",
+              "shareClassId": "IE000M02BVY5",
+              "shareClassNumber": "SC117098",
+              "shareClassInceptionDate": "2025-01-30",
+              "shareClassType": "Class EUR (Dist)",
+              "ticker": "GXHY",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "EUR",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "51.71",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.01",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "8945981.44",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs EUR Investment Grade Corporate Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "2.37",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "2.69",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV106352",
+              "shareClassId": "IE000O6GI299",
+              "shareClassNumber": "SC117339",
+              "shareClassInceptionDate": "2025-04-30",
+              "shareClassType": "Class EUR (Acc)",
+              "ticker": "GIGA",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.09",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.01",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "808082.27",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Global Credit Plus Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109790",
+              "shareClassId": "IE0002G3KSC2",
+              "shareClassNumber": "SC117830",
+              "shareClassInceptionDate": "2026-05-11",
+              "shareClassType": "Class EUR-Hedged (Acc.)",
+              "ticker": "GCAP",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "9.93",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.03",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "18927725.22",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Global Credit Plus Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109790",
+              "shareClassId": "IE000TZOB1X7",
+              "shareClassNumber": "SC117829",
+              "shareClassInceptionDate": "2026-04-20",
+              "shareClassType": "Class USD (Acc)",
+              "ticker": "GCPA",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.09",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.01",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "640631.04",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Global Credit Plus Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109790",
+              "shareClassId": "IE000CWXN435",
+              "shareClassNumber": "SC117827",
+              "shareClassInceptionDate": "2026-05-11",
+              "shareClassType": "Class EUR-hedged (Dist)",
+              "ticker": "GCAG",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "GBP",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.11",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.01",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "456649.11",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Global Credit Plus Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109790",
+              "shareClassId": "IE000FKMC6O9",
+              "shareClassNumber": "SC117828",
+              "shareClassInceptionDate": "2026-05-11",
+              "shareClassType": "Class GBP-hedged (Dist)",
+              "ticker": "GSCP",
+              "__typename": "FundExpanded"
+            }
+          ],
+          "__typename": "FundDataExpanded"
+        }
+      }
+    },
+    {
+      "data": {
+        "fundShareClasses": {
+          "facet": {
+            "numberOfFundsAvailable": 20,
+            "numberOfShareClassesAvailable": 38,
+            "filters": [
+              {
+                "label": "fundType",
+                "id": "funds",
+                "options": [
+                  {
+                    "label": "ETF",
+                    "id": "ETF",
+                    "subLabel": "21",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Mutual Fund",
+                    "id": "MF",
+                    "subLabel": "117",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              },
+              {
+                "label": "assetClass",
+                "id": "assetClasses",
+                "options": [
+                  {
+                    "label": "alternatives",
+                    "id": "AT",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "equity",
+                    "id": "EQ",
+                    "subLabel": "8",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "fixedIncome",
+                    "id": "FI",
+                    "subLabel": "13",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "moneyMarkets",
+                    "id": "MM",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "multiAsset",
+                    "id": "MA",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "structuredProducts",
+                    "id": "SP",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              },
+              {
+                "label": "shareClass",
+                "id": "shareClasses",
+                "options": [
+                  {
+                    "label": "A",
+                    "id": "AShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "B",
+                    "id": "BShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "C",
+                    "id": "CShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "D",
+                    "id": "DShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "E",
+                    "id": "EShares",
+                    "subLabel": "16",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "F",
+                    "id": "FShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "G",
+                    "id": "GShares",
+                    "subLabel": "5",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "H",
+                    "id": "HShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "I",
+                    "id": "IShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "J",
+                    "id": "JShares",
+                    "subLabel": "2",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "K",
+                    "id": "KShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "L",
+                    "id": "LShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "M",
+                    "id": "MShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "N",
+                    "id": "NShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "O",
+                    "id": "OShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "P",
+                    "id": "PShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Q",
+                    "id": "QShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "R",
+                    "id": "RShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "S",
+                    "id": "SShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "T",
+                    "id": "TShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "U",
+                    "id": "UShares",
+                    "subLabel": "19",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "V",
+                    "id": "VShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "W",
+                    "id": "WShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "X",
+                    "id": "XShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Y",
+                    "id": "YShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Z",
+                    "id": "ZShares",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              },
+              {
+                "label": "currency",
+                "id": "currencies",
+                "options": [
+                  {
+                    "label": "AUD",
+                    "id": "AUD",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "CAD",
+                    "id": "CAD",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "CHF",
+                    "id": "CHF",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "CNH",
+                    "id": "CNH",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "CZK",
+                    "id": "CZK",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "DKK",
+                    "id": "DKK",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "EUR",
+                    "id": "EUR",
+                    "subLabel": "16",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "GBP",
+                    "id": "GBP",
+                    "subLabel": "5",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "HKD",
+                    "id": "HKD",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "HUF",
+                    "id": "HUF",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "JPY",
+                    "id": "JPY",
+                    "subLabel": "2",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "NOK",
+                    "id": "NOK",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "PLN",
+                    "id": "PLN",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "RON",
+                    "id": "RON",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "SEK",
+                    "id": "SEK",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "SGD",
+                    "id": "SGD",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "USD",
+                    "id": "USD",
+                    "subLabel": "19",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "ZAR",
+                    "id": "ZAR",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              },
+              {
+                "label": "sfdr",
+                "id": "sfdr",
+                "options": [
+                  {
+                    "label": "Article 6",
+                    "id": "ARTICLE_6",
+                    "subLabel": "9",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Article 8",
+                    "id": "ARTICLE_8",
+                    "subLabel": "33",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "Article 9",
+                    "id": "ARTICLE_9",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  },
+                  {
+                    "label": "N/A",
+                    "id": "ARTICLE_NA",
+                    "subLabel": "0",
+                    "options": [],
+                    "__typename": "Filter"
+                  }
+                ],
+                "__typename": "Filter"
+              }
+            ],
+            "__typename": "Facet"
+          },
+          "funds": [
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "9.92",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.01",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "7815151.81",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Global Government Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109432",
+              "shareClassId": "IE000FRX67F3",
+              "shareClassNumber": "SC117527",
+              "shareClassInceptionDate": "2025-12-03",
+              "shareClassType": "Class EUR-Hedged (Acc.)",
+              "ticker": "GEVT",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "GBP",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.03",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.01",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "458171.86",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Global Government Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109432",
+              "shareClassId": "IE000UU89RZ0",
+              "shareClassNumber": "SC117530",
+              "shareClassInceptionDate": "2025-12-03",
+              "shareClassType": "Class GBP-hedged (Dist)",
+              "ticker": "GGVT",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "EUR",
+              "scBaseCurrency": "GBP",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 6",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "43.67",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.05",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "22518366.59",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "0.76",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Global Green Bond UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "3.36",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "-3.00",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV105256",
+              "shareClassId": "IE0004IR5U82",
+              "shareClassNumber": "SC114718",
+              "shareClassInceptionDate": "2024-02-13",
+              "shareClassType": "Class GBP-hedged (Dist)",
+              "ticker": "GREN",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "EUR",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 6",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "49.31",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.06",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "49602330.08",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "0.86",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Global Green Bond UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "1.41",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "2.35",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV105256",
+              "shareClassId": "IE000L0X6L81",
+              "shareClassNumber": "SC114707",
+              "shareClassInceptionDate": "2024-02-13",
+              "shareClassType": "Class EUR-hedged (Dist)",
+              "ticker": "GSXG",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "EUR",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 6",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "49.27",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.00",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "84350.65",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "0.85",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs Global Green Bond UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "1.53",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "2.12",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV105256",
+              "shareClassId": "IE000SYQFJV2",
+              "shareClassNumber": "SC114717",
+              "shareClassInceptionDate": "2024-02-13",
+              "shareClassType": "Class EUR (Dist)",
+              "ticker": "GSGR",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.03",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.00",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "273059.80",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs Global Income Bond Opportunities Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109789",
+              "shareClassId": "IE0006R681H8",
+              "shareClassNumber": "SC117824",
+              "shareClassInceptionDate": "2026-05-11",
+              "shareClassType": "Class EUR-Hedged (Acc.)",
+              "ticker": "GSIB",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "GBP",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.05",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.00",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "522519.32",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Quarterly",
+              "fundName": "Goldman Sachs Global Income Bond Opportunities Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109789",
+              "shareClassId": "IE000USQ2N65",
+              "shareClassNumber": "SC117825",
+              "shareClassInceptionDate": "2026-05-11",
+              "shareClassType": "Class GBP-hedged (Q-Dist)",
+              "ticker": "GSGI",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.03",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.00",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "2462536.53",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Quarterly",
+              "fundName": "Goldman Sachs Global Income Bond Opportunities Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109789",
+              "shareClassId": "IE000D3E0G47",
+              "shareClassNumber": "SC117760",
+              "shareClassInceptionDate": "2026-05-11",
+              "shareClassType": "Class EUR-hedged (Q-Dist)",
+              "ticker": "GSIN",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "10.03",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.00",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "20056773.39",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Quarterly",
+              "fundName": "Goldman Sachs Global Income Bond Opportunities Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109789",
+              "shareClassId": "IE000DHPZ1N9",
+              "shareClassNumber": "SC117826",
+              "shareClassInceptionDate": "2026-04-20",
+              "shareClassType": "Class USD (Q-Dist)",
+              "ticker": "GIBO",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Equity",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 6",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "11.62",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.15",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "14529291.82",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs MSCI World Private Equity Return Tracker UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Equity",
+              "marketingAssetClassI18nKey": "equity",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV109421",
+              "shareClassId": "IE000GNOSM10",
+              "shareClassNumber": "SC117512",
+              "shareClassInceptionDate": "2026-01-13",
+              "shareClassType": "Class USD (Acc)",
+              "ticker": "GXPE",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "51.06",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "0.00",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "101204894.28",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "1.59",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs USD High Yield Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "7.39",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "6.47",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV106361",
+              "shareClassId": "IE0006B9CPY7",
+              "shareClassNumber": "SC117089",
+              "shareClassInceptionDate": "2025-01-30",
+              "shareClassType": "Class USD (Dist)",
+              "ticker": "GUHY",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "EUR",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "49.55",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.12",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "786530.24",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "--",
+                  "value": "--",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "None",
+              "fundName": "Goldman Sachs USD Investment Grade Corporate Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "--",
+                "annualisedReturns1yr": "--",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "--",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV106358",
+              "shareClassId": "IE0004MXQ328",
+              "shareClassNumber": "SC117721",
+              "shareClassInceptionDate": "2025-11-26",
+              "shareClassType": "Class EUR-Hedged (Acc.)",
+              "ticker": "GIGH IM",
+              "__typename": "FundExpanded"
+            },
+            {
+              "baseCurrency": "USD",
+              "scBaseCurrency": "USD",
+              "displayFundDetail": true,
+              "dataSource": "GS",
+              "fundCategory": "Fixed Income",
+              "fundLocalName": null,
+              "fundNickname": null,
+              "fundNikkeiName": null,
+              "sfdr": "Article 8",
+              "dailyPerformance": {
+                "nav": {
+                  "asAtDate": "2026-07-01",
+                  "value": "51.58",
+                  "__typename": "KeyValuePair"
+                },
+                "navChange": {
+                  "asAtDate": "2026-07-01",
+                  "value": "-0.12",
+                  "__typename": "KeyValuePair"
+                },
+                "shareClassNetAssets": {
+                  "asAtDate": "2026-07-01",
+                  "value": "23791644.49",
+                  "__typename": "KeyValuePair"
+                },
+                "latestDividends": {
+                  "asAtDate": "2026-02-27",
+                  "value": "1.29",
+                  "__typename": "KeyValuePair"
+                },
+                "__typename": "DailyPerformance"
+              },
+              "distributionFrequency": "Semi-Annually",
+              "fundName": "Goldman Sachs USD Investment Grade Corporate Bond Active UCITS ETF",
+              "fundType": "ETF",
+              "isOffshore": true,
+              "marketingAssetClass": "Fixed Income",
+              "marketingAssetClassI18nKey": "fixedIncome",
+              "marketingSubAssetClass": null,
+              "monthlyPerformance": {
+                "asAtDate": "2026-05-31",
+                "annualisedReturns1yr": "6.10",
+                "annualisedReturns3yr": "--",
+                "annualisedReturns5yr": "--",
+                "annualisedReturns10yr": "--",
+                "annualisedReturnsSinceIncept": "5.89",
+                "__typename": "MonthlyPerformance"
+              },
+              "pvNumber": "PV106358",
+              "shareClassId": "IE000RRCJI06",
+              "shareClassNumber": "SC117097",
+              "shareClassInceptionDate": "2025-01-21",
+              "shareClassType": "Class USD (Dist)",
+              "ticker": "GIGU",
+              "__typename": "FundExpanded"
+            }
+          ],
+          "__typename": "FundDataExpanded"
+        }
+      }
+    }
+  ],
+  "listing_rows": [
+    {
+      "etf_name": "Goldman Sachs Access China Government Bond UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE00BJSBC011",
+      "share_class_number": "SC113170",
+      "pv_number": "PV103356",
+      "ticker": "CBNX",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Acc)",
+      "nav": "57.46",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.11",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "51.82",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 6",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2021-05-19",
+      "performance_1y": "7.96",
+      "performance_3y": "5.54",
+      "performance_5y": "2.62",
+      "performance_10y": "",
+      "performance_since_inception": "2.87",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV103356/IE00BJSBC011/goldman-sachs-access-china-government-bond-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Access China Government Bond UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE00BJSBCS90",
+      "share_class_number": "SC113168",
+      "pv_number": "PV103356",
+      "ticker": "CBND",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Dist)",
+      "nav": "56.87",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.11",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "59.73",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 6",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2019-10-22",
+      "performance_1y": "7.96",
+      "performance_3y": "5.54",
+      "performance_5y": "2.62",
+      "performance_10y": "",
+      "performance_since_inception": "4.44",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV103356/IE00BJSBCS90/goldman-sachs-access-china-government-bond-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Access UK Gilts 1-10 Years UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE0003MKK4H3",
+      "share_class_number": "SC113930",
+      "pv_number": "PV104077",
+      "ticker": "GBPG",
+      "ccy": "GBP",
+      "base_currency": "GBP",
+      "share_class_currency": "GBP",
+      "share_class_type": "Class GBP (Dist)",
+      "nav": "43.32",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.03",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "762.16",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 6",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2021-09-07",
+      "performance_1y": "3.52",
+      "performance_3y": "3.76",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "-0.18",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV104077/IE0003MKK4H3/goldman-sachs-access-uk-gilts-1-10-years-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs ActiveBeta® Paris-Aligned Sustainable World Equity UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000HPBRE54",
+      "share_class_number": "SC114299",
+      "pv_number": "PV104524",
+      "ticker": "WRLD",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Acc)",
+      "nav": "51.63",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.23",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "9.29",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2022-10-11",
+      "performance_1y": "26.09",
+      "performance_3y": "19.46",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "22.17",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV104524/IE000HPBRE54/goldman-sachs-activebeta-paris-aligned-sustainable-world-equity-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced Emerging Markets Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE00084KY2F2",
+      "share_class_number": "SC118118",
+      "pv_number": "PV108357",
+      "ticker": "GDEM",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Dist)",
+      "nav": "21.69",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.06",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.22",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Quarterly",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2026-04-21",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108357/IE00084KY2F2/goldman-sachs-alpha-enhanced-emerging-markets-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced Emerging Markets Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000KEFZYE7",
+      "share_class_number": "SC117340",
+      "pv_number": "PV108357",
+      "ticker": "GQEM",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Acc)",
+      "nav": "30.19",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.09",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "430.91",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2025-06-24",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108357/IE000KEFZYE7/goldman-sachs-alpha-enhanced-emerging-markets-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced Europe Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000RITWOD4",
+      "share_class_number": "SC117277",
+      "pv_number": "PV108384",
+      "ticker": "GQEU",
+      "ccy": "EUR",
+      "base_currency": "EUR",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR (Acc)",
+      "nav": "11.19",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.04",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "499.32",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2025-05-07",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108384/IE000RITWOD4/goldman-sachs-alpha-enhanced-europe-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced Europe Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000DQAQ6J3",
+      "share_class_number": "SC118076",
+      "pv_number": "PV108384",
+      "ticker": "GDEU",
+      "ccy": "EUR",
+      "base_currency": "EUR",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR (Dist)",
+      "nav": "10.41",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.03",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.10",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Quarterly",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2026-04-21",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108384/IE000DQAQ6J3/goldman-sachs-alpha-enhanced-europe-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced Japan Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE0006NZSQW7",
+      "share_class_number": "SC118073",
+      "pv_number": "PV108369",
+      "ticker": "GDJY",
+      "ccy": "JPY",
+      "base_currency": "JPY",
+      "share_class_currency": "JPY",
+      "share_class_type": "Class JPY (Dist)",
+      "nav": "3257.36",
+      "nav_date": "2026-07-01",
+      "nav_change": "12.79",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "760.19",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Quarterly",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2026-04-21",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108369/IE0006NZSQW7/goldman-sachs-alpha-enhanced-japan-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced Japan Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000ZUTO1I5",
+      "share_class_number": "SC117341",
+      "pv_number": "PV108369",
+      "ticker": "GQJY",
+      "ccy": "JPY",
+      "base_currency": "JPY",
+      "share_class_currency": "JPY",
+      "share_class_type": "Class JPY (Acc)",
+      "nav": "4731.88",
+      "nav_date": "2026-07-01",
+      "nav_change": "18.58",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "113074.16",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2025-05-14",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108369/IE000ZUTO1I5/goldman-sachs-alpha-enhanced-japan-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced US Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000HYFO765",
+      "share_class_number": "SC117274",
+      "pv_number": "PV108370",
+      "ticker": "GQUS",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Acc)",
+      "nav": "14.11",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.02",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "312.84",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2025-04-23",
+      "performance_1y": "29.85",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "33.57",
+      "performance_as_of": "2026-04-30",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108370/IE000HYFO765/goldman-sachs-alpha-enhanced-us-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced US Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000PH09T78",
+      "share_class_number": "SC118074",
+      "pv_number": "PV108370",
+      "ticker": "GQUD",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Dist)",
+      "nav": "10.50",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.02",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.10",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Quarterly",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2026-04-21",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108370/IE000PH09T78/goldman-sachs-alpha-enhanced-us-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced World Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000UFAX9L6",
+      "share_class_number": "SC117276",
+      "pv_number": "PV108371",
+      "ticker": "GQWD",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Acc)",
+      "nav": "13.66",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.01",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "254.38",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2025-05-07",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108371/IE000UFAX9L6/goldman-sachs-alpha-enhanced-world-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Alpha Enhanced World Equity Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000PXXRS03",
+      "share_class_number": "SC118075",
+      "pv_number": "PV108371",
+      "ticker": "GQDW",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Dist)",
+      "nav": "10.45",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.01",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.10",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Quarterly",
+      "sfdr": "Article 8",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2026-04-21",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV108371/IE000PXXRS03/goldman-sachs-alpha-enhanced-world-equity-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Emerging Markets Green and Social Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000GZD8ME7",
+      "share_class_number": "SC117101",
+      "pv_number": "PV106351",
+      "ticker": "GAEM",
+      "ccy": "EUR",
+      "base_currency": "USD",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR-hedged (Dist)",
+      "nav": "50.82",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.06",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "26.08",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-06-16",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV106351/IE000GZD8ME7/goldman-sachs-emerging-markets-green-and-social-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Emerging Markets Green and Social Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000EC86C06",
+      "share_class_number": "SC117100",
+      "pv_number": "PV106351",
+      "ticker": "GEMS",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Dist)",
+      "nav": "51.33",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.11",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.62",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-06-16",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV106351/IE000EC86C06/goldman-sachs-emerging-markets-green-and-social-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Emerging Markets Hard Currency Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000M3UHD88",
+      "share_class_number": "SC117528",
+      "pv_number": "PV109433",
+      "ticker": "GEMB",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Acc)",
+      "nav": "10.38",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.02",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.52",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-12-08",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109433/IE000M3UHD88/goldman-sachs-emerging-markets-hard-currency-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Emerging Markets Hard Currency Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000UZO4IC7",
+      "share_class_number": "SC117531",
+      "pv_number": "PV109433",
+      "ticker": "GAEB",
+      "ccy": "EUR",
+      "base_currency": "USD",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR-Hedged (Acc.)",
+      "nav": "10.26",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.02",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "16.88",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-12-08",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109433/IE000UZO4IC7/goldman-sachs-emerging-markets-hard-currency-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs EUR Government Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE0000MK7GG1",
+      "share_class_number": "SC117529",
+      "pv_number": "PV109431",
+      "ticker": "GEUR",
+      "ccy": "EUR",
+      "base_currency": "EUR",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR (Acc)",
+      "nav": "10.09",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.01",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "30.27",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-12-03",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109431/IE0000MK7GG1/goldman-sachs-eur-government-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs EUR High Yield Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000M02BVY5",
+      "share_class_number": "SC117098",
+      "pv_number": "PV106353",
+      "ticker": "GXHY",
+      "ccy": "EUR",
+      "base_currency": "EUR",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR (Dist)",
+      "nav": "50.74",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.00",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "101.99",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-01-30",
+      "performance_1y": "4.28",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "3.62",
+      "performance_as_of": "2026-04-30",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV106353/IE000M02BVY5/goldman-sachs-eur-high-yield-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs EUR Investment Grade Corporate Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000O6GI299",
+      "share_class_number": "SC117339",
+      "pv_number": "PV106352",
+      "ticker": "GIGA",
+      "ccy": "EUR",
+      "base_currency": "EUR",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR (Acc)",
+      "nav": "51.71",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.01",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "8.95",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-04-30",
+      "performance_1y": "2.37",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "2.69",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV106352/IE000O6GI299/goldman-sachs-eur-investment-grade-corporate-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Credit Plus Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE0002G3KSC2",
+      "share_class_number": "SC117830",
+      "pv_number": "PV109790",
+      "ticker": "GCAP",
+      "ccy": "EUR",
+      "base_currency": "USD",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR-Hedged (Acc.)",
+      "nav": "10.09",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.01",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.81",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2026-05-11",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109790/IE0002G3KSC2/goldman-sachs-global-credit-plus-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Credit Plus Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000TZOB1X7",
+      "share_class_number": "SC117829",
+      "pv_number": "PV109790",
+      "ticker": "GCPA",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Acc)",
+      "nav": "9.93",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.03",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "18.93",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2026-04-20",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109790/IE000TZOB1X7/goldman-sachs-global-credit-plus-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Credit Plus Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000CWXN435",
+      "share_class_number": "SC117827",
+      "pv_number": "PV109790",
+      "ticker": "GCAG",
+      "ccy": "EUR",
+      "base_currency": "USD",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR-hedged (Dist)",
+      "nav": "10.09",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.01",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.64",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2026-05-11",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109790/IE000CWXN435/goldman-sachs-global-credit-plus-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Credit Plus Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000FKMC6O9",
+      "share_class_number": "SC117828",
+      "pv_number": "PV109790",
+      "ticker": "GSCP",
+      "ccy": "GBP",
+      "base_currency": "USD",
+      "share_class_currency": "GBP",
+      "share_class_type": "Class GBP-hedged (Dist)",
+      "nav": "10.11",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.01",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.46",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2026-05-11",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109790/IE000FKMC6O9/goldman-sachs-global-credit-plus-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Government Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000FRX67F3",
+      "share_class_number": "SC117527",
+      "pv_number": "PV109432",
+      "ticker": "GEVT",
+      "ccy": "EUR",
+      "base_currency": "USD",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR-Hedged (Acc.)",
+      "nav": "9.92",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.01",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "7.82",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-12-03",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109432/IE000FRX67F3/goldman-sachs-global-government-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Government Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000UU89RZ0",
+      "share_class_number": "SC117530",
+      "pv_number": "PV109432",
+      "ticker": "GGVT",
+      "ccy": "GBP",
+      "base_currency": "USD",
+      "share_class_currency": "GBP",
+      "share_class_type": "Class GBP-hedged (Dist)",
+      "nav": "10.03",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.01",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.46",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-12-03",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109432/IE000UU89RZ0/goldman-sachs-global-government-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Green Bond UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE0004IR5U82",
+      "share_class_number": "SC114718",
+      "pv_number": "PV105256",
+      "ticker": "GREN",
+      "ccy": "GBP",
+      "base_currency": "EUR",
+      "share_class_currency": "GBP",
+      "share_class_type": "Class GBP-hedged (Dist)",
+      "nav": "43.67",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.05",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "22.52",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 6",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2024-02-13",
+      "performance_1y": "3.36",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "-3.00",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV105256/IE0004IR5U82/goldman-sachs-global-green-bond-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Green Bond UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000L0X6L81",
+      "share_class_number": "SC114707",
+      "pv_number": "PV105256",
+      "ticker": "GSXG",
+      "ccy": "EUR",
+      "base_currency": "EUR",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR-hedged (Dist)",
+      "nav": "49.31",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.06",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "49.60",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 6",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2024-02-13",
+      "performance_1y": "1.41",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "2.35",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV105256/IE000L0X6L81/goldman-sachs-global-green-bond-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Green Bond UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000SYQFJV2",
+      "share_class_number": "SC114717",
+      "pv_number": "PV105256",
+      "ticker": "GSGR",
+      "ccy": "EUR",
+      "base_currency": "EUR",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR (Dist)",
+      "nav": "49.27",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.00",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.08",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 6",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2024-02-13",
+      "performance_1y": "1.53",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "2.12",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV105256/IE000SYQFJV2/goldman-sachs-global-green-bond-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Income Bond Opportunities Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE0006R681H8",
+      "share_class_number": "SC117824",
+      "pv_number": "PV109789",
+      "ticker": "GSIB",
+      "ccy": "EUR",
+      "base_currency": "USD",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR-Hedged (Acc.)",
+      "nav": "10.03",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.00",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.27",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2026-05-11",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109789/IE0006R681H8/goldman-sachs-global-income-bond-opportunities-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Income Bond Opportunities Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000USQ2N65",
+      "share_class_number": "SC117825",
+      "pv_number": "PV109789",
+      "ticker": "GSGI",
+      "ccy": "GBP",
+      "base_currency": "USD",
+      "share_class_currency": "GBP",
+      "share_class_type": "Class GBP-hedged (Q-Dist)",
+      "nav": "10.05",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.00",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.52",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Quarterly",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2026-05-11",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109789/IE000USQ2N65/goldman-sachs-global-income-bond-opportunities-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Income Bond Opportunities Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000D3E0G47",
+      "share_class_number": "SC117760",
+      "pv_number": "PV109789",
+      "ticker": "GSIN",
+      "ccy": "EUR",
+      "base_currency": "USD",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR-hedged (Q-Dist)",
+      "nav": "10.03",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.00",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "2.46",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Quarterly",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2026-05-11",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109789/IE000D3E0G47/goldman-sachs-global-income-bond-opportunities-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs Global Income Bond Opportunities Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000DHPZ1N9",
+      "share_class_number": "SC117826",
+      "pv_number": "PV109789",
+      "ticker": "GIBO",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Q-Dist)",
+      "nav": "10.03",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.00",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "20.06",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Quarterly",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2026-04-20",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109789/IE000DHPZ1N9/goldman-sachs-global-income-bond-opportunities-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs MSCI World Private Equity Return Tracker UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000GNOSM10",
+      "share_class_number": "SC117512",
+      "pv_number": "PV109421",
+      "ticker": "GXPE",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Acc)",
+      "nav": "11.62",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.15",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "14.53",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 6",
+      "asset_class": "Equity",
+      "asset_class_key": "equity",
+      "sub_asset_class": "",
+      "fund_category": "Equity",
+      "fund_type": "ETF",
+      "inception_date": "2026-01-13",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV109421/IE000GNOSM10/goldman-sachs-msci-world-private-equity-return-tracker-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs USD High Yield Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE0006B9CPY7",
+      "share_class_number": "SC117089",
+      "pv_number": "PV106361",
+      "ticker": "GUHY",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Dist)",
+      "nav": "51.06",
+      "nav_date": "2026-07-01",
+      "nav_change": "0.00",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "101.20",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-01-30",
+      "performance_1y": "7.39",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "6.47",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV106361/IE0006B9CPY7/goldman-sachs-usd-high-yield-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs USD Investment Grade Corporate Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE0004MXQ328",
+      "share_class_number": "SC117721",
+      "pv_number": "PV106358",
+      "ticker": "GIGH IM",
+      "ccy": "EUR",
+      "base_currency": "USD",
+      "share_class_currency": "EUR",
+      "share_class_type": "Class EUR-Hedged (Acc.)",
+      "nav": "49.55",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.12",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "0.79",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-11-26",
+      "performance_1y": "",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "",
+      "performance_as_of": "",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV106358/IE0004MXQ328/goldman-sachs-usd-investment-grade-corporate-bond-active-ucits-etf"
+    },
+    {
+      "etf_name": "Goldman Sachs USD Investment Grade Corporate Bond Active UCITS ETF",
+      "issuer": "Goldman Sachs Asset Management",
+      "isin": "IE000RRCJI06",
+      "share_class_number": "SC117097",
+      "pv_number": "PV106358",
+      "ticker": "GIGU",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "share_class_currency": "USD",
+      "share_class_type": "Class USD (Dist)",
+      "nav": "51.58",
+      "nav_date": "2026-07-01",
+      "nav_change": "-0.12",
+      "nav_change_date": "2026-07-01",
+      "aum_mn": "23.79",
+      "aum_date": "2026-07-01",
+      "distribution_frequency": "Semi-Annually",
+      "sfdr": "Article 8",
+      "asset_class": "Fixed Income",
+      "asset_class_key": "fixedIncome",
+      "sub_asset_class": "",
+      "fund_category": "Fixed Income",
+      "fund_type": "ETF",
+      "inception_date": "2025-01-21",
+      "performance_1y": "6.10",
+      "performance_3y": "",
+      "performance_5y": "",
+      "performance_10y": "",
+      "performance_since_inception": "5.89",
+      "performance_as_of": "2026-05-31",
+      "is_offshore": "True",
+      "display_fund_detail": "True",
+      "data_source": "GS",
+      "detail_url": "https://am.gs.com/en-gb/institutions/funds/detail/PV106358/IE000RRCJI06/goldman-sachs-usd-investment-grade-corporate-bond-active-ucits-etf"
+    }
+  ]
+}

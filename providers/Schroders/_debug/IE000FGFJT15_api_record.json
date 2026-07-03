@@ -1,0 +1,11 @@
+{
+  "name": "Schroder ETFs (ICAV) - Schroder Global Investment Grade Corporate Bond Active UCITS ETF Accumulation USD",
+  "nameUntranslated": "Schroder ETFs (ICAV) - Schroder Global Investment Grade Corporate Bond Active UCITS ETF Accumulation USD",
+  "externalId": "SCHDR_F00001RRIU",
+  "parentExternalId": "SCHDR_FS0000JVX2",
+  "baseCurrency": "USD",
+  "legalStructure": "euro-etf",
+  "shareclassExternalId": "SCHDR_F00001RRIU",
+  "fundExternalId": "SCHDR_FS0000JVX2",
+  "isin": "IE000FGFJT15"
+}
