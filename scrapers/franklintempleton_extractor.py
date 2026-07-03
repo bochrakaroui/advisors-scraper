@@ -10,6 +10,11 @@ from urllib.parse import urlparse
 
 from playwright.async_api import Download, Locator, TimeoutError as PlaywrightTimeoutError, async_playwright
 
+try:
+    from scrapers.tls_compat import browser_launch_args, context_https_kwargs
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from tls_compat import browser_launch_args, context_https_kwargs
+
 
 URL = "https://www.franklintempleton.co.uk/download-the-complete-range-of-etfs-with-all-data"
 
@@ -237,7 +242,7 @@ async def download_etf_list() -> Path:
     async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=True,
-            args=["--no-sandbox", "--disable-dev-shm-usage"],
+            args=browser_launch_args("--no-sandbox", "--disable-dev-shm-usage"),
         )
         context = await browser.new_context(
             locale="en-GB",
@@ -248,6 +253,7 @@ async def download_etf_list() -> Path:
                 "Chrome/124.0.0.0 Safari/537.36"
             ),
             accept_downloads=True,
+            **context_https_kwargs(),
         )
         page = await context.new_page()
 

@@ -11,7 +11,7 @@ Creates:
     providers/hanetf/YYYY-MM-DD/hanetf_selected_fields.csv
 
 Output columns:
-    ETF Name, Issuer, ISIN, CCY, TER(bps), AUM(M), Date
+    ETF Name, Issuer, ISIN, CCY, TER(bps), AUM(M), AUM CCY, Date
 """
 
 from __future__ import annotations
@@ -41,15 +41,29 @@ OUTPUT_COLUMNS = [
     "CCY",
     "TER(bps)",
     "AUM(M)",
+    "AUM CCY",
     "Date",
 ]
 
 ISIN_RE = re.compile(r"^[A-Z]{2}[A-Z0-9]{9}\d$")
+ISO_CURRENCY_PREFIX_RE = re.compile(r"^([A-Z]{3})(?=[\d\s,.(+-])")
+ISO_CURRENCY_TOKEN_RE = re.compile(r"\b([A-Z]{3})\b")
 
 CCY_SYMBOL_MAP = {
     "$": "USD",
     "€": "EUR",
     "£": "GBP",
+}
+
+KNOWN_CURRENCY_CODES = {
+    "AED", "AUD", "BRL", "CAD", "CHF", "CNH", "CNY", "CZK", "DKK", "EUR", "GBP",
+    "HKD", "HUF", "ILS", "INR", "JPY", "KRW", "KZT", "MXN", "NOK", "NZD", "PLN",
+    "QAR", "RUB", "SAR", "SEK", "SGD", "TRY", "TWD", "USD", "ZAR",
+}
+
+KNOWN_ISIN_CURRENCY_OVERRIDES = {
+    # Confirmed from HANetf product details: base currency and net assets are shown in CAD.
+    "IE000P1G9TM6": "CAD",
 }
 
 
@@ -180,7 +194,32 @@ def extract_ccy_from_aum(value: object | None) -> str:
     if not cleaned:
         return ""
 
-    return CCY_SYMBOL_MAP.get(cleaned[0], "")
+    symbol_currency = CCY_SYMBOL_MAP.get(cleaned[0], "")
+    if symbol_currency:
+        return symbol_currency
+
+    upper_cleaned = cleaned.upper()
+    prefix_match = ISO_CURRENCY_PREFIX_RE.match(upper_cleaned)
+    if prefix_match and prefix_match.group(1) in KNOWN_CURRENCY_CODES:
+        return prefix_match.group(1)
+
+    token_match = ISO_CURRENCY_TOKEN_RE.search(upper_cleaned)
+    if token_match and token_match.group(1) in KNOWN_CURRENCY_CODES:
+        return token_match.group(1)
+
+    return ""
+
+
+def infer_ccy_from_name(value: object | None) -> str:
+    cleaned = clean_text(value).upper()
+    if not cleaned:
+        return ""
+
+    for token_match in ISO_CURRENCY_TOKEN_RE.finditer(cleaned):
+        if token_match.group(1) in KNOWN_CURRENCY_CODES:
+            return token_match.group(1)
+
+    return ""
 
 
 def format_aum_m(value: object | None) -> str:
@@ -365,6 +404,12 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
         required=False,
     )
 
+    aum_raw_col = find_column(
+        df,
+        ["AUM Raw", "AUM Source", "Net Assets of Fund", "Assets Under Management Raw"],
+        required=False,
+    )
+
     ccy_col = find_column(
         df,
         ["CCY", "Currency", "Trading Currency", "Listing Currency", "Base Currency"],
@@ -397,17 +442,26 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
 
         issuer_raw = source_row.get(issuer_col, "") if issuer_col else ""
         aum_raw = source_row.get(aum_col, "") if aum_col else ""
+        aum_raw_text = source_row.get(aum_raw_col, "") if aum_raw_col else aum_raw
         ccy_raw = source_row.get(ccy_col, "") if ccy_col else ""
         ter_raw = source_row.get(ter_col, "") if ter_col else ""
         date_raw = source_row.get(date_col, "") if date_col else ""
+        ccy_override = KNOWN_ISIN_CURRENCY_OVERRIDES.get(isin, "")
+        inferred_ccy = (
+            clean_text(ccy_raw).upper()
+            or extract_ccy_from_aum(aum_raw_text)
+            or ccy_override
+            or infer_ccy_from_name(name)
+        )
 
         record = {
             "ETF Name": name,
             "Issuer": clean_text(issuer_raw) or ISSUER,
             "ISIN": isin,
-            "CCY": clean_text(ccy_raw).upper() or extract_ccy_from_aum(aum_raw),
+            "CCY": inferred_ccy,
             "TER(bps)": format_ter_bps(ter_raw),
             "AUM(M)": format_aum_m(aum_raw),
+            "AUM CCY": extract_ccy_from_aum(aum_raw_text) or ccy_override or inferred_ccy,
             "Date": normalize_date(date_raw, resolved_input),
         }
 

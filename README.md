@@ -19,7 +19,7 @@ ETF Name,Issuer,ISIN,CCY,TER(bps),AUM(M),Date
 
 The main pipeline currently covers:
 
-- iShares, Xtrackers, Amundi, Fidelity, Invesco, UBS, SPDR, HSBC, J.P. Morgan, L&G, Palmer Square, VanEck, Franklin Templeton, WisdomTree, Vanguard, First Trust, HANetf, Global X, FinEx, and iM Global Partner
+- iShares, Xtrackers, Amundi, Fidelity, Invesco, UBS, SPDR, HSBC, J.P. Morgan, L&G, Palmer Square, VanEck, Franklin Templeton, WisdomTree, Vanguard, First Trust, HANetf, Global X, FinEx, iM Global Partner, American Century Investments, Columbia Threadneedle Investments, BNP Paribas Asset Management, Goldman Sachs Asset Management, Janus Henderson, ARK Invest Europe, Robeco, PIMCO, KraneShares, M&G, Market Access, Dimensional, Expat, and Schroders
 
 ## Setup on a new machine
 

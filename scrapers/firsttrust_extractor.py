@@ -16,6 +16,11 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
+try:
+    from scrapers.tls_compat import requests_get
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from tls_compat import requests_get
+
 
 PAGE_URL = "https://www.ftglobalportfolios.com/uk/professional/Products/"
 BASE_URL = "https://www.ftglobalportfolios.com"
@@ -131,7 +136,7 @@ def normalize_aum_mn(raw_value: str) -> str:
 
 
 def load_listing_payload() -> dict[str, Any]:
-    response = requests.get(PAGE_URL, headers=REQUEST_HEADERS, timeout=120)
+    response = requests_get(PAGE_URL, headers=REQUEST_HEADERS, timeout=120)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
@@ -217,7 +222,7 @@ def fetch_detail_metrics(row: dict[str, str]) -> dict[str, str]:
         shareclass_id=row["shareclass_id"],
         entity_id=row["entity_id"],
     )
-    response = requests.get(endpoint, headers=REQUEST_HEADERS, timeout=120)
+    response = requests_get(endpoint, headers=REQUEST_HEADERS, timeout=120)
     response.raise_for_status()
     facts = parse_fund_facts_table(response.text)
 

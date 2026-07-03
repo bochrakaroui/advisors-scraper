@@ -23,6 +23,11 @@ from bs4 import BeautifulSoup
 from playwright.sync_api import Error as PlaywrightError, Page, sync_playwright
 import requests
 
+try:
+    from scrapers.tls_compat import browser_launch_args, context_https_kwargs, session_get
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from tls_compat import browser_launch_args, context_https_kwargs, session_get
+
 
 PAGE_URL = "https://www.imgp.com/funds/"
 ISSUER = "iM Global Partner"
@@ -314,7 +319,12 @@ def extract_fee_from_detail_html(html: str) -> str:
 
 
 def fetch_fee_bps(product_url: str) -> str:
-    response = DETAIL_PAGE_SESSION.get(product_url, timeout=DETAIL_PAGE_TIMEOUT_S)
+    response = session_get(
+        DETAIL_PAGE_SESSION,
+        product_url,
+        logger=logging.getLogger(__name__),
+        timeout=DETAIL_PAGE_TIMEOUT_S,
+    )
     response.raise_for_status()
     return extract_fee_from_detail_html(response.text)
 
@@ -400,7 +410,10 @@ def extract_listing_rows(html: str) -> list[dict[str, str]]:
 
 def build_snapshot(now: datetime) -> dict[str, object]:
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True)
+        browser = playwright.chromium.launch(
+            headless=True,
+            args=browser_launch_args(),
+        )
         context = browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -408,6 +421,7 @@ def build_snapshot(now: datetime) -> dict[str, object]:
                 "Chrome/124.0.0.0 Safari/537.36"
             ),
             locale="en-GB",
+            **context_https_kwargs(),
         )
         page = context.new_page()
         html = fetch_rendered_html(page)

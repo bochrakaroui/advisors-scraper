@@ -29,6 +29,11 @@ from pathlib import Path
 import pandas as pd
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 
+try:
+    from scrapers.tls_compat import browser_launch_args, context_https_kwargs
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from tls_compat import browser_launch_args, context_https_kwargs
+
 
 # ---------------------------------------------------------------------------
 # Config
@@ -43,7 +48,15 @@ ISSUER = "HANetf"
 
 CCY_MAP = {"$": "USD", "€": "EUR", "£": "GBP"}
 
-OUTPUT_COLUMNS = ["ETF Name", "Issuer", "ISIN", "CCY", "TER(bps)", "AUM(M)", "Date"]
+KNOWN_CURRENCY_CODES = {
+    "AED", "AUD", "BRL", "CAD", "CHF", "CNH", "CNY", "CZK", "DKK", "EUR", "GBP",
+    "HKD", "HUF", "ILS", "INR", "JPY", "KRW", "KZT", "MXN", "NOK", "NZD", "PLN",
+    "QAR", "RUB", "SAR", "SEK", "SGD", "TRY", "TWD", "USD", "ZAR",
+}
+ISO_CURRENCY_PREFIX_RE = re.compile(r"^([A-Z]{3})(?=[\d\s,.(+-])")
+ISO_CURRENCY_TOKEN_RE = re.compile(r"\b([A-Z]{3})\b")
+
+OUTPUT_COLUMNS = ["ETF Name", "Issuer", "ISIN", "CCY", "TER(bps)", "AUM(M)", "AUM Raw", "Date"]
 
 ISIN_RE = re.compile(r"^[A-Z]{2}[A-Z0-9]{9}\d$")
 
@@ -71,9 +84,29 @@ def clean_text(value: object | None) -> str:
     return "" if text in {"", "-", "—", "–"} else text
 
 
+def extract_currency_code(raw_value: object | None) -> str:
+    cleaned = clean_text(raw_value)
+    if not cleaned:
+        return ""
+
+    symbol_currency = CCY_MAP.get(cleaned[0], "")
+    if symbol_currency:
+        return symbol_currency
+
+    upper_cleaned = cleaned.upper()
+    prefix_match = ISO_CURRENCY_PREFIX_RE.match(upper_cleaned)
+    if prefix_match and prefix_match.group(1) in KNOWN_CURRENCY_CODES:
+        return prefix_match.group(1)
+
+    token_match = ISO_CURRENCY_TOKEN_RE.search(upper_cleaned)
+    if token_match and token_match.group(1) in KNOWN_CURRENCY_CODES:
+        return token_match.group(1)
+
+    return ""
+
+
 def parse_ccy(raw_aum: str) -> str:
-    val = clean_text(raw_aum)
-    return CCY_MAP.get(val[0], "") if val else ""
+    return extract_currency_code(raw_aum)
 
 
 def format_decimal(value: object | None, places: int = 2) -> str:
@@ -368,11 +401,11 @@ def scrape_hanetf() -> pd.DataFrame:
     with sync_playwright() as p:
         browser = p.chromium.launch(
             headless=HEADLESS,
-            args=[
+            args=browser_launch_args(
                 "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
                 "--disable-dev-shm-usage",
-            ],
+            ),
         )
         context = browser.new_context(
             user_agent=(
@@ -381,6 +414,7 @@ def scrape_hanetf() -> pd.DataFrame:
                 "Chrome/125.0.0.0 Safari/537.36"
             ),
             viewport={"width": 1280, "height": 900},
+            **context_https_kwargs(),
         )
         context.set_extra_http_headers({
             "Accept-Language": "en-GB,en;q=0.9",
@@ -444,6 +478,7 @@ def scrape_hanetf() -> pd.DataFrame:
                     "CCY":      parse_ccy(aum_raw),
                     "TER(bps)": parse_ter_bps(ter_raw),
                     "AUM(M)":   parse_aum_m(aum_raw),
+                    "AUM Raw":  aum_raw,
                     "Date":     today,
                 })
 

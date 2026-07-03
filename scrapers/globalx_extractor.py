@@ -21,6 +21,11 @@ from typing import Any
 
 from playwright.async_api import Page, Response, async_playwright
 
+try:
+    from scrapers.tls_compat import browser_launch_args, context_https_kwargs
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from tls_compat import browser_launch_args, context_https_kwargs
+
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
@@ -239,11 +244,11 @@ async def scrape(scraped_at: str) -> list[dict]:
     async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=True,
-            args=[
+            args=browser_launch_args(
                 "--no-sandbox",
                 "--disable-dev-shm-usage",
                 "--disable-blink-features=AutomationControlled",
-            ],
+            ),
         )
         context = await browser.new_context(
             locale="en-GB",
@@ -251,6 +256,7 @@ async def scrape(scraped_at: str) -> list[dict]:
             user_agent=USER_AGENT,
             viewport={"width": 1440, "height": 900},
             extra_http_headers={"Accept-Language": "en-GB,en;q=0.9"},
+            **context_https_kwargs(),
         )
 
         # ── inject gate cookies so the modal never appears ──────────────────

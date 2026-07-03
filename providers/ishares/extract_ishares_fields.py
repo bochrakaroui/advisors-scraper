@@ -29,6 +29,15 @@ SOURCE_COLUMNS = {
     "ter": "TER / OCF",
     "issuer": "Issuing Company",
     "aum": "AUM (M)",
+    "net_assets": "Net Assets",
+    "shares_outstanding": "Shares Outstanding",
+}
+
+ZERO_AUM_FALLBACK_ISINS = {
+    "GB00BV4B0K53",
+    "GB00BV4B0N84",
+    "GB00BV4B0M77",
+    "GB00BV4B0P09",
 }
 
 OUTPUT_COLUMNS = [
@@ -38,6 +47,7 @@ OUTPUT_COLUMNS = [
     "CCY",
     "TER(bps)",
     "AUM(M)",
+    "AUM CCY",
     "Date",
 ]
 
@@ -148,6 +158,38 @@ def extract_file_date(input_path: Path) -> str:
         return timestamp
 
 
+def parse_numeric_decimal(value: str | None) -> Decimal | None:
+    cleaned = clean_text(value)
+    if not cleaned:
+        return None
+
+    normalized = cleaned.replace(",", "")
+    try:
+        return Decimal(normalized)
+    except InvalidOperation:
+        return None
+
+
+def resolve_aum_m(source_row: dict[str, str]) -> str:
+    direct_aum = format_decimal(source_row.get(SOURCE_COLUMNS["aum"]))
+    if direct_aum:
+        return direct_aum
+
+    net_assets = parse_numeric_decimal(source_row.get(SOURCE_COLUMNS["net_assets"]))
+    if net_assets is not None:
+        return format_decimal(str(net_assets / Decimal("1000000")))
+
+    isin = clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper()
+    shares_outstanding = clean_text(source_row.get(SOURCE_COLUMNS["shares_outstanding"]))
+    if isin in ZERO_AUM_FALLBACK_ISINS and not shares_outstanding:
+        # The official iShares workbook carries "-" for AUM, net assets, and
+        # shares outstanding on these newly added UK share classes. Treat
+        # that combination as zero assets rather than leaving the field blank.
+        return "0.00"
+
+    return ""
+
+
 def parse_xml_spreadsheet(path: Path) -> list[dict[str, str]]:
     root = ET.parse(path).getroot()
     worksheet = root.find(".//ss:Worksheet", NS)
@@ -193,13 +235,15 @@ def parse_xml_spreadsheet(path: Path) -> list[dict[str, str]]:
 
 
 def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
+    share_class_currency = clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper()
     return {
         "ETF Name": clean_text(source_row.get(SOURCE_COLUMNS["fund_name"])),
         "Issuer": clean_text(source_row.get(SOURCE_COLUMNS["issuer"])),
         "ISIN": clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper(),
-        "CCY": clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper(),
+        "CCY": share_class_currency,
         "TER(bps)": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
-        "AUM(M)": format_decimal(source_row.get(SOURCE_COLUMNS["aum"])),
+        "AUM(M)": resolve_aum_m(source_row),
+        "AUM CCY": share_class_currency,
         "Date": file_date,
     }
 

@@ -16,6 +16,14 @@ from urllib.parse import urljoin
 
 from playwright.async_api import Page, async_playwright
 
+try:
+    from scrapers.tls_compat import browser_launch_args, context_https_kwargs
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    import sys
+
+    sys.path.append(str(Path(__file__).resolve().parents[2] / "scrapers"))
+    from tls_compat import browser_launch_args, context_https_kwargs
+
 
 PAGE_URL = "https://www.vanguard.co.uk/uk-fund-directory/product?product-type=etf"
 BASE_URL = "https://www.vanguard.co.uk"
@@ -312,11 +320,15 @@ async def build_snapshot() -> dict[str, Any]:
     scraped_at = datetime.now().isoformat()
 
     async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(headless=True)
+        browser = await playwright.chromium.launch(
+            headless=True,
+            args=browser_launch_args(),
+        )
         context = await browser.new_context(
             locale="en-GB",
             timezone_id="Europe/London",
             viewport={"width": 1440, "height": 1400},
+            **context_https_kwargs(),
         )
         list_page = await context.new_page()
 

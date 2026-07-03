@@ -42,6 +42,11 @@ OUTPUT_COLUMNS = [
 ]
 
 ISIN_RE = re.compile(r"^[A-Z]{2}[A-Z0-9]{9}\d$")
+CORE_DETAIL_FIELD_LABELS = {
+    "ccy": "CCY",
+    "ter_bps": "TER(bps)",
+    "aum_mn": "AUM(M)",
+}
 
 
 # ---------------------------------------------------------------------------
@@ -213,11 +218,11 @@ def parse_snapshot_rows(input_path: Path) -> list[dict]:
     return rows
 
 
-def extract_rows(
+def extract_rows_with_summary(
     input_path: Path | None = None,
     *,
     include_terminated: bool = False,
-) -> list[dict[str, str]]:
+) -> tuple[list[dict[str, str]], dict[str, int], list[str]]:
     resolved_input = input_path.resolve() if input_path else find_latest_input(INPUT_DIR)
     snapshot = load_snapshot(resolved_input)
 
@@ -228,38 +233,64 @@ def extract_rows(
 
     rows: list[dict[str, str]] = []
     seen: set[str] = set()
+    exclusion_counts: dict[str, int] = {}
+    inclusion_warnings: list[str] = []
 
     for raw in raw_rows:
-        # Skip terminated funds unless explicitly requested
         if not include_terminated and clean_text(raw.get("terminated")) == "true":
+            exclusion_counts["terminated"] = exclusion_counts.get("terminated", 0) + 1
             continue
 
         isin = clean_text(raw.get("isin", "")).upper()
         if not is_valid_isin(isin):
+            exclusion_counts["invalid_isin"] = exclusion_counts.get("invalid_isin", 0) + 1
             continue
 
-        # Deduplicate on ISIN
         if isin in seen:
+            exclusion_counts["duplicate_isin"] = exclusion_counts.get("duplicate_isin", 0) + 1
             continue
-        seen.add(isin)
 
         name = clean_text(raw.get("etf_name", ""))
         if not name:
+            exclusion_counts["missing_name"] = exclusion_counts.get("missing_name", 0) + 1
             continue
 
-        rows.append(
-            {
-                "ETF Name": name,
-                "Issuer": clean_text(raw.get("issuer", "")) or ISSUER,
-                "ISIN": isin,
-                # ccy/ter_bps/aum_mn are empty from the listing page scrape
-                "CCY": clean_text(raw.get("ccy", "")).upper(),
-                "TER(bps)": format_ter_bps(raw.get("ter_bps")),
-                "AUM(M)": format_aum_m(raw.get("aum_mn")),
-                "Date": run_date,
-            }
-        )
+        seen.add(isin)
 
+        row = {
+            "ETF Name": name,
+            "Issuer": clean_text(raw.get("issuer", "")) or ISSUER,
+            "ISIN": isin,
+            "CCY": clean_text(raw.get("ccy", "")).upper(),
+            "TER(bps)": format_ter_bps(raw.get("ter_bps")),
+            "AUM(M)": format_aum_m(raw.get("aum_mn")),
+            "Date": run_date,
+        }
+        rows.append(row)
+
+        detail_status = clean_text(raw.get("detail_fetch_status", ""))
+        missing_labels = [
+            label
+            for source_field, label in CORE_DETAIL_FIELD_LABELS.items()
+            if not clean_text(raw.get(source_field, ""))
+        ]
+        if detail_status and detail_status != "ok":
+            inclusion_warnings.append(f"{isin}: detail_status={detail_status}")
+        elif missing_labels:
+            inclusion_warnings.append(f"{isin}: missing core fields={', '.join(missing_labels)}")
+
+    return rows, exclusion_counts, inclusion_warnings
+
+
+def extract_rows(
+    input_path: Path | None = None,
+    *,
+    include_terminated: bool = False,
+) -> list[dict[str, str]]:
+    rows, _, _ = extract_rows_with_summary(
+        input_path,
+        include_terminated=include_terminated,
+    )
     return rows
 
 
@@ -282,7 +313,10 @@ def process_file(
         output_path.resolve() if output_path else build_output_path(resolved_input)
     )
 
-    rows = extract_rows(resolved_input, include_terminated=include_terminated)
+    rows, exclusion_counts, inclusion_warnings = extract_rows_with_summary(
+        resolved_input,
+        include_terminated=include_terminated,
+    )
     write_csv(resolved_output, rows)
 
     print("=" * 60)
@@ -291,6 +325,15 @@ def process_file(
     print(f"Input file  : {resolved_input}")
     print(f"Output file : {resolved_output}")
     print(f"Rows written: {len(rows):,}")
+    if exclusion_counts:
+        print(
+            "Excluded    : "
+            + ", ".join(f"{reason}={count}" for reason, count in sorted(exclusion_counts.items()))
+        )
+    if inclusion_warnings:
+        print(f"Warnings    : {len(inclusion_warnings):,}")
+        for warning in inclusion_warnings[:20]:
+            print(f"  - {warning}")
     print("=" * 60)
 
     return resolved_output

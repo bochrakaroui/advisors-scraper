@@ -29,6 +29,11 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
+try:
+    from scrapers.tls_compat import session_get
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from tls_compat import session_get
+
 
 # ---------------------------------------------------------------------------
 # Config
@@ -53,6 +58,7 @@ HEADERS = {
 
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
+CORE_DETAIL_FIELDS = ("ccy", "ter_bps", "aum_mn")
 
 
 # ---------------------------------------------------------------------------
@@ -131,7 +137,7 @@ def aum_raw_to_mn(raw: str) -> str:
 # ---------------------------------------------------------------------------
 
 def fetch_html(url: str) -> str:
-    response = SESSION.get(url, timeout=30)
+    response = session_get(SESSION, url, logger=logging.getLogger(__name__), timeout=30)
     response.raise_for_status()
     return response.text
 
@@ -203,6 +209,7 @@ def parse_table(
             "annual_volatility":   "",
             "tracking_error":      "",
             "shares_in_issue":     "",
+            "detail_missing_fields": "",
             # "ok" | "http_error:<code>" | "error:<type>" | "no_url"
             "detail_fetch_status": "pending",
         })
@@ -313,6 +320,17 @@ def enrich_from_detail_page(row: dict[str, str]) -> None:
 
     # --- shares in issue ---
     row["shares_in_issue"] = kv.get("shares in issue", "")
+
+    missing_core_fields = [field for field in CORE_DETAIL_FIELDS if not clean_text(row.get(field))]
+    row["detail_missing_fields"] = ",".join(missing_core_fields)
+    if missing_core_fields:
+        row["detail_fetch_status"] = "partial:missing_core_fields"
+        logging.warning(
+            "  %-14s  detail page loaded but missing core fields: %s",
+            row["isin"],
+            row["detail_missing_fields"],
+        )
+        return
 
     row["detail_fetch_status"] = "ok"
 

@@ -14,6 +14,11 @@ from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 from playwright.async_api import TimeoutError as PlaywrightTimeoutError, async_playwright
 
+try:
+    from scrapers.tls_compat import browser_launch_args, context_https_kwargs
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from tls_compat import browser_launch_args, context_https_kwargs
+
 
 START_URL = "https://www.wisdomtree.eu/products?structure=UCITS+ETFs"
 ISSUER = "WisdomTree"
@@ -56,11 +61,7 @@ def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
         return output_dir
 
     output_dir = base_dir / run_date
-    suffix = 1
-    while output_dir.exists():
-        output_dir = base_dir / f"{run_date} ({suffix})"
-        suffix += 1
-    output_dir.mkdir(parents=True, exist_ok=False)
+    output_dir.mkdir(parents=True, exist_ok=True)
     os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
     return output_dir
 
@@ -151,6 +152,15 @@ def is_product_url(url: str) -> bool:
     return bool(PRODUCT_URL_PATTERN.fullmatch(normalize_product_url(url)))
 
 
+def is_blocked_html(html: str) -> bool:
+    lowered = html.lower()
+    return (
+        "attention required! | cloudflare" in lowered
+        or "sorry, you have been blocked" in lowered
+        or "unable to access wisdomtree.eu" in lowered
+    )
+
+
 def extract_country_value(cell) -> str:
     texts = [clean_text(text) for text in cell.stripped_strings]
     alt_texts = [clean_text(image.get("alt")) for image in cell.find_all("img")]
@@ -166,6 +176,21 @@ def extract_product_name(soup: BeautifulSoup) -> str:
 
     title = clean_text(soup.title.get_text(" ", strip=True) if soup.title else "")
     return clean_text(title.split("|", 1)[0])
+
+
+def find_metric_row_value(soup: BeautifulSoup, *target_keys: str) -> str:
+    normalized_keys = {normalize_header(key) for key in target_keys if clean_text(key)}
+    if not normalized_keys:
+        return ""
+
+    for row in soup.select("table tr"):
+        cells = row.find_all(["td", "th"])
+        if len(cells) < 2:
+            continue
+        key = normalize_header(cells[0].get_text(" ", strip=True))
+        if key in normalized_keys:
+            return clean_text(cells[1].get_text(" ", strip=True))
+    return ""
 
 
 def extract_overview_metrics(soup: BeautifulSoup) -> dict[str, str]:
@@ -212,6 +237,20 @@ def extract_overview_metrics(soup: BeautifulSoup) -> dict[str, str]:
                 metrics["aum_raw"] = value
                 metrics["aum_numeric"], metrics["aum_currency"] = normalize_aum_millions(value)
                 metrics["aum_m"] = metrics["aum_numeric"]
+
+    if not metrics["aum_raw"]:
+        aum_value = find_metric_row_value(soup, "Total AUM of fund", "Fund size", "AUM")
+        if aum_value:
+            metrics["aum_raw"] = aum_value
+            metrics["aum_numeric"], metrics["aum_currency"] = normalize_aum_millions(aum_value)
+            metrics["aum_m"] = metrics["aum_numeric"]
+
+    if not metrics["as_of_date"]:
+        for header_cell in soup.select("table thead th"):
+            date_match = DATE_PATTERN.search(clean_text(header_cell.get_text(" ", strip=True)))
+            if date_match:
+                metrics["as_of_date"] = clean_text(date_match.group(1))
+                break
 
     return metrics
 
@@ -337,6 +376,7 @@ async def new_wisdomtree_context(browser):
         timezone_id="Europe/London",
         user_agent=USER_AGENT,
         viewport={"width": 1440, "height": 1600},
+        **context_https_kwargs(),
     )
     return context
 
@@ -344,7 +384,28 @@ async def new_wisdomtree_context(browser):
 async def scrape_detail_rows(page, product_url: str, scraped_at: str) -> list[dict[str, str]]:
     await page.goto(product_url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
     await page.wait_for_timeout(5_000)
-    soup = BeautifulSoup(await page.content(), "html.parser")
+    try:
+        await page.wait_for_function(
+            """
+            () => {
+                const text = document.body ? document.body.innerText : "";
+                return Boolean(
+                    document.querySelector("#fund-nav") ||
+                    document.querySelector("#fund-overview") ||
+                    /Total AUM of fund|Fund size|\\bNAV\\b/.test(text)
+                );
+            }
+            """,
+            timeout=20_000,
+        )
+    except PlaywrightTimeoutError:
+        pass
+
+    html = await page.content()
+    if is_blocked_html(html):
+        raise ValueError("WisdomTree detail page was blocked by Cloudflare.")
+
+    soup = BeautifulSoup(html, "html.parser")
 
     etf_name = extract_product_name(soup)
     metrics = extract_overview_metrics(soup)
@@ -395,7 +456,7 @@ async def build_snapshot(now: datetime) -> dict[str, object]:
     async with async_playwright() as p:
         browser = await p.chromium.launch(
             headless=True,
-            args=["--no-sandbox", "--disable-dev-shm-usage"],
+            args=browser_launch_args("--no-sandbox", "--disable-dev-shm-usage"),
         )
         product_urls: list[str] = []
         last_listing_error: Exception | None = None
