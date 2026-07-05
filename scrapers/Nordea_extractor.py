@@ -45,8 +45,10 @@ USER_AGENT = (
 DISCLOSURE_URLS_ENV_VAR = "NORDEA_DISCLOSURE_URLS"
 CISION_PRESSROOM_URL = "https://news.cision.com/nordea-icav-etf"
 MAX_CISION_DISCLOSURE_URLS = 12
-DEFAULT_DISCLOSURE_URLS = (
+DEFAULT_CISION_DISCLOSURE_URLS = (
     "https://news.cision.com/nordea-icav-etf/r/net-asset-value-s-,c4368991",
+)
+DEFAULT_YAHOO_DISCLOSURE_URLS = (
     "https://uk.finance.yahoo.com/news/nordea-icav-etf-net-asset-060000904.html",
     "https://finance.yahoo.com/news/nordea-icav-etf-net-asset-060000904.html",
 )
@@ -564,7 +566,7 @@ def discover_yahoo_disclosure_urls(session: requests.Session) -> list[str]:
             )
             response.raise_for_status()
         except Exception as exc:
-            print(f"WARNING: Could not search Yahoo for Nordea disclosure URLs: {exc}")
+            print(f"INFO: Nordea Yahoo fallback search unavailable: {exc}")
             continue
 
         html = response.text
@@ -590,10 +592,16 @@ def build_disclosure_url_candidates(session: requests.Session) -> list[str]:
     if env_urls:
         return env_urls
 
+    cision_urls = dedupe_preserve_order(
+        discover_cision_disclosure_urls(session) + list(DEFAULT_CISION_DISCLOSURE_URLS)
+    )
+    if cision_urls:
+        return cision_urls
+
     return dedupe_preserve_order(
-        discover_cision_disclosure_urls(session)
-        + discover_yahoo_disclosure_urls(session)
-        + list(DEFAULT_DISCLOSURE_URLS)
+        discover_yahoo_disclosure_urls(session)
+        + list(DEFAULT_YAHOO_DISCLOSURE_URLS)
+        + list(DEFAULT_CISION_DISCLOSURE_URLS)
     )
 
 
@@ -948,7 +956,10 @@ def fetch_disclosure_rows(known_isins: set[str]) -> tuple[dict[str, list[dict[st
             )
             response.raise_for_status()
         except Exception as exc:
-            print(f"WARNING: Could not fetch Nordea disclosure page {url}: {exc}")
+            if "yahoo.com" in url:
+                print(f"INFO: Skipping unavailable Nordea Yahoo fallback page {url}: {exc}")
+            else:
+                print(f"WARNING: Could not fetch Nordea disclosure page {url}: {exc}")
             continue
 
         html = response.text
@@ -1224,7 +1235,7 @@ def scrape_nordea() -> Path:
                 continue
             missing_counts[column] += 1
             print(
-                f"WARNING: Nordea official source does not expose {column} for "
+                f"INFO: Nordea official and disclosure sources do not expose {column} for "
                 f"{row.get('ETF Name') or isin or 'unknown ETF'}; leaving blank."
             )
 

@@ -814,7 +814,7 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
 
                 if archive_candidate_urls:
                     logging.info(
-                        "Live Janus Henderson page unavailable for %s, using archived official page fallback",
+                        "Live Janus Henderson detail page not available for %s; trying archived official page",
                         isin,
                     )
                     archive_detail_row, archive_metadata = fetch_archived_product_page(
@@ -886,7 +886,7 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
 
                     if row_has_required_listing_fields(row):
                         logging.info(
-                            "Janus Henderson detail page remained unavailable for %s; keeping official listing data",
+                            "Using official Janus Henderson listing data for %s because no detail page was available",
                             isin,
                         )
                     else:

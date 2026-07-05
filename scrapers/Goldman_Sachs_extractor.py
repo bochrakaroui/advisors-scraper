@@ -346,7 +346,7 @@ def build_snapshot(now: datetime) -> dict[str, object]:
     }
     max_reported_share_classes = total_share_classes
 
-    for offset in range(PAGE_SIZE, PAGE_SIZE * 10, PAGE_SIZE):
+    for offset in range(PAGE_SIZE, max_reported_share_classes + PAGE_SIZE, PAGE_SIZE):
         logging.info("Fetching Goldman Sachs ETF listing page offset=%s", offset)
         page_payload = fetch_listing_page(offset=offset)
         raw_pages.append(page_payload)
@@ -376,6 +376,39 @@ def build_snapshot(now: datetime) -> dict[str, object]:
 
         if len(seen_share_class_ids) >= max_reported_share_classes:
             break
+
+    if len(seen_share_class_ids) < max_reported_share_classes:
+        recovery_start = max(1, max_reported_share_classes - PAGE_SIZE)
+        logging.info(
+            "Goldman Sachs pagination overlap detected (%d/%d captured); probing tail offsets %d-%d.",
+            len(seen_share_class_ids),
+            max_reported_share_classes,
+            recovery_start,
+            max_reported_share_classes - 1,
+        )
+        for offset in range(recovery_start, max_reported_share_classes):
+            logging.info("Recovering Goldman Sachs ETF listing page offset=%s", offset)
+            page_payload = fetch_listing_page(offset=offset)
+            raw_pages.append(page_payload)
+            page_fund_share_classes = get_dict(get_dict(page_payload.get("data")).get("fundShareClasses"))
+            page_rows = page_fund_share_classes.get("funds", [])
+            if not isinstance(page_rows, list) or not page_rows:
+                continue
+
+            recovered_rows = []
+            for row in page_rows:
+                share_class_id = normalize_isin(get_dict(row).get("shareClassId"))
+                if share_class_id and share_class_id in seen_share_class_ids:
+                    continue
+                if share_class_id:
+                    seen_share_class_ids.add(share_class_id)
+                recovered_rows.append(row)
+
+            if recovered_rows:
+                raw_rows.extend(recovered_rows)
+
+            if len(seen_share_class_ids) >= max_reported_share_classes:
+                break
 
     listing_rows = [transform_listing_row(row) for row in raw_rows]
     logging.info(

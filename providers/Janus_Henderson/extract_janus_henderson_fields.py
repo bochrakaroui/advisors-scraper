@@ -6,6 +6,7 @@ import argparse
 import csv
 import json
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -13,15 +14,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_DIR = BASE_DIR
 LEGACY_INPUT_DIR = BASE_DIR.parents[1] / "providers" / "Janus Henderson"
-OUTPUT_COLUMNS = [
-    "ETF Name",
-    "Issuer",
-    "ISIN",
-    "CCY",
-    "TER(bps)",
-    "AUM(M)",
-    "Date",
-]
+REPO_ROOT = BASE_DIR.parents[1]
+
+if str(REPO_ROOT) not in sys.path:
+    sys.path.append(str(REPO_ROOT))
+
+from providers.output_schema import OUTPUT_COLUMNS, infer_aum_currency_from_row
 
 SPACE_PATTERN = re.compile(r"\s+")
 
@@ -165,6 +163,12 @@ def transform_row(source_row: dict[str, object], scrape_date: str) -> dict[str, 
             source_row.get("page_title") or source_row.get("etf_name"),
         )
     )
+    aum_ccy = (
+        infer_aum_currency_from_row(source_row)
+        or clean_text(source_row.get("base_currency")).upper()
+        or clean_text(source_row.get("listing_currency")).upper()
+        or ccy
+    )
     return {
         "ETF Name": clean_text(source_row.get("etf_name")),
         "Issuer": clean_text(source_row.get("issuer")),
@@ -172,6 +176,7 @@ def transform_row(source_row: dict[str, object], scrape_date: str) -> dict[str, 
         "CCY": ccy,
         "TER(bps)": clean_text(source_row.get("ter_bps")),
         "AUM(M)": clean_text(source_row.get("aum_mn")),
+        "AUM CCY": aum_ccy,
         "Date": row_date,
     }
 
@@ -230,6 +235,7 @@ def process_file(input_path: Path | None = None, output_path: Path | None = None
     print(f"Unique ISINs: {len({row['ISIN'] for row in output_rows if row.get('ISIN')}):,}")
     print(f"Missing TER : {sum(1 for row in output_rows if not clean_text(row.get('TER(bps)'))):,}")
     print(f"Missing AUM : {sum(1 for row in output_rows if not clean_text(row.get('AUM(M)'))):,}")
+    print(f"Missing AUM CCY : {sum(1 for row in output_rows if not clean_text(row.get('AUM CCY'))):,}")
     print(f"Output file : {resolved_output_path}")
     return resolved_output_path
 

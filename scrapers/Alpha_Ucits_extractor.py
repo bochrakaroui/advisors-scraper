@@ -1,4 +1,4 @@
-"""Scrape Alpha UCITS / Fair Oaks ETF share classes from official daily sources."""
+"""Scrape Alpha UCITS / Fair Oaks ETF share classes from justETF profile pages."""
 
 from __future__ import annotations
 
@@ -14,8 +14,19 @@ from typing import Any
 
 import requests
 from bs4 import BeautifulSoup
-from playwright.sync_api import sync_playwright
 from pypdf import PdfReader
+
+try:
+    from playwright.sync_api import sync_playwright
+except ImportError:  # pragma: no cover - legacy official-site flow only
+    sync_playwright = None  # type: ignore[assignment]
+
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from justetf_profile import build_session as build_justetf_session
+    from justetf_profile import fetch_profile as fetch_justetf_profile
 
 try:
     from scrapers.tls_compat import (
@@ -29,6 +40,7 @@ except ModuleNotFoundError:  # pragma: no cover - direct script execution fallba
 
 ISSUER = "Alpha UCITS"
 MANAGER = "Fair Oaks Capital"
+JUSTETF_PROFILE_URL_TEMPLATE = "https://www.justetf.com/en/etf-profile.html?isin={isin}"
 CISION_PRESSROOM_URL = "https://news.cision.com/fair-oaks-capital-etfs"
 STATIC_PAGE_URL = "https://www.clo-etf.com/faaa-clo-etf/"
 FACTSHEET_URL = "https://www.clo-etf.com/wp-content/uploads/2026/06/FAAA-ETF-Factsheet-May-26.pdf"
@@ -749,6 +761,96 @@ def build_output_row(
     return row
 
 
+def build_output_rows_from_justetf(today: datetime) -> list[dict[str, str]]:
+    session = build_justetf_session()
+    output_rows: list[dict[str, str]] = []
+
+    for index, (isin, reference) in enumerate(TARGET_SHARE_CLASSES.items(), 1):
+        logging.info("Fetching justETF profile [%d/%d] %s", index, len(TARGET_SHARE_CLASSES), isin)
+        try:
+            profile = fetch_justetf_profile(isin, session=session)
+            aum_millions = clean_text(profile.get("aum_mn"))
+            aum_ccy = normalize_ccy(profile.get("aum_ccy")) or normalize_ccy(reference.get("aum_ccy"))
+            row = {
+                "ETF Name": clean_text(profile.get("etf_name")) or clean_text(reference.get("etf_name")),
+                "Issuer": ISSUER,
+                "ISIN": normalize_isin(profile.get("isin")) or isin,
+                "CCY": normalize_ccy(profile.get("ccy")) or normalize_ccy(reference.get("ccy")),
+                "TER(bps)": clean_text(profile.get("ter_bps")) or percent_to_bps(reference.get("ter_percent")),
+                "AUM(M)": aum_millions,
+                "AUM CCY": aum_ccy,
+                "Date": today.strftime("%d/%m/%Y"),
+                "Manager": MANAGER,
+                "Fund name": clean_text(reference.get("fund_name")) or clean_text(profile.get("index_name")),
+                "Share class name": clean_text(reference.get("share_class_name")),
+                "Distribution policy": clean_text(profile.get("distribution_policy")),
+                "Distribution frequency": clean_text(profile.get("distribution_frequency")),
+                "Replication": clean_text(profile.get("replication")),
+                "Fund total net assets display": clean_text(profile.get("fund_size_raw")),
+                "AUM Source URL": clean_text(profile.get("profile_url")) or JUSTETF_PROFILE_URL_TEMPLATE.format(isin=isin),
+                "AUM Source Precision": "justetf_displayed_fund_size",
+                "justETF Profile URL": clean_text(profile.get("profile_url")) or JUSTETF_PROFILE_URL_TEMPLATE.format(isin=isin),
+                "justETF Page Title": clean_text(profile.get("page_title")),
+                "Fund Provider": clean_text(profile.get("fund_provider")),
+                "Fund domicile": clean_text(profile.get("fund_domicile")),
+                "Fund Structure": clean_text(profile.get("fund_structure")) or clean_text(reference.get("fund_structure")),
+                "Index": clean_text(profile.get("index_name")),
+                "Investment focus": clean_text(profile.get("investment_focus")),
+                "Investment approach": clean_text(profile.get("investment_approach")),
+                "Share class launch date": clean_text(profile.get("inception_date_raw")) or clean_text(reference.get("share_class_launch_date")),
+                "Factsheet Tickers": clean_text(reference.get("factsheet_tickers")),
+                "Factsheet Listings": clean_text(reference.get("factsheet_listings")),
+                "Source kind": "justetf_profile",
+                "Fetch status": clean_text(profile.get("fetch_status")) or "ok",
+            }
+
+            if clean_text(profile.get("error")):
+                row["Error"] = clean_text(profile.get("error"))
+        except Exception as exc:
+            logging.warning("justETF profile failed for %s: %s", isin, exc)
+            row = {
+                "ETF Name": clean_text(reference.get("etf_name")),
+                "Issuer": ISSUER,
+                "ISIN": isin,
+                "CCY": normalize_ccy(reference.get("ccy")),
+                "TER(bps)": percent_to_bps(reference.get("ter_percent")),
+                "AUM(M)": "",
+                "AUM CCY": normalize_ccy(reference.get("aum_ccy")),
+                "Date": today.strftime("%d/%m/%Y"),
+                "Manager": MANAGER,
+                "Fund name": clean_text(reference.get("fund_name")),
+                "Share class name": clean_text(reference.get("share_class_name")),
+                "Distribution policy": "",
+                "Distribution frequency": "",
+                "Replication": "",
+                "Fund total net assets display": "",
+                "AUM Source URL": JUSTETF_PROFILE_URL_TEMPLATE.format(isin=isin),
+                "AUM Source Precision": "",
+                "justETF Profile URL": JUSTETF_PROFILE_URL_TEMPLATE.format(isin=isin),
+                "justETF Page Title": "",
+                "Fund Provider": "",
+                "Fund domicile": "",
+                "Fund Structure": clean_text(reference.get("fund_structure")),
+                "Index": "",
+                "Investment focus": "",
+                "Investment approach": "",
+                "Share class launch date": clean_text(reference.get("share_class_launch_date")),
+                "Factsheet Tickers": clean_text(reference.get("factsheet_tickers")),
+                "Factsheet Listings": clean_text(reference.get("factsheet_listings")),
+                "Source kind": "justetf_profile",
+                "Fetch status": "failed",
+                "Error": str(exc),
+            }
+
+        for field_name in ("ISIN", "CCY", "TER(bps)", "AUM(M)", "AUM CCY"):
+            if not clean_text(row.get(field_name)):
+                logging.warning("Alpha UCITS justETF profile did not expose %s for %s.", field_name, row["ETF Name"])
+
+        output_rows.append(row)
+
+    return output_rows
+
+
 def write_json(output_path: Path, payload: object) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -765,18 +867,12 @@ def scrape_alpha_ucits() -> Path:
     setup_logging()
     now = timestamp_now()
     output_path = build_output_path(now)
-    session = build_session()
-
-    reference_metadata = load_reference_metadata(session)
-    official_rows = fetch_official_nav_rows()
-    cision_rows_by_isin, cision_urls = fetch_latest_cision_nav_rows(session)
-    merged_rows = merge_source_rows(official_rows, cision_rows_by_isin)
-    output_rows = [build_output_row(nav_row, reference_metadata, now) for nav_row in merged_rows]
+    output_rows = build_output_rows_from_justetf(now)
     missing_counts = count_missing(output_rows)
 
     missing_target_isins = [isin for isin in TARGET_SHARE_CLASSES if isin not in {row["ISIN"] for row in output_rows}]
     for missing_isin in missing_target_isins:
-        logging.warning("Expected Fair Oaks target ISIN was not present in the official page output: %s", missing_isin)
+        logging.warning("Expected Fair Oaks target ISIN was not present in the justETF output: %s", missing_isin)
 
     write_json(
         output_path,
@@ -785,23 +881,19 @@ def scrape_alpha_ucits() -> Path:
             "provider": ISSUER,
             "manager": MANAGER,
             "method": (
-                "Primary daily source: Fair Oaks official share-class page AJAX payloads and same-day total fund assets display. "
-                "Exact Cision AUM and shares outstanding are only used when the Cision article date matches the official page date. "
-                "Static share-class metadata validated against the official Fair Oaks factsheet."
+                "Target ISIN fetch from public justETF ETF profile pages."
             ),
-            "official_pages": [STATIC_PAGE_URL, CISION_PRESSROOM_URL, FACTSHEET_URL],
-            "source_article_urls": cision_urls,
+            "profile_url_template": JUSTETF_PROFILE_URL_TEMPLATE,
             "target_isins": list(TARGET_SHARE_CLASSES),
             "row_count": len(output_rows),
             "listing_rows": output_rows,
         },
     )
 
-    logging.info("Extracted %d Alpha UCITS / Fair Oaks ETF row(s).", len(output_rows))
+    logging.info("Extracted %d Alpha UCITS / Fair Oaks ETF row(s) from justETF.", len(output_rows))
     for field_name in OUTPUT_COLUMNS:
         logging.info("Missing %-9s: %d", field_name, missing_counts[field_name])
 
-    print(f"Source article URLs        : {len(cision_urls):,}")
     print(f"Extracted ETF rows         : {len(output_rows):,}")
     print(f"Output file                : {output_path}")
     print("Missing field counts       :")

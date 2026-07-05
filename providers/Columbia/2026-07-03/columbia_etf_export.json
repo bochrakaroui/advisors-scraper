@@ -1,0 +1,4638 @@
+{
+  "source": {
+    "provider": "Columbia Threadneedle Investments",
+    "landing_page_url": "https://www.columbiathreadneedle.com/en/gb/institutional/funds-and-prices/",
+    "fund_center_api_url": "https://www.columbiathreadneedle.com/ksys-fc",
+    "service_base_url": "https://www.columbiathreadneedle.com/services",
+    "configuration_key": "fundsAndPriceUK_Intm_Inst"
+  },
+  "method": "Official Columbia Threadneedle funds-and-prices page discovery of the live Kurtosys fund-centre configuration, followed by authenticated read-only /fund/searchEntity API extraction for the explicit target ISIN list with full statistics blocks preserved.",
+  "captured_at": "2026-07-03T12:03:15.619501",
+  "target_isin_count": 6,
+  "matched_target_isins": [
+    "IE000953I6Z4",
+    "IE000KXM3O48",
+    "IE000M07S996",
+    "IE000SA19OL0",
+    "IE000SWYZ0D5",
+    "IE000UL7AOT5"
+  ],
+  "missing_target_isins": [],
+  "status_counts": {
+    "ok": 6
+  },
+  "listing_rows": [
+    {
+      "issuer": "Columbia Threadneedle Investments",
+      "isin": "IE000953I6Z4",
+      "etf_name": "CT QR Series US Equity Active UCITS ETF Acc USD",
+      "fund_name": "CT QR Series US Equity Active UCITS ETF",
+      "share_class_name": "CT QR Series US Equity Active UCITS ETF Acc USD",
+      "share_class_code": "Acc USD",
+      "share_class_currency": "USD",
+      "fund_base_currency": "USD",
+      "product_type": "ETF",
+      "asset_type": "Equity",
+      "benchmark_name": "Russell 1000 (NR, USD)",
+      "distribution_type": "Accumulation",
+      "fund_manager": [
+        "Chris Lo"
+      ],
+      "investment_management_company": "Threadneedle Management Luxembourg S.A.",
+      "fund_domicile": "IE",
+      "fund_launch_date": "2025-11-06",
+      "share_class_launch_date": "2025-11-06",
+      "replication_method": "Physical",
+      "sfdr_category": "8",
+      "nav": "10.8403",
+      "nav_date": "2026-07-02",
+      "market_price": "8.763",
+      "market_price_date": "2026-07-02",
+      "total_assets": "78024987",
+      "aum_mn": "78.02",
+      "aum_ccy": "USD",
+      "total_assets_date": "2026-07-02",
+      "ter": "0.20",
+      "ter_bps": "20.00",
+      "ter_date": "2026-07-02",
+      "listing_details": [
+        {
+          "bloomberg_code": "QRUS IM",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUS",
+          "inav_ticker": "QRUSEU.IV",
+          "label": "Euronext Milan",
+          "market_bid_offer_spread_amt": 0.18,
+          "market_bid_offer_spread_pct": 1.88,
+          "market_bid_price": 9.402,
+          "market_listing_date": "2026-05-29",
+          "market_offer_price": 9.579,
+          "market_price": 9.485,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUSEUiv.P",
+          "sedol": "BT678J2",
+          "trading_currency": "EUR",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRUU GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUU",
+          "inav_ticker": "QRUSUS.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.09,
+          "market_bid_price": 10.854,
+          "market_listing_date": "2026-01-30",
+          "market_offer_price": 10.864,
+          "market_price": 10.878,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUSUSiv.P",
+          "sedol": "BTCFG74",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRSU LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRSU",
+          "inav_ticker": "QRUSGB.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.12,
+          "market_bid_price": 8.115,
+          "market_listing_date": "2025-12-19",
+          "market_offer_price": 8.127,
+          "market_price": 8.121,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUSGBiv.P",
+          "sedol": "BTQM1H6",
+          "trading_currency": "GBP",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRUS LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUS",
+          "inav_ticker": "QRUSUS.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.02,
+          "market_bid_offer_spread_pct": 0.18,
+          "market_bid_price": 10.844,
+          "market_listing_date": "2025-12-19",
+          "market_offer_price": 10.86,
+          "market_price": 10.852,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUSUSiv.P",
+          "sedol": "BTQM1G5",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRUSCHF SE",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUS",
+          "inav_ticker": "QRUSCH.IV",
+          "label": "SIX Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.11,
+          "market_bid_price": 8.714,
+          "market_listing_date": "2025-12-03",
+          "market_offer_price": 8.727,
+          "market_price": 8.727,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUSCHiv.P",
+          "sedol": "BTY1RP5",
+          "trading_currency": "CHF",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRUS SE",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUS",
+          "inav_ticker": "QRUSUS.IV",
+          "label": "SIX Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.09,
+          "market_bid_price": 10.87,
+          "market_listing_date": "2025-12-03",
+          "market_offer_price": 10.884,
+          "market_price": 10.884,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUSUSiv.P",
+          "sedol": "BTY1RQ6",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRUS GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUS",
+          "inav_ticker": "QRUSEU.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0.03,
+          "market_bid_offer_spread_pct": 0.32,
+          "market_bid_price": 9.437,
+          "market_listing_date": "2025-11-07",
+          "market_offer_price": 9.47,
+          "market_price": 9.415,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUSEUiv.P",
+          "sedol": "BTQM1J8",
+          "trading_currency": "EUR",
+          "value": 0
+        }
+      ],
+      "fetch_status": "ok",
+      "raw_api_row": {
+        "entityId": 3157089,
+        "parentEntityId": null,
+        "type": "CLSS",
+        "clientId": 2022,
+        "clientCode": "IE000953I6Z4",
+        "lastModified": "2026-07-03T08:59:50.000Z",
+        "lastModifiedBy": 7908,
+        "created": "2025-08-26T16:26:30.000Z",
+        "createdBy": 7908,
+        "properties_pub": {
+          "amf_category": {
+            "value": "2"
+          },
+          "asset_type": {
+            "value": "Equity"
+          },
+          "benchmark_name": {
+            "value": "Russell 1000 (NR, USD)"
+          },
+          "broad_investor_type": {
+            "value": "Retail"
+          },
+          "capability": {
+            "value": [
+              "Equity"
+            ]
+          },
+          "citicode": {
+            "value": "BXKJY"
+          },
+          "combined_capability": {
+            "value": [
+              "Equity : US",
+              "Responsible Investment"
+            ]
+          },
+          "country_individual": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_institutional": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_intermediary": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "distribution_frequency": {
+            "value": "N/A"
+          },
+          "distribution_type": {
+            "value": "Accumulation"
+          },
+          "esg_classification": {
+            "value": "SICAV_ESG_SDR"
+          },
+          "fund_base_currency": {
+            "value": "USD"
+          },
+          "fund_code": {
+            "value": "QRUSEA"
+          },
+          "fund_domicile": {
+            "value": "IE"
+          },
+          "fund_launch_date": {
+            "value": "2025-11-06"
+          },
+          "fund_manager": {
+            "value": [
+              "Chris Lo"
+            ]
+          },
+          "fund_name": {
+            "value": "CT QR Series US Equity Active UCITS ETF"
+          },
+          "fund_umbrella_code": {
+            "value": "CTIRL ICAV"
+          },
+          "fund_umbrella_name": {
+            "value": "Columbia Threadneedle (IRL) ICAV"
+          },
+          "initial_charge_non_uk": {
+            "value": 0
+          },
+          "investment_management_company": {
+            "value": "Threadneedle Management Luxembourg S.A."
+          },
+          "isin": {
+            "value": "IE000953I6Z4"
+          },
+          "mexid": {
+            "value": "0FADTR"
+          },
+          "payment_dates": {
+            "value": "N/A"
+          },
+          "performance_fee_applicable": {
+            "value": "N"
+          },
+          "performance_history_complete": {
+            "value": ""
+          },
+          "pricing_type": {
+            "value": "Single"
+          },
+          "priips_investment_amount": {
+            "value": 10000
+          },
+          "priips_rhp": {
+            "value": 5
+          },
+          "priips_sri": {
+            "value": 4
+          },
+          "product_type": {
+            "value": "ETF"
+          },
+          "region_of_investment": {
+            "value": "US"
+          },
+          "replication_method": {
+            "value": "Physical"
+          },
+          "settlement_cycle": {
+            "value": "T+1"
+          },
+          "sfdr_category": {
+            "value": "8"
+          },
+          "share_class_code": {
+            "value": "Acc USD"
+          },
+          "share_class_currency": {
+            "value": "USD"
+          },
+          "share_class_gross_net": {
+            "value": "Gross"
+          },
+          "share_class_hedged": {
+            "value": "Non-Hedged"
+          },
+          "share_class_launch_date": {
+            "value": "2025-11-06"
+          },
+          "share_class_name": {
+            "value": "CT QR Series US Equity Active UCITS ETF Acc USD"
+          },
+          "share_class_status": {
+            "value": "Active"
+          },
+          "share_type_code": {
+            "value": "Acc"
+          },
+          "srri_risk_score": {
+            "value": 6
+          },
+          "sub_capability": {
+            "value": [
+              "US"
+            ]
+          },
+          "tax_status": {
+            "value": [
+              "Austria",
+              "Germany",
+              "Italy",
+              "Switzerland",
+              "UK"
+            ]
+          },
+          "valoren": {
+            "value": "148977384"
+          },
+          "wkn": {
+            "value": "A41FLZ"
+          },
+          "xd_dates": {
+            "value": "N/A"
+          }
+        },
+        "properties_draft": null,
+        "userProperties_pub": null,
+        "userProperties_draft": null,
+        "jobReference": "f7e4078b-a357-49eb-b232-6609c072c0b8",
+        "rowHash": "3e4588b35787f37796c4c706d1e0987b0d3ac476b6f08badf6a53e2c011701d3",
+        "statistics": [
+          {
+            "statisticId": 4537836,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "dilution_adjustments",
+            "created": "2025-11-06T13:25:01.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "be0c07ea-d8ec-431c-967c-c04beb5e6d0d",
+            "lastModified": "2026-07-02T13:25:12.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "6a0d106c4288db58aa98e0179acd271aa189f86b9dfd9cd8d6053880bf32f209",
+            "values": []
+          },
+          {
+            "statisticId": 4558450,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "distributions",
+            "created": "2026-02-26T18:51:59.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "47b16fc2-30e7-498c-be19-1dd3cd57bd4d",
+            "lastModified": "2026-07-03T09:24:53.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "d2242770086d2d13352fb560a68de1f5869f0f37c4b7505e57cdf7dbb0cb29cf",
+            "values": []
+          },
+          {
+            "statisticId": 4559667,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "portfolio_statistics",
+            "created": "2026-03-18T18:16:36.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "7db074ca-2d50-4d0c-a5fb-1e15780bda62",
+            "lastModified": "2026-06-17T13:15:23.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "4dc99a13a3b790ea8eceeba5724bc9f0c2ca5b4bbd86340b53e27ef61b79cda8",
+            "values": [
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 52.62596,
+                "index_value": 0,
+                "label": "Active Share",
+                "statistics_date": "2026-05-31",
+                "value": 52.62596
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 1.34538,
+                "index_value": 1.06138,
+                "label": "Dividend Yield",
+                "statistics_date": "2026-05-31",
+                "value": 1.34538
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 3.17705,
+                "index_value": 4.07505,
+                "label": "Price to Book",
+                "statistics_date": "2026-05-31",
+                "value": 3.17705
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 21.84557,
+                "index_value": 26.09081,
+                "label": "Price to Earnings",
+                "statistics_date": "2026-05-31",
+                "value": 21.84557
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 13.21794,
+                "index_value": 12.42703,
+                "label": "Return on Assets",
+                "statistics_date": "2026-05-31",
+                "value": 13.21794
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 21.89349,
+                "index_value": 22.24349,
+                "label": "Return on Equity",
+                "statistics_date": "2026-05-31",
+                "value": 21.89349
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 17.10652,
+                "index_value": 21.49742,
+                "label": "Price to Earnings FY1",
+                "statistics_date": "2026-05-31",
+                "value": 17.10652
+              }
+            ]
+          },
+          {
+            "statisticId": 4555120,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "risk_analysis",
+            "created": "2026-02-06T10:20:48.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "7db074ca-2d50-4d0c-a5fb-1e15780bda62",
+            "lastModified": "2026-06-17T13:15:23.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "433a3bd7c42622ab6e7420ab1cd66a3f9d70d54f49ba77e59c7e5457f185636d",
+            "values": []
+          },
+          {
+            "statisticId": 4550699,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "turnover",
+            "created": "2026-01-14T16:29:23.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "be0c07ea-d8ec-431c-967c-c04beb5e6d0d",
+            "lastModified": "2026-07-02T13:25:12.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "6ae40406a1ceb5fbea4595083550f390460db97ab0be804dd240d08bf34ee028",
+            "values": []
+          },
+          {
+            "statisticId": 4537838,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_charges",
+            "created": "2025-11-06T15:30:36.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "be0c07ea-d8ec-431c-967c-c04beb5e6d0d",
+            "lastModified": "2026-07-02T13:25:12.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "c8f1ca4caaa3326a71c83500390b14e6ff12e290a085a13b2874caf6a501afd2",
+            "values": [
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Entry Charge",
+                "order": 1,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Maximum Entry Charge",
+                "order": 2,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Exit Charge",
+                "order": 3,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Annual Management Charge (AMC)",
+                "order": 5,
+                "value": 0,
+                "value_ex_ante": 0.002,
+                "value_ex_post": 0.002
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Ongoing Charges Figure (OCF)",
+                "order": 9,
+                "value": 0,
+                "value_estimated_or_actual": "Estimated 1",
+                "value_ex_ante": 0.002,
+                "value_ex_post": 0.002
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Incidental Costs",
+                "label": "Total Portfolio Transaction Cost",
+                "order": 11,
+                "value": 0,
+                "value_ex_ante": 0.0002,
+                "value_ex_post": 1.3062068e-05
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Costs % Charges",
+                "label": "Cumulative Sum of Costs and Charges",
+                "order": 13,
+                "value": 0,
+                "value_ex_ante": 0.0022,
+                "value_ex_post": 0.002
+              },
+              {
+                "charges_as_at_date": "2026-04-30",
+                "charges_date_ex_ante": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Expense Ratio (TER)",
+                "label": "Total Expense Ratio (TER)",
+                "order": 14,
+                "value": 0,
+                "value_ex_ante": 0.002
+              }
+            ]
+          },
+          {
+            "statisticId": 4537846,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "daily_prices",
+            "created": "2025-11-07T09:40:33.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "47b16fc2-30e7-498c-be19-1dd3cd57bd4d",
+            "lastModified": "2026-07-03T09:24:53.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "5a4f8cf3efab1b289fc8acf8f3323721e9c4af09aef8548ae23f2d41f35c68c8",
+            "values": [
+              {
+                "bid_offer_spread_amt": 0,
+                "bid_offer_spread_pct": 0,
+                "bid_price": 8.762,
+                "effective_date": "2026-07-03",
+                "label": "IE000953I6Z4",
+                "market_price": 8.763,
+                "market_price_date": "2026-07-02",
+                "nav_daily_change": -0.0776,
+                "nav_daily_change_percent": -0.71,
+                "nav_price": 10.8403,
+                "offer_price": 8.763,
+                "price_date": "2026-07-02",
+                "pricing_type": "Single",
+                "value": 10.8403
+              }
+            ]
+          },
+          {
+            "statisticId": 4537847,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_size_nav",
+            "created": "2025-11-07T09:40:33.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "47b16fc2-30e7-498c-be19-1dd3cd57bd4d",
+            "lastModified": "2026-07-03T09:24:53.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "4f0d420de57e633623e5f05e0aa98899d550042c89dfec0f31dbd8d9644ad8a7",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "fund_size_class_currency": 78024987,
+                "fund_size_date": "2026-07-02",
+                "fund_size_nav_fund_base": 78024987,
+                "label": "IE000953I6Z4",
+                "share_class_currency": "USD",
+                "value": 78024987
+              }
+            ]
+          },
+          {
+            "statisticId": 4537834,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "listing_details",
+            "created": "2025-11-06T13:01:40.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "47b16fc2-30e7-498c-be19-1dd3cd57bd4d",
+            "lastModified": "2026-07-03T09:24:53.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "d032496e5b21336de4ef8785a9f3fcbf9b278924d8b6d7f9aab9e16117e63cce",
+            "values": [
+              {
+                "bloomberg_code": "QRUS IM",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUS",
+                "inav_ticker": "QRUSEU.IV",
+                "label": "Euronext Milan",
+                "market_bid_offer_spread_amt": 0.18,
+                "market_bid_offer_spread_pct": 1.88,
+                "market_bid_price": 9.402,
+                "market_listing_date": "2026-05-29",
+                "market_offer_price": 9.579,
+                "market_price": 9.485,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUSEUiv.P",
+                "sedol": "BT678J2",
+                "trading_currency": "EUR",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRUU GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUU",
+                "inav_ticker": "QRUSUS.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.09,
+                "market_bid_price": 10.854,
+                "market_listing_date": "2026-01-30",
+                "market_offer_price": 10.864,
+                "market_price": 10.878,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUSUSiv.P",
+                "sedol": "BTCFG74",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRSU LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRSU",
+                "inav_ticker": "QRUSGB.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.12,
+                "market_bid_price": 8.115,
+                "market_listing_date": "2025-12-19",
+                "market_offer_price": 8.127,
+                "market_price": 8.121,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUSGBiv.P",
+                "sedol": "BTQM1H6",
+                "trading_currency": "GBP",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRUS LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUS",
+                "inav_ticker": "QRUSUS.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.02,
+                "market_bid_offer_spread_pct": 0.18,
+                "market_bid_price": 10.844,
+                "market_listing_date": "2025-12-19",
+                "market_offer_price": 10.86,
+                "market_price": 10.852,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUSUSiv.P",
+                "sedol": "BTQM1G5",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRUSCHF SE",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUS",
+                "inav_ticker": "QRUSCH.IV",
+                "label": "SIX Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.11,
+                "market_bid_price": 8.714,
+                "market_listing_date": "2025-12-03",
+                "market_offer_price": 8.727,
+                "market_price": 8.727,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUSCHiv.P",
+                "sedol": "BTY1RP5",
+                "trading_currency": "CHF",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRUS SE",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUS",
+                "inav_ticker": "QRUSUS.IV",
+                "label": "SIX Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.09,
+                "market_bid_price": 10.87,
+                "market_listing_date": "2025-12-03",
+                "market_offer_price": 10.884,
+                "market_price": 10.884,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUSUSiv.P",
+                "sedol": "BTY1RQ6",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRUS GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUS",
+                "inav_ticker": "QRUSEU.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0.03,
+                "market_bid_offer_spread_pct": 0.32,
+                "market_bid_price": 9.437,
+                "market_listing_date": "2025-11-07",
+                "market_offer_price": 9.47,
+                "market_price": 9.415,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUSEUiv.P",
+                "sedol": "BTQM1J8",
+                "trading_currency": "EUR",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "statisticId": 4538304,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "income_yield",
+            "created": "2025-11-19T13:05:57.000Z",
+            "createdBy": 7908,
+            "entityId": 3157089,
+            "jobReference": "7db074ca-2d50-4d0c-a5fb-1e15780bda62",
+            "lastModified": "2026-06-17T13:15:23.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "1ed8e080d4481e15cfee97bfca6623ff8ca3a2724e4a477fb283d5b49d29e3ba",
+            "values": []
+          }
+        ]
+      }
+    },
+    {
+      "issuer": "Columbia Threadneedle Investments",
+      "isin": "IE000KXM3O48",
+      "etf_name": "CT QR Series European Equity Active UCITS ETF Inc EUR",
+      "fund_name": "CT QR Series European Equity Active UCITS ETF",
+      "share_class_name": "CT QR Series European Equity Active UCITS ETF Inc EUR",
+      "share_class_code": "Inc EUR",
+      "share_class_currency": "EUR",
+      "fund_base_currency": "EUR",
+      "product_type": "ETF",
+      "asset_type": "Equity",
+      "benchmark_name": "MSCI Europe (NR, EUR)",
+      "distribution_type": "Income",
+      "fund_manager": [
+        "Chris Lo"
+      ],
+      "investment_management_company": "Threadneedle Management Luxembourg S.A.",
+      "fund_domicile": "IE",
+      "fund_launch_date": "2025-11-06",
+      "share_class_launch_date": "2026-03-10",
+      "replication_method": "Physical",
+      "sfdr_category": "8",
+      "nav": "10.8292",
+      "nav_date": "2026-07-02",
+      "market_price": "",
+      "market_price_date": "2026-07-02",
+      "total_assets": "51318717.35",
+      "aum_mn": "51.32",
+      "aum_ccy": "EUR",
+      "total_assets_date": "2026-07-02",
+      "ter": "0.25",
+      "ter_bps": "25.00",
+      "ter_date": "2026-07-02",
+      "listing_details": [
+        {
+          "bloomberg_code": "QRED LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRED",
+          "inav_ticker": "QREDEU.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.02,
+          "market_bid_offer_spread_pct": 0.18,
+          "market_bid_price": 10.836,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 10.858,
+          "market_price": 10.847,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QREDEUiv.P",
+          "sedol": "BP9N510",
+          "trading_currency": "EUR",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRDE LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRDE",
+          "inav_ticker": "QREDGB.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.02,
+          "market_bid_offer_spread_pct": 0.22,
+          "market_bid_price": 9.273,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 9.294,
+          "market_price": 9.2835,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QREDGBiv.P",
+          "sedol": "BP9N565",
+          "trading_currency": "GBP",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRED GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRED",
+          "inav_ticker": "QREDEU.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0.04,
+          "market_bid_offer_spread_pct": 0.37,
+          "market_bid_price": 10.806,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 10.844,
+          "market_price": 10.79,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QREDEUiv.P",
+          "sedol": "BTCFG07",
+          "trading_currency": "EUR",
+          "value": 0
+        }
+      ],
+      "fetch_status": "ok",
+      "raw_api_row": {
+        "entityId": 3163461,
+        "parentEntityId": null,
+        "type": "CLSS",
+        "clientId": 2022,
+        "clientCode": "IE000KXM3O48",
+        "lastModified": "2026-07-03T08:59:50.000Z",
+        "lastModifiedBy": 7908,
+        "created": "2026-02-26T18:26:31.000Z",
+        "createdBy": 7908,
+        "properties_pub": {
+          "amf_category": {
+            "value": "2"
+          },
+          "asset_type": {
+            "value": "Equity"
+          },
+          "benchmark_name": {
+            "value": "MSCI Europe (NR, EUR)"
+          },
+          "broad_investor_type": {
+            "value": "Retail"
+          },
+          "capability": {
+            "value": [
+              "Equity"
+            ]
+          },
+          "citicode": {
+            "value": "CADFU"
+          },
+          "combined_capability": {
+            "value": [
+              "Equity : Europe",
+              "Responsible Investment"
+            ]
+          },
+          "country_individual": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_institutional": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_intermediary": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "distribution_frequency": {
+            "value": "Semi-Annual"
+          },
+          "distribution_type": {
+            "value": "Income"
+          },
+          "esg_classification": {
+            "value": "SICAV_ESG_SDR"
+          },
+          "fund_base_currency": {
+            "value": "EUR"
+          },
+          "fund_code": {
+            "value": "QREUEA"
+          },
+          "fund_domicile": {
+            "value": "IE"
+          },
+          "fund_launch_date": {
+            "value": "2025-11-06"
+          },
+          "fund_manager": {
+            "value": [
+              "Chris Lo"
+            ]
+          },
+          "fund_name": {
+            "value": "CT QR Series European Equity Active UCITS ETF"
+          },
+          "fund_umbrella_code": {
+            "value": "CTIRL ICAV"
+          },
+          "fund_umbrella_name": {
+            "value": "Columbia Threadneedle (IRL) ICAV"
+          },
+          "initial_charge_non_uk": {
+            "value": 0
+          },
+          "investment_management_company": {
+            "value": "Threadneedle Management Luxembourg S.A."
+          },
+          "isin": {
+            "value": "IE000KXM3O48"
+          },
+          "mexid": {
+            "value": "CTACEZ"
+          },
+          "payment_dates": {
+            "value": "June and Dec 15th Business Day"
+          },
+          "performance_fee_applicable": {
+            "value": "N"
+          },
+          "performance_history_complete": {
+            "value": ""
+          },
+          "pricing_type": {
+            "value": "Single"
+          },
+          "priips_investment_amount": {
+            "value": 10000
+          },
+          "priips_rhp": {
+            "value": 5
+          },
+          "priips_sri": {
+            "value": 4
+          },
+          "product_type": {
+            "value": "ETF"
+          },
+          "region_of_investment": {
+            "value": "Europe"
+          },
+          "replication_method": {
+            "value": "Physical"
+          },
+          "settlement_cycle": {
+            "value": "T+2"
+          },
+          "sfdr_category": {
+            "value": "8"
+          },
+          "share_class_code": {
+            "value": "Inc EUR"
+          },
+          "share_class_currency": {
+            "value": "EUR"
+          },
+          "share_class_gross_net": {
+            "value": "Gross"
+          },
+          "share_class_hedged": {
+            "value": "Non-Hedged"
+          },
+          "share_class_launch_date": {
+            "value": "2026-03-10"
+          },
+          "share_class_name": {
+            "value": "CT QR Series European Equity Active UCITS ETF Inc EUR"
+          },
+          "share_class_status": {
+            "value": "Active"
+          },
+          "share_type_code": {
+            "value": "Inc"
+          },
+          "srri_risk_score": {
+            "value": 5
+          },
+          "sub_capability": {
+            "value": [
+              "Europe"
+            ]
+          },
+          "tax_status": {
+            "value": [
+              "Austria",
+              "Germany",
+              "Italy",
+              "Switzerland",
+              "UK"
+            ]
+          },
+          "valoren": {
+            "value": "152328225"
+          },
+          "wkn": {
+            "value": "A420G2"
+          },
+          "xd_dates": {
+            "value": "June and Dec 10th Business Day"
+          }
+        },
+        "properties_draft": null,
+        "userProperties_pub": null,
+        "userProperties_draft": null,
+        "jobReference": "f7e4078b-a357-49eb-b232-6609c072c0b8",
+        "rowHash": "b5700b5e432a7352e2fa5c2e60a9a35ae4e38047105ca9b200b3252ddd22e531",
+        "statistics": [
+          {
+            "statisticId": 4559485,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_size_nav",
+            "created": "2026-03-11T06:52:07.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "6163be71-2175-43d0-9688-8213b51a5a34",
+            "lastModified": "2026-07-03T09:23:15.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "3a843204a698a7929e4ad5b8b9cfc79f89176d1542340c783fdf06c173cc7abd",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "fund_size_class_currency": 51318717.35,
+                "fund_size_date": "2026-07-02",
+                "fund_size_nav_fund_base": 51318717.35,
+                "label": "IE000KXM3O48",
+                "share_class_currency": "EUR",
+                "value": 51318717.35
+              }
+            ]
+          },
+          {
+            "statisticId": 4559533,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "listing_details",
+            "created": "2026-03-12T17:07:00.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "6163be71-2175-43d0-9688-8213b51a5a34",
+            "lastModified": "2026-07-03T09:23:15.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "b9d066a934d0dbc0bd0ea3cd4431afdf5612bddc9d2890bc4f94c2a8cc1f4839",
+            "values": [
+              {
+                "bloomberg_code": "QRED LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRED",
+                "inav_ticker": "QREDEU.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.02,
+                "market_bid_offer_spread_pct": 0.18,
+                "market_bid_price": 10.836,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 10.858,
+                "market_price": 10.847,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QREDEUiv.P",
+                "sedol": "BP9N510",
+                "trading_currency": "EUR",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRDE LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRDE",
+                "inav_ticker": "QREDGB.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.02,
+                "market_bid_offer_spread_pct": 0.22,
+                "market_bid_price": 9.273,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 9.294,
+                "market_price": 9.2835,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QREDGBiv.P",
+                "sedol": "BP9N565",
+                "trading_currency": "GBP",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRED GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRED",
+                "inav_ticker": "QREDEU.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0.04,
+                "market_bid_offer_spread_pct": 0.37,
+                "market_bid_price": 10.806,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 10.844,
+                "market_price": 10.79,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QREDEUiv.P",
+                "sedol": "BTCFG07",
+                "trading_currency": "EUR",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "statisticId": 4559650,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "portfolio_statistics",
+            "created": "2026-03-18T18:14:18.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "180100ef-d34d-458c-9115-fd30c633d55b",
+            "lastModified": "2026-06-17T13:13:45.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "80e584bd0b69aaedc4cb9f024ebb2ea183e13cf9297dfb7ed25cb9f46376921d",
+            "values": [
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 29.32972,
+                "index_value": 0,
+                "label": "Active Share",
+                "statistics_date": "2026-05-31",
+                "value": 29.32972
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 2.93057,
+                "index_value": 2.81619,
+                "label": "Dividend Yield",
+                "statistics_date": "2026-05-31",
+                "value": 2.93057
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 2.22677,
+                "index_value": 2.26878,
+                "label": "Price to Book",
+                "statistics_date": "2026-05-31",
+                "value": 2.22677
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 16.67766,
+                "index_value": 17.32671,
+                "label": "Price to Earnings",
+                "statistics_date": "2026-05-31",
+                "value": 16.67766
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 7.04474,
+                "index_value": 6.91565,
+                "label": "Return on Assets",
+                "statistics_date": "2026-05-31",
+                "value": 7.04474
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 18.49486,
+                "index_value": 17.82745,
+                "label": "Return on Equity",
+                "statistics_date": "2026-05-31",
+                "value": 18.49486
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 13.71176,
+                "index_value": 15.05853,
+                "label": "Price to Earnings FY1",
+                "statistics_date": "2026-05-31",
+                "value": 13.71176
+              }
+            ]
+          },
+          {
+            "statisticId": 4559652,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "income_yield",
+            "created": "2026-03-18T18:14:18.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "180100ef-d34d-458c-9115-fd30c633d55b",
+            "lastModified": "2026-06-17T13:13:45.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "2aee8da8fa89f6f9275b1f4ee0bcdd74775cc30efa8343d700fd8f4dda794261",
+            "values": []
+          },
+          {
+            "statisticId": 4559492,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "dilution_adjustments",
+            "created": "2026-03-11T11:59:06.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "7e93ad16-ba55-47a6-b7f5-5c4de65ad1d9",
+            "lastModified": "2026-07-02T13:24:27.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "8460244154d457981efb10bef482e749fd884672021a1fb3def35fc6ed921431",
+            "values": []
+          },
+          {
+            "statisticId": 4559484,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "daily_prices",
+            "created": "2026-03-11T06:52:07.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "6163be71-2175-43d0-9688-8213b51a5a34",
+            "lastModified": "2026-07-03T09:23:15.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "26bc5a1c02069a4b9db20c7eb4d870132f8d091c6f76c04ed971b2755ca2098d",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "label": "IE000KXM3O48",
+                "market_price_date": "2026-07-02",
+                "nav_daily_change": 0.1477,
+                "nav_daily_change_percent": 1.38,
+                "nav_price": 10.8292,
+                "price_date": "2026-07-02",
+                "pricing_type": "Single",
+                "value": 10.8292
+              }
+            ]
+          },
+          {
+            "statisticId": 4559483,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "distributions",
+            "created": "2026-03-11T06:52:07.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "6163be71-2175-43d0-9688-8213b51a5a34",
+            "lastModified": "2026-07-03T09:23:15.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "959471b46f9957f8a02efacfd0636182a201e29c2bbefc138adc9d4ee568b163",
+            "values": [
+              {
+                "announcement_date": "2026-06-05",
+                "distribution_rate": 0.1649,
+                "effective_date": "2026-07-03",
+                "estimated_actual_indicator": "Actual",
+                "label": "IE000KXM3O48",
+                "payment_date": "2026-06-22",
+                "record_date": "2026-06-15",
+                "value": 0.1649,
+                "xd_date": "2026-06-12"
+              }
+            ]
+          },
+          {
+            "statisticId": 4559494,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_charges",
+            "created": "2026-03-11T11:59:06.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "7e93ad16-ba55-47a6-b7f5-5c4de65ad1d9",
+            "lastModified": "2026-07-02T13:24:27.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "a2281bdac18d2cab5d8f65c7758a759d07c87573d13469704ddd8ecb9909eb84",
+            "values": [
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Entry Charge",
+                "order": 1,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Maximum Entry Charge",
+                "order": 2,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Exit Charge",
+                "order": 3,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Annual Management Charge (AMC)",
+                "order": 5,
+                "value": 0,
+                "value_ex_ante": 0.0025,
+                "value_ex_post": 0.0025
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Ongoing Charges Figure (OCF)",
+                "order": 9,
+                "value": 0,
+                "value_estimated_or_actual": "Estimated 1",
+                "value_ex_ante": 0.0025,
+                "value_ex_post": 0.0025
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Incidental Costs",
+                "label": "Total Portfolio Transaction Cost",
+                "order": 11,
+                "value": 0,
+                "value_ex_ante": 0.00191,
+                "value_ex_post": 0.000338180283
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Costs % Charges",
+                "label": "Cumulative Sum of Costs and Charges",
+                "order": 13,
+                "value": 0,
+                "value_ex_ante": 0.0044,
+                "value_ex_post": 0.0028
+              },
+              {
+                "charges_as_at_date": "2026-04-30",
+                "charges_date_ex_ante": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Expense Ratio (TER)",
+                "label": "Total Expense Ratio (TER)",
+                "order": 14,
+                "value": 0,
+                "value_ex_ante": 0.0025
+              }
+            ]
+          },
+          {
+            "statisticId": 4559493,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "turnover",
+            "created": "2026-03-11T11:59:06.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "7e93ad16-ba55-47a6-b7f5-5c4de65ad1d9",
+            "lastModified": "2026-07-02T13:24:27.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "da07a15df347cb9787c9ae9b43c987690c760f09e71147410c1b5083bccc53af",
+            "values": []
+          },
+          {
+            "statisticId": 4559651,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "risk_analysis",
+            "created": "2026-03-18T18:14:18.000Z",
+            "createdBy": 7908,
+            "entityId": 3163461,
+            "jobReference": "180100ef-d34d-458c-9115-fd30c633d55b",
+            "lastModified": "2026-06-17T13:13:45.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "c904ad97dcf8970ca940e1c78290bd69b75a9f75f5384f040cf7ad9553057b1c",
+            "values": []
+          }
+        ]
+      }
+    },
+    {
+      "issuer": "Columbia Threadneedle Investments",
+      "isin": "IE000M07S996",
+      "etf_name": "CT QR Series Global Equity Active UCITS ETF Acc USD",
+      "fund_name": "CT QR Series Global Equity Active UCITS ETF",
+      "share_class_name": "CT QR Series Global Equity Active UCITS ETF Acc USD",
+      "share_class_code": "Acc USD",
+      "share_class_currency": "USD",
+      "fund_base_currency": "USD",
+      "product_type": "ETF",
+      "asset_type": "Equity",
+      "benchmark_name": "MSCI ACWI (NR, USD)",
+      "distribution_type": "Accumulation",
+      "fund_manager": [
+        "Chris Lo"
+      ],
+      "investment_management_company": "Threadneedle Management Luxembourg S.A.",
+      "fund_domicile": "IE",
+      "fund_launch_date": "2026-02-11",
+      "share_class_launch_date": "2026-02-11",
+      "replication_method": "Physical",
+      "sfdr_category": "8",
+      "nav": "11.4688",
+      "nav_date": "2026-07-02",
+      "market_price": "",
+      "market_price_date": "2026-07-02",
+      "total_assets": "87008185.23",
+      "aum_mn": "87.01",
+      "aum_ccy": "USD",
+      "total_assets_date": "2026-07-02",
+      "ter": "0.25",
+      "ter_bps": "25.00",
+      "ter_date": "2026-07-02",
+      "listing_details": [
+        {
+          "bloomberg_code": "QRGU GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRGU",
+          "inav_ticker": "QRGEUS.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0.02,
+          "market_bid_offer_spread_pct": 0.17,
+          "market_bid_price": 11.464,
+          "market_listing_date": "2026-02-13",
+          "market_offer_price": 11.484,
+          "market_price": 11.49,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGEUSiv.P",
+          "sedol": "BTCFG63",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QREG LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QREG",
+          "inav_ticker": "QRGEGB.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.12,
+          "market_bid_price": 8.572,
+          "market_listing_date": "2026-02-13",
+          "market_offer_price": 8.586,
+          "market_price": 8.579,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGEGBiv.P",
+          "sedol": "BTQM1M1",
+          "trading_currency": "GBP",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRGE LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRGE",
+          "inav_ticker": "QRGEUS.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0,
+          "market_bid_offer_spread_pct": 0,
+          "market_bid_price": 11.46,
+          "market_listing_date": "2026-02-13",
+          "market_offer_price": 11.464,
+          "market_price": 11.462,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGEUSiv.P",
+          "sedol": "BTQM1L0",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRGECHF SE",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRGE",
+          "inav_ticker": "QRGECH.IV",
+          "label": "SIX Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.11,
+          "market_bid_price": 9.205,
+          "market_listing_date": "2026-02-13",
+          "market_offer_price": 9.215,
+          "market_price": 9.215,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGECHiv.P",
+          "sedol": "BTY1RT9",
+          "trading_currency": "CHF",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRGE SE",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRGE",
+          "inav_ticker": "QRGEUS.IV",
+          "label": "SIX Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.09,
+          "market_bid_price": 11.48,
+          "market_listing_date": "2026-02-13",
+          "market_offer_price": 11.492,
+          "market_price": 11.492,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGEUSiv.P",
+          "sedol": "BTY1RV1",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRGE GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRGE",
+          "inav_ticker": "QRGEEU.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0.07,
+          "market_bid_offer_spread_pct": 0.7,
+          "market_bid_price": 9.963,
+          "market_listing_date": "2026-02-13",
+          "market_offer_price": 10.028,
+          "market_price": 9.938,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGEEUiv.P",
+          "sedol": "BTQM1N2",
+          "trading_currency": "EUR",
+          "value": 0
+        }
+      ],
+      "fetch_status": "ok",
+      "raw_api_row": {
+        "entityId": 3157086,
+        "parentEntityId": null,
+        "type": "CLSS",
+        "clientId": 2022,
+        "clientCode": "IE000M07S996",
+        "lastModified": "2026-07-03T08:59:53.000Z",
+        "lastModifiedBy": 7908,
+        "created": "2025-08-26T16:26:28.000Z",
+        "createdBy": 7908,
+        "properties_pub": {
+          "amf_category": {
+            "value": "2"
+          },
+          "asset_type": {
+            "value": "Equity"
+          },
+          "benchmark_name": {
+            "value": "MSCI ACWI (NR, USD)"
+          },
+          "broad_investor_type": {
+            "value": "Retail"
+          },
+          "capability": {
+            "value": [
+              "Equity"
+            ]
+          },
+          "citicode": {
+            "value": "BXTY3"
+          },
+          "combined_capability": {
+            "value": [
+              "Equity : Global",
+              "Responsible Investment"
+            ]
+          },
+          "country_individual": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_institutional": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_intermediary": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "distribution_frequency": {
+            "value": "N/A"
+          },
+          "distribution_type": {
+            "value": "Accumulation"
+          },
+          "esg_classification": {
+            "value": "SICAV_ESG_SDR"
+          },
+          "fund_base_currency": {
+            "value": "USD"
+          },
+          "fund_code": {
+            "value": "QRGLEA"
+          },
+          "fund_domicile": {
+            "value": "IE"
+          },
+          "fund_launch_date": {
+            "value": "2026-02-11"
+          },
+          "fund_manager": {
+            "value": [
+              "Chris Lo"
+            ]
+          },
+          "fund_name": {
+            "value": "CT QR Series Global Equity Active UCITS ETF"
+          },
+          "fund_umbrella_code": {
+            "value": "CTIRL ICAV"
+          },
+          "fund_umbrella_name": {
+            "value": "Columbia Threadneedle (IRL) ICAV"
+          },
+          "initial_charge_non_uk": {
+            "value": 0
+          },
+          "investment_management_company": {
+            "value": "Threadneedle Management Luxembourg S.A."
+          },
+          "isin": {
+            "value": "IE000M07S996"
+          },
+          "mexid": {
+            "value": "CTACDO"
+          },
+          "payment_dates": {
+            "value": "N/A"
+          },
+          "performance_fee_applicable": {
+            "value": "N"
+          },
+          "performance_history_complete": {
+            "value": ""
+          },
+          "pricing_type": {
+            "value": "Single"
+          },
+          "priips_investment_amount": {
+            "value": 10000
+          },
+          "priips_rhp": {
+            "value": 5
+          },
+          "priips_sri": {
+            "value": 4
+          },
+          "product_type": {
+            "value": "ETF"
+          },
+          "region_of_investment": {
+            "value": "Global"
+          },
+          "replication_method": {
+            "value": "Physical"
+          },
+          "settlement_cycle": {
+            "value": "T+1/ T+2"
+          },
+          "sfdr_category": {
+            "value": "8"
+          },
+          "share_class_code": {
+            "value": "Acc USD"
+          },
+          "share_class_currency": {
+            "value": "USD"
+          },
+          "share_class_gross_net": {
+            "value": "Gross"
+          },
+          "share_class_hedged": {
+            "value": "Non-Hedged"
+          },
+          "share_class_launch_date": {
+            "value": "2026-02-11"
+          },
+          "share_class_name": {
+            "value": "CT QR Series Global Equity Active UCITS ETF Acc USD"
+          },
+          "share_class_status": {
+            "value": "Active"
+          },
+          "share_type_code": {
+            "value": "Acc"
+          },
+          "srri_risk_score": {
+            "value": 6
+          },
+          "sub_capability": {
+            "value": [
+              "Global"
+            ]
+          },
+          "tax_status": {
+            "value": [
+              "Austria",
+              "Germany",
+              "Italy",
+              "Switzerland",
+              "UK"
+            ]
+          },
+          "valoren": {
+            "value": "150565846"
+          },
+          "wkn": {
+            "value": "A41FLX"
+          },
+          "xd_dates": {
+            "value": "N/A"
+          }
+        },
+        "properties_draft": null,
+        "userProperties_pub": null,
+        "userProperties_draft": null,
+        "jobReference": "38f19e1f-8511-43cd-b904-b2e6e8ee625f",
+        "rowHash": "e1d7226ea1a73a511766e8f42cccd3174cb919f67c75f2437a6956a85ec383bd",
+        "statistics": [
+          {
+            "statisticId": 4557203,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "portfolio_statistics",
+            "created": "2026-02-18T11:47:17.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "7db074ca-2d50-4d0c-a5fb-1e15780bda62",
+            "lastModified": "2026-06-17T13:15:23.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "2c3d59bb758f2c8e6819d57205a07d3746ca00c2f6b48fcecbdeadb7b9529bb1",
+            "values": [
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 63.84269,
+                "index_value": 0,
+                "label": "Active Share",
+                "statistics_date": "2026-05-31",
+                "value": 63.84269
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 1.80201,
+                "index_value": 1.58925,
+                "label": "Dividend Yield",
+                "statistics_date": "2026-05-31",
+                "value": 1.80201
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 2.56004,
+                "index_value": 3.05744,
+                "label": "Price to Book",
+                "statistics_date": "2026-05-31",
+                "value": 2.56004
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 19.58853,
+                "index_value": 21.97978,
+                "label": "Price to Earnings",
+                "statistics_date": "2026-05-31",
+                "value": 19.58853
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 12.14313,
+                "index_value": 10.13685,
+                "label": "Return on Assets",
+                "statistics_date": "2026-05-31",
+                "value": 12.14313
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 20.90482,
+                "index_value": 20.43213,
+                "label": "Return on Equity",
+                "statistics_date": "2026-05-31",
+                "value": 20.90482
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 15.81561,
+                "index_value": 18.22699,
+                "label": "Price to Earnings FY1",
+                "statistics_date": "2026-05-31",
+                "value": 15.81561
+              }
+            ]
+          },
+          {
+            "statisticId": 4558451,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "distributions",
+            "created": "2026-02-26T18:51:59.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "47b16fc2-30e7-498c-be19-1dd3cd57bd4d",
+            "lastModified": "2026-07-03T09:24:53.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "482d674a533cffc4b78d816143fc86d0a38c806d775571ee237a8ec6711e5011",
+            "values": []
+          },
+          {
+            "statisticId": 4560359,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "turnover",
+            "created": "2026-04-13T14:50:37.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "be0c07ea-d8ec-431c-967c-c04beb5e6d0d",
+            "lastModified": "2026-07-02T13:25:12.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "e60a943cbf797985a904db6a3cad2b1a24b83bc48e17212e5af5bd1f599d0f3d",
+            "values": []
+          },
+          {
+            "statisticId": 4557024,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "daily_prices",
+            "created": "2026-02-12T09:55:37.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "47b16fc2-30e7-498c-be19-1dd3cd57bd4d",
+            "lastModified": "2026-07-03T09:24:53.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "b529afd655d0735b80d640903a3156d149bdbf3f2277c8b480594efd203fc9e8",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "label": "IE000M07S996",
+                "market_price_date": "2026-07-02",
+                "nav_daily_change": -0.0069,
+                "nav_daily_change_percent": -0.06,
+                "nav_price": 11.4688,
+                "price_date": "2026-07-02",
+                "pricing_type": "Single",
+                "value": 11.4688
+              }
+            ]
+          },
+          {
+            "statisticId": 4557204,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "risk_analysis",
+            "created": "2026-02-18T11:47:17.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "7db074ca-2d50-4d0c-a5fb-1e15780bda62",
+            "lastModified": "2026-06-17T13:15:23.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "30c080730195c03f71148ba2fda32c84b19a7241899be1861af4d317ad07734f",
+            "values": []
+          },
+          {
+            "statisticId": 4557088,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "listing_details",
+            "created": "2026-02-13T09:47:42.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "47b16fc2-30e7-498c-be19-1dd3cd57bd4d",
+            "lastModified": "2026-07-03T09:24:53.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "6e8076c6836a19e57aa34b2d00b65a4f7ab95513c0bb3284294191dde672f930",
+            "values": [
+              {
+                "bloomberg_code": "QRGU GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRGU",
+                "inav_ticker": "QRGEUS.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0.02,
+                "market_bid_offer_spread_pct": 0.17,
+                "market_bid_price": 11.464,
+                "market_listing_date": "2026-02-13",
+                "market_offer_price": 11.484,
+                "market_price": 11.49,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGEUSiv.P",
+                "sedol": "BTCFG63",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QREG LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QREG",
+                "inav_ticker": "QRGEGB.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.12,
+                "market_bid_price": 8.572,
+                "market_listing_date": "2026-02-13",
+                "market_offer_price": 8.586,
+                "market_price": 8.579,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGEGBiv.P",
+                "sedol": "BTQM1M1",
+                "trading_currency": "GBP",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRGE LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRGE",
+                "inav_ticker": "QRGEUS.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0,
+                "market_bid_offer_spread_pct": 0,
+                "market_bid_price": 11.46,
+                "market_listing_date": "2026-02-13",
+                "market_offer_price": 11.464,
+                "market_price": 11.462,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGEUSiv.P",
+                "sedol": "BTQM1L0",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRGECHF SE",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRGE",
+                "inav_ticker": "QRGECH.IV",
+                "label": "SIX Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.11,
+                "market_bid_price": 9.205,
+                "market_listing_date": "2026-02-13",
+                "market_offer_price": 9.215,
+                "market_price": 9.215,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGECHiv.P",
+                "sedol": "BTY1RT9",
+                "trading_currency": "CHF",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRGE SE",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRGE",
+                "inav_ticker": "QRGEUS.IV",
+                "label": "SIX Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.09,
+                "market_bid_price": 11.48,
+                "market_listing_date": "2026-02-13",
+                "market_offer_price": 11.492,
+                "market_price": 11.492,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGEUSiv.P",
+                "sedol": "BTY1RV1",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRGE GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRGE",
+                "inav_ticker": "QRGEEU.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0.07,
+                "market_bid_offer_spread_pct": 0.7,
+                "market_bid_price": 9.963,
+                "market_listing_date": "2026-02-13",
+                "market_offer_price": 10.028,
+                "market_price": 9.938,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGEEUiv.P",
+                "sedol": "BTQM1N2",
+                "trading_currency": "EUR",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "statisticId": 4557025,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_size_nav",
+            "created": "2026-02-12T09:55:37.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "47b16fc2-30e7-498c-be19-1dd3cd57bd4d",
+            "lastModified": "2026-07-03T09:24:53.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "72afc97c61e74ee817932c34f61219c084f54b8d1247e8f504a33ce9775dbb4d",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "fund_size_class_currency": 87008185.23,
+                "fund_size_date": "2026-07-02",
+                "fund_size_nav_fund_base": 87008185.23,
+                "label": "IE000M07S996",
+                "share_class_currency": "USD",
+                "value": 87008185.23
+              }
+            ]
+          },
+          {
+            "statisticId": 4557022,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "dilution_adjustments",
+            "created": "2026-02-11T15:06:36.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "be0c07ea-d8ec-431c-967c-c04beb5e6d0d",
+            "lastModified": "2026-07-02T13:25:12.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "a688c15c774a679d5fe05d12fbb06ce85ef42c721cebb636b89185a5994c9d95",
+            "values": []
+          },
+          {
+            "statisticId": 4557023,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_charges",
+            "created": "2026-02-11T15:06:36.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "be0c07ea-d8ec-431c-967c-c04beb5e6d0d",
+            "lastModified": "2026-07-02T13:25:12.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "d765ccf5918a9b159f9a0bfefaa1980b24f6670edc348d17ffd1a784a59f50ad",
+            "values": [
+              {
+                "charges_date_ex_ante": "2026-02-11",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Entry Charge",
+                "order": 1,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-02-11",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Maximum Entry Charge",
+                "order": 2,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-02-11",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Exit Charge",
+                "order": 3,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-02-11",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Annual Management Charge (AMC)",
+                "order": 5,
+                "value": 0,
+                "value_ex_ante": 0.0025,
+                "value_ex_post": 0.0025
+              },
+              {
+                "charges_date_ex_ante": "2026-02-11",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Ongoing Charges Figure (OCF)",
+                "order": 9,
+                "value": 0,
+                "value_estimated_or_actual": "Estimated 1",
+                "value_ex_ante": 0.0025,
+                "value_ex_post": 0.0025
+              },
+              {
+                "charges_date_ex_ante": "2026-02-11",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Incidental Costs",
+                "label": "Total Portfolio Transaction Cost",
+                "order": 11,
+                "value": 0,
+                "value_ex_ante": 0.00109,
+                "value_ex_post": -8.175974e-06
+              },
+              {
+                "charges_date_ex_ante": "2026-02-11",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Costs % Charges",
+                "label": "Cumulative Sum of Costs and Charges",
+                "order": 13,
+                "value": 0,
+                "value_ex_ante": 0.00359
+              },
+              {
+                "charges_as_at_date": "2026-02-11",
+                "charges_date_ex_ante": "2026-02-11",
+                "effective_date": "2026-07-02",
+                "group": "Total Expense Ratio (TER)",
+                "label": "Total Expense Ratio (TER)",
+                "order": 14,
+                "value": 0,
+                "value_ex_ante": 0.0025
+              }
+            ]
+          },
+          {
+            "statisticId": 4557205,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "income_yield",
+            "created": "2026-02-18T11:47:17.000Z",
+            "createdBy": 7908,
+            "entityId": 3157086,
+            "jobReference": "7db074ca-2d50-4d0c-a5fb-1e15780bda62",
+            "lastModified": "2026-06-17T13:15:23.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "8f06e86287ec5020f563dfca18fa8d86968757ce75d7376c01b8a451c86f4a41",
+            "values": []
+          }
+        ]
+      }
+    },
+    {
+      "issuer": "Columbia Threadneedle Investments",
+      "isin": "IE000SA19OL0",
+      "etf_name": "CT QR Series European Equity Active UCITS ETF Acc EUR",
+      "fund_name": "CT QR Series European Equity Active UCITS ETF",
+      "share_class_name": "CT QR Series European Equity Active UCITS ETF Acc EUR",
+      "share_class_code": "Acc EUR",
+      "share_class_currency": "EUR",
+      "fund_base_currency": "EUR",
+      "product_type": "ETF",
+      "asset_type": "Equity",
+      "benchmark_name": "MSCI Europe (NR, EUR)",
+      "distribution_type": "Accumulation",
+      "fund_manager": [
+        "Chris Lo"
+      ],
+      "investment_management_company": "Threadneedle Management Luxembourg S.A.",
+      "fund_domicile": "IE",
+      "fund_launch_date": "2025-11-06",
+      "share_class_launch_date": "2025-11-06",
+      "replication_method": "Physical",
+      "sfdr_category": "8",
+      "nav": "11.9609",
+      "nav_date": "2026-07-02",
+      "market_price": "10.192",
+      "market_price_date": "2026-07-02",
+      "total_assets": "51318717.35",
+      "aum_mn": "51.32",
+      "aum_ccy": "EUR",
+      "total_assets_date": "2026-07-02",
+      "ter": "0.25",
+      "ter_bps": "25.00",
+      "ter_date": "2026-07-02",
+      "listing_details": [
+        {
+          "bloomberg_code": "QREU IM",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QREU",
+          "inav_ticker": "QREUEU.IV",
+          "label": "Euronext Milan",
+          "market_bid_offer_spread_amt": 0.22,
+          "market_bid_offer_spread_pct": 1.82,
+          "market_bid_price": 11.888,
+          "market_listing_date": "2026-05-29",
+          "market_offer_price": 12.112,
+          "market_price": 11.996,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QREUEUiv.P",
+          "sedol": "BT678H0",
+          "trading_currency": "EUR",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QREU LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QREU",
+          "inav_ticker": "QREUEU.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.02,
+          "market_bid_offer_spread_pct": 0.17,
+          "market_bid_price": 11.99,
+          "market_listing_date": "2025-12-19",
+          "market_offer_price": 12.012,
+          "market_price": 12.001,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QREUEUiv.P",
+          "sedol": "BTQM1B0",
+          "trading_currency": "EUR",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRUE LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUE",
+          "inav_ticker": "QREUGB.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.1,
+          "market_bid_price": 10.27,
+          "market_listing_date": "2025-12-19",
+          "market_offer_price": 10.284,
+          "market_price": 10.277,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QREUGBiv.P",
+          "sedol": "BTQM1C1",
+          "trading_currency": "GBP",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QREU SE",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QREU",
+          "inav_ticker": "QREUEU.IV",
+          "label": "SIX Exchange",
+          "market_bid_offer_spread_amt": 0.02,
+          "market_bid_offer_spread_pct": 0.17,
+          "market_bid_price": 12,
+          "market_listing_date": "2025-12-03",
+          "market_offer_price": 12.018,
+          "market_price": 12,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QREUEUiv.P",
+          "sedol": "BTY1RN3",
+          "trading_currency": "EUR",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QREUCHF SE",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QREU",
+          "inav_ticker": "QREUCH.IV",
+          "label": "SIX Exchange",
+          "market_bid_offer_spread_amt": 0.02,
+          "market_bid_offer_spread_pct": 0.18,
+          "market_bid_price": 11.014,
+          "market_listing_date": "2025-12-03",
+          "market_offer_price": 11.03,
+          "market_price": 11.014,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QREUCHiv.P",
+          "sedol": "BTY1RM2",
+          "trading_currency": "CHF",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QREU GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QREU",
+          "inav_ticker": "QREUEU.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0.06,
+          "market_bid_offer_spread_pct": 0.5,
+          "market_bid_price": 11.94,
+          "market_listing_date": "2025-11-07",
+          "market_offer_price": 12,
+          "market_price": 12.006,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QREUEUiv.P",
+          "sedol": "BTQM1D2",
+          "trading_currency": "EUR",
+          "value": 0
+        }
+      ],
+      "fetch_status": "ok",
+      "raw_api_row": {
+        "entityId": 3157087,
+        "parentEntityId": null,
+        "type": "CLSS",
+        "clientId": 2022,
+        "clientCode": "IE000SA19OL0",
+        "lastModified": "2026-07-03T08:59:51.000Z",
+        "lastModifiedBy": 7908,
+        "created": "2025-08-26T16:26:28.000Z",
+        "createdBy": 7908,
+        "properties_pub": {
+          "amf_category": {
+            "value": "2"
+          },
+          "asset_type": {
+            "value": "Equity"
+          },
+          "benchmark_name": {
+            "value": "MSCI Europe (NR, EUR)"
+          },
+          "broad_investor_type": {
+            "value": "Retail"
+          },
+          "capability": {
+            "value": [
+              "Equity"
+            ]
+          },
+          "citicode": {
+            "value": "BXKK3"
+          },
+          "combined_capability": {
+            "value": [
+              "Equity : Europe",
+              "Responsible Investment"
+            ]
+          },
+          "country_individual": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_institutional": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_intermediary": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "distribution_frequency": {
+            "value": "N/A"
+          },
+          "distribution_type": {
+            "value": "Accumulation"
+          },
+          "esg_classification": {
+            "value": "SICAV_ESG_SDR"
+          },
+          "fund_base_currency": {
+            "value": "EUR"
+          },
+          "fund_code": {
+            "value": "QREUEA"
+          },
+          "fund_domicile": {
+            "value": "IE"
+          },
+          "fund_launch_date": {
+            "value": "2025-11-06"
+          },
+          "fund_manager": {
+            "value": [
+              "Chris Lo"
+            ]
+          },
+          "fund_name": {
+            "value": "CT QR Series European Equity Active UCITS ETF"
+          },
+          "fund_umbrella_code": {
+            "value": "CTIRL ICAV"
+          },
+          "fund_umbrella_name": {
+            "value": "Columbia Threadneedle (IRL) ICAV"
+          },
+          "initial_charge_non_uk": {
+            "value": 0
+          },
+          "investment_management_company": {
+            "value": "Threadneedle Management Luxembourg S.A."
+          },
+          "isin": {
+            "value": "IE000SA19OL0"
+          },
+          "mexid": {
+            "value": "0FADTS"
+          },
+          "payment_dates": {
+            "value": "N/A"
+          },
+          "performance_fee_applicable": {
+            "value": "N"
+          },
+          "performance_history_complete": {
+            "value": ""
+          },
+          "pricing_type": {
+            "value": "Single"
+          },
+          "priips_investment_amount": {
+            "value": 10000
+          },
+          "priips_rhp": {
+            "value": 5
+          },
+          "priips_sri": {
+            "value": 4
+          },
+          "product_type": {
+            "value": "ETF"
+          },
+          "region_of_investment": {
+            "value": "Europe"
+          },
+          "replication_method": {
+            "value": "Physical"
+          },
+          "settlement_cycle": {
+            "value": "T+2"
+          },
+          "sfdr_category": {
+            "value": "8"
+          },
+          "share_class_code": {
+            "value": "Acc EUR"
+          },
+          "share_class_currency": {
+            "value": "EUR"
+          },
+          "share_class_gross_net": {
+            "value": "Gross"
+          },
+          "share_class_hedged": {
+            "value": "Non-Hedged"
+          },
+          "share_class_launch_date": {
+            "value": "2025-11-06"
+          },
+          "share_class_name": {
+            "value": "CT QR Series European Equity Active UCITS ETF Acc EUR"
+          },
+          "share_class_status": {
+            "value": "Active"
+          },
+          "share_type_code": {
+            "value": "Acc"
+          },
+          "srri_risk_score": {
+            "value": 5
+          },
+          "sub_capability": {
+            "value": [
+              "Europe"
+            ]
+          },
+          "tax_status": {
+            "value": [
+              "Austria",
+              "Germany",
+              "Italy",
+              "Switzerland",
+              "UK"
+            ]
+          },
+          "valoren": {
+            "value": "148977472"
+          },
+          "wkn": {
+            "value": "A41FLW"
+          },
+          "xd_dates": {
+            "value": "N/A"
+          }
+        },
+        "properties_draft": null,
+        "userProperties_pub": null,
+        "userProperties_draft": null,
+        "jobReference": "31ee9642-7fc9-49b0-9860-2b5e2bda8764",
+        "rowHash": "5945be45ddbbc4756579edd068815c4dbf165b5bd8b02e6748fcf0d4f5e7bc71",
+        "statistics": [
+          {
+            "statisticId": 4557956,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "distributions",
+            "created": "2026-02-26T18:50:49.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "1c1da24a-b0fa-4b34-aad4-67f6db104ba4",
+            "lastModified": "2026-07-03T09:23:35.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "21512ac73c3114b69b64462ce4d06ba56f5930dca6642f641358014d4487b716",
+            "values": []
+          },
+          {
+            "statisticId": 4537835,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "dilution_adjustments",
+            "created": "2025-11-06T13:24:36.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "16471576-3bf0-435d-9bb3-22e62628a040",
+            "lastModified": "2026-07-02T13:25:29.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "e49529f64da203fb346214f6d91649bdaafe77a7398df6126fa36d5130aaefc8",
+            "values": []
+          },
+          {
+            "statisticId": 4537848,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "daily_prices",
+            "created": "2025-11-07T09:41:07.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "1c1da24a-b0fa-4b34-aad4-67f6db104ba4",
+            "lastModified": "2026-07-03T09:23:35.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "b3e6c9b102c6dcd2e5195b95ae70e9a03b7623472375f7e81bc51afea6685181",
+            "values": [
+              {
+                "bid_offer_spread_amt": 0,
+                "bid_offer_spread_pct": 0,
+                "bid_price": 10.192,
+                "effective_date": "2026-07-03",
+                "label": "IE000SA19OL0",
+                "market_price": 10.192,
+                "market_price_date": "2026-07-02",
+                "nav_daily_change": 0.1632,
+                "nav_daily_change_percent": 1.38,
+                "nav_price": 11.9609,
+                "offer_price": 10.194,
+                "price_date": "2026-07-02",
+                "pricing_type": "Single",
+                "value": 11.9609
+              }
+            ]
+          },
+          {
+            "statisticId": 4537833,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "listing_details",
+            "created": "2025-11-06T13:01:18.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "1c1da24a-b0fa-4b34-aad4-67f6db104ba4",
+            "lastModified": "2026-07-03T09:23:35.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "a473990ec2c769a931dd075b399d37dea2e94fe89b3070e1fc84d29ed37305c9",
+            "values": [
+              {
+                "bloomberg_code": "QREU IM",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QREU",
+                "inav_ticker": "QREUEU.IV",
+                "label": "Euronext Milan",
+                "market_bid_offer_spread_amt": 0.22,
+                "market_bid_offer_spread_pct": 1.82,
+                "market_bid_price": 11.888,
+                "market_listing_date": "2026-05-29",
+                "market_offer_price": 12.112,
+                "market_price": 11.996,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QREUEUiv.P",
+                "sedol": "BT678H0",
+                "trading_currency": "EUR",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QREU LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QREU",
+                "inav_ticker": "QREUEU.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.02,
+                "market_bid_offer_spread_pct": 0.17,
+                "market_bid_price": 11.99,
+                "market_listing_date": "2025-12-19",
+                "market_offer_price": 12.012,
+                "market_price": 12.001,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QREUEUiv.P",
+                "sedol": "BTQM1B0",
+                "trading_currency": "EUR",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRUE LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUE",
+                "inav_ticker": "QREUGB.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.1,
+                "market_bid_price": 10.27,
+                "market_listing_date": "2025-12-19",
+                "market_offer_price": 10.284,
+                "market_price": 10.277,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QREUGBiv.P",
+                "sedol": "BTQM1C1",
+                "trading_currency": "GBP",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QREU SE",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QREU",
+                "inav_ticker": "QREUEU.IV",
+                "label": "SIX Exchange",
+                "market_bid_offer_spread_amt": 0.02,
+                "market_bid_offer_spread_pct": 0.17,
+                "market_bid_price": 12,
+                "market_listing_date": "2025-12-03",
+                "market_offer_price": 12.018,
+                "market_price": 12,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QREUEUiv.P",
+                "sedol": "BTY1RN3",
+                "trading_currency": "EUR",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QREUCHF SE",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QREU",
+                "inav_ticker": "QREUCH.IV",
+                "label": "SIX Exchange",
+                "market_bid_offer_spread_amt": 0.02,
+                "market_bid_offer_spread_pct": 0.18,
+                "market_bid_price": 11.014,
+                "market_listing_date": "2025-12-03",
+                "market_offer_price": 11.03,
+                "market_price": 11.014,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QREUCHiv.P",
+                "sedol": "BTY1RM2",
+                "trading_currency": "CHF",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QREU GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QREU",
+                "inav_ticker": "QREUEU.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0.06,
+                "market_bid_offer_spread_pct": 0.5,
+                "market_bid_price": 11.94,
+                "market_listing_date": "2025-11-07",
+                "market_offer_price": 12,
+                "market_price": 12.006,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QREUEUiv.P",
+                "sedol": "BTQM1D2",
+                "trading_currency": "EUR",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "statisticId": 4537837,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_charges",
+            "created": "2025-11-06T15:30:25.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "16471576-3bf0-435d-9bb3-22e62628a040",
+            "lastModified": "2026-07-02T13:25:29.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "5da2d8a4dacb7ad2889c8dad011535894f299406889cdde7fb45666682e0a5ee",
+            "values": [
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Entry Charge",
+                "order": 1,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Maximum Entry Charge",
+                "order": 2,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Exit Charge",
+                "order": 3,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Annual Management Charge (AMC)",
+                "order": 5,
+                "value": 0,
+                "value_ex_ante": 0.0025,
+                "value_ex_post": 0.0025
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Ongoing Charges Figure (OCF)",
+                "order": 9,
+                "value": 0,
+                "value_estimated_or_actual": "Estimated 1",
+                "value_ex_ante": 0.0025,
+                "value_ex_post": 0.0025
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Incidental Costs",
+                "label": "Total Portfolio Transaction Cost",
+                "order": 11,
+                "value": 0,
+                "value_ex_ante": 0.00191,
+                "value_ex_post": 0.000338180283
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Costs % Charges",
+                "label": "Cumulative Sum of Costs and Charges",
+                "order": 13,
+                "value": 0,
+                "value_ex_ante": 0.0044,
+                "value_ex_post": 0.0028
+              },
+              {
+                "charges_as_at_date": "2026-04-30",
+                "charges_date_ex_ante": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Expense Ratio (TER)",
+                "label": "Total Expense Ratio (TER)",
+                "order": 14,
+                "value": 0,
+                "value_ex_ante": 0.0025
+              }
+            ]
+          },
+          {
+            "statisticId": 4555136,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "risk_analysis",
+            "created": "2026-02-06T10:22:08.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "4cf8b6dd-867f-4aa3-8f50-e1f6fefcf506",
+            "lastModified": "2026-06-17T13:14:40.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "d185254839813abe68f3d00d3906f91ad02f76af712f4cc55fa0e71eb79bb9dc",
+            "values": []
+          },
+          {
+            "statisticId": 4550693,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "turnover",
+            "created": "2026-01-14T16:28:31.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "16471576-3bf0-435d-9bb3-22e62628a040",
+            "lastModified": "2026-07-02T13:25:29.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "91d034b1e7cc37655d088f99ed30686bc7cc8e6052ab72677993b3e0716fe980",
+            "values": []
+          },
+          {
+            "statisticId": 4537849,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_size_nav",
+            "created": "2025-11-07T09:41:07.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "1c1da24a-b0fa-4b34-aad4-67f6db104ba4",
+            "lastModified": "2026-07-03T09:23:35.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "1236960f135cfa9860fff5174cfa445fc7a86c6cf6af9922ac358533fa4f669d",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "fund_size_class_currency": 51318717.35,
+                "fund_size_date": "2026-07-02",
+                "fund_size_nav_fund_base": 51318717.35,
+                "label": "IE000SA19OL0",
+                "share_class_currency": "EUR",
+                "value": 51318717.35
+              }
+            ]
+          },
+          {
+            "statisticId": 4557202,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "portfolio_statistics",
+            "created": "2026-02-18T11:47:06.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "4cf8b6dd-867f-4aa3-8f50-e1f6fefcf506",
+            "lastModified": "2026-06-17T13:14:40.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "1f6875ebe4fe8dfe9f5a0e65ac796d47338a84033234cb23f0dff1accf4d013c",
+            "values": [
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 29.32972,
+                "index_value": 0,
+                "label": "Active Share",
+                "statistics_date": "2026-05-31",
+                "value": 29.32972
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 2.93057,
+                "index_value": 2.81619,
+                "label": "Dividend Yield",
+                "statistics_date": "2026-05-31",
+                "value": 2.93057
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 2.22677,
+                "index_value": 2.26878,
+                "label": "Price to Book",
+                "statistics_date": "2026-05-31",
+                "value": 2.22677
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 16.67766,
+                "index_value": 17.32671,
+                "label": "Price to Earnings",
+                "statistics_date": "2026-05-31",
+                "value": 16.67766
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 7.04474,
+                "index_value": 6.91565,
+                "label": "Return on Assets",
+                "statistics_date": "2026-05-31",
+                "value": 7.04474
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 18.49486,
+                "index_value": 17.82745,
+                "label": "Return on Equity",
+                "statistics_date": "2026-05-31",
+                "value": 18.49486
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 13.71176,
+                "index_value": 15.05853,
+                "label": "Price to Earnings FY1",
+                "statistics_date": "2026-05-31",
+                "value": 13.71176
+              }
+            ]
+          },
+          {
+            "statisticId": 4538308,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "income_yield",
+            "created": "2025-11-19T13:06:23.000Z",
+            "createdBy": 7908,
+            "entityId": 3157087,
+            "jobReference": "4cf8b6dd-867f-4aa3-8f50-e1f6fefcf506",
+            "lastModified": "2026-06-17T13:14:40.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "f79cfd9c0b9a1f4664dd2a44c5abcc721d8ea9350c85599955749570c7bce46f",
+            "values": []
+          }
+        ]
+      }
+    },
+    {
+      "issuer": "Columbia Threadneedle Investments",
+      "isin": "IE000SWYZ0D5",
+      "etf_name": "CT QR Series US Equity Active UCITS ETF Inc USD",
+      "fund_name": "CT QR Series US Equity Active UCITS ETF",
+      "share_class_name": "CT QR Series US Equity Active UCITS ETF Inc USD",
+      "share_class_code": "Inc USD",
+      "share_class_currency": "USD",
+      "fund_base_currency": "USD",
+      "product_type": "ETF",
+      "asset_type": "Equity",
+      "benchmark_name": "Russell 1000 (NR, USD)",
+      "distribution_type": "Income",
+      "fund_manager": [
+        "Chris Lo"
+      ],
+      "investment_management_company": "Threadneedle Management Luxembourg S.A.",
+      "fund_domicile": "IE",
+      "fund_launch_date": "2025-11-06",
+      "share_class_launch_date": "2026-03-10",
+      "replication_method": "Physical",
+      "sfdr_category": "8",
+      "nav": "10.5909",
+      "nav_date": "2026-07-02",
+      "market_price": "",
+      "market_price_date": "2026-07-02",
+      "total_assets": "78024987",
+      "aum_mn": "78.02",
+      "aum_ccy": "USD",
+      "total_assets_date": "2026-07-02",
+      "ter": "0.20",
+      "ter_bps": "20.00",
+      "ter_date": "2026-07-02",
+      "listing_details": [
+        {
+          "bloomberg_code": "QRUD GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUD",
+          "inav_ticker": "QRUDUS.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0,
+          "market_bid_offer_spread_pct": 0,
+          "market_bid_price": 10.608,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 10.612,
+          "market_price": 10.626,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUDUSiv.P",
+          "sedol": "BTCFG30",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRDU LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRDU",
+          "inav_ticker": "QRUDGB.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.13,
+          "market_bid_price": 7.925,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 7.935,
+          "market_price": 7.93,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUDGBiv.P",
+          "sedol": "BP9N509",
+          "trading_currency": "GBP",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRUD LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUD",
+          "inav_ticker": "QRUDUS.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.01,
+          "market_bid_offer_spread_pct": 0.09,
+          "market_bid_price": 10.588,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 10.602,
+          "market_price": 10.595,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUDUSiv.P",
+          "sedol": "BP9N4Z7",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRUW GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRUW",
+          "inav_ticker": "QRUDEU.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0.09,
+          "market_bid_offer_spread_pct": 0.97,
+          "market_bid_price": 9.189,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 9.279,
+          "market_price": 9.282,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRUDEUiv.P",
+          "sedol": "BTCFG41",
+          "trading_currency": "EUR",
+          "value": 0
+        }
+      ],
+      "fetch_status": "ok",
+      "raw_api_row": {
+        "entityId": 3163460,
+        "parentEntityId": null,
+        "type": "CLSS",
+        "clientId": 2022,
+        "clientCode": "IE000SWYZ0D5",
+        "lastModified": "2026-07-03T08:59:53.000Z",
+        "lastModifiedBy": 7908,
+        "created": "2026-02-26T18:26:31.000Z",
+        "createdBy": 7908,
+        "properties_pub": {
+          "amf_category": {
+            "value": "2"
+          },
+          "asset_type": {
+            "value": "Equity"
+          },
+          "benchmark_name": {
+            "value": "Russell 1000 (NR, USD)"
+          },
+          "broad_investor_type": {
+            "value": "Retail"
+          },
+          "capability": {
+            "value": [
+              "Equity"
+            ]
+          },
+          "citicode": {
+            "value": "CADGC"
+          },
+          "combined_capability": {
+            "value": [
+              "Equity : US",
+              "Responsible Investment"
+            ]
+          },
+          "country_individual": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_institutional": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_intermediary": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "distribution_frequency": {
+            "value": "Semi-Annual"
+          },
+          "distribution_type": {
+            "value": "Income"
+          },
+          "esg_classification": {
+            "value": "SICAV_ESG_SDR"
+          },
+          "fund_base_currency": {
+            "value": "USD"
+          },
+          "fund_code": {
+            "value": "QRUSEA"
+          },
+          "fund_domicile": {
+            "value": "IE"
+          },
+          "fund_launch_date": {
+            "value": "2025-11-06"
+          },
+          "fund_manager": {
+            "value": [
+              "Chris Lo"
+            ]
+          },
+          "fund_name": {
+            "value": "CT QR Series US Equity Active UCITS ETF"
+          },
+          "fund_umbrella_code": {
+            "value": "CTIRL ICAV"
+          },
+          "fund_umbrella_name": {
+            "value": "Columbia Threadneedle (IRL) ICAV"
+          },
+          "initial_charge_non_uk": {
+            "value": 0
+          },
+          "investment_management_company": {
+            "value": "Threadneedle Management Luxembourg S.A."
+          },
+          "isin": {
+            "value": "IE000SWYZ0D5"
+          },
+          "mexid": {
+            "value": "CTACEY"
+          },
+          "payment_dates": {
+            "value": "June and Dec 15th Business Day"
+          },
+          "performance_fee_applicable": {
+            "value": "N"
+          },
+          "performance_history_complete": {
+            "value": ""
+          },
+          "pricing_type": {
+            "value": "Single"
+          },
+          "priips_investment_amount": {
+            "value": 10000
+          },
+          "priips_rhp": {
+            "value": 5
+          },
+          "priips_sri": {
+            "value": 4
+          },
+          "product_type": {
+            "value": "ETF"
+          },
+          "region_of_investment": {
+            "value": "US"
+          },
+          "replication_method": {
+            "value": "Physical"
+          },
+          "settlement_cycle": {
+            "value": "T+1"
+          },
+          "sfdr_category": {
+            "value": "8"
+          },
+          "share_class_code": {
+            "value": "Inc USD"
+          },
+          "share_class_currency": {
+            "value": "USD"
+          },
+          "share_class_gross_net": {
+            "value": "Gross"
+          },
+          "share_class_hedged": {
+            "value": "Non-Hedged"
+          },
+          "share_class_launch_date": {
+            "value": "2026-03-10"
+          },
+          "share_class_name": {
+            "value": "CT QR Series US Equity Active UCITS ETF Inc USD"
+          },
+          "share_class_status": {
+            "value": "Active"
+          },
+          "share_type_code": {
+            "value": "Inc"
+          },
+          "srri_risk_score": {
+            "value": 6
+          },
+          "sub_capability": {
+            "value": [
+              "US"
+            ]
+          },
+          "tax_status": {
+            "value": [
+              "Austria",
+              "Germany",
+              "Italy",
+              "Switzerland",
+              "UK"
+            ]
+          },
+          "valoren": {
+            "value": "152328228"
+          },
+          "wkn": {
+            "value": "A420G3"
+          },
+          "xd_dates": {
+            "value": "June and Dec 10th Business Day"
+          }
+        },
+        "properties_draft": null,
+        "userProperties_pub": null,
+        "userProperties_draft": null,
+        "jobReference": "38f19e1f-8511-43cd-b904-b2e6e8ee625f",
+        "rowHash": "4ec84ef6b9725064fc664a5ede245c3ebfb9e05bcd43d22657c7d42ba0ba6b91",
+        "statistics": [
+          {
+            "statisticId": 4559657,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "risk_analysis",
+            "created": "2026-03-18T18:15:06.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "01a404b0-ba36-4686-ad3c-c0b97361340e",
+            "lastModified": "2026-06-17T13:15:13.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "9bf6792a955776bb678c76a24c91b7d2ce691784a1ffd105e86ad30e5eb88f7c",
+            "values": []
+          },
+          {
+            "statisticId": 4559498,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "turnover",
+            "created": "2026-03-11T12:00:03.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "88262ecb-1b91-472a-be4e-6a54965a7556",
+            "lastModified": "2026-07-02T13:24:18.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "28818613786e9e42b0d8a7a51b0578d45bc33eecf881c83034d0fb56d9f9f7cd",
+            "values": []
+          },
+          {
+            "statisticId": 4559487,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "daily_prices",
+            "created": "2026-03-11T06:52:14.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "c9d856dc-321e-4a91-9b0c-544b0e59fe91",
+            "lastModified": "2026-07-03T09:24:11.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "af27f33d882d3329f02377ced10ca8fc503e5847fdaed698a19131c7e37865be",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "label": "IE000SWYZ0D5",
+                "market_price_date": "2026-07-02",
+                "nav_daily_change": -0.0759,
+                "nav_daily_change_percent": -0.71,
+                "nav_price": 10.5909,
+                "price_date": "2026-07-02",
+                "pricing_type": "Single",
+                "value": 10.5909
+              }
+            ]
+          },
+          {
+            "statisticId": 4559658,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "income_yield",
+            "created": "2026-03-18T18:15:06.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "01a404b0-ba36-4686-ad3c-c0b97361340e",
+            "lastModified": "2026-06-17T13:15:13.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "73515dd7b2013ce2a56c61f579e144ff5cfd6386bdf21b43141d6cf17761dd9b",
+            "values": []
+          },
+          {
+            "statisticId": 4559497,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "dilution_adjustments",
+            "created": "2026-03-11T12:00:03.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "88262ecb-1b91-472a-be4e-6a54965a7556",
+            "lastModified": "2026-07-02T13:24:18.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "5a38550a847109e06cb20e574fe76daee95e8d9b70ee3c5f03f45690fca9b2cd",
+            "values": []
+          },
+          {
+            "statisticId": 4559534,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "listing_details",
+            "created": "2026-03-12T17:07:48.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "c9d856dc-321e-4a91-9b0c-544b0e59fe91",
+            "lastModified": "2026-07-03T09:24:11.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "68f51f528d665c9d44c4fc911ed4ab296e486cfe2a8f2d5a968576bfee19275a",
+            "values": [
+              {
+                "bloomberg_code": "QRUD GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUD",
+                "inav_ticker": "QRUDUS.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0,
+                "market_bid_offer_spread_pct": 0,
+                "market_bid_price": 10.608,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 10.612,
+                "market_price": 10.626,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUDUSiv.P",
+                "sedol": "BTCFG30",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRDU LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRDU",
+                "inav_ticker": "QRUDGB.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.13,
+                "market_bid_price": 7.925,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 7.935,
+                "market_price": 7.93,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUDGBiv.P",
+                "sedol": "BP9N509",
+                "trading_currency": "GBP",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRUD LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUD",
+                "inav_ticker": "QRUDUS.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.01,
+                "market_bid_offer_spread_pct": 0.09,
+                "market_bid_price": 10.588,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 10.602,
+                "market_price": 10.595,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUDUSiv.P",
+                "sedol": "BP9N4Z7",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRUW GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRUW",
+                "inav_ticker": "QRUDEU.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0.09,
+                "market_bid_offer_spread_pct": 0.97,
+                "market_bid_price": 9.189,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 9.279,
+                "market_price": 9.282,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRUDEUiv.P",
+                "sedol": "BTCFG41",
+                "trading_currency": "EUR",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "statisticId": 4559486,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "distributions",
+            "created": "2026-03-11T06:52:14.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "c9d856dc-321e-4a91-9b0c-544b0e59fe91",
+            "lastModified": "2026-07-03T09:24:11.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "b73b03141164f1becbfb530db61e94c181d4e2459b312f4142f474406647dc48",
+            "values": [
+              {
+                "announcement_date": "2026-06-05",
+                "distribution_rate": 0.0257,
+                "effective_date": "2026-07-03",
+                "estimated_actual_indicator": "Actual",
+                "label": "IE000SWYZ0D5",
+                "payment_date": "2026-06-22",
+                "record_date": "2026-06-15",
+                "value": 0.0257,
+                "xd_date": "2026-06-12"
+              }
+            ]
+          },
+          {
+            "statisticId": 4559488,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_size_nav",
+            "created": "2026-03-11T06:52:14.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "c9d856dc-321e-4a91-9b0c-544b0e59fe91",
+            "lastModified": "2026-07-03T09:24:11.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "a0c57b01e2c88841aa86e31a9436faa32a14864dd7b596c4e78ddfa07cdf6761",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "fund_size_class_currency": 78024987,
+                "fund_size_date": "2026-07-02",
+                "fund_size_nav_fund_base": 78024987,
+                "label": "IE000SWYZ0D5",
+                "share_class_currency": "USD",
+                "value": 78024987
+              }
+            ]
+          },
+          {
+            "statisticId": 4559656,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "portfolio_statistics",
+            "created": "2026-03-18T18:15:06.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "01a404b0-ba36-4686-ad3c-c0b97361340e",
+            "lastModified": "2026-06-17T13:15:13.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "3a15c1ab4e66ee77b535b97c389d5bc7d716ee7f3a0a97df02f3e6a552c1bc11",
+            "values": [
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 52.62596,
+                "index_value": 0,
+                "label": "Active Share",
+                "statistics_date": "2026-05-31",
+                "value": 52.62596
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 1.34538,
+                "index_value": 1.06138,
+                "label": "Dividend Yield",
+                "statistics_date": "2026-05-31",
+                "value": 1.34538
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 3.17705,
+                "index_value": 4.07505,
+                "label": "Price to Book",
+                "statistics_date": "2026-05-31",
+                "value": 3.17705
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 21.84557,
+                "index_value": 26.09081,
+                "label": "Price to Earnings",
+                "statistics_date": "2026-05-31",
+                "value": 21.84557
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 13.21794,
+                "index_value": 12.42703,
+                "label": "Return on Assets",
+                "statistics_date": "2026-05-31",
+                "value": 13.21794
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 21.89349,
+                "index_value": 22.24349,
+                "label": "Return on Equity",
+                "statistics_date": "2026-05-31",
+                "value": 21.89349
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 17.10652,
+                "index_value": 21.49742,
+                "label": "Price to Earnings FY1",
+                "statistics_date": "2026-05-31",
+                "value": 17.10652
+              }
+            ]
+          },
+          {
+            "statisticId": 4559499,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_charges",
+            "created": "2026-03-11T12:00:03.000Z",
+            "createdBy": 7908,
+            "entityId": 3163460,
+            "jobReference": "88262ecb-1b91-472a-be4e-6a54965a7556",
+            "lastModified": "2026-07-02T13:24:18.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "a6abe8e6133b02c06aec971dac8993257d330cbc8e5505bef70a822b52cc20d0",
+            "values": [
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Entry Charge",
+                "order": 1,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Maximum Entry Charge",
+                "order": 2,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Exit Charge",
+                "order": 3,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Annual Management Charge (AMC)",
+                "order": 5,
+                "value": 0,
+                "value_ex_ante": 0.002,
+                "value_ex_post": 0.002
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Ongoing Charges Figure (OCF)",
+                "order": 9,
+                "value": 0,
+                "value_estimated_or_actual": "Estimated 1",
+                "value_ex_ante": 0.002,
+                "value_ex_post": 0.002
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Incidental Costs",
+                "label": "Total Portfolio Transaction Cost",
+                "order": 11,
+                "value": 0,
+                "value_ex_ante": 0.0002,
+                "value_ex_post": 1.3062068e-05
+              },
+              {
+                "charges_date_ex_ante": "2026-04-30",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Costs % Charges",
+                "label": "Cumulative Sum of Costs and Charges",
+                "order": 13,
+                "value": 0,
+                "value_ex_ante": 0.0022,
+                "value_ex_post": 0.002
+              },
+              {
+                "charges_as_at_date": "2026-04-30",
+                "charges_date_ex_ante": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Expense Ratio (TER)",
+                "label": "Total Expense Ratio (TER)",
+                "order": 14,
+                "value": 0,
+                "value_ex_ante": 0.002
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "issuer": "Columbia Threadneedle Investments",
+      "isin": "IE000UL7AOT5",
+      "etf_name": "CT QR Series Global Equity Active UCITS ETF Inc USD",
+      "fund_name": "CT QR Series Global Equity Active UCITS ETF",
+      "share_class_name": "CT QR Series Global Equity Active UCITS ETF Inc USD",
+      "share_class_code": "Inc USD",
+      "share_class_currency": "USD",
+      "fund_base_currency": "USD",
+      "product_type": "ETF",
+      "asset_type": "Equity",
+      "benchmark_name": "MSCI ACWI (NR, USD)",
+      "distribution_type": "Income",
+      "fund_manager": [
+        "Chris Lo"
+      ],
+      "investment_management_company": "Threadneedle Management Luxembourg S.A.",
+      "fund_domicile": "IE",
+      "fund_launch_date": "2026-02-11",
+      "share_class_launch_date": "2026-03-10",
+      "replication_method": "Physical",
+      "sfdr_category": "8",
+      "nav": "11.0826",
+      "nav_date": "2026-07-02",
+      "market_price": "",
+      "market_price_date": "2026-07-02",
+      "total_assets": "87008185.23",
+      "aum_mn": "87.01",
+      "aum_ccy": "USD",
+      "total_assets_date": "2026-07-02",
+      "ter": "0.25",
+      "ter_bps": "25.00",
+      "ter_date": "2026-07-02",
+      "listing_details": [
+        {
+          "bloomberg_code": "QRGD GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRGD",
+          "inav_ticker": "QRGDUS.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0.03,
+          "market_bid_offer_spread_pct": 0.27,
+          "market_bid_price": 11.068,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 11.096,
+          "market_price": 11.1,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGDUSiv.P",
+          "sedol": "BTCFDY0",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRDG LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRDG",
+          "inav_ticker": "QRGDGB.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0.02,
+          "market_bid_offer_spread_pct": 0.24,
+          "market_bid_price": 8.278,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 8.296,
+          "market_price": 8.287,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGDGBiv.P",
+          "sedol": "BP9N4Y6",
+          "trading_currency": "GBP",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRGD LN",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRGD",
+          "inav_ticker": "QRGDUS.IV",
+          "label": "London Stock Exchange",
+          "market_bid_offer_spread_amt": 0,
+          "market_bid_offer_spread_pct": 0,
+          "market_bid_price": 11.072,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 11.076,
+          "market_price": 11.074,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGDUSiv.P",
+          "sedol": "BP9N4X5",
+          "trading_currency": "USD",
+          "value": 0
+        },
+        {
+          "bloomberg_code": "QRGW GY",
+          "effective_date": "2026-07-03",
+          "exchange_ticker": "QRGW",
+          "inav_ticker": "QRGDEU.IV",
+          "label": "Xetra Stock Exchange",
+          "market_bid_offer_spread_amt": 0.08,
+          "market_bid_offer_spread_pct": 0.83,
+          "market_bid_price": 9.616,
+          "market_listing_date": "2026-03-12",
+          "market_offer_price": 9.693,
+          "market_price": 9.588,
+          "market_price_date": "2026-07-02",
+          "reuters_code": "QRGDEUiv.P",
+          "sedol": "BSZ9FH9",
+          "trading_currency": "EUR",
+          "value": 0
+        }
+      ],
+      "fetch_status": "ok",
+      "raw_api_row": {
+        "entityId": 3163459,
+        "parentEntityId": null,
+        "type": "CLSS",
+        "clientId": 2022,
+        "clientCode": "IE000UL7AOT5",
+        "lastModified": "2026-07-03T08:59:53.000Z",
+        "lastModifiedBy": 7908,
+        "created": "2026-02-26T18:26:31.000Z",
+        "createdBy": 7908,
+        "properties_pub": {
+          "amf_category": {
+            "value": "2"
+          },
+          "asset_type": {
+            "value": "Equity"
+          },
+          "benchmark_name": {
+            "value": "MSCI ACWI (NR, USD)"
+          },
+          "broad_investor_type": {
+            "value": "Retail"
+          },
+          "capability": {
+            "value": [
+              "Equity"
+            ]
+          },
+          "citicode": {
+            "value": "CADGF"
+          },
+          "combined_capability": {
+            "value": [
+              "Equity : Global",
+              "Responsible Investment"
+            ]
+          },
+          "country_individual": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_institutional": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "country_intermediary": {
+            "value": [
+              "AT",
+              "CH",
+              "DE",
+              "DK",
+              "ES",
+              "FI",
+              "FR",
+              "GB",
+              "IE",
+              "IT",
+              "LI",
+              "LU",
+              "NL",
+              "No",
+              "SE"
+            ]
+          },
+          "distribution_frequency": {
+            "value": "Semi-Annual"
+          },
+          "distribution_type": {
+            "value": "Income"
+          },
+          "esg_classification": {
+            "value": "SICAV_ESG_SDR"
+          },
+          "fund_base_currency": {
+            "value": "USD"
+          },
+          "fund_code": {
+            "value": "QRGLEA"
+          },
+          "fund_domicile": {
+            "value": "IE"
+          },
+          "fund_launch_date": {
+            "value": "2026-02-11"
+          },
+          "fund_manager": {
+            "value": [
+              "Chris Lo"
+            ]
+          },
+          "fund_name": {
+            "value": "CT QR Series Global Equity Active UCITS ETF"
+          },
+          "fund_umbrella_code": {
+            "value": "CTIRL ICAV"
+          },
+          "fund_umbrella_name": {
+            "value": "Columbia Threadneedle (IRL) ICAV"
+          },
+          "initial_charge_non_uk": {
+            "value": 0
+          },
+          "investment_management_company": {
+            "value": "Threadneedle Management Luxembourg S.A."
+          },
+          "isin": {
+            "value": "IE000UL7AOT5"
+          },
+          "mexid": {
+            "value": "CTACEX"
+          },
+          "payment_dates": {
+            "value": "June and Dec 15th Business Day"
+          },
+          "performance_fee_applicable": {
+            "value": "N"
+          },
+          "performance_history_complete": {
+            "value": ""
+          },
+          "pricing_type": {
+            "value": "Single"
+          },
+          "priips_investment_amount": {
+            "value": 10000
+          },
+          "priips_rhp": {
+            "value": 5
+          },
+          "priips_sri": {
+            "value": 4
+          },
+          "product_type": {
+            "value": "ETF"
+          },
+          "region_of_investment": {
+            "value": "Global"
+          },
+          "replication_method": {
+            "value": "Physical"
+          },
+          "settlement_cycle": {
+            "value": "T+1/ T+2"
+          },
+          "sfdr_category": {
+            "value": "8"
+          },
+          "share_class_code": {
+            "value": "Inc USD"
+          },
+          "share_class_currency": {
+            "value": "USD"
+          },
+          "share_class_gross_net": {
+            "value": "Gross"
+          },
+          "share_class_hedged": {
+            "value": "Non-Hedged"
+          },
+          "share_class_launch_date": {
+            "value": "2026-03-10"
+          },
+          "share_class_name": {
+            "value": "CT QR Series Global Equity Active UCITS ETF Inc USD"
+          },
+          "share_class_status": {
+            "value": "Active"
+          },
+          "share_type_code": {
+            "value": "Inc"
+          },
+          "srri_risk_score": {
+            "value": 6
+          },
+          "sub_capability": {
+            "value": [
+              "Global"
+            ]
+          },
+          "tax_status": {
+            "value": [
+              "Austria",
+              "Germany",
+              "Italy",
+              "Switzerland",
+              "UK"
+            ]
+          },
+          "valoren": {
+            "value": "152326706"
+          },
+          "wkn": {
+            "value": "A420G4"
+          },
+          "xd_dates": {
+            "value": "June and Dec 10th Business Day"
+          }
+        },
+        "properties_draft": null,
+        "userProperties_pub": null,
+        "userProperties_draft": null,
+        "jobReference": "38f19e1f-8511-43cd-b904-b2e6e8ee625f",
+        "rowHash": "b99af92e1540a7d97520d6fd6fabe9fa19492710be822e054740ade8ef5171f8",
+        "statistics": [
+          {
+            "statisticId": 4559490,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "daily_prices",
+            "created": "2026-03-11T06:52:34.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "0da3f8f8-13bb-410b-a81b-43a6891e2f4c",
+            "lastModified": "2026-07-03T09:23:57.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "2229cfeb1fc212f3c724e062841b17b86e5479dc90af1ccd9bd165808aefdab7",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "label": "IE000UL7AOT5",
+                "market_price_date": "2026-07-02",
+                "nav_daily_change": -0.0067,
+                "nav_daily_change_percent": -0.06,
+                "nav_price": 11.0826,
+                "price_date": "2026-07-02",
+                "pricing_type": "Single",
+                "value": 11.0826
+              }
+            ]
+          },
+          {
+            "statisticId": 4559489,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "distributions",
+            "created": "2026-03-11T06:52:34.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "0da3f8f8-13bb-410b-a81b-43a6891e2f4c",
+            "lastModified": "2026-07-03T09:23:57.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "105204fb198bd641a2ad9d903c9dfb3f10a0e92216804a281d211f33ec7a9c54",
+            "values": [
+              {
+                "announcement_date": "2026-06-05",
+                "distribution_rate": 0.0593,
+                "effective_date": "2026-07-03",
+                "estimated_actual_indicator": "Actual",
+                "label": "IE000UL7AOT5",
+                "payment_date": "2026-06-22",
+                "record_date": "2026-06-15",
+                "value": 0.0593,
+                "xd_date": "2026-06-12"
+              }
+            ]
+          },
+          {
+            "statisticId": 4559495,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "dilution_adjustments",
+            "created": "2026-03-11T11:59:12.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "6cc01474-549b-4469-8333-b3e814cf84db",
+            "lastModified": "2026-07-02T13:24:12.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "6328e87355313c3112f43868f4f6f543db6cffc05800c40e510c7934ea65a78d",
+            "values": []
+          },
+          {
+            "statisticId": 4559653,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "portfolio_statistics",
+            "created": "2026-03-18T18:14:29.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "570250f5-fb8b-43bf-aa67-5cfd8d793f17",
+            "lastModified": "2026-06-17T13:13:56.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "a0459cdb638082fa899fdeed03e02e501ae25a3fcac3e123fd7a93a4ec00262a",
+            "values": [
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 63.84269,
+                "index_value": 0,
+                "label": "Active Share",
+                "statistics_date": "2026-05-31",
+                "value": 63.84269
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 1.80201,
+                "index_value": 1.58925,
+                "label": "Dividend Yield",
+                "statistics_date": "2026-05-31",
+                "value": 1.80201
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 2.56004,
+                "index_value": 3.05744,
+                "label": "Price to Book",
+                "statistics_date": "2026-05-31",
+                "value": 2.56004
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 19.58853,
+                "index_value": 21.97978,
+                "label": "Price to Earnings",
+                "statistics_date": "2026-05-31",
+                "value": 19.58853
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 12.14313,
+                "index_value": 10.13685,
+                "label": "Return on Assets",
+                "statistics_date": "2026-05-31",
+                "value": 12.14313
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 20.90482,
+                "index_value": 20.43213,
+                "label": "Return on Equity",
+                "statistics_date": "2026-05-31",
+                "value": 20.90482
+              },
+              {
+                "effective_date": "2026-06-17",
+                "fund_value": 15.81561,
+                "index_value": 18.22699,
+                "label": "Price to Earnings FY1",
+                "statistics_date": "2026-05-31",
+                "value": 15.81561
+              }
+            ]
+          },
+          {
+            "statisticId": 4559491,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_size_nav",
+            "created": "2026-03-11T06:52:34.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "0da3f8f8-13bb-410b-a81b-43a6891e2f4c",
+            "lastModified": "2026-07-03T09:23:57.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "ff6ba562d2f01dfe4b7e5cb25493bbdb5a461d622e0ebebcfc2c9e7935f97738",
+            "values": [
+              {
+                "effective_date": "2026-07-03",
+                "fund_size_class_currency": 87008185.23,
+                "fund_size_date": "2026-07-02",
+                "fund_size_nav_fund_base": 87008185.23,
+                "label": "IE000UL7AOT5",
+                "share_class_currency": "USD",
+                "value": 87008185.23
+              }
+            ]
+          },
+          {
+            "statisticId": 4560358,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "turnover",
+            "created": "2026-04-13T14:50:33.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "6cc01474-549b-4469-8333-b3e814cf84db",
+            "lastModified": "2026-07-02T13:24:12.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "e70604d7bf66c28731a7f45f5ceb809d1e4b443dd5d041482ec89cef6084fb5a",
+            "values": []
+          },
+          {
+            "statisticId": 4559496,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "fund_charges",
+            "created": "2026-03-11T11:59:12.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "6cc01474-549b-4469-8333-b3e814cf84db",
+            "lastModified": "2026-07-02T13:24:12.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "2530c87eee0a62e377568fb2b88780431a0c5a83bb4232798b9461fcf818eeff",
+            "values": [
+              {
+                "charges_date_ex_ante": "2026-03-10",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Entry Charge",
+                "order": 1,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-03-10",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Maximum Entry Charge",
+                "order": 2,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-03-10",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Entry/ Exit Charges",
+                "label": "Exit Charge",
+                "order": 3,
+                "value": 0,
+                "value_ex_ante": 0,
+                "value_ex_post": 0
+              },
+              {
+                "charges_date_ex_ante": "2026-03-10",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Annual Management Charge (AMC)",
+                "order": 5,
+                "value": 0,
+                "value_ex_ante": 0.0025,
+                "value_ex_post": 0.0025
+              },
+              {
+                "charges_date_ex_ante": "2026-03-10",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Ongoing Charges",
+                "label": "Ongoing Charges Figure (OCF)",
+                "order": 9,
+                "value": 0,
+                "value_estimated_or_actual": "Estimated 1",
+                "value_ex_ante": 0.0025,
+                "value_ex_post": 0.0025
+              },
+              {
+                "charges_date_ex_ante": "2026-03-10",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Incidental Costs",
+                "label": "Total Portfolio Transaction Cost",
+                "order": 11,
+                "value": 0,
+                "value_ex_ante": 0.00109,
+                "value_ex_post": -8.175974e-06
+              },
+              {
+                "charges_date_ex_ante": "2026-03-10",
+                "charges_date_ex_post": "2026-04-30",
+                "effective_date": "2026-07-02",
+                "group": "Total Costs % Charges",
+                "label": "Cumulative Sum of Costs and Charges",
+                "order": 13,
+                "value": 0,
+                "value_ex_ante": 0.00359
+              },
+              {
+                "charges_as_at_date": "2026-03-10",
+                "charges_date_ex_ante": "2026-03-10",
+                "effective_date": "2026-07-02",
+                "group": "Total Expense Ratio (TER)",
+                "label": "Total Expense Ratio (TER)",
+                "order": 14,
+                "value": 0,
+                "value_ex_ante": 0.0025
+              }
+            ]
+          },
+          {
+            "statisticId": 4559654,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "risk_analysis",
+            "created": "2026-03-18T18:14:29.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "570250f5-fb8b-43bf-aa67-5cfd8d793f17",
+            "lastModified": "2026-06-17T13:13:56.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "3529432b689d77857503bd33b20b1691cd55eb932d155cbbad67adf3f9369018",
+            "values": []
+          },
+          {
+            "statisticId": 4559532,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "listing_details",
+            "created": "2026-03-12T17:06:38.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "0da3f8f8-13bb-410b-a81b-43a6891e2f4c",
+            "lastModified": "2026-07-03T09:23:57.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "f7d1696ad0bc18fcd89df07a5b5f4c3075c875d07bb7e33fea2a0a3cfb76efe1",
+            "values": [
+              {
+                "bloomberg_code": "QRGD GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRGD",
+                "inav_ticker": "QRGDUS.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0.03,
+                "market_bid_offer_spread_pct": 0.27,
+                "market_bid_price": 11.068,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 11.096,
+                "market_price": 11.1,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGDUSiv.P",
+                "sedol": "BTCFDY0",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRDG LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRDG",
+                "inav_ticker": "QRGDGB.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0.02,
+                "market_bid_offer_spread_pct": 0.24,
+                "market_bid_price": 8.278,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 8.296,
+                "market_price": 8.287,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGDGBiv.P",
+                "sedol": "BP9N4Y6",
+                "trading_currency": "GBP",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRGD LN",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRGD",
+                "inav_ticker": "QRGDUS.IV",
+                "label": "London Stock Exchange",
+                "market_bid_offer_spread_amt": 0,
+                "market_bid_offer_spread_pct": 0,
+                "market_bid_price": 11.072,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 11.076,
+                "market_price": 11.074,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGDUSiv.P",
+                "sedol": "BP9N4X5",
+                "trading_currency": "USD",
+                "value": 0
+              },
+              {
+                "bloomberg_code": "QRGW GY",
+                "effective_date": "2026-07-03",
+                "exchange_ticker": "QRGW",
+                "inav_ticker": "QRGDEU.IV",
+                "label": "Xetra Stock Exchange",
+                "market_bid_offer_spread_amt": 0.08,
+                "market_bid_offer_spread_pct": 0.83,
+                "market_bid_price": 9.616,
+                "market_listing_date": "2026-03-12",
+                "market_offer_price": 9.693,
+                "market_price": 9.588,
+                "market_price_date": "2026-07-02",
+                "reuters_code": "QRGDEUiv.P",
+                "sedol": "BSZ9FH9",
+                "trading_currency": "EUR",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "statisticId": 4559655,
+            "ccy": "N/A",
+            "clientId": 2022,
+            "code": "income_yield",
+            "created": "2026-03-18T18:14:29.000Z",
+            "createdBy": 7908,
+            "entityId": 3163459,
+            "jobReference": "570250f5-fb8b-43bf-aa67-5cfd8d793f17",
+            "lastModified": "2026-06-17T13:13:56.000Z",
+            "lastModifiedBy": 7908,
+            "rowHash": "33ae0feed133dab490a758d8b7e3bd8f458a7d901173793db66cef6e8591028a",
+            "values": []
+          }
+        ]
+      }
+    }
+  ]
+}

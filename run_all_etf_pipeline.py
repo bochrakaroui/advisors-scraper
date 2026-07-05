@@ -5,16 +5,32 @@ from __future__ import annotations
 import argparse
 import asyncio
 import csv
+import io
 import importlib.util
+import json
 import os
 import re
 import shutil
+import time
 import zipfile
+from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Awaitable, Callable
 import xml.etree.ElementTree as ET
+
+BASE_DIR = Path(__file__).resolve().parent
+
+
+def load_module_from_path(module_name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(module_name, path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Could not load module {module_name} from {path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
 
 from providers.amundi.extract_amundi_fields import (
     INPUT_DIR as AMUNDI_INPUT_DIR,
@@ -22,12 +38,7 @@ from providers.amundi.extract_amundi_fields import (
     find_latest_download as find_latest_amundi_download,
     parse_xlsx_rows as parse_amundi_source_rows,
 )
-from providers.output_schema import (
-    OUTPUT_COLUMNS,
-    extract_row_isin,
-    infer_consistent_row_currency,
-    infer_aum_currency_from_row,
-)
+from providers.output_schema import OUTPUT_COLUMNS, infer_aum_currency_from_row
 from providers.firsttrust.extract_firsttrust_fields import (
     INPUT_DIR as FIRSTTRUST_INPUT_DIR,
     extract_rows as extract_firsttrust_rows,
@@ -141,72 +152,6 @@ from providers.imgp.extract_imgp_fields import (
     find_latest_download as find_latest_imgp_download,
     parse_snapshot_rows as parse_imgp_source_rows,
 )
-from providers.American_Century_Investments.extract_american_century_investments_fields import (
-    INPUT_DIR as AMERICAN_CENTURY_INVESTMENTS_INPUT_DIR,
-    extract_rows as extract_american_century_investments_rows,
-    find_latest_download as find_latest_american_century_investments_download,
-    parse_snapshot_rows as parse_american_century_investments_source_rows,
-)
-from providers.Columbia.extract_columbia_fields import (
-    INPUT_DIR as COLUMBIA_INPUT_DIR,
-    extract_rows as extract_columbia_rows,
-    find_latest_download as find_latest_columbia_download,
-    parse_snapshot_rows as parse_columbia_source_rows,
-)
-from providers.ARK_Investment_Management.extract_ARK_fields import (
-    INPUT_DIR as ARK_INPUT_DIR,
-    extract_rows as extract_ark_rows,
-    find_latest_download as find_latest_ark_download,
-    parse_snapshot_rows as parse_ark_source_rows,
-)
-from providers.Robeco.extract_Robeco_fields import (
-    INPUT_DIR as ROBECO_INPUT_DIR,
-    extract_rows as extract_robeco_rows,
-    find_latest_download as find_latest_robeco_download,
-    parse_snapshot_rows as parse_robeco_source_rows,
-)
-from providers.Schroders.extract_schroders_fields import (
-    INPUT_DIR as SCHRODERS_INPUT_DIR,
-    extract_rows as extract_schroders_rows,
-    find_latest_download as find_latest_schroders_download,
-    parse_snapshot_rows as parse_schroders_source_rows,
-)
-from providers.Ossiam.extract_ossiam_fields import (
-    INPUT_DIR as OSSIAM_INPUT_DIR,
-    extract_rows as extract_ossiam_rows,
-    find_latest_download as find_latest_ossiam_download,
-    parse_snapshot as parse_ossiam_source_rows,
-)
-from providers.Connect_ETFs.extract_connect_etfs_fields import (
-    INPUT_DIR as CONNECT_ETFS_INPUT_DIR,
-    extract_rows as extract_connect_etfs_rows,
-    find_latest_download as find_latest_connect_etfs_download,
-    parse_snapshot_rows as parse_connect_etfs_source_rows,
-)
-from providers.Dimensional.extract_dimensional_fields import (
-    INPUT_DIR as DIMENSIONAL_INPUT_DIR,
-    extract_rows as extract_dimensional_rows,
-    find_latest_download as find_latest_dimensional_download,
-    parse_snapshot_rows as parse_dimensional_source_rows,
-)
-from providers.Expat.extract_expat_fields import (
-    INPUT_DIR as EXPAT_INPUT_DIR,
-    extract_rows as extract_expat_rows,
-    find_latest_download as find_latest_expat_download,
-    parse_snapshot_rows as parse_expat_source_rows,
-)
-from providers.Waystone.extract_waystone_fields import (
-    INPUT_DIR as WAYSTONE_INPUT_DIR,
-    extract_rows as extract_waystone_rows,
-    find_latest_download as find_latest_waystone_download,
-    load_rows as parse_waystone_source_rows,
-)
-from providers.KraneShares.extract_kraneshares_fields import (
-    INPUT_DIR as KRANESHARES_INPUT_DIR,
-    extract_rows as extract_kraneshares_rows,
-    find_latest_download as find_latest_kraneshares_download,
-    parse_snapshot_rows as parse_kraneshares_source_rows,
-)
 from providers.abrdn.extract_abrdn_fields import (
     INPUT_DIR as ABRDN_INPUT_DIR,
     extract_rows as extract_abrdn_rows,
@@ -225,11 +170,70 @@ from providers.Alpha_Ucits.extract_alpha_ucits_fields import (
     find_latest_download as find_latest_alpha_ucits_download,
     parse_snapshot_rows as parse_alpha_ucits_source_rows,
 )
+from providers.American_Century_Investments.extract_american_century_investments_fields import (
+    INPUT_DIR as AMERICAN_CENTURY_INPUT_DIR,
+    extract_rows as extract_american_century_rows,
+    find_latest_download as find_latest_american_century_download,
+    parse_snapshot_rows as parse_american_century_source_rows,
+)
+from providers.ARK_Investment_Management.extract_ARK_fields import (
+    INPUT_DIR as ARK_INPUT_DIR,
+    extract_rows as extract_ark_rows,
+    find_latest_download as find_latest_ark_download,
+    parse_snapshot_rows as parse_ark_source_rows,
+)
+from providers.BNP_Paribas_Asset_Management.extract_bnp_fields import (
+    INPUT_DIR as BNP_INPUT_DIR,
+    extract_rows as extract_bnp_rows,
+    find_latest_download as find_latest_bnp_download,
+    parse_snapshot_rows as parse_bnp_source_rows,
+)
+from providers.Columbia.extract_columbia_fields import (
+    INPUT_DIR as COLUMBIA_INPUT_DIR,
+    extract_rows as extract_columbia_rows,
+    find_latest_download as find_latest_columbia_download,
+    parse_snapshot_rows as parse_columbia_source_rows,
+)
+from providers.Connect_ETFs.extract_connect_etfs_fields import (
+    INPUT_DIR as CONNECT_ETFS_INPUT_DIR,
+    extract_rows as extract_connect_etfs_rows,
+    find_latest_download as find_latest_connect_etfs_download,
+    parse_snapshot_rows as parse_connect_etfs_source_rows,
+)
+from providers.Dimensional.extract_dimensional_fields import (
+    INPUT_DIR as DIMENSIONAL_INPUT_DIR,
+    extract_rows as extract_dimensional_rows,
+    find_latest_download as find_latest_dimensional_download,
+    parse_snapshot_rows as parse_dimensional_source_rows,
+)
+from providers.Goldman_Sachs.extract_goldman_sachs_fields import (
+    INPUT_DIR as GOLDMAN_SACHS_INPUT_DIR,
+    extract_rows as extract_goldman_sachs_rows,
+    find_latest_download as find_latest_goldman_sachs_download,
+    parse_snapshot_rows as parse_goldman_sachs_source_rows,
+)
+from providers.Janus_Henderson.extract_janus_henderson_fields import (
+    INPUT_DIR as JANUS_HENDERSON_INPUT_DIR,
+    extract_rows as extract_janus_henderson_rows,
+    find_latest_download as find_latest_janus_henderson_download,
+    parse_snapshot_rows as parse_janus_henderson_source_rows,
+)
+from providers.KraneShares.extract_kraneshares_fields import (
+    INPUT_DIR as KRANESHARES_INPUT_DIR,
+    extract_rows as extract_kraneshares_rows,
+    find_latest_download as find_latest_kraneshares_download,
+    parse_snapshot_rows as parse_kraneshares_source_rows,
+)
 from providers.Nordea.extract_Nordea_fields import (
     INPUT_DIR as NORDEA_INPUT_DIR,
     extract_rows as extract_nordea_rows,
     find_latest_download as find_latest_nordea_download,
     parse_snapshot_rows as parse_nordea_source_rows,
+)
+from providers.Ossiam.extract_ossiam_fields import (
+    INPUT_DIR as OSSIAM_INPUT_DIR,
+    extract_rows as extract_ossiam_rows,
+    find_latest_download as find_latest_ossiam_download,
 )
 from providers.Pacer_ETFs.extract_pacer_etfs_fields import (
     INPUT_DIR as PACER_ETFS_INPUT_DIR,
@@ -237,11 +241,28 @@ from providers.Pacer_ETFs.extract_pacer_etfs_fields import (
     find_latest_download as find_latest_pacer_etfs_download,
     parse_snapshot_rows as parse_pacer_etfs_source_rows,
 )
-from providers.Market_Access.extract_market_access_fields import (
-    INPUT_DIR as MARKET_ACCESS_INPUT_DIR,
-    extract_rows as extract_market_access_rows,
-    find_latest_download as find_latest_market_access_download,
-    parse_snapshot_rows as parse_market_access_source_rows,
+from providers.PIMCO.extract_pimco_fields import (
+    INPUT_DIR as PIMCO_INPUT_DIR,
+    extract_rows as extract_pimco_rows,
+    find_latest_download as find_latest_pimco_download,
+    parse_snapshot_rows as parse_pimco_source_rows,
+)
+from providers.Robeco.extract_Robeco_fields import (
+    INPUT_DIR as ROBECO_INPUT_DIR,
+    extract_rows as extract_robeco_rows,
+    find_latest_download as find_latest_robeco_download,
+    parse_snapshot_rows as parse_robeco_source_rows,
+)
+from providers.Schroders.extract_schroders_fields import (
+    INPUT_DIR as SCHRODERS_INPUT_DIR,
+    extract_rows as extract_schroders_rows,
+    find_latest_download as find_latest_schroders_download,
+    parse_snapshot_rows as parse_schroders_source_rows,
+)
+from providers.Waystone.extract_waystone_fields import (
+    INPUT_DIR as WAYSTONE_INPUT_DIR,
+    extract_rows as extract_waystone_rows,
+    find_latest_download as find_latest_waystone_download,
 )
 try:
     from providers.vanguard.download_vanguard import download_vanguard_file
@@ -269,45 +290,39 @@ from scrapers.globalx_extractor import download_globalx_file
 from scrapers.finex_extractor import download_finex_file
 from scrapers.fidelity_international_extractor import download_fidelity_file
 from scrapers.imgp_extractor import download_imgp_file
-from scrapers.American_Century_Investments_extractor import download_american_century_investments_file
-from scrapers.Columbia_extractor import download_columbia_file
-from scrapers.BNP_Paribas_Asset_Management_extractor import download_bnpparibas_file
-from scrapers.Goldman_Sachs_extractor import download_goldman_sachs_file
-from scrapers.ARK_Investment_Management_extractor import download_ark_file
-from scrapers.Robeco_extractor import download_robeco_file
-from scrapers.PIMCO_extractor import download_pimco_file
-from scrapers.KraneShares_extractor import download_kraneshares_ucits as download_kraneshares_file
-from scrapers.MandG_extractor import download_mg_file
-from scrapers.market_access_extractor import download_market_access_file
-from scrapers.Schroders_extractor import download_schroders_file
-from scrapers.Ossiam_extractor import download_ossiam_file
-from scrapers.Connect_ETFs_extractor import download_connect_etfs_file
-from scrapers.Dimensional_extractor import download_dimensional_file
-from scrapers.Expat_extractor import download_expat_file
-from scrapers.Waystone_extractor import download_waystone_file
 from scrapers.abrdn_extractor import scrape_abrdn_etfs
 from scrapers.Alliance_Bernstein_extractor import scrape_alliance_bernstein_etfs
 from scrapers.Alpha_Ucits_extractor import scrape_alpha_ucits
+from scrapers.American_Century_Investments_extractor import download_american_century_investments_file
+from scrapers.ARK_Investment_Management_extractor import download_ark_file
+from scrapers.BNP_Paribas_Asset_Management_extractor import download_bnpparibas_file
+from scrapers.Columbia_extractor import download_columbia_file
+from scrapers.Connect_ETFs_extractor import download_connect_etfs_file
+from scrapers.Dimensional_extractor import download_dimensional_file
+from scrapers.Goldman_Sachs_extractor import download_goldman_sachs_file
+from scrapers.Janus_Henderson_extractor import download_janus_henderson_file
+from scrapers.KraneShares_extractor import download_kraneshares_ucits
+from scrapers.MandG_extractor import download_mg_file
 from scrapers.Nordea_extractor import scrape_nordea
+from scrapers.Ossiam_extractor import download_ossiam_file
 from scrapers.Pacer_ETFs_extractor import run as download_pacer_etfs_file
+from scrapers.PIMCO_extractor import download_pimco_file
+from scrapers.Robeco_extractor import download_robeco_file
+from scrapers.Schroders_extractor import download_schroders_file
+from scrapers.Waystone_extractor import download_waystone_file
 
-BASE_DIR = Path(__file__).resolve().parent
+MG_FIELDS = load_module_from_path(
+    "mg_extract_fields",
+    BASE_DIR / "providers" / "M&G" / "extract_mg_fields.py",
+)
+MG_INPUT_DIR = MG_FIELDS.INPUT_DIR
+extract_mg_rows = MG_FIELDS.extract_rows
+find_latest_mg_download = MG_FIELDS.find_latest_download
+parse_mg_source_rows = MG_FIELDS.parse_snapshot_rows
 RUNS_DIR = BASE_DIR / "pipeline_runs"
 COMBINED_FILENAME = "all_etf_fields.csv"
 ISIN_FILTER_PATH = BASE_DIR / "ISIN-list.xlsx"
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
-JANUS_HENDERSON_SCRAPER_PATH = BASE_DIR / "scrapers" / "Janus_Henderson_extractor.py"
-BNP_PARIBAS_EXTRACTOR_PATH = (
-    BASE_DIR / "providers" / "BNP_Paribas_Asset_Management" / "extract_bnp_fields.py"
-)
-GOLDMAN_SACHS_EXTRACTOR_PATH = (
-    BASE_DIR / "providers" / "Goldman_Sachs" / "extract_goldman_sachs_fields.py"
-)
-JANUS_HENDERSON_EXTRACTOR_PATH = (
-    BASE_DIR / "providers" / "Janus_Henderson" / "extract_janus_henderson_fields.py"
-)
-PIMCO_EXTRACTOR_PATH = BASE_DIR / "providers" / "PIMCO" / "extract_pimco_fields.py"
-MANDG_EXTRACTOR_PATH = BASE_DIR / "providers" / "M&G" / "extract_mg_fields.py"
 XML_NS = {
     "main": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
     "rel": "http://schemas.openxmlformats.org/package/2006/relationships",
@@ -318,136 +333,6 @@ INTERNAL_SPACE_PATTERN = re.compile(r"\s+")
 ISIN_HEADER_CANDIDATES = ("isin", "isincode")
 INVISIBLE_ISIN_CHARACTERS = ("\u00A0", "\u2007", "\u202F", "\u200B", "\uFEFF")
 ISIN_FILTER_BYPASS_ISSUERS = {"Fidelity International"}
-
-
-def load_bnp_paribas_extractor_module():
-    spec = importlib.util.spec_from_file_location(
-        "bnp_paribas_asset_management_extract_bnp_fields",
-        BNP_PARIBAS_EXTRACTOR_PATH,
-    )
-    if spec is None or spec.loader is None:
-        raise ModuleNotFoundError(
-            f"BNP Paribas extractor module is missing: {BNP_PARIBAS_EXTRACTOR_PATH}"
-        )
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-def load_janus_henderson_scraper_module():
-    spec = importlib.util.spec_from_file_location(
-        "janus_henderson_scraper_module",
-        JANUS_HENDERSON_SCRAPER_PATH,
-    )
-    if spec is None or spec.loader is None:
-        raise ModuleNotFoundError(
-            f"Janus Henderson scraper module is missing: {JANUS_HENDERSON_SCRAPER_PATH}"
-        )
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-def load_goldman_sachs_extractor_module():
-    spec = importlib.util.spec_from_file_location(
-        "goldman_sachs_extract_goldman_sachs_fields",
-        GOLDMAN_SACHS_EXTRACTOR_PATH,
-    )
-    if spec is None or spec.loader is None:
-        raise ModuleNotFoundError(
-            f"Goldman Sachs extractor module is missing: {GOLDMAN_SACHS_EXTRACTOR_PATH}"
-        )
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-def load_janus_henderson_extractor_module():
-    spec = importlib.util.spec_from_file_location(
-        "janus_henderson_extract_janus_henderson_fields",
-        JANUS_HENDERSON_EXTRACTOR_PATH,
-    )
-    if spec is None or spec.loader is None:
-        raise ModuleNotFoundError(
-            f"Janus Henderson extractor module is missing: {JANUS_HENDERSON_EXTRACTOR_PATH}"
-        )
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-def load_pimco_extractor_module():
-    spec = importlib.util.spec_from_file_location(
-        "pimco_extract_pimco_fields",
-        PIMCO_EXTRACTOR_PATH,
-    )
-    if spec is None or spec.loader is None:
-        raise ModuleNotFoundError(f"PIMCO extractor module is missing: {PIMCO_EXTRACTOR_PATH}")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-def load_mandg_extractor_module():
-    spec = importlib.util.spec_from_file_location(
-        "mandg_extract_mg_fields",
-        MANDG_EXTRACTOR_PATH,
-    )
-    if spec is None or spec.loader is None:
-        raise ModuleNotFoundError(f"M&G extractor module is missing: {MANDG_EXTRACTOR_PATH}")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-_janus_henderson_scraper_module = load_janus_henderson_scraper_module()
-download_janus_henderson_file = _janus_henderson_scraper_module.download_janus_henderson_file
-
-_bnp_paribas_extractor_module = load_bnp_paribas_extractor_module()
-BNP_PARIBAS_INPUT_DIR = _bnp_paribas_extractor_module.INPUT_DIR
-extract_bnp_paribas_rows = _bnp_paribas_extractor_module.extract_rows
-find_latest_bnp_paribas_download = _bnp_paribas_extractor_module.find_latest_download
-parse_bnp_paribas_source_rows = _bnp_paribas_extractor_module.parse_snapshot_rows
-
-_goldman_sachs_extractor_module = load_goldman_sachs_extractor_module()
-GOLDMAN_SACHS_INPUT_DIR = _goldman_sachs_extractor_module.INPUT_DIR
-extract_goldman_sachs_rows = _goldman_sachs_extractor_module.extract_rows
-find_latest_goldman_sachs_download = _goldman_sachs_extractor_module.find_latest_download
-parse_goldman_sachs_source_rows = _goldman_sachs_extractor_module.parse_snapshot_rows
-
-_janus_henderson_extractor_module = load_janus_henderson_extractor_module()
-JANUS_HENDERSON_INPUT_DIR = _janus_henderson_extractor_module.INPUT_DIR
-extract_janus_henderson_rows = _janus_henderson_extractor_module.extract_rows
-find_latest_janus_henderson_download = _janus_henderson_extractor_module.find_latest_download
-parse_janus_henderson_source_rows = _janus_henderson_extractor_module.parse_snapshot_rows
-
-_pimco_extractor_module = load_pimco_extractor_module()
-PIMCO_INPUT_DIR = _pimco_extractor_module.INPUT_DIR
-extract_pimco_rows = _pimco_extractor_module.extract_rows
-find_latest_pimco_download = _pimco_extractor_module.find_latest_download
-parse_pimco_source_rows = _pimco_extractor_module.parse_snapshot_rows
-
-_mandg_extractor_module = load_mandg_extractor_module()
-MANDG_INPUT_DIR = _mandg_extractor_module.INPUT_DIR
-extract_mandg_rows = _mandg_extractor_module.extract_rows
-find_latest_mandg_download = _mandg_extractor_module.find_latest_download
-parse_mandg_source_rows = _mandg_extractor_module.parse_snapshot_rows
-
-
-async def download_abrdn_file() -> Path:
-    return await asyncio.to_thread(scrape_abrdn_etfs)
-
-
-async def download_alliance_bernstein_file() -> Path:
-    return await asyncio.to_thread(scrape_alliance_bernstein_etfs)
-
-
-async def download_alpha_ucits_file() -> Path:
-    return await asyncio.to_thread(scrape_alpha_ucits)
-
-
-async def download_nordea_file() -> Path:
-    return await asyncio.to_thread(scrape_nordea)
 
 ALL_PROVIDERS = (
     "ishares",
@@ -470,27 +355,26 @@ ALL_PROVIDERS = (
     "globalx",
     "finex",
     "imgp",
-    "americancenturyinvestments",
-    "columbia",
-    "bnpparibas",
-    "goldmansachs",
-    "janushenderson",
-    "ark",
-    "robeco",
-    "pimco",
-    "kraneshares",
-    "mandg",
-    "schroders",
-    "ossiam",
-    "connectetfs",
-    "dimensional",
-    "expat",
-    "waystone",
     "abrdn",
     "alliancebernstein",
     "alphaucits",
+    "americancenturyinvestments",
+    "ark",
+    "bnpparibas",
+    "columbia",
+    "connectetfs",
+    "dimensional",
+    "goldmansachs",
+    "janushenderson",
+    "kraneshares",
+    "mg",
     "nordea",
+    "ossiam",
     "paceretfs",
+    "pimco",
+    "robeco",
+    "schroders",
+    "waystone",
 )
 Downloader = Callable[[], Awaitable[Path]]
 Extractor = Callable[[Path], list[dict[str, str]]]
@@ -508,7 +392,38 @@ class ProviderPipeline:
     output_filename: str
     latest_download_finder: LatestDownloadFinder
     source_row_parser: SourceRowParser
-    apply_isin_whitelist_to_provider_output: bool = False
+
+
+@dataclass(frozen=True)
+class PreparedInput:
+    path: Path
+    status: str
+    note: str = ""
+
+
+@dataclass(frozen=True)
+class ProviderRunReport:
+    provider_name: str
+    input_path: Path
+    output_path: Path
+    source_row_count: int
+    extracted_row_count: int
+    missing_counts: dict[str, int]
+    reference_isin_count: int
+    provider_match_count: int
+    unmatched_row_count: int
+    valid_isin_count: int
+    source_label: str
+    source_method: str
+    source_url: str
+    source_status: str
+    discovery_status: str
+    extraction_status: str
+    isin_filter_status: str
+    output_status: str
+    result_status: str
+    duration_seconds: float
+    note: str = ""
 
 
 @dataclass(frozen=True)
@@ -522,6 +437,139 @@ class IsinFilterSummary:
     removed_unique_isin_count: int
     unexpected_isin_count_after_filtering: int
     isin_column_name: str
+
+
+async def run_sync_downloader(download_func: Callable[[], Path]) -> Path:
+    return await asyncio.to_thread(download_func)
+
+
+def clean_display_text(value: object | None) -> str:
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def relative_display_path(path: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(BASE_DIR.resolve())).replace("\\", "/")
+    except Exception:
+        return str(path)
+
+
+def summarize_source_metadata(input_path: Path) -> tuple[str, str, str]:
+    source_label = "Official provider website"
+    source_method = ""
+    source_url = ""
+
+    suffix = input_path.suffix.lower()
+    if suffix == ".json":
+        try:
+            payload = json.loads(input_path.read_text(encoding="utf-8"))
+        except Exception:
+            payload = None
+
+        if isinstance(payload, dict):
+            source = payload.get("source")
+            if isinstance(source, dict):
+                source_label = clean_display_text(source.get("provider")) or source_label
+                source_url = (
+                    clean_display_text(source.get("page_url"))
+                    or clean_display_text(source.get("service_url"))
+                    or source_url
+                )
+            source_method = clean_display_text(payload.get("method"))
+            source_url = source_url or clean_display_text(payload.get("source_url"))
+
+    if not source_method:
+        if suffix in {".xlsx", ".xls", ".xml"}:
+            source_method = "File download + parsing"
+        elif suffix == ".json":
+            source_method = "API / JSON snapshot"
+        else:
+            source_method = "Provider data extraction"
+
+    return source_label, source_method, source_url
+
+
+def evaluate_extraction_status(row_count: int, missing_counts: dict[str, int]) -> str:
+    if row_count == 0:
+        return "EMPTY"
+    if any(missing_counts.get(column, 0) for column in ("ISIN", "AUM(M)", "TER(bps)")):
+        return "PARTIAL"
+    return "OK"
+
+
+def evaluate_result_status(row_count: int, provider_match_count: int, missing_counts: dict[str, int]) -> str:
+    if row_count == 0:
+        return "EMPTY"
+    if provider_match_count == 0:
+        return "NO MATCHES"
+    if any(missing_counts.get(column, 0) for column in ("ISIN", "AUM(M)", "TER(bps)")):
+        return "PARTIAL"
+    return "SUCCESS"
+
+
+def print_provider_report(report: ProviderRunReport, run_date: str) -> None:
+    print()
+    print("ETF EXTRACTOR")
+    print(f"Provider : {report.provider_name}")
+    print(f"Run Date : {datetime.strptime(run_date, '%Y-%m-%d').strftime('%d/%m/%Y')}")
+    print()
+    print("[1/5] SOURCE")
+    print(f"      Source      : {report.source_label}")
+    print(f"      Method      : {report.source_method}")
+    print(f"      URL         : {report.source_url or 'n/a'}")
+    if report.note:
+        print(f"      Note        : {report.note}")
+    print(f"      Status      : {report.source_status}")
+    print()
+    print("[2/5] DISCOVERY")
+    print(f"      Source rows : {report.source_row_count:,}")
+    print(f"      Raw file    : {relative_display_path(report.input_path)}")
+    print(f"      Status      : {report.discovery_status}")
+    print()
+    print("[3/5] EXTRACTION")
+    print(f"      Rows extracted : {report.extracted_row_count:,}")
+    print(f"      Valid ISINs    : {report.valid_isin_count:,}")
+    print(f"      Missing ISIN   : {report.missing_counts.get('ISIN', 0):,}")
+    print(f"      Missing AUM    : {report.missing_counts.get('AUM(M)', 0):,}")
+    print(f"      Missing TER    : {report.missing_counts.get('TER(bps)', 0):,}")
+    print(f"      Status         : {report.extraction_status}")
+    print()
+    print("[4/5] ISIN FILTER")
+    print(f"      Reference ISINs  : {report.reference_isin_count:,}")
+    print(f"      Provider matches : {report.provider_match_count:,}")
+    print(f"      Unmatched rows   : {report.unmatched_row_count:,}")
+    print(f"      Status           : {report.isin_filter_status}")
+    print()
+    print("[5/5] OUTPUT")
+    print(f"      Raw file      : {relative_display_path(report.input_path)}")
+    print(f"      Selected file : {relative_display_path(report.output_path)}")
+    print(f"      Rows saved    : {report.extracted_row_count:,}")
+    print(f"      Status        : {report.output_status}")
+    print()
+    print("RESULT")
+    print(f"      Provider     : {report.provider_name}")
+    print(f"      Extracted    : {report.extracted_row_count:,}")
+    print(f"      ISIN matches : {report.provider_match_count:,}")
+    print(f"      Missing AUM  : {report.missing_counts.get('AUM(M)', 0):,}")
+    print(f"      Rows saved   : {report.extracted_row_count:,}")
+    print(f"      Status       : {report.result_status}")
+    print()
+    print(f"Completed in {report.duration_seconds:.2f} seconds")
+
+
+def parse_listing_rows_json(path: Path) -> list[dict[str, str]]:
+    import json
+
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(payload, dict):
+        rows = payload.get("listing_rows", payload.get("rows", []))
+        if isinstance(rows, list):
+            return rows
+    if isinstance(payload, list):
+        return payload
+    return []
 
 
 def parse_args() -> argparse.Namespace:
@@ -593,6 +641,44 @@ def write_csv_with_fallback(
         return fallback_path
 
 
+def normalize_output_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    normalized_rows: list[dict[str, str]] = []
+    for row in rows:
+        normalized_row = {column: str(row.get(column, "")).strip() for column in OUTPUT_COLUMNS}
+        if not normalized_row.get("AUM CCY", ""):
+            normalized_row["AUM CCY"] = (
+                infer_aum_currency_from_row(row)
+                or str(row.get("CCY", "")).strip()
+            )
+        normalized_rows.append(normalized_row)
+    return normalized_rows
+
+
+def find_latest_nonempty_historical_input(
+    pipeline: ProviderPipeline,
+    current_input_path: Path,
+) -> tuple[Path, list[dict[str, str]]] | None:
+    candidate_paths = sorted(
+        (
+            path
+            for path in pipeline.input_dir.rglob(current_input_path.name)
+            if path.is_file() and path.resolve() != current_input_path.resolve()
+        ),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+
+    for candidate_path in candidate_paths:
+        try:
+            candidate_rows = pipeline.source_row_parser(candidate_path)
+        except Exception:
+            continue
+        if candidate_rows:
+            return candidate_path, candidate_rows
+
+    return None
+
+
 def dedupe_exact_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     seen: set[tuple[str, ...]] = set()
     deduped_rows: list[dict[str, str]] = []
@@ -605,118 +691,6 @@ def dedupe_exact_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         deduped_rows.append(row)
 
     return deduped_rows
-
-
-def backfill_aum_currency(
-    rows: list[dict[str, str]],
-    source_rows: list[dict[str, object]],
-) -> list[dict[str, str]]:
-    source_rows_by_isin: dict[str, list[dict[str, object]]] = {}
-    for source_row in source_rows:
-        normalized_isin = normalize_isin(extract_row_isin(source_row))
-        if not normalized_isin:
-            continue
-        source_rows_by_isin.setdefault(normalized_isin, []).append(source_row)
-
-    enriched_rows: list[dict[str, str]] = []
-    for row in rows:
-        updated_row = dict(row)
-        if str(updated_row.get("AUM CCY", "")).strip():
-            enriched_rows.append(updated_row)
-            continue
-
-        normalized_isin = normalize_isin(updated_row.get("ISIN"))
-        inferred_aum_currency = ""
-        matching_source_rows = source_rows_by_isin.get(normalized_isin or "", [])
-        for source_row in matching_source_rows:
-            inferred_aum_currency = infer_aum_currency_from_row(source_row)
-            if inferred_aum_currency:
-                break
-
-        if not inferred_aum_currency:
-            inferred_aum_currency = infer_consistent_row_currency(matching_source_rows)
-
-        updated_row["AUM CCY"] = inferred_aum_currency
-        enriched_rows.append(updated_row)
-
-    return enriched_rows
-
-
-def normalize_output_date(value: object | None) -> str:
-    cleaned = str(value or "").strip()
-    if not cleaned:
-        return ""
-
-    for fmt in (
-        "%d/%m/%Y",
-        "%d-%m-%Y",
-        "%Y/%m/%d",
-        "%Y-%m-%d",
-        "%d/%m/%Y %H:%M:%S",
-        "%Y-%m-%d %H:%M:%S",
-        "%Y-%m-%dT%H:%M:%S.%f",
-        "%Y-%m-%dT%H:%M:%S",
-    ):
-        try:
-            return datetime.strptime(cleaned, fmt).strftime("%d/%m/%Y")
-        except ValueError:
-            continue
-
-    try:
-        return datetime.fromisoformat(cleaned.replace("Z", "+00:00")).strftime("%d/%m/%Y")
-    except ValueError:
-        return cleaned
-
-
-def normalize_date_column(rows: list[dict[str, str]]) -> list[dict[str, str]]:
-    normalized_rows: list[dict[str, str]] = []
-    for row in rows:
-        updated_row = dict(row)
-        updated_row["Date"] = normalize_output_date(updated_row.get("Date"))
-        normalized_rows.append(updated_row)
-    return normalized_rows
-
-
-def try_find_latest_download(pipeline: ProviderPipeline) -> Path | None:
-    try:
-        return pipeline.latest_download_finder(pipeline.input_dir)
-    except FileNotFoundError:
-        return None
-
-
-def is_network_related_error(exc: Exception) -> bool:
-    message = str(exc).lower()
-    type_name = type(exc).__name__.lower()
-    network_type_markers = (
-        "connectionerror",
-        "proxyerror",
-        "sslerror",
-        "newconnectionerror",
-    )
-    markers = (
-        "err_internet_disconnected",
-        "err_network_access_denied",
-        "name resolution",
-        "failed to resolve",
-        "getaddrinfo failed",
-        "httpsconnectionpool(",
-        "max retries exceeded",
-        "temporary failure in name resolution",
-        "nodename nor servname provided",
-        "connection aborted",
-        "connection reset",
-        "connection refused",
-        "ssl eof",
-        "proxyerror",
-        "read timed out",
-        "connect timeout",
-        "dns",
-    )
-    return (
-        "timeout" in type_name
-        or any(marker in type_name for marker in network_type_markers)
-        or any(marker in message for marker in markers)
-    )
 
 
 def validate_rows(provider_name: str, rows: list[dict[str, str]]) -> dict[str, int]:
@@ -1164,58 +1138,48 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             latest_download_finder=find_latest_imgp_download,
             source_row_parser=parse_imgp_source_rows,
         ),
+        "abrdn": ProviderPipeline(
+            name="abrdn",
+            downloader=lambda: run_sync_downloader(scrape_abrdn_etfs),
+            extractor=extract_abrdn_rows,
+            input_dir=ABRDN_INPUT_DIR,
+            output_dir=ABRDN_INPUT_DIR,
+            output_filename="abrdn_selected_fields.csv",
+            latest_download_finder=find_latest_abrdn_download,
+            source_row_parser=parse_abrdn_source_rows,
+        ),
+        "alliancebernstein": ProviderPipeline(
+            name="Alliance Bernstein",
+            downloader=lambda: run_sync_downloader(scrape_alliance_bernstein_etfs),
+            extractor=extract_alliance_bernstein_rows,
+            input_dir=ALLIANCE_BERNSTEIN_INPUT_DIR,
+            output_dir=ALLIANCE_BERNSTEIN_INPUT_DIR,
+            output_filename="alliance_bernstein_selected_fields.csv",
+            latest_download_finder=find_latest_alliance_bernstein_download,
+            source_row_parser=parse_alliance_bernstein_source_rows,
+        ),
+        "alphaucits": ProviderPipeline(
+            name="Alpha Ucits",
+            downloader=lambda: run_sync_downloader(scrape_alpha_ucits),
+            extractor=extract_alpha_ucits_rows,
+            input_dir=ALPHA_UCITS_INPUT_DIR,
+            output_dir=ALPHA_UCITS_INPUT_DIR,
+            output_filename="alpha_ucits_selected_fields.csv",
+            latest_download_finder=find_latest_alpha_ucits_download,
+            source_row_parser=parse_alpha_ucits_source_rows,
+        ),
         "americancenturyinvestments": ProviderPipeline(
             name="American Century Investments",
             downloader=download_american_century_investments_file,
-            extractor=extract_american_century_investments_rows,
-            input_dir=AMERICAN_CENTURY_INVESTMENTS_INPUT_DIR,
-            output_dir=AMERICAN_CENTURY_INVESTMENTS_INPUT_DIR,
+            extractor=extract_american_century_rows,
+            input_dir=AMERICAN_CENTURY_INPUT_DIR,
+            output_dir=AMERICAN_CENTURY_INPUT_DIR,
             output_filename="american_century_investments_selected_fields.csv",
-            latest_download_finder=find_latest_american_century_investments_download,
-            source_row_parser=parse_american_century_investments_source_rows,
-        ),
-        "columbia": ProviderPipeline(
-            name="Columbia Threadneedle Investments",
-            downloader=download_columbia_file,
-            extractor=extract_columbia_rows,
-            input_dir=COLUMBIA_INPUT_DIR,
-            output_dir=COLUMBIA_INPUT_DIR,
-            output_filename="columbia_selected_fields.csv",
-            latest_download_finder=find_latest_columbia_download,
-            source_row_parser=parse_columbia_source_rows,
-        ),
-        "bnpparibas": ProviderPipeline(
-            name="BNP Paribas Asset Management",
-            downloader=download_bnpparibas_file,
-            extractor=extract_bnp_paribas_rows,
-            input_dir=BNP_PARIBAS_INPUT_DIR,
-            output_dir=BNP_PARIBAS_INPUT_DIR,
-            output_filename="bnpparibas_selected_fields.csv",
-            latest_download_finder=find_latest_bnp_paribas_download,
-            source_row_parser=parse_bnp_paribas_source_rows,
-        ),
-        "goldmansachs": ProviderPipeline(
-            name="Goldman Sachs Asset Management",
-            downloader=download_goldman_sachs_file,
-            extractor=extract_goldman_sachs_rows,
-            input_dir=GOLDMAN_SACHS_INPUT_DIR,
-            output_dir=GOLDMAN_SACHS_INPUT_DIR,
-            output_filename="goldmansachs_selected_fields.csv",
-            latest_download_finder=find_latest_goldman_sachs_download,
-            source_row_parser=parse_goldman_sachs_source_rows,
-        ),
-        "janushenderson": ProviderPipeline(
-            name="Janus Henderson",
-            downloader=download_janus_henderson_file,
-            extractor=extract_janus_henderson_rows,
-            input_dir=JANUS_HENDERSON_INPUT_DIR,
-            output_dir=JANUS_HENDERSON_INPUT_DIR,
-            output_filename="janushenderson_selected_fields.csv",
-            latest_download_finder=find_latest_janus_henderson_download,
-            source_row_parser=parse_janus_henderson_source_rows,
+            latest_download_finder=find_latest_american_century_download,
+            source_row_parser=parse_american_century_source_rows,
         ),
         "ark": ProviderPipeline(
-            name="ARK Invest Europe",
+            name="ARK Investment Management",
             downloader=download_ark_file,
             extractor=extract_ark_rows,
             input_dir=ARK_INPUT_DIR,
@@ -1224,75 +1188,25 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             latest_download_finder=find_latest_ark_download,
             source_row_parser=parse_ark_source_rows,
         ),
-        "robeco": ProviderPipeline(
-            name="Robeco",
-            downloader=download_robeco_file,
-            extractor=extract_robeco_rows,
-            input_dir=ROBECO_INPUT_DIR,
-            output_dir=ROBECO_INPUT_DIR,
-            output_filename="robeco_selected_fields.csv",
-            latest_download_finder=find_latest_robeco_download,
-            source_row_parser=parse_robeco_source_rows,
+        "bnpparibas": ProviderPipeline(
+            name="BNP Paribas Asset Management",
+            downloader=download_bnpparibas_file,
+            extractor=extract_bnp_rows,
+            input_dir=BNP_INPUT_DIR,
+            output_dir=BNP_INPUT_DIR,
+            output_filename="bnpparibas_selected_fields.csv",
+            latest_download_finder=find_latest_bnp_download,
+            source_row_parser=parse_bnp_source_rows,
         ),
-        "pimco": ProviderPipeline(
-            name="PIMCO",
-            downloader=download_pimco_file,
-            extractor=extract_pimco_rows,
-            input_dir=PIMCO_INPUT_DIR,
-            output_dir=PIMCO_INPUT_DIR,
-            output_filename="pimco_selected_fields.csv",
-            latest_download_finder=find_latest_pimco_download,
-            source_row_parser=parse_pimco_source_rows,
-        ),
-        "kraneshares": ProviderPipeline(
-            name="KraneShares",
-            downloader=download_kraneshares_file,
-            extractor=extract_kraneshares_rows,
-            input_dir=KRANESHARES_INPUT_DIR,
-            output_dir=KRANESHARES_INPUT_DIR,
-            output_filename="kraneshares_selected_fields.csv",
-            latest_download_finder=find_latest_kraneshares_download,
-            source_row_parser=parse_kraneshares_source_rows,
-        ),
-        "mandg": ProviderPipeline(
-            name="M&G",
-            downloader=download_mg_file,
-            extractor=extract_mandg_rows,
-            input_dir=MANDG_INPUT_DIR,
-            output_dir=MANDG_INPUT_DIR,
-            output_filename="mg_selected_fields.csv",
-            latest_download_finder=find_latest_mandg_download,
-            source_row_parser=parse_mandg_source_rows,
-        ),
-        "market_access": ProviderPipeline(
-            name="Market Access",
-            downloader=download_market_access_file,
-            extractor=extract_market_access_rows,
-            input_dir=MARKET_ACCESS_INPUT_DIR,
-            output_dir=MARKET_ACCESS_INPUT_DIR,
-            output_filename="market_access_selected_fields.csv",
-            latest_download_finder=find_latest_market_access_download,
-            source_row_parser=parse_market_access_source_rows,
-        ),
-        "schroders": ProviderPipeline(
-            name="Schroders",
-            downloader=download_schroders_file,
-            extractor=extract_schroders_rows,
-            input_dir=SCHRODERS_INPUT_DIR,
-            output_dir=SCHRODERS_INPUT_DIR,
-            output_filename="schroders_selected_fields.csv",
-            latest_download_finder=find_latest_schroders_download,
-            source_row_parser=parse_schroders_source_rows,
-        ),
-        "ossiam": ProviderPipeline(
-            name="Ossiam",
-            downloader=download_ossiam_file,
-            extractor=extract_ossiam_rows,
-            input_dir=OSSIAM_INPUT_DIR,
-            output_dir=OSSIAM_INPUT_DIR,
-            output_filename="ossiam_selected_fields.csv",
-            latest_download_finder=find_latest_ossiam_download,
-            source_row_parser=lambda path: parse_ossiam_source_rows(path)[0],
+        "columbia": ProviderPipeline(
+            name="Columbia",
+            downloader=download_columbia_file,
+            extractor=extract_columbia_rows,
+            input_dir=COLUMBIA_INPUT_DIR,
+            output_dir=COLUMBIA_INPUT_DIR,
+            output_filename="columbia_selected_fields.csv",
+            latest_download_finder=find_latest_columbia_download,
+            source_row_parser=parse_columbia_source_rows,
         ),
         "connectetfs": ProviderPipeline(
             name="Connect ETFs",
@@ -1314,67 +1228,65 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             latest_download_finder=find_latest_dimensional_download,
             source_row_parser=parse_dimensional_source_rows,
         ),
-        "expat": ProviderPipeline(
-            name="Expat",
-            downloader=download_expat_file,
-            extractor=extract_expat_rows,
-            input_dir=EXPAT_INPUT_DIR,
-            output_dir=EXPAT_INPUT_DIR,
-            output_filename="expat_selected_fields.csv",
-            latest_download_finder=find_latest_expat_download,
-            source_row_parser=parse_expat_source_rows,
+        "goldmansachs": ProviderPipeline(
+            name="Goldman Sachs",
+            downloader=download_goldman_sachs_file,
+            extractor=extract_goldman_sachs_rows,
+            input_dir=GOLDMAN_SACHS_INPUT_DIR,
+            output_dir=GOLDMAN_SACHS_INPUT_DIR,
+            output_filename="goldmansachs_selected_fields.csv",
+            latest_download_finder=find_latest_goldman_sachs_download,
+            source_row_parser=parse_goldman_sachs_source_rows,
         ),
-        "waystone": ProviderPipeline(
-            name="Waystone",
-            downloader=download_waystone_file,
-            extractor=extract_waystone_rows,
-            input_dir=WAYSTONE_INPUT_DIR,
-            output_dir=WAYSTONE_INPUT_DIR,
-            output_filename="waystone_selected_fields.csv",
-            latest_download_finder=find_latest_waystone_download,
-            source_row_parser=parse_waystone_source_rows,
+        "janushenderson": ProviderPipeline(
+            name="Janus Henderson",
+            downloader=download_janus_henderson_file,
+            extractor=extract_janus_henderson_rows,
+            input_dir=JANUS_HENDERSON_INPUT_DIR,
+            output_dir=JANUS_HENDERSON_INPUT_DIR,
+            output_filename="janushenderson_selected_fields.csv",
+            latest_download_finder=find_latest_janus_henderson_download,
+            source_row_parser=parse_janus_henderson_source_rows,
         ),
-        "abrdn": ProviderPipeline(
-            name="abrdn",
-            downloader=download_abrdn_file,
-            extractor=extract_abrdn_rows,
-            input_dir=ABRDN_INPUT_DIR,
-            output_dir=ABRDN_INPUT_DIR,
-            output_filename="abrdn_selected_fields.csv",
-            latest_download_finder=find_latest_abrdn_download,
-            source_row_parser=parse_abrdn_source_rows,
+        "kraneshares": ProviderPipeline(
+            name="KraneShares",
+            downloader=download_kraneshares_ucits,
+            extractor=extract_kraneshares_rows,
+            input_dir=KRANESHARES_INPUT_DIR,
+            output_dir=KRANESHARES_INPUT_DIR,
+            output_filename="kraneshares_selected_fields.csv",
+            latest_download_finder=find_latest_kraneshares_download,
+            source_row_parser=parse_kraneshares_source_rows,
         ),
-        "alliancebernstein": ProviderPipeline(
-            name="AllianceBernstein",
-            downloader=download_alliance_bernstein_file,
-            extractor=extract_alliance_bernstein_rows,
-            input_dir=ALLIANCE_BERNSTEIN_INPUT_DIR,
-            output_dir=ALLIANCE_BERNSTEIN_INPUT_DIR,
-            output_filename="alliance_bernstein_selected_fields.csv",
-            latest_download_finder=find_latest_alliance_bernstein_download,
-            source_row_parser=parse_alliance_bernstein_source_rows,
-        ),
-        "alphaucits": ProviderPipeline(
-            name="Alpha UCITS",
-            downloader=download_alpha_ucits_file,
-            extractor=extract_alpha_ucits_rows,
-            input_dir=ALPHA_UCITS_INPUT_DIR,
-            output_dir=ALPHA_UCITS_INPUT_DIR,
-            output_filename="alpha_ucits_selected_fields.csv",
-            latest_download_finder=find_latest_alpha_ucits_download,
-            source_row_parser=parse_alpha_ucits_source_rows,
-            apply_isin_whitelist_to_provider_output=True,
+        "mg": ProviderPipeline(
+            name="M&G",
+            downloader=download_mg_file,
+            extractor=extract_mg_rows,
+            input_dir=MG_INPUT_DIR,
+            output_dir=MG_INPUT_DIR,
+            output_filename="mg_selected_fields.csv",
+            latest_download_finder=find_latest_mg_download,
+            source_row_parser=parse_mg_source_rows,
         ),
         "nordea": ProviderPipeline(
             name="Nordea",
-            downloader=download_nordea_file,
+            downloader=lambda: run_sync_downloader(scrape_nordea),
             extractor=extract_nordea_rows,
             input_dir=NORDEA_INPUT_DIR,
             output_dir=NORDEA_INPUT_DIR,
             output_filename="nordea_selected_fields.csv",
             latest_download_finder=find_latest_nordea_download,
             source_row_parser=parse_nordea_source_rows,
-            apply_isin_whitelist_to_provider_output=True,
+        ),
+        "ossiam": ProviderPipeline(
+            name="Ossiam",
+            downloader=download_ossiam_file,
+            extractor=extract_ossiam_rows,
+            input_dir=OSSIAM_INPUT_DIR,
+            output_dir=OSSIAM_INPUT_DIR,
+            output_filename="ossiam_selected_fields.csv",
+            latest_download_finder=find_latest_ossiam_download,
+            source_row_parser=parse_listing_rows_json,
         ),
         "paceretfs": ProviderPipeline(
             name="Pacer ETFs",
@@ -1386,24 +1298,74 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             latest_download_finder=find_latest_pacer_etfs_download,
             source_row_parser=parse_pacer_etfs_source_rows,
         ),
+        "pimco": ProviderPipeline(
+            name="PIMCO",
+            downloader=download_pimco_file,
+            extractor=extract_pimco_rows,
+            input_dir=PIMCO_INPUT_DIR,
+            output_dir=PIMCO_INPUT_DIR,
+            output_filename="pimco_selected_fields.csv",
+            latest_download_finder=find_latest_pimco_download,
+            source_row_parser=parse_pimco_source_rows,
+        ),
+        "robeco": ProviderPipeline(
+            name="Robeco",
+            downloader=download_robeco_file,
+            extractor=extract_robeco_rows,
+            input_dir=ROBECO_INPUT_DIR,
+            output_dir=ROBECO_INPUT_DIR,
+            output_filename="robeco_selected_fields.csv",
+            latest_download_finder=find_latest_robeco_download,
+            source_row_parser=parse_robeco_source_rows,
+        ),
+        "schroders": ProviderPipeline(
+            name="Schroders",
+            downloader=download_schroders_file,
+            extractor=extract_schroders_rows,
+            input_dir=SCHRODERS_INPUT_DIR,
+            output_dir=SCHRODERS_INPUT_DIR,
+            output_filename="schroders_selected_fields.csv",
+            latest_download_finder=find_latest_schroders_download,
+            source_row_parser=parse_schroders_source_rows,
+        ),
+        "waystone": ProviderPipeline(
+            name="Waystone",
+            downloader=download_waystone_file,
+            extractor=extract_waystone_rows,
+            input_dir=WAYSTONE_INPUT_DIR,
+            output_dir=WAYSTONE_INPUT_DIR,
+            output_filename="waystone_selected_fields.csv",
+            latest_download_finder=find_latest_waystone_download,
+            source_row_parser=parse_listing_rows_json,
+        ),
     }
 
 
-async def prepare_input_file(pipeline: ProviderPipeline, use_latest_downloads: bool) -> Path:
+async def prepare_input_file(pipeline: ProviderPipeline, use_latest_downloads: bool) -> PreparedInput:
     if use_latest_downloads:
-        return pipeline.latest_download_finder(pipeline.input_dir)
-
-    fallback_input_path = try_find_latest_download(pipeline)
+        return PreparedInput(
+            path=pipeline.latest_download_finder(pipeline.input_dir),
+            status="REUSED",
+            note="Using latest saved provider file.",
+        )
     try:
-        return await pipeline.downloader()
-    except Exception as exc:
-        if fallback_input_path is not None and is_network_related_error(exc):
-            print(
-                f"[WARN] {pipeline.name} download failed due to a network error; "
-                f"using latest existing snapshot instead: {fallback_input_path}"
-            )
-            return fallback_input_path
-        raise
+        return PreparedInput(
+            path=await pipeline.downloader(),
+            status="OK",
+        )
+    except Exception as exc:  # noqa: BLE001
+        try:
+            latest_download = pipeline.latest_download_finder(pipeline.input_dir)
+        except Exception:
+            raise exc
+
+        return PreparedInput(
+            path=latest_download,
+            status="FALLBACK",
+            note=(
+                "Live download failed; using latest saved provider file."
+            ),
+        )
 
 
 async def run_provider(
@@ -1411,39 +1373,70 @@ async def run_provider(
     use_latest_downloads: bool,
     run_date: str,
     whitelist_isins: set[str],
-) -> tuple[Path, Path, int, list[dict[str, str]], dict[str, int]]:
-    print()
-    print(f"=== {pipeline.name} ===")
-    input_path = await prepare_input_file(pipeline, use_latest_downloads)
-    source_rows = pipeline.source_row_parser(input_path)
-    source_row_count = len(source_rows)
-    rows = dedupe_exact_rows(pipeline.extractor(input_path))
-    rows = backfill_aum_currency(rows, source_rows)
-    rows = normalize_date_column(rows)
-    provider_filter_summary: IsinFilterSummary | None = None
-    if pipeline.apply_isin_whitelist_to_provider_output:
-        rows, provider_filter_summary = apply_final_isin_whitelist(rows, whitelist_isins)
-        rows = dedupe_exact_rows(rows)
-    missing_counts = validate_rows(pipeline.name, rows)
-    output_path = build_provider_output_path(pipeline.output_dir, run_date, pipeline.output_filename)
-    output_path = write_csv_with_fallback(output_path, rows)
-    print(f"Input file   : {input_path}")
-    print(f"Output file  : {output_path}")
-    print(f"Source rows  : {source_row_count:,}")
-    print(f"Rows extracted: {len(rows):,}")
-    print(f"Excluded rows: {source_row_count - len(rows):,}")
-    if provider_filter_summary is not None:
-        print(
-            "ISIN filter : "
-            f"kept {provider_filter_summary.final_rows_after_filtering:,} of "
-            f"{provider_filter_summary.final_rows_before_filtering:,} extracted row(s); "
-            f"removed {provider_filter_summary.removed_rows_count:,} row(s)"
-        )
-    print(
-        "Missing values: "
-        + ", ".join(f"{column}={count}" for column, count in missing_counts.items())
+) -> tuple[list[dict[str, str]], ProviderRunReport]:
+    started_at = time.perf_counter()
+    captured_output = io.StringIO()
+
+    with redirect_stdout(captured_output), redirect_stderr(captured_output):
+        prepared_input = await prepare_input_file(pipeline, use_latest_downloads)
+        input_path = prepared_input.path
+        source_rows = pipeline.source_row_parser(input_path)
+        note = prepared_input.note
+        source_status = prepared_input.status
+
+        if not use_latest_downloads and not source_rows:
+            historical_input = find_latest_nonempty_historical_input(pipeline, input_path)
+            if historical_input is not None:
+                fallback_input_path, fallback_source_rows = historical_input
+                input_path = fallback_input_path
+                source_rows = fallback_source_rows
+                source_status = "FALLBACK"
+                note = "Latest download was empty; using latest non-empty historical provider file."
+
+        source_row_count = len(source_rows)
+        rows = dedupe_exact_rows(normalize_output_rows(pipeline.extractor(input_path)))
+        missing_counts = validate_rows(pipeline.name, rows)
+        output_path = build_provider_output_path(pipeline.output_dir, run_date, pipeline.output_filename)
+        output_path = write_csv_with_fallback(output_path, rows)
+
+    valid_isin_count = sum(1 for row in rows if normalize_isin(row.get("ISIN")))
+    provider_match_count = sum(
+        1 for row in rows if normalize_isin(row.get("ISIN")) in whitelist_isins
     )
-    return input_path, output_path, source_row_count, rows, missing_counts
+    unmatched_row_count = max(0, len(rows) - provider_match_count)
+    source_label, source_method, source_url = summarize_source_metadata(input_path)
+    discovery_status = "OK" if source_row_count > 0 else "EMPTY"
+    extraction_status = evaluate_extraction_status(len(rows), missing_counts)
+    isin_filter_status = "OK" if provider_match_count > 0 or len(rows) == 0 else "NO MATCHES"
+    output_status = "OK" if output_path.exists() else "FAILED"
+    result_status = evaluate_result_status(len(rows), provider_match_count, missing_counts)
+    duration_seconds = time.perf_counter() - started_at
+
+    report = ProviderRunReport(
+        provider_name=pipeline.name,
+        input_path=input_path,
+        output_path=output_path,
+        source_row_count=source_row_count,
+        extracted_row_count=len(rows),
+        missing_counts=missing_counts,
+        reference_isin_count=len(whitelist_isins),
+        provider_match_count=provider_match_count,
+        unmatched_row_count=unmatched_row_count,
+        valid_isin_count=valid_isin_count,
+        source_label=source_label,
+        source_method=source_method,
+        source_url=source_url,
+        source_status=source_status,
+        discovery_status=discovery_status,
+        extraction_status=extraction_status,
+        isin_filter_status=isin_filter_status,
+        output_status=output_status,
+        result_status=result_status,
+        duration_seconds=duration_seconds,
+        note=note,
+    )
+    print_provider_report(report, run_date)
+    return rows, report
 
 
 async def async_main() -> int:
@@ -1455,7 +1448,7 @@ async def async_main() -> int:
     combined_output_path = run_dir / COMBINED_FILENAME
     whitelist_isins = load_allowed_isins(ISIN_FILTER_PATH)
 
-    successes: list[tuple[str, Path, Path, int, int, dict[str, int]]] = []
+    successes: list[ProviderRunReport] = []
     failures: list[tuple[str, Exception]] = []
     combined_rows: list[dict[str, str]] = []
 
@@ -1465,14 +1458,14 @@ async def async_main() -> int:
         for provider_key in args.providers:
             pipeline = pipelines[provider_key]
             try:
-                input_path, output_path, source_row_count, rows, missing_counts = await run_provider(
+                rows, report = await run_provider(
                     pipeline,
                     args.use_latest_downloads,
                     run_folder_name,
                     whitelist_isins,
                 )
                 combined_rows.extend(rows)
-                successes.append((pipeline.name, input_path, output_path, source_row_count, len(rows), missing_counts))
+                successes.append(report)
             except Exception as exc:
                 failures.append((pipeline.name, exc))
                 print(f"[ERROR] {pipeline.name} failed: {exc}")
@@ -1526,14 +1519,14 @@ async def async_main() -> int:
     print(f"Rows removed by ISIN filter: {filter_summary.removed_rows_count:,}")
 
     if successes:
-        for provider_name, input_path, output_path, source_row_count, row_count, missing_counts in successes:
-            print(f"{provider_name}:")
-            print(f"  Source -> {input_path}")
-            print(f"  Output -> {output_path}")
-            print(f"  Source rows -> {source_row_count:,}")
-            print(f"  Rows   -> {row_count:,}")
-            print(f"  Excluded -> {source_row_count - row_count:,}")
-            print("  Missing -> " + ", ".join(f"{column}={count}" for column, count in missing_counts.items()))
+        for report in successes:
+            print(f"{report.provider_name}:")
+            print(f"  Raw      -> {relative_display_path(report.input_path)}")
+            print(f"  Selected -> {relative_display_path(report.output_path)}")
+            print(f"  Extracted -> {report.extracted_row_count:,}")
+            print(f"  Matches   -> {report.provider_match_count:,}")
+            print(f"  Missing AUM -> {report.missing_counts.get('AUM(M)', 0):,}")
+            print(f"  Status -> {report.result_status}")
 
     if failures:
         for provider_name, exc in failures:

@@ -21,6 +21,7 @@ URL = (
 BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "ishares"
 TIMEOUT_MS = 60_000
+NAVIGATION_TIMEOUT_MS = 30_000
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 
 
@@ -149,13 +150,17 @@ async def goto_with_retry(page, url: str) -> None:
     last_exc: Exception | None = None
     for wait_until in ("commit", "domcontentloaded"):
         try:
-            await page.goto(url, wait_until=wait_until, timeout=TIMEOUT_MS)
+            print(f"    Trying page load with wait_until='{wait_until}' ...")
+            await page.goto(url, wait_until=wait_until, timeout=NAVIGATION_TIMEOUT_MS)
             await page.wait_for_load_state("domcontentloaded", timeout=TIMEOUT_MS)
             return
         except Exception as exc:
             last_exc = exc
+            print(f"    Navigation attempt with wait_until='{wait_until}' did not complete: {exc}")
     if last_exc is not None:
-        raise last_exc
+        raise RuntimeError(
+            "Could not load the iShares ETF page after multiple navigation attempts."
+        ) from last_exc
 
 
 def build_run_output_dir(base_dir: Path) -> Path:

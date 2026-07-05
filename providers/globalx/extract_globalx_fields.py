@@ -6,6 +6,7 @@ import argparse
 import csv
 import json
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -13,6 +14,17 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_DIR = BASE_DIR
 ISSUER = "Global X ETFs"
+REPO_ROOT = BASE_DIR.parents[1]
+
+if str(REPO_ROOT) not in sys.path:
+    sys.path.append(str(REPO_ROOT))
+
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    build_justetf_session = None  # type: ignore[assignment]
+    fetch_justetf_profile = None  # type: ignore[assignment]
 
 OUTPUT_COLUMNS = [
     "ETF Name",
@@ -22,6 +34,19 @@ OUTPUT_COLUMNS = [
     "TER(bps)",
     "AUM(M)",
     "Date",
+]
+
+JUSTETF_FALLBACK_ISINS = [
+    "IE000544AJM3",
+    "IE000MS9DTS9",
+    "IE000YICM5P9",
+    "IE00BLCHJ641",
+    "IE00BLCHJC08",
+    "IE00BLCHK052",
+    "IE00BLR6Q650",
+    "IE00BLR6QC17",
+    "IE00BM8R0H36",
+    "IE00BMH5YS76",
 ]
 
 
@@ -157,6 +182,43 @@ def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return list(deduped.values())
 
 
+def supplement_missing_rows(rows: list[dict[str, str]], file_date: str) -> list[dict[str, str]]:
+    if build_justetf_session is None or fetch_justetf_profile is None:
+        return dedupe_rows(rows)
+
+    present_isins = {clean_text(row.get("ISIN")).upper() for row in rows if clean_text(row.get("ISIN"))}
+    missing_isins = [isin for isin in JUSTETF_FALLBACK_ISINS if isin not in present_isins]
+    if not missing_isins:
+        return dedupe_rows(rows)
+
+    session = build_justetf_session()
+    supplemented_rows = list(rows)
+    for isin in missing_isins:
+        try:
+            profile = fetch_justetf_profile(isin, session=session)
+        except Exception as exc:  # noqa: BLE001
+            print(f"WARNING: justETF fallback failed for Global X {isin}: {exc}")
+            continue
+
+        if clean_text(profile.get("fetch_status")) not in {"", "ok"}:
+            print(f"WARNING: justETF fallback did not resolve Global X {isin}: {clean_text(profile.get('error'))}")
+            continue
+
+        supplemented_rows.append(
+            {
+                "ETF Name": clean_text(profile.get("etf_name")),
+                "Issuer": ISSUER,
+                "ISIN": clean_text(profile.get("isin")).upper() or isin,
+                "CCY": clean_text(profile.get("ccy")).upper(),
+                "TER(bps)": clean_text(profile.get("ter_bps")),
+                "AUM(M)": clean_text(profile.get("aum_mn")),
+                "Date": file_date,
+            }
+        )
+
+    return dedupe_rows(supplemented_rows)
+
+
 def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -172,7 +234,7 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     file_date = extract_file_date(resolved_input_path)
 
     output_rows = [transform_row(row, file_date) for row in source_rows]
-    return dedupe_rows(output_rows)
+    return supplement_missing_rows(output_rows, file_date)
 
 
 def process_file(input_path: Path | None = None, output_path: Path | None = None) -> Path:

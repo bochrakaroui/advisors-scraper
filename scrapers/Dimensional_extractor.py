@@ -30,7 +30,7 @@ DIMENSIONAL_PORTFOLIO_DETAILS_API_URL = (
     "https://www.dimensional.com/investment-api/portfolio-details?allowMorningstarFixedIncome=true"
 )
 DIMENSIONAL_FALLBACK_PROFILE_URL = "https://www.justetf.com/en/etf-profile.html?isin={isin}"
-EXPAT_FUND_URL = "https://expat.bg/en/funds/ExpatBulgariaSOFIX"
+EXPAT_FUND_URL = "https://expat.bg/en/funds/ExpatBulgariaSOFIX?utm_source=chatgpt.com"
 DIMENSIONAL_SELECTED_COUNTRY = "GB"
 DIMENSIONAL_REGION_CODE = "emea"
 DIMENSIONAL_COUNTRY_CODE = "gb"
@@ -48,7 +48,8 @@ DIMENSIONAL_TARGET_ISINS = [
     "IE000S67ID55",
     "IE000XKK4AV2",
 ]
-TARGET_ISINS = list(DIMENSIONAL_TARGET_ISINS)
+EXPAT_TARGET_ISINS = ["BG9000011163"]
+TARGET_ISINS = DIMENSIONAL_TARGET_ISINS + EXPAT_TARGET_ISINS
 
 HEADERS = {
     "User-Agent": (
@@ -693,22 +694,33 @@ def build_snapshot() -> dict[str, Any]:
         listing_rows.append(row)
         status_counts[row["fetch_status"]] = status_counts.get(row["fetch_status"], 0) + 1
 
+    logging.info("[1/1] Collecting Expat Bulgaria SOFIX BG9000011163")
+    try:
+        expat_row = parse_expat_row()
+    except Exception as exc:  # noqa: BLE001
+        logging.warning("Failed to collect Expat Bulgaria SOFIX BG9000011163: %s", exc)
+        expat_row = build_missing_row("BG9000011163", EXPAT_ISSUER)
+        expat_row["fetch_status"] = "error"
+    listing_rows.append(expat_row)
+    status_counts[expat_row["fetch_status"]] = status_counts.get(expat_row["fetch_status"], 0) + 1
+
     matched_statuses = {"ok", "partial"}
     return {
         "source": {
-            "provider": DIMENSIONAL_ISSUER,
+            "provider": "Dimensional + Expat Bulgaria SOFIX",
             "dimensional_listing_url": DIMENSIONAL_LISTING_URL,
             "dimensional_fundcenter_api_url": DIMENSIONAL_FUND_CENTER_API_URL,
             "dimensional_portfolio_details_api_url": DIMENSIONAL_PORTFOLIO_DETAILS_API_URL,
             "dimensional_selected_country": DIMENSIONAL_SELECTED_COUNTRY,
             "dimensional_official_fetch_status": dimensional_fetch_status,
             "dimensional_fallback_profile_url_template": DIMENSIONAL_FALLBACK_PROFILE_URL,
+            "expat_fund_url": EXPAT_FUND_URL,
         },
         "method": (
-            "Dimensional ETF snapshot. For the 4 Dimensional UCITS ETF ISINs, the scraper uses the official "
-            "Dimensional fund center API and enriches objective/documents from the official portfolio-details API. "
-            "If an official target row is missing or errors, the scraper falls back to the ISIN-based public ETF "
-            "profile page."
+            "Combined ETF snapshot. For the 4 Dimensional UCITS ETF ISINs, the scraper uses the official Dimensional "
+            "fund center API and enriches objective/documents from the official portfolio-details API. If an official "
+            "target row is missing or errors, the scraper falls back to the ISIN-based public ETF profile page. For "
+            "BG9000011163, the scraper uses the official Expat Bulgaria SOFIX fund page plus its current KID PDF."
         ),
         "captured_at": timestamp_now().isoformat(),
         "target_isin_count": len(TARGET_ISINS),
@@ -722,7 +734,7 @@ def build_snapshot() -> dict[str, Any]:
 def download_snapshot(output_path: Path) -> Path:
     snapshot = build_snapshot()
     write_json(output_path, snapshot)
-    logging.info("Dimensional fetch summary: %s", snapshot.get("status_counts", {}))
+    logging.info("Dimensional/Expat fetch summary: %s", snapshot.get("status_counts", {}))
     logging.info("Data method : %s", snapshot["method"])
     logging.info("Snapshot saved : %s", output_path)
     return output_path

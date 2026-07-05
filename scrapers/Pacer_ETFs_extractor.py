@@ -1,4 +1,4 @@
-"""Scrape all publicly listed Pacer ETFs from the official products website."""
+"""Scrape selected Pacer ETFs from justETF profile pages."""
 
 from __future__ import annotations
 
@@ -17,17 +17,29 @@ from bs4 import BeautifulSoup
 
 try:
     from playwright.async_api import BrowserContext, Page, async_playwright
-except ImportError as exc:  # pragma: no cover - runtime guidance for local usage
-    raise RuntimeError(
-        "playwright is required for the Pacer ETFs scraper. "
-        "Install it with 'pip install playwright' and run "
-        "'python -m playwright install chromium'."
-    ) from exc
+except ImportError:  # pragma: no cover - legacy official-site fallback only
+    BrowserContext = Any  # type: ignore[misc,assignment]
+    Page = Any  # type: ignore[misc,assignment]
+    async_playwright = None  # type: ignore[assignment]
+
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from justetf_profile import build_session as build_justetf_session
+    from justetf_profile import fetch_profile as fetch_justetf_profile
 
 
 ISSUER = "Pacer ETFs"
 BASE_URL = "https://www.paceretfs.com"
 PRODUCTS_URL = f"{BASE_URL}/products"
+JUSTETF_PROFILE_URL_TEMPLATE = "https://www.justetf.com/en/etf-profile.html?isin={isin}"
+TARGET_ISINS = [
+    "IE000E909O74",
+    "IE000IL7PZ05",
+    "IE000UD0O069",
+    "IE000W7N50J7",
+]
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "Pacer_ETFs"
@@ -113,6 +125,80 @@ def build_output_path(now: datetime) -> Path:
 
 def write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def scrape_target_isins_from_justetf(now: datetime) -> list[dict[str, str]]:
+    session = build_justetf_session()
+    rows: list[dict[str, str]] = []
+
+    for index, isin in enumerate(TARGET_ISINS, 1):
+        logging.info("Fetching justETF profile [%d/%d] %s", index, len(TARGET_ISINS), isin)
+        try:
+            profile = fetch_justetf_profile(isin, session=session)
+            row = {
+                "etf_name": clean_text(profile.get("etf_name")),
+                "issuer": ISSUER,
+                "ticker": clean_text(profile.get("ticker")),
+                "isin": clean_text(profile.get("isin")) or isin,
+                "ccy": clean_text(profile.get("ccy")).upper(),
+                "ter_bps": clean_text(profile.get("ter_bps")),
+                "aum_mn": clean_text(profile.get("aum_mn")),
+                "aum_currency": clean_text(profile.get("aum_ccy")).upper(),
+                "distribution_policy": clean_text(profile.get("distribution_policy")),
+                "distribution_frequency": clean_text(profile.get("distribution_frequency")),
+                "replication": clean_text(profile.get("replication")),
+                "fund_domicile": clean_text(profile.get("fund_domicile")),
+                "fund_provider": clean_text(profile.get("fund_provider")),
+                "fund_structure": clean_text(profile.get("fund_structure")),
+                "index_name": clean_text(profile.get("index_name")),
+                "investment_focus": clean_text(profile.get("investment_focus")),
+                "investment_approach": clean_text(profile.get("investment_approach")),
+                "fund_size_raw": clean_text(profile.get("fund_size_raw")),
+                "inception_date": clean_text(profile.get("inception_date")),
+                "inception_date_raw": clean_text(profile.get("inception_date_raw")),
+                "profile_url": clean_text(profile.get("profile_url")) or JUSTETF_PROFILE_URL_TEMPLATE.format(isin=isin),
+                "page_title": clean_text(profile.get("page_title")),
+                "source_kind": "justetf_profile",
+                "rate_date": now.strftime("%Y-%m-%d"),
+                "fetch_status": clean_text(profile.get("fetch_status")) or "ok",
+            }
+            if clean_text(profile.get("error")):
+                row["error"] = clean_text(profile.get("error"))
+            rows.append(row)
+        except Exception as exc:
+            logging.warning("justETF profile failed for %s: %s", isin, exc)
+            rows.append(
+                {
+                    "etf_name": "",
+                    "issuer": ISSUER,
+                    "ticker": "",
+                    "isin": isin,
+                    "ccy": "",
+                    "ter_bps": "",
+                    "aum_mn": "",
+                    "aum_currency": "",
+                    "distribution_policy": "",
+                    "distribution_frequency": "",
+                    "replication": "",
+                    "fund_domicile": "",
+                    "fund_provider": "",
+                    "fund_structure": "",
+                    "index_name": "",
+                    "investment_focus": "",
+                    "investment_approach": "",
+                    "fund_size_raw": "",
+                    "inception_date": "",
+                    "inception_date_raw": "",
+                    "profile_url": JUSTETF_PROFILE_URL_TEMPLATE.format(isin=isin),
+                    "page_title": "",
+                    "source_kind": "justetf_profile",
+                    "rate_date": now.strftime("%Y-%m-%d"),
+                    "fetch_status": "failed",
+                    "error": str(exc),
+                }
+            )
+
+    return rows
 
 
 def clean_text(value: object | None) -> str:
@@ -742,25 +828,7 @@ async def run() -> Path:
     setup_logging()
     now = timestamp_now()
     output_path = build_output_path(now)
-
-    async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(
-            headless=env_flag("PACER_HEADLESS", False),
-            args=["--disable-blink-features=AutomationControlled"],
-        )
-        context = await build_browser_context(browser)
-        page = await context.new_page()
-
-        try:
-            logging.info("Opening Pacer products page")
-            await page.goto(PRODUCTS_URL, wait_until="domcontentloaded", timeout=PLAYWRIGHT_TIMEOUT_MS)
-            detail_rows = await discover_detail_pages(page)
-            logging.info("Discovered %d Pacer ETF detail URL(s)", len(detail_rows))
-            rows = await scrape_all_details(context, detail_rows)
-        finally:
-            await page.close()
-            await context.close()
-            await browser.close()
+    rows = scrape_target_isins_from_justetf(now)
 
     rows.sort(key=lambda row: clean_text(row.get("ticker")).upper())
     status_counts: dict[str, int] = {}
@@ -771,13 +839,13 @@ async def run() -> Path:
     payload = {
         "source": {
             "provider": ISSUER,
-            "products_url": PRODUCTS_URL,
+            "profile_url_template": JUSTETF_PROFILE_URL_TEMPLATE,
         },
         "method": (
-            "Official products page detail discovery + per-detail-page DOM extraction"
+            "Target ISIN fetch from public justETF ETF profile pages"
         ),
         "captured_at": now.isoformat(),
-        "detail_url_count": len(detail_rows),
+        "target_isins": TARGET_ISINS,
         "row_count": len(rows),
         "status_counts": status_counts,
         "listing_rows": rows,

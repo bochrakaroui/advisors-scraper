@@ -13,7 +13,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_DIR = BASE_DIR
 ISSUER = "Dimensional"
-EXCLUDED_ISINS = {"BG9000011163"}
 
 OUTPUT_COLUMNS = [
     "ETF Name",
@@ -174,12 +173,7 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     source_rows = parse_snapshot_rows(resolved_input_path)
     file_date = extract_file_date(resolved_input_path)
 
-    filtered_rows = [
-        row
-        for row in source_rows
-        if clean_text(row.get("isin")).upper() not in EXCLUDED_ISINS
-    ]
-    output_rows = [transform_row(row, file_date) for row in filtered_rows]
+    output_rows = [transform_row(row, file_date) for row in source_rows]
     return dedupe_rows(output_rows)
 
 
