@@ -1,12 +1,9 @@
 {
   "source_url": "https://www.wisdomtree.eu/products?structure=UCITS+ETFs",
   "method": "filtered products page -> ETF detail pages",
-  "captured_at": "2026-07-05T16:50:43.034102",
-  "warning_count": 2,
-  "warnings": [
-    "https://www.wisdomtree.eu/en-gb/etfs/commodities/weng---wisdomtree-strategic-metals-ucits-etf---gbp-hedged-acc -> No Listings & Codes rows were parsed from the product detail page.",
-    "https://www.wisdomtree.eu/en-gb/etfs/commodities/wenu---wisdomtree-strategic-metals-ucits-etf---usd-acc -> No Listings & Codes rows were parsed from the product detail page."
-  ],
+  "captured_at": "2026-07-05T22:26:05.040787",
+  "warning_count": 0,
+  "warnings": [],
   "rows": [
     {
       "provider": "WisdomTree",
@@ -26,7 +23,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/coms-wisdomtree-enhanced-commodity-ucits-etf---chf-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/coms-wisdomtree-enhanced-commodity-ucits-etf---chf-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -47,7 +44,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/exag-wisdomtree-enhanced-commodity-ex-agriculture---ucits-etf---eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/exag-wisdomtree-enhanced-commodity-ex-agriculture---ucits-etf---eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -68,7 +65,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -89,7 +86,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -110,7 +107,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -131,7 +128,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -152,7 +149,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -173,7 +170,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/pcom-wisdomtree-broad-commodities-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -194,7 +191,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wcoe-wisdomtree-enhanced-commodity-ucits-etf---eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wcoe-wisdomtree-enhanced-commodity-ucits-etf---eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -215,7 +212,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wcoe-wisdomtree-enhanced-commodity-ucits-etf---eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wcoe-wisdomtree-enhanced-commodity-ucits-etf---eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -236,7 +233,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wcom-wisdomtree-enhanced-commodity-ucits-etf---gbp-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wcom-wisdomtree-enhanced-commodity-ucits-etf---gbp-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -257,7 +254,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wenp---wisdomtree-strategic-metals-ucits-etf---gbp-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wenp---wisdomtree-strategic-metals-ucits-etf---gbp-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -278,7 +275,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -299,7 +296,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -320,7 +317,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -341,7 +338,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -362,7 +359,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -383,7 +380,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -404,7 +401,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -425,7 +422,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wisdomtree-enhanced-commodity-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -446,7 +443,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wxag-wisdomtree-enhanced-commodity-ex-agriculture-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wxag-wisdomtree-enhanced-commodity-ex-agriculture-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -467,7 +464,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wxag-wisdomtree-enhanced-commodity-ex-agriculture-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wxag-wisdomtree-enhanced-commodity-ex-agriculture-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -488,7 +485,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wxag-wisdomtree-enhanced-commodity-ex-agriculture-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/commodities/wxag-wisdomtree-enhanced-commodity-ex-agriculture-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -509,7 +506,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-chf-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-chf-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -530,7 +527,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-gbp-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-gbp-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -551,7 +548,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -572,7 +569,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -593,7 +590,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -614,7 +611,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -635,7 +632,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -656,7 +653,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -677,7 +674,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -698,7 +695,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-europe-equity-ucits-etf-usd-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -719,7 +716,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-japan-equity-ucits-etf-usd-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-japan-equity-ucits-etf-usd-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -740,7 +737,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-japan-equity-ucits-etf-usd-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-japan-equity-ucits-etf-usd-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -761,7 +758,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-japan-equity-ucits-etf-usd-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-japan-equity-ucits-etf-usd-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -782,7 +779,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-us-equity-income-ucits-etf-eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-us-equity-income-ucits-etf-eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -803,7 +800,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-us-equity-income-ucits-etf-eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/currency-hedged/wisdomtree-us-equity-income-ucits-etf-eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -824,7 +821,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -845,7 +842,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -866,7 +863,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -887,7 +884,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -908,7 +905,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -929,7 +926,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsg-wisdomtree-global-efficient-core-ucits---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -950,7 +947,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -971,7 +968,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -992,7 +989,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1013,7 +1010,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1034,7 +1031,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsx-wisdomtree-us-efficient-core-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1055,7 +1052,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1076,7 +1073,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1097,7 +1094,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1118,7 +1115,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1139,7 +1136,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/efficient-core/ntsz-wisdomtree-eurozone-efficient-core-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1160,7 +1157,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1181,7 +1178,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1202,7 +1199,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1223,7 +1220,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1244,7 +1241,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/epi-wisdomtree-india-earnings-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1265,7 +1262,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1286,7 +1283,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1307,7 +1304,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1328,7 +1325,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1349,7 +1346,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1370,7 +1367,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wem----wisdomtree-true-emerging-markets-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1391,7 +1388,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1412,7 +1409,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1433,7 +1430,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1454,7 +1451,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1475,7 +1472,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1496,7 +1493,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1517,7 +1514,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1538,7 +1535,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1559,7 +1556,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1580,7 +1577,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1601,7 +1598,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-emerging-markets-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1622,7 +1619,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1643,7 +1640,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1664,7 +1661,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1685,7 +1682,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1706,7 +1703,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1727,7 +1724,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1748,7 +1745,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1769,7 +1766,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1790,7 +1787,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1811,7 +1808,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1832,7 +1829,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-europe-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1853,7 +1850,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1874,7 +1871,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1895,7 +1892,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1916,7 +1913,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1937,7 +1934,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1958,7 +1955,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -1979,7 +1976,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2000,7 +1997,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2021,7 +2018,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2042,7 +2039,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2063,28 +2060,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "DHSG WisdomTree US High Dividend UCITS ETF - GBP Hedged Acc",
-      "ticker": "DHSG",
-      "exchange": "LSE",
-      "country": "",
-      "ccy": "GBX",
-      "base_currency": "",
-      "isin": "IE00BD6RZZ53",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-gbp-hedged-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wisdomtree-us-equity-income-ucits-etf-gbp-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2105,7 +2081,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wsdg---wisdomtree-global-sustainable-equity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wsdg---wisdomtree-global-sustainable-equity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2126,7 +2102,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wsdg---wisdomtree-global-sustainable-equity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wsdg---wisdomtree-global-sustainable-equity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2147,7 +2123,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wsdg---wisdomtree-global-sustainable-equity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wsdg---wisdomtree-global-sustainable-equity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2168,7 +2144,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wsdg---wisdomtree-global-sustainable-equity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/wsdg---wisdomtree-global-sustainable-equity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2189,7 +2165,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2210,7 +2186,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2231,7 +2207,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2252,7 +2228,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2273,7 +2249,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2294,7 +2270,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/equities/xsoe-wisdomtree-emerging-markets-ex-state-owned-enterprises-esg-screened-ucits-etf---acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2315,7 +2291,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2336,7 +2312,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2357,7 +2333,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2378,7 +2354,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2399,7 +2375,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2420,7 +2396,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-europe-equity-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2441,7 +2417,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-chf-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-chf-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2462,7 +2438,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2483,7 +2459,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2504,7 +2480,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-gbp-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-gbp-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2525,7 +2501,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2546,7 +2522,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2567,7 +2543,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2588,7 +2564,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2609,7 +2585,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2630,7 +2606,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-jpy-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2651,7 +2627,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2672,7 +2648,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2693,7 +2669,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2714,7 +2690,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/export-tilted/wisdomtree-japan-equity-ucits-etf-usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2735,7 +2711,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/coba---wisdomtree-at1-coco-bond-ucits-etf---eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/coba---wisdomtree-at1-coco-bond-ucits-etf---eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2756,7 +2732,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/cobo---wisdomtree-at1-coco-bond-ucits-etf---eur-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/cobo---wisdomtree-at1-coco-bond-ucits-etf---eur-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2777,7 +2753,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/cobo---wisdomtree-at1-coco-bond-ucits-etf---eur-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/cobo---wisdomtree-at1-coco-bond-ucits-etf---eur-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2798,7 +2774,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/cobo---wisdomtree-at1-coco-bond-ucits-etf---eur-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/cobo---wisdomtree-at1-coco-bond-ucits-etf---eur-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2819,7 +2795,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/codo---wisdomtree-at1-coco-bond-ucits-etf---usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/codo---wisdomtree-at1-coco-bond-ucits-etf---usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2840,7 +2816,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/codo---wisdomtree-at1-coco-bond-ucits-etf---usd-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/codo---wisdomtree-at1-coco-bond-ucits-etf---usd-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2861,91 +2837,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/cogo---wisdomtree-at1-coco-bond-ucits-etf---gbp-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/cogo---wisdomtree-at1-coco-bond-ucits-etf---gbp-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "TFRN/TFRP WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD Acc",
-      "ticker": "TFRN",
-      "exchange": "LSE",
-      "country": "",
-      "ccy": "USD",
-      "base_currency": "",
-      "isin": "IE00BJJYYX67",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/tfrn---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/tfrn---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "TFRN/TFRP WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD Acc",
-      "ticker": "TFRP",
-      "exchange": "LSE",
-      "country": "",
-      "ccy": "GBX",
-      "base_currency": "",
-      "isin": "IE00BJJYYX67",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/tfrn---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/tfrn---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "TFRN/TFRP WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD Acc",
-      "ticker": "TFRN",
-      "exchange": "Borsa Italiana",
-      "country": "",
-      "ccy": "EUR",
-      "base_currency": "",
-      "isin": "IE00BJJYYX67",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/tfrn---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/tfrn---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "TFRN/TFRP WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD Acc",
-      "ticker": "TFRN",
-      "exchange": "BMV",
-      "country": "",
-      "ccy": "MXN",
-      "base_currency": "",
-      "isin": "IE00BJJYYX67",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/tfrn---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/tfrn---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2966,7 +2858,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/usfr---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/usfr---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -2987,7 +2879,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/usfr---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/usfr---wisdomtree-usd-floating-rate-treasury-bond-ucits-etf---usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3008,7 +2900,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3029,7 +2921,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3050,7 +2942,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3071,7 +2963,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3092,7 +2984,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3113,7 +3005,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3134,7 +3026,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3155,7 +3047,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/fixed-income/wisdomtree-at1-coco-bond-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3176,7 +3068,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/dgrb---wisdomtree-us-quality-dividend-growth-ucits-etf---gbp-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/dgrb---wisdomtree-us-quality-dividend-growth-ucits-etf---gbp-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3197,7 +3089,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/dgre---wisdomtree-us-quality-dividend-growth-ucits-etf---eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/dgre---wisdomtree-us-quality-dividend-growth-ucits-etf---eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3218,7 +3110,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/dgre---wisdomtree-us-quality-dividend-growth-ucits-etf---eur-hedged-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/dgre---wisdomtree-us-quality-dividend-growth-ucits-etf---eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3239,49 +3131,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/ggrb-wisdomtree-global-quality-dividend-growth-ucits-etf---gbp-hedged",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/ggrb-wisdomtree-global-quality-dividend-growth-ucits-etf---gbp-hedged",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "GGRE WisdomTree Global Quality Dividend Growth UCITS ETF - EUR Hedged Acc",
-      "ticker": "GGRE",
-      "exchange": "Borsa Italiana",
-      "country": "",
-      "ccy": "EUR",
-      "base_currency": "",
-      "isin": "IE0007M3MLF3",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/ggre-wisdomtree-global-quality-dividend-growth-ucits-etf---eur-hedged-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/ggre-wisdomtree-global-quality-dividend-growth-ucits-etf---eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "GGRE WisdomTree Global Quality Dividend Growth UCITS ETF - EUR Hedged Acc",
-      "ticker": "WGRU",
-      "exchange": "Xetra",
-      "country": "",
-      "ccy": "EUR",
-      "base_currency": "",
-      "isin": "IE0007M3MLF3",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/ggre-wisdomtree-global-quality-dividend-growth-ucits-etf---eur-hedged-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/ggre-wisdomtree-global-quality-dividend-growth-ucits-etf---eur-hedged-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3302,7 +3152,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/ugrw-wisdomtree-uk-quality-dividend-growth-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/ugrw-wisdomtree-uk-quality-dividend-growth-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3323,7 +3173,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3344,7 +3194,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3365,7 +3215,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3386,7 +3236,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3407,7 +3257,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3428,7 +3278,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3449,7 +3299,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3470,7 +3320,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3491,7 +3341,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-eurozone-quality-dividend-growth-ucits-etf-eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3512,7 +3362,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3533,7 +3383,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3554,7 +3404,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3575,7 +3425,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3596,7 +3446,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3617,7 +3467,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3638,7 +3488,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3659,7 +3509,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3680,7 +3530,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3701,7 +3551,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3722,7 +3572,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3743,7 +3593,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-global-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3764,7 +3614,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3785,7 +3635,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3806,7 +3656,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3827,7 +3677,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3848,7 +3698,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3869,7 +3719,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3890,7 +3740,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3911,7 +3761,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3932,7 +3782,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3953,7 +3803,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3974,7 +3824,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/wisdomtree-us-quality-dividend-growth-ucits-etf-usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -3995,7 +3845,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4016,7 +3866,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4037,7 +3887,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4058,7 +3908,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4079,7 +3929,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4100,7 +3950,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4121,7 +3971,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-dividend-growth/xusa-wisdomtree-global-ex-usa-quality-dividend-growth-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4142,7 +3992,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4163,7 +4013,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4184,7 +4034,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4205,7 +4055,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4226,7 +4076,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4247,112 +4097,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/qgrw---wisdomtree-us-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "WGRO/WGRP WisdomTree Global Quality Growth UCITS ETF - USD Acc",
-      "ticker": "WGRO",
-      "exchange": "LSE",
-      "country": "",
-      "ccy": "USD",
-      "base_currency": "",
-      "isin": "IE000Y83YZ44",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "WGRO/WGRP WisdomTree Global Quality Growth UCITS ETF - USD Acc",
-      "ticker": "WGRP",
-      "exchange": "LSE",
-      "country": "",
-      "ccy": "GBX",
-      "base_currency": "",
-      "isin": "IE000Y83YZ44",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "WGRO/WGRP WisdomTree Global Quality Growth UCITS ETF - USD Acc",
-      "ticker": "WGRO",
-      "exchange": "Borsa Italiana",
-      "country": "",
-      "ccy": "EUR",
-      "base_currency": "",
-      "isin": "IE000Y83YZ44",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "WGRO/WGRP WisdomTree Global Quality Growth UCITS ETF - USD Acc",
-      "ticker": "QGRG",
-      "exchange": "Xetra",
-      "country": "",
-      "ccy": "EUR",
-      "base_currency": "",
-      "isin": "IE000Y83YZ44",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
-      "as_of_date": ""
-    },
-    {
-      "provider": "WisdomTree",
-      "issuer": "WisdomTree",
-      "etf_name": "WGRO/WGRP WisdomTree Global Quality Growth UCITS ETF - USD Acc",
-      "ticker": "WGRO",
-      "exchange": "SIX",
-      "country": "",
-      "ccy": "USD",
-      "base_currency": "",
-      "isin": "IE000Y83YZ44",
-      "aum_raw": "",
-      "aum_numeric": "",
-      "aum_m": "",
-      "aum_currency": "",
-      "ter_raw": "",
-      "ter_bps": "",
-      "product_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "source_url": "https://www.wisdomtree.eu/en-gb/etfs/quality-growth/wgro---wisdomtree-global-quality-growth-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4373,7 +4118,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4394,7 +4139,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4415,7 +4160,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4436,7 +4181,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4457,7 +4202,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-emerging-markets-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4478,7 +4223,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4499,7 +4244,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4520,7 +4265,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4541,7 +4286,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4562,7 +4307,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4583,7 +4328,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4604,7 +4349,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4625,7 +4370,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4646,7 +4391,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4667,7 +4412,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4688,7 +4433,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/small-cap-dividend/wisdomtree-europe-smallcap-dividend-ucits-etf-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4709,7 +4454,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4730,7 +4475,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4751,7 +4496,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4772,7 +4517,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4793,7 +4538,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4814,7 +4559,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4835,7 +4580,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/nclr---wisdomtree-uranium-and-nuclear-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4856,7 +4601,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4877,7 +4622,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4898,7 +4643,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4919,7 +4664,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4940,7 +4685,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4961,7 +4706,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -4982,7 +4727,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/rare---wisdomtree-energy-transition-metals-and-rare-earths-miners-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5003,7 +4748,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5024,7 +4769,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5045,7 +4790,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5066,7 +4811,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5087,7 +4832,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5108,7 +4853,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/tmgt---wisdomtree-tech-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5129,7 +4874,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5150,7 +4895,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5171,7 +4916,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5192,7 +4937,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5213,7 +4958,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5234,7 +4979,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5255,7 +5000,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/volt---wisdomtree-battery-solutions-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5276,7 +5021,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5297,7 +5042,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5318,7 +5063,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5339,7 +5084,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5360,7 +5105,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5381,7 +5126,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wbld---wisdomtree-europe-infrastructure-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5402,7 +5147,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5423,7 +5168,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5444,7 +5189,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5465,7 +5210,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5486,7 +5231,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5507,7 +5252,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5528,7 +5273,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wblk---wisdomtree-blockchain-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5549,7 +5294,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5570,7 +5315,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5591,7 +5336,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5612,7 +5357,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5633,7 +5378,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5654,7 +5399,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5675,7 +5420,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcbr---wisdomtree-cybersecurity-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5696,7 +5441,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5717,7 +5462,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5738,7 +5483,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5759,7 +5504,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5780,7 +5525,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5801,7 +5546,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5822,7 +5567,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wcld---wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5843,7 +5588,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5864,7 +5609,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5885,7 +5630,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5906,7 +5651,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5927,7 +5672,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5948,7 +5693,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdaf---wisdomtree-asia-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5969,7 +5714,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -5990,7 +5735,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6011,7 +5756,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6032,7 +5777,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6053,7 +5798,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6074,7 +5819,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6095,7 +5840,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6116,7 +5861,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6137,7 +5882,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6158,7 +5903,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6179,7 +5924,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6200,7 +5945,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6221,7 +5966,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6242,7 +5987,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdgf---wisdomtree-global-defence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6263,7 +6008,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6284,7 +6029,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6305,7 +6050,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6326,7 +6071,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6347,7 +6092,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6368,7 +6113,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wdna---wisdomtree-biorevolution-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6389,7 +6134,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6410,7 +6155,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6431,7 +6176,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6452,7 +6197,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6473,7 +6218,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6494,7 +6239,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6515,7 +6260,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wmgt---wisdomtree-megatrends-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6536,7 +6281,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wner---wisdomtree-new-economy-real-estate-ucits-etf---usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wner---wisdomtree-new-economy-real-estate-ucits-etf---usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6557,7 +6302,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wner---wisdomtree-new-economy-real-estate-ucits-etf---usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wner---wisdomtree-new-economy-real-estate-ucits-etf---usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6578,7 +6323,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wner---wisdomtree-new-economy-real-estate-ucits-etf---usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wner---wisdomtree-new-economy-real-estate-ucits-etf---usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6599,7 +6344,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wner---wisdomtree-new-economy-real-estate-ucits-etf---usd",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wner---wisdomtree-new-economy-real-estate-ucits-etf---usd",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6620,7 +6365,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6641,7 +6386,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6662,7 +6407,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6683,7 +6428,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6704,7 +6449,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6725,7 +6470,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wpai---wisdomtree-physical-ai-humanoids-and-drones-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6746,7 +6491,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6767,7 +6512,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6788,7 +6533,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6809,7 +6554,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6830,7 +6575,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6851,7 +6596,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6872,7 +6617,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wqtm---wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6893,7 +6638,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wrnw---wisdomtree-renewable-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wrnw---wisdomtree-renewable-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6914,7 +6659,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wrnw---wisdomtree-renewable-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wrnw---wisdomtree-renewable-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6935,7 +6680,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wrnw---wisdomtree-renewable-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wrnw---wisdomtree-renewable-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6956,7 +6701,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wrnw---wisdomtree-renewable-energy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wrnw---wisdomtree-renewable-energy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6977,7 +6722,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -6998,7 +6743,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7019,7 +6764,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7040,7 +6785,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7061,7 +6806,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7082,7 +6827,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7103,7 +6848,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7124,7 +6869,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7145,7 +6890,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7166,7 +6911,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7187,7 +6932,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7208,7 +6953,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7229,7 +6974,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtai---wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7250,7 +6995,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7271,7 +7016,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7292,7 +7037,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7313,7 +7058,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7334,7 +7079,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/thematic/wtre---wisdomtree-new-economy-real-estate-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7355,7 +7100,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7376,7 +7121,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7397,7 +7142,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7418,7 +7163,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7439,7 +7184,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtve-wisdomtree-europe-value-ucits-etf---eur-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7460,7 +7205,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7481,7 +7226,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7502,7 +7247,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7523,7 +7268,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7544,7 +7289,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvg-wisdomtree-global-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7565,7 +7310,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7586,7 +7331,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7607,7 +7352,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7628,7 +7373,7 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     },
     {
@@ -7649,7 +7394,49 @@
       "ter_bps": "",
       "product_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
       "source_url": "https://www.wisdomtree.eu/en-gb/etfs/value/wtvu-wisdomtree-us-value-ucits-etf---usd-acc",
-      "scraped_at": "2026-07-05T16:50:43.034102",
+      "scraped_at": "2026-07-05T22:26:05.040787",
+      "as_of_date": ""
+    },
+    {
+      "provider": "WisdomTree",
+      "issuer": "WisdomTree",
+      "etf_name": "WisdomTree Strategic Metals UCITS ETF GBP Hedged Acc",
+      "ticker": "WTD0",
+      "exchange": "",
+      "country": "",
+      "ccy": "GBP",
+      "base_currency": "GBP",
+      "isin": "IE0003XI1PW0",
+      "aum_raw": "EUR 2 m",
+      "aum_numeric": "2.00",
+      "aum_m": "2.00",
+      "aum_currency": "EUR",
+      "ter_raw": "0.55% p.a.",
+      "ter_bps": "55.00",
+      "product_url": "https://www.justetf.com/en/etf-profile.html?isin=IE0003XI1PW0",
+      "source_url": "https://www.justetf.com/en/etf-profile.html?isin=IE0003XI1PW0",
+      "scraped_at": "2026-07-05T22:26:05.040787",
+      "as_of_date": ""
+    },
+    {
+      "provider": "WisdomTree",
+      "issuer": "WisdomTree",
+      "etf_name": "WisdomTree Strategic Metals UCITS ETF USD Acc",
+      "ticker": "WENU",
+      "exchange": "",
+      "country": "",
+      "ccy": "USD",
+      "base_currency": "USD",
+      "isin": "IE0007UE04X9",
+      "aum_raw": "EUR 44 m",
+      "aum_numeric": "44.00",
+      "aum_m": "44.00",
+      "aum_currency": "EUR",
+      "ter_raw": "0.55% p.a.",
+      "ter_bps": "55.00",
+      "product_url": "https://www.justetf.com/en/etf-profile.html?isin=IE0007UE04X9",
+      "source_url": "https://www.justetf.com/en/etf-profile.html?isin=IE0007UE04X9",
+      "scraped_at": "2026-07-05T22:26:05.040787",
       "as_of_date": ""
     }
   ]

@@ -247,6 +247,12 @@ from providers.PIMCO.extract_pimco_fields import (
     find_latest_download as find_latest_pimco_download,
     parse_snapshot_rows as parse_pimco_source_rows,
 )
+from providers.Market_Access.extract_market_access_fields import (
+    INPUT_DIR as MARKET_ACCESS_INPUT_DIR,
+    extract_rows as extract_market_access_rows,
+    find_latest_download as find_latest_market_access_download,
+    parse_snapshot_rows as parse_market_access_source_rows,
+)
 from providers.Robeco.extract_Robeco_fields import (
     INPUT_DIR as ROBECO_INPUT_DIR,
     extract_rows as extract_robeco_rows,
@@ -307,6 +313,7 @@ from scrapers.Nordea_extractor import scrape_nordea
 from scrapers.Ossiam_extractor import download_ossiam_file
 from scrapers.Pacer_ETFs_extractor import run as download_pacer_etfs_file
 from scrapers.PIMCO_extractor import download_pimco_file
+from scrapers.market_access_extractor import download_market_access_file
 from scrapers.Robeco_extractor import download_robeco_file
 from scrapers.Schroders_extractor import download_schroders_file
 from scrapers.Waystone_extractor import download_waystone_file
@@ -368,6 +375,7 @@ ALL_PROVIDERS = (
     "janushenderson",
     "kraneshares",
     "mg",
+    "marketaccess",
     "nordea",
     "ossiam",
     "paceretfs",
@@ -1267,6 +1275,16 @@ def build_pipelines(include_all_funds: bool) -> dict[str, ProviderPipeline]:
             output_filename="mg_selected_fields.csv",
             latest_download_finder=find_latest_mg_download,
             source_row_parser=parse_mg_source_rows,
+        ),
+        "marketaccess": ProviderPipeline(
+            name="Market Access",
+            downloader=download_market_access_file,
+            extractor=extract_market_access_rows,
+            input_dir=MARKET_ACCESS_INPUT_DIR,
+            output_dir=MARKET_ACCESS_INPUT_DIR,
+            output_filename="market_access_selected_fields.csv",
+            latest_download_finder=find_latest_market_access_download,
+            source_row_parser=parse_market_access_source_rows,
         ),
         "nordea": ProviderPipeline(
             name="Nordea",

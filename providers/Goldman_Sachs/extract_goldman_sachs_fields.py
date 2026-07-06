@@ -72,7 +72,11 @@ HEADERS = {
 
 SPACE_PATTERN = re.compile(r"\s+")
 TER_LABEL_PRIORITY = ("netExpensesRatio", "managementFees")
-JUSTETF_FALLBACK_ISINS = ["IE00BJ5CMD00"]
+JUSTETF_FALLBACK_ISINS = [
+    "IE00BJ5CMD00",
+    "IE0003MKK4H3",
+    "IE000HPBRE54",
+]
 
 
 def parse_args() -> argparse.Namespace:

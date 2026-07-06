@@ -1,13 +1,13 @@
-# Install Python deps with:
-#   pip install -r requirements.txt
+# Install Python dependencies with:
+#   python -m pip install -r requirements.txt
 #
 # Playwright also needs a browser binary:
-#   playwright install chromium
+#   python -m playwright install chromium
 
-beautifulsoup4
-openpyxl
-pandas
-playwright
-pypdf
-requests
-urllib3
+beautifulsoup4>=4.12
+openpyxl>=3.1
+pandas>=2.0
+playwright>=1.40
+pypdf>=4.0
+requests>=2.31
+urllib3>=2.0

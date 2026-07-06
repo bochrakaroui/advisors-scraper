@@ -1,7 +1,7 @@
 {
   "source_url": "https://finexetf.com/product/",
   "method": "requests + BeautifulSoup — listing page + per-product detail pages",
-  "captured_at": "2026-07-05T17:05:16.380276",
+  "captured_at": "2026-07-06T09:04:33.533008",
   "listing_rows": [
     {
       "etf_name": "FinEx Blockchain UCITS ETF",
@@ -22,6 +22,7 @@
       "annual_volatility": "53.97%",
       "tracking_error": "0.35%",
       "shares_in_issue": "2 000 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -43,6 +44,7 @@
       "annual_volatility": "17.00%",
       "tracking_error": "0.67%",
       "shares_in_issue": "5 000 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -64,6 +66,7 @@
       "annual_volatility": "19.43%",
       "tracking_error": "0.12%",
       "shares_in_issue": "9 100 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -85,6 +88,7 @@
       "annual_volatility": "17.79%",
       "tracking_error": "1.29%",
       "shares_in_issue": "1 700 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -106,6 +110,7 @@
       "annual_volatility": "21.56%",
       "tracking_error": "0.91%",
       "shares_in_issue": "11 250 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -127,6 +132,7 @@
       "annual_volatility": "16.13%",
       "tracking_error": "1.35%",
       "shares_in_issue": "3 030 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -148,6 +154,7 @@
       "annual_volatility": "7.46%",
       "tracking_error": "0.71%",
       "shares_in_issue": "14 500 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -169,6 +176,7 @@
       "annual_volatility": "5.60%",
       "tracking_error": "0.58%",
       "shares_in_issue": "9 500 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -190,6 +198,7 @@
       "annual_volatility": "14.90%",
       "tracking_error": "0.16%",
       "shares_in_issue": "34 300 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -211,6 +220,7 @@
       "annual_volatility": "15.33%",
       "tracking_error": "1.08%",
       "shares_in_issue": "112 384 500",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -232,6 +242,7 @@
       "annual_volatility": "16.04%",
       "tracking_error": "4.55%",
       "shares_in_issue": "1 327 500 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -253,6 +264,7 @@
       "annual_volatility": "27.68%",
       "tracking_error": "13.20%",
       "shares_in_issue": "1 080 025 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -274,6 +286,7 @@
       "annual_volatility": "0.23%",
       "tracking_error": "14.91%",
       "shares_in_issue": "23 890 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -295,6 +308,7 @@
       "annual_volatility": "10.10%",
       "tracking_error": "9.40%",
       "shares_in_issue": "1 736 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -316,6 +330,7 @@
       "annual_volatility": "36.79%",
       "tracking_error": "10.80%",
       "shares_in_issue": "165 250 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -337,6 +352,7 @@
       "annual_volatility": "23.71%",
       "tracking_error": "1.35%",
       "shares_in_issue": "27 250 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -358,6 +374,7 @@
       "annual_volatility": "22.41%",
       "tracking_error": "0.14%",
       "shares_in_issue": "1 333 800",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -379,6 +396,7 @@
       "annual_volatility": "17.22%",
       "tracking_error": "0.05%",
       "shares_in_issue": "275 000 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -400,6 +418,7 @@
       "annual_volatility": "18.12%",
       "tracking_error": "7.62%",
       "shares_in_issue": "68 063 200",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -421,6 +440,7 @@
       "annual_volatility": "18.33%",
       "tracking_error": "0.23%",
       "shares_in_issue": "144 900 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -442,6 +462,7 @@
       "annual_volatility": "24.34%",
       "tracking_error": "0.18%",
       "shares_in_issue": "4 727 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -463,6 +484,7 @@
       "annual_volatility": "11.78%",
       "tracking_error": "3.03%",
       "shares_in_issue": "1 800 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -484,7 +506,8 @@
       "annual_volatility": "39.11%",
       "tracking_error": "213.99%",
       "shares_in_issue": "0",
-      "detail_fetch_status": "ok"
+      "detail_missing_fields": "aum_mn",
+      "detail_fetch_status": "partial:missing_core_fields"
     },
     {
       "etf_name": "FinEx Australia UCITS ETF",
@@ -505,6 +528,7 @@
       "annual_volatility": "16.46%",
       "tracking_error": "0.92%",
       "shares_in_issue": "100 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     },
     {
@@ -526,6 +550,7 @@
       "annual_volatility": "",
       "tracking_error": "",
       "shares_in_issue": "",
+      "detail_missing_fields": "",
       "detail_fetch_status": "http_error:500"
     },
     {
@@ -547,6 +572,7 @@
       "annual_volatility": "16.72%",
       "tracking_error": "0.83%",
       "shares_in_issue": "200 000",
+      "detail_missing_fields": "",
       "detail_fetch_status": "ok"
     }
   ]

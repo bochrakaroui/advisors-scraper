@@ -60,7 +60,6 @@ DHSA/DHSP WisdomTree US High Dividend UCITS ETF - Acc,WisdomTree,IE00BD6RZT93,US
 DHSA/DHSP WisdomTree US High Dividend UCITS ETF - Acc,WisdomTree,IE00BD6RZT93,GBX,,,GBX,05/07/2026
 DHSA/DHSP WisdomTree US High Dividend UCITS ETF - Acc,WisdomTree,IE00BD6RZT93,EUR,,,EUR,05/07/2026
 DHSA/DHSP WisdomTree US High Dividend UCITS ETF - Acc,WisdomTree,IE00BD6RZT93,MXN,,,MXN,05/07/2026
-DHSG WisdomTree US High Dividend UCITS ETF - GBP Hedged Acc,WisdomTree,IE00BD6RZZ53,GBX,,,GBX,05/07/2026
 WSDG/WSEQ WisdomTree Global Sustainable Equity UCITS ETF - USD Acc,WisdomTree,IE000XNILW20,USD,,,USD,05/07/2026
 WSDG/WSEQ WisdomTree Global Sustainable Equity UCITS ETF - USD Acc,WisdomTree,IE000XNILW20,GBX,,,GBX,05/07/2026
 WSDG/WSEQ WisdomTree Global Sustainable Equity UCITS ETF - USD Acc,WisdomTree,IE000XNILW20,EUR,,,EUR,05/07/2026
@@ -83,10 +82,6 @@ COBA WisdomTree AT1 CoCo Bond UCITS ETF - EUR Hedged Acc,WisdomTree,IE00BFNNN343
 COBO WisdomTree AT1 CoCo Bond UCITS ETF - EUR Hedged,WisdomTree,IE00BFNNN236,EUR,,,EUR,05/07/2026
 CODO WisdomTree AT1 CoCo Bond UCITS ETF - USD Hedged,WisdomTree,IE00BFNNN012,USD,,,USD,05/07/2026
 COGO WisdomTree AT1 CoCo Bond UCITS ETF - GBP Hedged,WisdomTree,IE00BFNNN459,GBX,,,GBX,05/07/2026
-TFRN/TFRP WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD Acc,WisdomTree,IE00BJJYYX67,USD,,,USD,05/07/2026
-TFRN/TFRP WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD Acc,WisdomTree,IE00BJJYYX67,GBX,,,GBX,05/07/2026
-TFRN/TFRP WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD Acc,WisdomTree,IE00BJJYYX67,EUR,,,EUR,05/07/2026
-TFRN/TFRP WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD Acc,WisdomTree,IE00BJJYYX67,MXN,,,MXN,05/07/2026
 USFR WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD,WisdomTree,IE00BJFN5P63,USD,,,USD,05/07/2026
 USFR WisdomTree USD Floating Rate Treasury Bond UCITS ETF - USD,WisdomTree,IE00BJFN5P63,MXN,,,MXN,05/07/2026
 CCBO WisdomTree AT1 CoCo Bond UCITS ETF - USD,WisdomTree,IE00BZ0XVF52,USD,,,USD,05/07/2026
@@ -97,7 +92,6 @@ COCB WisdomTree AT1 CoCo Bond UCITS ETF - USD Acc,WisdomTree,IE00BZ0XVG69,MXN,,,
 DGRB WisdomTree US Quality Dividend Growth UCITS ETF - GBP Hedged,WisdomTree,IE000IGMB3E1,GBX,,,GBX,05/07/2026
 DGRE WisdomTree US Quality Dividend Growth UCITS ETF - EUR Hedged Acc,WisdomTree,IE000CXVOXQ1,EUR,,,EUR,05/07/2026
 GGRB WisdomTree Global Quality Dividend Growth UCITS ETF - GBP Hedged,WisdomTree,IE000LRRPK60,GBX,,,GBX,05/07/2026
-GGRE WisdomTree Global Quality Dividend Growth UCITS ETF - EUR Hedged Acc,WisdomTree,IE0007M3MLF3,EUR,,,EUR,05/07/2026
 UGRW WisdomTree UK Quality Dividend Growth UCITS ETF - GBP,WisdomTree,IE0003UH9270,GBX,,,GBX,05/07/2026
 EGRW/EGRP WisdomTree Eurozone Quality Dividend Growth UCITS ETF - EUR,WisdomTree,IE00BZ56SY76,EUR,,,EUR,05/07/2026
 EGRW/EGRP WisdomTree Eurozone Quality Dividend Growth UCITS ETF - EUR,WisdomTree,IE00BZ56SY76,GBX,,,GBX,05/07/2026
@@ -123,9 +117,6 @@ QGRW/QGRP WisdomTree US Quality Growth UCITS ETF - USD Acc,WisdomTree,IE000YGEAK
 QGRW/QGRP WisdomTree US Quality Growth UCITS ETF - USD Acc,WisdomTree,IE000YGEAK03,GBX,,,GBX,05/07/2026
 QGRW/QGRP WisdomTree US Quality Growth UCITS ETF - USD Acc,WisdomTree,IE000YGEAK03,EUR,,,EUR,05/07/2026
 QGRW/QGRP WisdomTree US Quality Growth UCITS ETF - USD Acc,WisdomTree,IE000YGEAK03,MXN,,,MXN,05/07/2026
-WGRO/WGRP WisdomTree Global Quality Growth UCITS ETF - USD Acc,WisdomTree,IE000Y83YZ44,USD,,,USD,05/07/2026
-WGRO/WGRP WisdomTree Global Quality Growth UCITS ETF - USD Acc,WisdomTree,IE000Y83YZ44,GBX,,,GBX,05/07/2026
-WGRO/WGRP WisdomTree Global Quality Growth UCITS ETF - USD Acc,WisdomTree,IE000Y83YZ44,EUR,,,EUR,05/07/2026
 DGSE/DGSD WisdomTree Emerging Markets SmallCap Dividend UCITS ETF,WisdomTree,IE00BQZJBM26,GBX,,,GBX,05/07/2026
 DGSE/DGSD WisdomTree Emerging Markets SmallCap Dividend UCITS ETF,WisdomTree,IE00BQZJBM26,USD,,,USD,05/07/2026
 DGSE/DGSD WisdomTree Emerging Markets SmallCap Dividend UCITS ETF,WisdomTree,IE00BQZJBM26,EUR,,,EUR,05/07/2026
@@ -218,3 +209,5 @@ WTVU/VLUA WisdomTree US Value UCITS ETF - USD Acc,WisdomTree,IE000F9AQNW6,USD,,,
 WTVU/VLUA WisdomTree US Value UCITS ETF - USD Acc,WisdomTree,IE000F9AQNW6,GBX,,,GBX,05/07/2026
 WTVU/VLUA WisdomTree US Value UCITS ETF - USD Acc,WisdomTree,IE000F9AQNW6,EUR,,,EUR,05/07/2026
 WTVU/VLUA WisdomTree US Value UCITS ETF - USD Acc,WisdomTree,IE000F9AQNW6,MXN,,,MXN,05/07/2026
+WisdomTree Strategic Metals UCITS ETF GBP Hedged Acc,WisdomTree,IE0003XI1PW0,GBP,55.00,2.00,GBP,05/07/2026
+WisdomTree Strategic Metals UCITS ETF USD Acc,WisdomTree,IE0007UE04X9,USD,55.00,44.00,USD,05/07/2026

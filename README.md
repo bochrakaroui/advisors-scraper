@@ -1,29 +1,72 @@
 # ETF Extractor
 
-This project downloads ETF data from multiple asset-manager websites, extracts a standard set of fields, and builds one combined CSV.
+This project downloads ETF data from multiple asset-manager websites, normalizes each provider into one shared schema, applies an ISIN whitelist filter, and writes one combined CSV for the run.
 
-The final output columns are:
+## What This Produces
+
+The combined output columns are:
 
 ```text
-ETF Name,Issuer,ISIN,CCY,TER(bps),AUM(M),Date
+ETF Name,Issuer,ISIN,CCY,TER(bps),AUM(M),AUM CCY,Date
 ```
 
-`Date` is stored as a date only in `dd/mm/yyyy` format.
+Column notes:
 
-## How it works
+- `TER(bps)`: total expense ratio in basis points.
+- `AUM(M)`: assets under management expressed in millions.
+- `AUM CCY`: currency of the AUM value.
+- `Date`: normalized as `dd/mm/yyyy`.
 
-- `scrapers/` contains the provider downloaders
-- `providers/<provider>/` contains provider-specific field extractors plus dated raw/output files
-- `run_all_etf_pipeline.py` runs the end-to-end workflow
-- `ISIN-list.xlsx` is the whitelist used for the final combined output
+## Project Structure
 
-The main pipeline currently covers:
+```text
+etf-extractor/
+  scrapers/                     # Provider downloaders / collectors
+  providers/                    # Provider extractors and dated provider output folders
+  pipeline_runs/                # Combined pipeline output by run date
+  docs/                         # Provider workflow notes and source notes
+  ISIN-list.xlsx                # Required whitelist file for final filtering
+  run_all_etf_pipeline.py       # Main pipeline entry point
+  requirements.txt              # Python dependencies
+```
 
-- iShares, Xtrackers, Amundi, Fidelity, Invesco, UBS, SPDR, HSBC, J.P. Morgan, L&G, Palmer Square, VanEck, Franklin Templeton, WisdomTree, Vanguard, First Trust, HANetf, Global X, FinEx, iM Global Partner, American Century Investments, Columbia Threadneedle Investments, BNP Paribas Asset Management, Goldman Sachs Asset Management, Janus Henderson, ARK Invest Europe, Robeco, PIMCO, KraneShares, M&G, Market Access, Dimensional, Expat, and Schroders
+Most providers follow this pattern:
 
-## Setup on a new machine
+1. A script in `scrapers/` downloads or scrapes the raw provider data.
+2. A matching script in `providers/<provider>/` transforms that raw file into the shared schema.
+3. `run_all_etf_pipeline.py` orchestrates both steps and then builds the final filtered CSV.
 
-Use Python 3.11+.
+## Supported Providers
+
+Current provider keys supported by the main pipeline:
+
+```text
+ishares, xtrackers, amundi, fidelity, invesco, ubs, spdr, hsbc, jpmorgan,
+landg, palmersquare, vaneck, franklintempleton, wisdomtree, vanguard,
+firsttrust, hanetf, globalx, finex, imgp, abrdn, alliancebernstein,
+alphaucits, americancenturyinvestments, ark, bnpparibas, columbia,
+connectetfs, dimensional, goldmansachs, janushenderson, kraneshares, mg,
+marketaccess, nordea, ossiam, paceretfs, pimco, robeco, schroders, waystone
+```
+
+## Requirements
+
+You need:
+
+- Python 3.11 or newer
+- Internet access to the provider websites
+- `ISIN-list.xlsx` in the project root
+- Playwright Chromium installed locally
+
+If you are on Windows PowerShell and script activation is blocked, you may need:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+```
+
+## Setup on a New Machine
+
+### Windows PowerShell
 
 ```powershell
 git clone <your-repo-url>
@@ -35,136 +78,7 @@ python -m pip install -r requirements.txt
 python -m playwright install chromium
 ```
 
-Make sure `ISIN-list.xlsx` is present in the project root before running the pipeline.
-
-## Main commands
-
-Run the full pipeline with fresh downloads:
-
-```powershell
-python run_all_etf_pipeline.py
-```
-
-On a successful run, the script prints one section per provider, then a final summary.
-
-Example:
-
-```text
-=== iShares ===
-Input file   : ...\providers\ishares\2026-06-28\iShares-UnitedKingdom.xls
-Output file  : ...\providers\ishares\2026-06-28\ishares_selected_fields_all_funds.csv
-Source rows  : 1,380
-Rows extracted: 1,380
-Excluded rows: 0
-Missing values: ETF Name=0, Issuer=0, ISIN=0, CCY=0, TER(bps)=0, AUM(M)=4, Date=0
-
-=== Xtrackers ===
-...
-
-=== Final ISIN Whitelist Filter ===
-Whitelist unique ISIN count: 2,300
-Final rows before filtering: 4,197
-Final rows after filtering: 2,122
-Removed rows count: 2,075
-
-=== Summary ===
-Run folder   : ...\pipeline_runs\2026-06-28
-Combined CSV : ...\pipeline_runs\2026-06-28\all_etf_fields.csv
-Total rows   : 2,122
-```
-
-If one provider fails, the pipeline prints an error for that provider and continues unless you used `--stop-on-error`.
-
-Reuse the latest files already saved in the repo instead of downloading again:
-
-```powershell
-python run_all_etf_pipeline.py --use-latest-downloads
-```
-
-Run only specific providers:
-
-```powershell
-python run_all_etf_pipeline.py --providers ishares xtrackers amundi
-```
-
-Stop immediately if one provider fails:
-
-```powershell
-python run_all_etf_pipeline.py --stop-on-error
-```
-
-## Running one provider manually
-
-Example:
-
-```powershell
-python scrapers\jpmorgan_extractor.py
-python providers\jpmorgan\extract_jpmorgan_fields.py
-```
-
-The same pattern applies to most providers:
-
-1. Run the scraper/downloader
-2. Run the matching extractor in `providers/<provider>/`
-
-## Output locations
-
-Provider-level raw files and extracted CSVs are saved in dated folders like:
-
-```text
-providers\jpmorgan\2026-06-28\
-providers\fidelity\2026-06-28\
-```
-
-The final combined file is saved here:
-
-```text
-pipeline_runs\YYYY-MM-DD\all_etf_fields.csv
-```
-
-After a normal full run, you should expect:
-
-```text
-providers\
-  ishares\YYYY-MM-DD\iShares-UnitedKingdom.xls
-  ishares\YYYY-MM-DD\ishares_selected_fields_all_funds.csv
-  xtrackers\YYYY-MM-DD\xtrackers_etf_export.xlsx
-  xtrackers\YYYY-MM-DD\xtrackers_selected_fields.csv
-  ...
-
-pipeline_runs\
-  YYYY-MM-DD\all_etf_fields.csv
-```
-
-In other words:
-
-1. Each provider gets its own dated folder with the raw downloaded file.
-2. That same provider folder also gets the extracted `selected_fields` CSV.
-3. The pipeline then creates one final combined CSV in `pipeline_runs\YYYY-MM-DD\`.
-
-For a first local test, the easiest check is:
-
-1. Run `python run_all_etf_pipeline.py`
-2. Confirm a new dated folder appears under `pipeline_runs\`
-3. Open `pipeline_runs\YYYY-MM-DD\all_etf_fields.csv`
-4. Confirm provider-level dated folders were created under `providers\`
-
-## Useful files
-
-- `run_all_etf_pipeline.py`: main pipeline entry point
-- `WORKFLOW.md`: implementation notes
-- `docs/provider_workflows.md`: provider-by-provider workflow notes
-- `normalize_existing_csv_dates.py`: utility to normalize existing CSV `Date` columns
-
-## Notes
-
-- The final combined output is filtered by `ISIN-list.xlsx`
-- Some downloaders use Playwright, so Chromium must be installed
-## Running on a server
-
-If the project will run on a server instead of your local machine, the workflow is the same, but setup is usually done in a Linux shell and Playwright runs headlessly.
-
-Typical server setup:
+### Linux / macOS
 
 ```bash
 git clone <your-repo-url>
@@ -176,31 +90,155 @@ python -m pip install -r requirements.txt
 python -m playwright install chromium
 ```
 
-Make sure these are present on the server before running:
+Before running the pipeline, confirm that `ISIN-list.xlsx` exists in the repository root.
 
-- Python 3.11+
-- `ISIN-list.xlsx` in the project root
-- outbound internet access to the provider websites
+## Main Commands
 
-Run the pipeline on the server with:
+Run the full pipeline with fresh downloads:
 
-```bash
+```powershell
 python run_all_etf_pipeline.py
 ```
 
-Or, if you want to reuse files that were already downloaded on the server:
+Reuse the latest already-saved provider files instead of downloading again:
 
-```bash
+```powershell
 python run_all_etf_pipeline.py --use-latest-downloads
 ```
 
-After the run finishes, check:
+Run only selected providers:
 
-- `pipeline_runs/YYYY-MM-DD/all_etf_fields.csv`
-- `providers/<provider>/YYYY-MM-DD/` for raw files and extracted provider CSVs
+```powershell
+python run_all_etf_pipeline.py --providers ishares xtrackers amundi
+```
 
-Server notes:
+Stop immediately if one provider fails:
 
-- Playwright downloaders run without needing a visible browser window.
-- If you schedule this with cron or another job runner, run it from the project root so relative paths still work.
-- Do not keep `ISIN-list.xlsx` or output CSVs open while the pipeline is running.
+```powershell
+python run_all_etf_pipeline.py --stop-on-error
+```
+
+Pass the iShares-specific ETF-only option through the pipeline:
+
+```powershell
+python run_all_etf_pipeline.py --etf-only
+```
+
+## Running One Provider Manually
+
+Example for J.P. Morgan:
+
+```powershell
+python scrapers\jpmorgan_extractor.py
+python providers\jpmorgan\extract_jpmorgan_fields.py
+```
+
+Example for WisdomTree:
+
+```powershell
+python scrapers\wisdomtree_extractor.py
+python providers\wisdomtree\extract_wisdomtree_fields.py
+```
+
+In general:
+
+1. Run the provider scraper from `scrapers/`.
+2. Run the matching extractor from `providers/<provider>/`.
+
+## Output Locations
+
+Each run creates provider-level files and one combined pipeline output.
+
+Provider output:
+
+```text
+providers\<provider>\YYYY-MM-DD\
+```
+
+Typical contents:
+
+```text
+providers\jpmorgan\2026-07-06\jpmorgan_etf_export.json
+providers\jpmorgan\2026-07-06\jpmorgan_selected_fields.csv
+```
+
+Final pipeline output:
+
+```text
+pipeline_runs\YYYY-MM-DD\all_etf_fields.csv
+```
+
+Notes:
+
+- Provider raw files and selected-field CSVs are stored together in the provider date folder.
+- Some providers may create suffixed date folders like `2026-07-06 (1)` if a script is run multiple times and the scraper chooses a unique folder name.
+- The final combined file is always written under `pipeline_runs\YYYY-MM-DD\`.
+
+## What the Pipeline Prints
+
+For each provider, the pipeline prints:
+
+- source information
+- discovery row count
+- extraction counts
+- missing-field counts
+- ISIN whitelist match counts
+- saved output paths
+- final provider status
+
+After all selected providers finish, it prints:
+
+- the final whitelist filter summary
+- the output location of `all_etf_fields.csv`
+- per-provider extraction and match counts
+
+## Fresh-Machine Run Checklist
+
+If someone new wants to run this repository successfully, this is the minimum checklist:
+
+1. Clone the repo.
+2. Create and activate a virtual environment.
+3. Install `requirements.txt`.
+4. Run `python -m playwright install chromium`.
+5. Make sure `ISIN-list.xlsx` is present in the repo root.
+6. Run `python run_all_etf_pipeline.py`.
+7. Check `pipeline_runs/YYYY-MM-DD/all_etf_fields.csv`.
+
+## Common Issues
+
+- `ModuleNotFoundError`: the virtual environment is not activated or dependencies are not installed.
+- Playwright browser errors: run `python -m playwright install chromium`.
+- Empty or partial provider output: the provider website may have changed, timed out, blocked automation, or returned incomplete data.
+- Permission errors when writing CSVs: close any open Excel/CSV files before rerunning.
+- Missing final rows: the affected ISINs may not be present in `ISIN-list.xlsx`, so they are removed during the final whitelist filter.
+
+## Useful Files
+
+- `run_all_etf_pipeline.py`: main orchestration script
+- `providers/output_schema.py`: shared final output schema
+- `docs/provider_workflows.md`: provider-by-provider workflow notes
+- `docs/source_notes/`: source-specific implementation notes
+
+## Server / Scheduled Runs
+
+If you run this on a server, the setup is the same except the shell commands are usually Linux-based and Playwright runs headlessly.
+
+Recommended server steps:
+
+```bash
+git clone https://github.com/bochrakaroui/advisors-scraper.git
+cd etf-extractor
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m playwright install chromium
+python run_all_etf_pipeline.py
+```
+
+For scheduled jobs:
+
+- run from the project root
+- ensure outbound internet access is allowed
+- keep `ISIN-list.xlsx` in place
+- do not keep output files open while the job is running

@@ -1,7 +1,7 @@
 {
   "source_url": "https://www.vanguard.co.uk/uk-fund-directory/product?product-type=etf",
   "method": "overview table + FundsQuery GraphQL",
-  "captured_at": "2026-07-05T17:03:24.318531",
+  "captured_at": "2026-07-05T22:39:09.517900",
   "rows": [
     {
       "provider": "Vanguard",
@@ -17,7 +17,7 @@
       "ter_bps": "17.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E036/esg-developed-asia-pacific-all-cap-ucits",
       "isin": "IE000GOJO2A3",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -33,7 +33,7 @@
       "ter_bps": "17.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E037/esg-developed-asia-pacific-all-cap-ucits",
       "isin": "IE0008T6IUX0",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -49,7 +49,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E034/esg-developed-europe-all-cap-ucits",
       "isin": "IE000QUOSE01",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -65,7 +65,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E035/esg-developed-europe-all-cap-ucits",
       "isin": "IE000NRGX9M3",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -81,7 +81,7 @@
       "ter_bps": "19.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E038/esg-emerging-markets-all-cap-ucits",
       "isin": "IE000KPJJWM6",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -97,7 +97,7 @@
       "ter_bps": "19.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E039/esg-emerging-markets-all-cap-ucits",
       "isin": "IE0001VXZTV7",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -113,7 +113,7 @@
       "ter_bps": "9.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E043/esg-eur-corporate-bond-ucits",
       "isin": "IE000QADMYA3",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -129,7 +129,7 @@
       "ter_bps": "9.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E044/esg-eur-corporate-bond-ucits",
       "isin": "IE000F37PGZ3",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -145,7 +145,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E042/esg-eur-corporate-bond-ucits",
       "isin": "IE000UQLOH05",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -161,7 +161,7 @@
       "ter_bps": "24.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9470/esg-global-all-cap-ucits",
       "isin": "IE00BNG8L278",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -177,7 +177,7 @@
       "ter_bps": "24.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9471/esg-global-all-cap-ucits",
       "isin": "IE00BNG8L385",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -193,7 +193,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9474/esg-global-corporate-bond-ucits",
       "isin": "IE00BNDS1R53",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -209,7 +209,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9475/esg-global-corporate-bond-ucits",
       "isin": "IE00BNDS1S60",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -225,7 +225,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9472/esg-global-corporate-bond-ucits",
       "isin": "IE00BNDS1P30",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -241,7 +241,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9473/esg-global-corporate-bond-ucits",
       "isin": "IE00BNDS1Q47",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -257,7 +257,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9476/esg-global-corporate-bond-ucits",
       "isin": "IE00BNDS1T77",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -273,7 +273,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9477/esg-global-corporate-bond-ucits",
       "isin": "IE00BNDS1V99",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -289,7 +289,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9478/esg-global-corporate-bond-ucits",
       "isin": "IE00BNDS1W07",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -305,7 +305,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9479/esg-global-corporate-bond-ucits",
       "isin": "IE00BNDS1X14",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -321,7 +321,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E040/esg-north-america-all-cap-ucits",
       "isin": "IE000O58J820",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -337,7 +337,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E041/esg-north-america-all-cap-ucits",
       "isin": "IE000L2ZNB07",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -353,7 +353,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/money-market/E060/eur-cash-ucits",
       "isin": "IE000SOORXS0",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -369,7 +369,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/money-market/E061/eur-cash-ucits",
       "isin": "IE000AFVKJZ0",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -385,7 +385,7 @@
       "ter_bps": "9.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E076/eur-corporate-1-3-year-bond-ucits",
       "isin": "IE00BH04FZ00",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -401,7 +401,7 @@
       "ter_bps": "9.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E077/eur-corporate-1-3-year-bond-ucits",
       "isin": "IE00BDD48S37",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -417,7 +417,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9695/eur-corporate-bond-ucits",
       "isin": "IE00BGYWT403",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -433,7 +433,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9659/eur-corporate-bond-ucits",
       "isin": "IE00BZ163G84",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -449,7 +449,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E082/eur-corporate-bond-ucits",
       "isin": "IE00BGYWT510",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -465,7 +465,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E068/eur-eurozone-government-1-3-year-bond-ucits",
       "isin": "IE00004S2680",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -481,7 +481,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E069/eur-eurozone-government-1-3-year-bond-ucits",
       "isin": "IE000HARFTG3",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -497,7 +497,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9591/eur-eurozone-government-bond-ucits",
       "isin": "IE00BH04GL39",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -513,7 +513,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9660/eur-eurozone-government-bond-ucits",
       "isin": "IE00BZ163H91",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -529,7 +529,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E081/eur-eurozone-government-bond-ucits",
       "isin": "IE00BH04GM46",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -545,7 +545,7 @@
       "ter_bps": "9.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9580/ftse-100-ucits",
       "isin": "IE00BFMXYP42",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -561,7 +561,7 @@
       "ter_bps": "9.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9509/ftse-100-ucits",
       "isin": "IE00B810Q511",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -577,7 +577,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9581/ftse-250-ucits",
       "isin": "IE00BFMXVQ44",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -593,7 +593,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9525/ftse-250-ucits",
       "isin": "IE00BKX55Q28",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -609,7 +609,7 @@
       "ter_bps": "29.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9677/ftse-all-world-high-dividend-yield-ucits",
       "isin": "IE00BK5BR626",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -625,7 +625,7 @@
       "ter_bps": "29.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9506/ftse-all-world-high-dividend-yield-ucits",
       "isin": "IE00B8GKDB10",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -641,7 +641,7 @@
       "ter_bps": "19.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9679/ftse-all-world-ucits",
       "isin": "IE00BK5BQT80",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -657,7 +657,7 @@
       "ter_bps": "19.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9505/ftse-all-world-ucits",
       "isin": "IE00B3RBWM25",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -673,7 +673,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9676/ftse-developed-asia-pacific-ex-japan-ucits",
       "isin": "IE00BK5BQZ41",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -689,7 +689,7 @@
       "ter_bps": "15.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9522/ftse-developed-asia-pacific-ex-japan-ucits",
       "isin": "IE00B9F5YL18",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -705,7 +705,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9682/ftse-developed-europe-ex-uk-ucits",
       "isin": "IE00BK5BQY34",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -721,7 +721,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9524/ftse-developed-europe-ex-uk-ucits",
       "isin": "IE00BKX55S42",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -737,7 +737,7 @@
       "ter_bps": "19.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E151/ftse-developed-europe-small-cap-ucits",
       "isin": "IE00069H3LK0",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -753,7 +753,7 @@
       "ter_bps": "19.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E152/ftse-developed-europe-small-cap-ucits",
       "isin": "IE000K7PC2G4",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -769,7 +769,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9681/ftse-developed-europe-ucits",
       "isin": "IE00BK5BQX27",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -785,7 +785,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9520/ftse-developed-europe-ucits",
       "isin": "IE00B945VV12",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -801,7 +801,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9675/ftse-developed-world-ucits",
       "isin": "IE00BK5BQV03",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -817,7 +817,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9527/ftse-developed-world-ucits",
       "isin": "IE00BKX55T58",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -833,7 +833,7 @@
       "ter_bps": "17.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9678/ftse-emerging-markets-ucits",
       "isin": "IE00BK5BR733",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -849,7 +849,7 @@
       "ter_bps": "17.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9507/ftse-emerging-markets-ucits",
       "isin": "IE00B3VVMM84",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -865,7 +865,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E149/ftse-eurozone-ucits",
       "isin": "IE000Q4J3CW6",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -881,7 +881,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/E150/ftse-eurozone-ucits",
       "isin": "IE000VH3JSL8",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -897,7 +897,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9674/ftse-japan-ucits",
       "isin": "IE00BFMXYX26",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -913,7 +913,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9504/ftse-japan-ucits",
       "isin": "IE00B95PGT31",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -929,7 +929,7 @@
       "ter_bps": "13.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9840/ftse-japan-ucits",
       "isin": "IE00BFMXYY33",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -945,7 +945,7 @@
       "ter_bps": "13.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9541/ftse-japan-ucits",
       "isin": "IE00BFMXZJ56",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -961,7 +961,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9680/ftse-north-america-ucits",
       "isin": "IE00BK5BQW10",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -977,7 +977,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9523/ftse-north-america-ucits",
       "isin": "IE00BKX55R35",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -993,7 +993,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9688/germany-all-cap-ucits",
       "isin": "IE00BG143G97",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1009,7 +1009,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9750/global-aggregate-bond-ucits",
       "isin": "IE00BG47KF31",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1025,7 +1025,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9443/global-aggregate-bond-ucits",
       "isin": "IE00BG47KH54",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1041,7 +1041,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9689/global-aggregate-bond-ucits",
       "isin": "IE00BG47KB92",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1057,7 +1057,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9685/global-aggregate-bond-ucits",
       "isin": "IE00BG47K971",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1073,7 +1073,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9442/global-aggregate-bond-ucits",
       "isin": "IE00BG47KG48",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1089,7 +1089,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9600/global-aggregate-bond-ucits",
       "isin": "IE00BG47KJ78",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1105,7 +1105,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E075/global-government-bond-ucits",
       "isin": "IE000F16FMX1",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1121,7 +1121,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E070/global-government-bond-ucits",
       "isin": "IE000B1A2798",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1137,7 +1137,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E071/global-government-bond-ucits",
       "isin": "IE0003HUCA83",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1153,7 +1153,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E072/global-government-bond-ucits",
       "isin": "IE000AI6QNJ5",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1169,7 +1169,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E073/global-government-bond-ucits",
       "isin": "IE000A2E14U6",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1185,7 +1185,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E074/global-government-bond-ucits",
       "isin": "IE0006YIB0U2",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1201,7 +1201,7 @@
       "ter_bps": "25.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/lifestrategy/9490/lifestrategy-20-equity-ucits",
       "isin": "IE00BMVB5K07",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1217,7 +1217,7 @@
       "ter_bps": "25.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/lifestrategy/9491/lifestrategy-20-equity-ucits",
       "isin": "IE00BMVB5L14",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1233,7 +1233,7 @@
       "ter_bps": "25.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/lifestrategy/9492/lifestrategy-40-equity-ucits",
       "isin": "IE00BMVB5M21",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1249,7 +1249,7 @@
       "ter_bps": "25.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/lifestrategy/9493/lifestrategy-40-equity-ucits",
       "isin": "IE00BMVB5N38",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1265,7 +1265,7 @@
       "ter_bps": "25.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/lifestrategy/9494/lifestrategy-60-equity-ucits",
       "isin": "IE00BMVB5P51",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1281,7 +1281,7 @@
       "ter_bps": "25.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/lifestrategy/9495/lifestrategy-60-equity-ucits",
       "isin": "IE00BMVB5Q68",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1297,7 +1297,7 @@
       "ter_bps": "25.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/lifestrategy/9496/lifestrategy-80-equity-ucits",
       "isin": "IE00BMVB5R75",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1313,7 +1313,7 @@
       "ter_bps": "25.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/lifestrategy/9497/lifestrategy-80-equity-ucits",
       "isin": "IE00BMVB5S82",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1329,7 +1329,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9694/sp-500-ucits",
       "isin": "IE00BFMXXD54",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1345,7 +1345,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/equity/9503/sp-500-ucits",
       "isin": "IE00B3XXRP09",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1361,7 +1361,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9599/uk-gilt-ucits",
       "isin": "IE00BH04GW44",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1377,7 +1377,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9501/uk-gilt-ucits",
       "isin": "IE00B42WWV65",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1393,7 +1393,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9519/uk-gilt-ucits",
       "isin": "IE00BMX0B524",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1409,7 +1409,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9933/us-treasury-0-1-year-bond-ucits",
       "isin": "IE00BLRPPV00",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1425,7 +1425,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9898/us-treasury-0-1-year-bond-ucits",
       "isin": "IE00BLRPPW17",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1441,7 +1441,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E124/us-treasury-1-3-year-bond-ucits",
       "isin": "IE000H3Q3AF6",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1457,7 +1457,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E123/us-treasury-1-3-year-bond-ucits",
       "isin": "IE000GU6MFI0",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1473,7 +1473,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E125/us-treasury-1-3-year-bond-ucits",
       "isin": "IE000TAV7246",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1489,7 +1489,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E126/us-treasury-1-3-year-bond-ucits",
       "isin": "IE000M6STPW4",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1505,7 +1505,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E130/us-treasury-3-7-year-bond-ucits",
       "isin": "IE000VZ8BBU9",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1521,7 +1521,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E129/us-treasury-3-7-year-bond-ucits",
       "isin": "IE000128BSS1",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1537,7 +1537,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E132/us-treasury-7-10-year-bond-ucits",
       "isin": "IE000UXDT343",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1553,7 +1553,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E131/us-treasury-7-10-year-bond-ucits",
       "isin": "IE000U882CN5",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1569,7 +1569,7 @@
       "ter_bps": "9.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9592/usd-corporate-1-3-year-bond-ucits",
       "isin": "IE00BGYWSV06",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1585,7 +1585,7 @@
       "ter_bps": "9.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9683/usd-corporate-1-3-year-bond-ucits",
       "isin": "IE00BDD48R20",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1601,7 +1601,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E057/usd-corporate-1-3-year-bond-ucits",
       "isin": "IE00BGYWSW13",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1617,7 +1617,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E062/usd-corporate-1-3-year-bond-ucits",
       "isin": "IE00BGYWSZ44",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1633,7 +1633,7 @@
       "ter_bps": "12.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E050/usd-corporate-1-3-year-bond-ucits",
       "isin": "IE000NATSYT3",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1649,7 +1649,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9594/usd-corporate-bond-ucits",
       "isin": "IE00BGYWFK87",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1665,7 +1665,7 @@
       "ter_bps": "7.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9661/usd-corporate-bond-ucits",
       "isin": "IE00BZ163K21",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1681,7 +1681,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9516/usd-corporate-bond-ucits",
       "isin": "IE00BGYWFL94",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1697,7 +1697,7 @@
       "ter_bps": "10.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9502/usd-corporate-bond-ucits",
       "isin": "IE00BGYWFN19",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1713,7 +1713,7 @@
       "ter_bps": "23.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9596/usd-emerging-markets-government-bond-ucits",
       "isin": "IE00BGYWCB81",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1729,7 +1729,7 @@
       "ter_bps": "23.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9664/usd-emerging-markets-government-bond-ucits",
       "isin": "IE00BZ163L38",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1745,7 +1745,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9598/usd-treasury-bond-ucits",
       "isin": "IE00BGYWFS63",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1761,7 +1761,7 @@
       "ter_bps": "5.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9662/usd-treasury-bond-ucits",
       "isin": "IE00BZ163M45",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1777,7 +1777,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/9518/usd-treasury-bond-ucits",
       "isin": "IE00BMX0B631",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1793,7 +1793,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E080/usd-treasury-bond-ucits",
       "isin": "IE000JR51TI1",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     },
     {
       "provider": "Vanguard",
@@ -1809,7 +1809,7 @@
       "ter_bps": "8.00",
       "product_url": "https://www.vanguard.co.uk/uk-fund-directory/product/etf/bond/E024/usd-treasury-bond-ucits",
       "isin": "IE000S0PSP47",
-      "scraped_at": "2026-07-05T17:03:24.318531"
+      "scraped_at": "2026-07-05T22:39:09.517900"
     }
   ]
 }
