@@ -8,7 +8,9 @@ from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
 from typing import Any
- 
+from urllib.parse import urljoin, urlparse
+
+from bs4 import BeautifulSoup
 from playwright.async_api import Locator, Page, Response, async_playwright
  
 try:
@@ -127,6 +129,20 @@ WAYSTONE_INVESTOR_SELECTORS = [
     "select.investor-type-list",
 ]
 EMPTY_DISPLAY_RE = re.compile(r"Displaying:?\s*0\s*-\s*0\b", re.IGNORECASE)
+WAYSTONE_DETAIL_AS_OF_RE = re.compile(
+    r"\bAs of\s+(\d{4}-\d{2}-\d{2}|\d{1,2}/\d{1,2}/\d{2,4})\b",
+    re.IGNORECASE,
+)
+WAYSTONE_FUND_LEVEL_AUM_LABELS = (
+    "Total Net Assets",
+    "Fund AUM",
+    "Fund Assets",
+    "Assets Under Management",
+    "AUM",
+)
+WAYSTONE_SHARE_CLASS_AUM_LABELS = (
+    "Share Class Assets",
+)
 
 WAYSTONE_EXTERNAL_FALLBACKS: dict[str, dict[str, str]] = {
     "IE000DHZXD61": {
@@ -248,14 +264,152 @@ def parse_millions_value(raw: str) -> tuple[str, str]:
         return fmt_dec(Decimal(n)), ccy
     except InvalidOperation:
         return "", ccy
- 
+
+
+def parse_raw_money_to_millions(raw: str) -> tuple[str, str, Decimal | None]:
+    s = clean(raw)
+    if not s:
+        return "", "", None
+
+    ccy = detect_ccy(s)
+    m = re.search(r"-?\d[\d,]*(?:\.\d+)?", s)
+    if not m:
+        return "", ccy, None
+
+    try:
+        amount = Decimal(m.group(0).replace(",", ""))
+    except InvalidOperation:
+        return "", ccy, None
+
+    lowered = s.casefold()
+    if re.search(r"\b(billion|bn)\b", lowered):
+        amount_m = amount * Decimal("1000")
+    elif re.search(r"\b(million|mn)\b", lowered) or re.search(r"\d(?:[\d,]*)(?:\.\d+)?\s*m\b", lowered):
+        amount_m = amount
+    elif re.search(r"\b(thousand|k)\b", lowered):
+        amount_m = amount / Decimal("1000")
+    else:
+        amount_m = amount / Decimal("1000000")
+
+    return fmt_dec(amount_m), ccy, amount_m
+
+
+def parse_decimal(raw: str) -> Decimal | None:
+    s = re.sub(r"[^0-9.\-]", "", clean(raw))
+    if not s:
+        return None
+    try:
+        return Decimal(s)
+    except InvalidOperation:
+        return None
+
+
+def same_two_dp(left: Decimal | None, right: Decimal | None) -> bool:
+    if left is None or right is None:
+        return False
+    q = Decimal("1.00")
+    return (
+        left.quantize(q, rounding=ROUND_HALF_UP)
+        == right.quantize(q, rounding=ROUND_HALF_UP)
+    )
+
 def norm_date(raw: str) -> str:
     s = clean(raw)
     if not s: return ""
-    for fmt in ("%d/%m/%Y", "%d/%m/%y", "%d %b %Y", "%d %B %Y"):
+    for fmt in ("%d/%m/%Y", "%d/%m/%y", "%d %b %Y", "%d %B %Y", "%Y-%m-%d"):
         try: return datetime.strptime(s, fmt).strftime("%d/%m/%Y 00:00:00")
         except ValueError: pass
     return s
+
+
+def normalize_waystone_detail_url(raw: str) -> str:
+    url = clean(raw)
+    if not url:
+        return ""
+    absolute = urljoin(LISTING_URL, url)
+    parsed = urlparse(absolute)
+    if parsed.netloc.lower() != "etfs.waystone.com":
+        return ""
+    if "/fund/" not in parsed.path.lower():
+        return ""
+    return absolute
+
+
+def normalize_waystone_field_label(raw: str) -> str:
+    return re.sub(r"\s+", " ", clean(raw)).strip(" :").casefold()
+
+
+def find_waystone_field_value(pairs: list[tuple[str, str]], labels: tuple[str, ...]) -> tuple[str, str]:
+    wanted = {normalize_waystone_field_label(label): label for label in labels}
+    for label, value in pairs:
+        if normalize_waystone_field_label(label) in wanted and value:
+            return label, value
+    return "", ""
+
+
+def extract_waystone_detail_aum(html: str) -> dict[str, Any]:
+    soup = BeautifulSoup(html, "html.parser")
+    pairs: list[tuple[str, str]] = []
+    key_info_table = None
+
+    for table in soup.select("table.fund-details-table, table#key_information"):
+        if key_info_table is None:
+            key_info_table = table
+        for row in table.select("tr"):
+            cells = row.find_all(["td", "th"])
+            if len(cells) < 2:
+                continue
+            label = clean(cells[0].get_text(" ", strip=True))
+            value = clean(cells[1].get_text(" ", strip=True))
+            if label and value:
+                pairs.append((label, value))
+
+    if not pairs:
+        for block in soup.select(".fund-banner-block"):
+            label_node = block.select_one(".label-banner")
+            value_node = block.select_one(".value-banner")
+            if label_node is None or value_node is None:
+                continue
+            label = clean(label_node.get_text(" ", strip=True))
+            value = clean(value_node.get_text(" ", strip=True))
+            if label and value:
+                pairs.append((label, value))
+
+    as_of_date = ""
+    if key_info_table is not None:
+        for node in key_info_table.next_elements:
+            if not isinstance(node, str):
+                continue
+            match = WAYSTONE_DETAIL_AS_OF_RE.search(clean(node))
+            if match:
+                as_of_date = match.group(1)
+                break
+    if not as_of_date:
+        for text in soup.stripped_strings:
+            match = WAYSTONE_DETAIL_AS_OF_RE.search(clean(text))
+            if match:
+                as_of_date = match.group(1)
+        if as_of_date:
+            as_of_date = clean(as_of_date)
+
+    fund_label, fund_raw = find_waystone_field_value(pairs, WAYSTONE_FUND_LEVEL_AUM_LABELS)
+    share_class_label, share_class_raw = find_waystone_field_value(pairs, WAYSTONE_SHARE_CLASS_AUM_LABELS)
+    fund_m, fund_ccy, fund_decimal_m = parse_raw_money_to_millions(fund_raw)
+    share_class_m, share_class_ccy, share_class_decimal_m = parse_raw_money_to_millions(share_class_raw)
+
+    return {
+        "as_of_date": as_of_date,
+        "fund_label": fund_label,
+        "fund_raw": fund_raw,
+        "fund_aum_m": fund_m,
+        "fund_currency": fund_ccy,
+        "fund_decimal_m": fund_decimal_m,
+        "share_class_label": share_class_label,
+        "share_class_raw": share_class_raw,
+        "share_class_aum_m": share_class_m,
+        "share_class_currency": share_class_ccy,
+        "share_class_decimal_m": share_class_decimal_m,
+    }
  
 PAGE_DATE_RE = re.compile(r"Displaying:?\s*\d+\s*-\s*\d+\s+(\d{1,2}/\d{1,2}/\d{2,4})", re.IGNORECASE)
  
@@ -330,6 +484,7 @@ def map_json_row(raw: dict, isin: str, scraped_at: str, page_date: str) -> dict[
         "ongoing_charges_raw": ter_raw, "ter_bps": ter_bps(ter_raw),
         "inception": "", "inception_norm": "",
         "factsheet_url": href,
+        "detail_url": normalize_waystone_detail_url(href),
         "source_url": LISTING_URL, "scraped_at": scraped_at,
         "extraction_method": "api_intercept",
     }
@@ -442,6 +597,7 @@ def map_dom_row(headers: list[str], cells: list[str], href: str, isin: str,
         "ongoing_charges_raw": ter_raw, "ter_bps": ter_bps(ter_raw),
         "inception": "", "inception_norm": "",
         "factsheet_url": href,
+        "detail_url": normalize_waystone_detail_url(href),
         "source_url": LISTING_URL, "scraped_at": scraped_at,
         "extraction_method": "dom_table",
     }
@@ -492,20 +648,36 @@ def resolve_manual_fallback_aum(
     if direct_raw or direct_numeric:
         return direct_raw, direct_numeric, direct_numeric, direct_currency, direct_as_of_date
 
+    return "", "", "", direct_currency, direct_as_of_date
+
+
+def resolve_manual_fallback_detail_url(
+    fallback: dict[str, str],
+    intercepted: dict[str, dict],
+    collected: dict[str, dict[str, str]],
+    scraped_at: str,
+    page_date: str,
+) -> str:
+    direct_url = normalize_waystone_detail_url(
+        fallback.get("detail_url", "")
+        or fallback.get("factsheet_url", "")
+        or fallback.get("source_url", "")
+    )
+    if direct_url:
+        return direct_url
+
     reference_isin = clean(fallback.get("aum_reference_isin", "")).upper()
     if not reference_isin:
-        return "", "", "", direct_currency, direct_as_of_date
+        return ""
 
     reference_row = build_row_from_available_source(reference_isin, intercepted, collected, scraped_at, page_date)
     if reference_row is None:
-        return "", "", "", direct_currency, direct_as_of_date
+        return ""
 
-    return (
-        clean(reference_row.get("net_assets_raw", "")),
-        clean(reference_row.get("aum_numeric", "")),
-        clean(reference_row.get("aum_m", "")),
-        clean(reference_row.get("aum_currency", "")) or direct_currency,
-        clean(reference_row.get("as_of_date", "")),
+    return normalize_waystone_detail_url(
+        reference_row.get("detail_url", "")
+        or reference_row.get("factsheet_url", "")
+        or reference_row.get("source_url", "")
     )
 
 
@@ -521,6 +693,13 @@ def manual_official_fallback_row(
         return None
 
     net_assets_raw, aum_numeric, aum_m, aum_currency, aum_as_of_date = resolve_manual_fallback_aum(
+        fallback,
+        intercepted,
+        collected,
+        scraped_at,
+        page_date,
+    )
+    detail_url = resolve_manual_fallback_detail_url(
         fallback,
         intercepted,
         collected,
@@ -548,6 +727,7 @@ def manual_official_fallback_row(
         "inception": clean(fallback.get("inception", "")),
         "inception_norm": clean(fallback.get("inception_norm", "")),
         "factsheet_url": clean(fallback.get("factsheet_url", "")),
+        "detail_url": detail_url,
         "source_url": clean(fallback.get("source_url", "")),
         "scraped_at": scraped_at,
         "extraction_method": "official_manual_fallback",
@@ -625,6 +805,85 @@ async def get_page_text(page: Page) -> str:
         return await page.evaluate("() => document.body ? document.body.innerText : ''")
     except Exception:
         return ""
+
+
+async def fetch_waystone_detail_metrics(context, url: str) -> dict[str, Any]:
+    detail_page = await context.new_page()
+    try:
+        await detail_page.goto(url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+        await accept_waystone_cookie_banner(detail_page)
+        await complete_country_investor_gate(detail_page)
+        await accept_waystone_cookie_banner(detail_page)
+        try:
+            await detail_page.wait_for_load_state("networkidle", timeout=5_000)
+        except Exception:
+            pass
+        html = await detail_page.content()
+        return extract_waystone_detail_aum(html)
+    finally:
+        await detail_page.close()
+
+
+def should_apply_waystone_detail_aum(row: dict[str, str], detail_metrics: dict[str, Any]) -> bool:
+    fund_decimal_m = detail_metrics.get("fund_decimal_m")
+    if fund_decimal_m is None:
+        return False
+
+    row_decimal_m = parse_decimal(row.get("aum_m", "") or row.get("aum_numeric", ""))
+    if row_decimal_m is None:
+        return True
+
+    share_class_decimal_m = detail_metrics.get("share_class_decimal_m")
+    if share_class_decimal_m is None:
+        return False
+
+    return (
+        same_two_dp(row_decimal_m, share_class_decimal_m)
+        and not same_two_dp(fund_decimal_m, share_class_decimal_m)
+    )
+
+
+def apply_waystone_detail_aum(row: dict[str, str], detail_url: str, detail_metrics: dict[str, Any]) -> None:
+    row["net_assets_raw"] = clean(detail_metrics.get("fund_raw", ""))
+    row["aum_numeric"] = clean(detail_metrics.get("fund_aum_m", ""))
+    row["aum_m"] = clean(detail_metrics.get("fund_aum_m", ""))
+    row["aum_currency"] = clean(detail_metrics.get("fund_currency", "")) or clean(row.get("aum_currency", ""))
+    as_of_date = clean(detail_metrics.get("as_of_date", ""))
+    if as_of_date:
+        row["as_of_date"] = as_of_date
+        row["date"] = norm_date(as_of_date)
+    row["aum_source_url"] = detail_url
+    label = clean(detail_metrics.get("fund_label", ""))
+    if label:
+        row["aum_source_note"] = f"Fund-level {label} extracted from the official Waystone product page."
+
+
+async def enrich_rows_with_waystone_detail_aum(context, rows: list[dict[str, str]]) -> None:
+    detail_cache: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        detail_url = normalize_waystone_detail_url(row.get("detail_url", "") or row.get("factsheet_url", ""))
+        if not detail_url:
+            continue
+
+        if detail_url not in detail_cache:
+            detail_cache[detail_url] = await fetch_waystone_detail_metrics(context, detail_url)
+        detail_metrics = detail_cache[detail_url]
+
+        fund_decimal_m = detail_metrics.get("fund_decimal_m")
+        share_class_decimal_m = detail_metrics.get("share_class_decimal_m")
+        row_decimal_m = parse_decimal(row.get("aum_m", "") or row.get("aum_numeric", ""))
+        if should_apply_waystone_detail_aum(row, detail_metrics):
+            apply_waystone_detail_aum(row, detail_url, detail_metrics)
+            continue
+
+        if fund_decimal_m is None and (
+            row_decimal_m is None
+            or (share_class_decimal_m is not None and same_two_dp(row_decimal_m, share_class_decimal_m))
+        ):
+            print(
+                f"[warn] Waystone fund-level AUM not found | provider={PROVIDER} | "
+                f"isin={row.get('isin', '')} | url={detail_url}"
+            )
 
 async def click_first_visible_text(page: Page, labels: list[str], timeout_ms: int = 1_500) -> str:
     for label in labels:
@@ -1093,6 +1352,8 @@ async def scrape(scraped_at: str) -> list[dict]:
                 row["diagnostic_snippet"] = build_diagnostic_snippet(diagnostic_text)
                 row["diagnostic_collected_isins_sample"] = ", ".join(sorted(collected.keys())[:15])
                 rows.append(row)
+
+        await enrich_rows_with_waystone_detail_aum(context, rows)
  
         page.remove_listener("response", on_response)
         await browser.close()

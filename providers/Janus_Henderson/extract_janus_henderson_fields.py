@@ -22,7 +22,6 @@ if str(REPO_ROOT) not in sys.path:
 from providers.output_schema import OUTPUT_COLUMNS, infer_aum_currency_from_row
 
 SPACE_PATTERN = re.compile(r"\s+")
-TARGETED_HISTORICAL_AUM_FIX_ISIN = "IE000Y3FZEN4"
 
 
 def parse_args() -> argparse.Namespace:
@@ -150,134 +149,12 @@ def parse_snapshot(path: Path) -> tuple[str, list[dict[str, object]], list[str]]
     return parse_iso_date(payload.get("captured_at")), rows, [normalize_isin(isin) for isin in missing_target_isins]
 
 
-def load_historical_rows(target_isins: set[str], current_input_path: Path) -> list[dict[str, object]]:
-    if not target_isins:
-        return []
-
-    search_dirs = [INPUT_DIR]
-    if LEGACY_INPUT_DIR.resolve() not in {path.resolve() for path in search_dirs}:
-        search_dirs.append(LEGACY_INPUT_DIR)
-
-    current_resolved = current_input_path.resolve()
-    historical_rows: dict[str, dict[str, object]] = {}
-
-    candidates = sorted(
-        (
-            path
-            for search_dir in search_dirs
-            for path in search_dir.rglob("janushenderson_etf_export.json")
-            if search_dir.exists() and path.is_file() and path.resolve() != current_resolved
-        ),
-        key=lambda path: path.stat().st_mtime,
-        reverse=True,
-    )
-
-    for candidate in candidates:
-        try:
-            payload = json.loads(candidate.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-
-        rows = payload.get("listing_rows", [])
-        if not isinstance(rows, list):
-            continue
-
-        for row in rows:
-            if not isinstance(row, dict):
-                continue
-            isin = normalize_isin(row.get("isin"))
-            if isin in target_isins and isin not in historical_rows:
-                historical_rows[isin] = row
-
-        if target_isins.issubset(historical_rows):
-            break
-
-    return list(historical_rows.values())
-
-
-def has_missing_or_zero_aum(value: object | None) -> bool:
-    cleaned = clean_text(value).replace(",", "")
-    return cleaned in {"", "0", "0.0", "0.00", "0.000"}
-
-
-def load_latest_nonzero_historical_row(target_isin: str, current_input_path: Path) -> dict[str, object] | None:
-    search_dirs = [INPUT_DIR]
-    if LEGACY_INPUT_DIR.resolve() not in {path.resolve() for path in search_dirs}:
-        search_dirs.append(LEGACY_INPUT_DIR)
-
-    current_resolved = current_input_path.resolve()
-    candidates = sorted(
-        (
-            path
-            for search_dir in search_dirs
-            for path in search_dir.rglob("janushenderson_etf_export.json")
-            if search_dir.exists() and path.is_file() and path.resolve() != current_resolved
-        ),
-        key=lambda path: path.stat().st_mtime,
-        reverse=True,
-    )
-
-    for candidate in candidates:
-        try:
-            payload = json.loads(candidate.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-
-        rows = payload.get("listing_rows", [])
-        if not isinstance(rows, list):
-            continue
-
-        for row in rows:
-            if not isinstance(row, dict):
-                continue
-            if normalize_isin(row.get("isin")) != target_isin:
-                continue
-            if has_missing_or_zero_aum(row.get("aum_mn")):
-                continue
-            if not (
-                clean_text(row.get("date"))
-                or clean_text(row.get("data_as_of"))
-                or clean_text(row.get("fund_assets_as_of"))
-                or clean_text(row.get("nav_date"))
-            ):
-                continue
-            return row
-
-    return None
-
-
-def apply_targeted_historical_aum_fix(
-    source_rows: list[dict[str, object]],
-    current_input_path: Path,
-) -> list[dict[str, object]]:
-    fallback_row = load_latest_nonzero_historical_row(TARGETED_HISTORICAL_AUM_FIX_ISIN, current_input_path)
-    if fallback_row is None:
-        return list(source_rows)
-
-    patched_rows: list[dict[str, object]] = []
-    for row in source_rows:
-        if (
-            normalize_isin(row.get("isin")) == TARGETED_HISTORICAL_AUM_FIX_ISIN
-            and has_missing_or_zero_aum(row.get("aum_mn"))
-        ):
-            merged_row = dict(row)
-            for field in ("aum_display", "aum_mn", "date", "data_as_of", "fund_assets_as_of"):
-                fallback_value = fallback_row.get(field)
-                if clean_text(fallback_value):
-                    merged_row[field] = fallback_value
-            row = merged_row
-        patched_rows.append(row)
-
-    return patched_rows
-
-
 def transform_row(source_row: dict[str, object], scrape_date: str) -> dict[str, str]:
     row_date = (
         parse_iso_date(source_row.get("date"))
         or parse_iso_date(source_row.get("data_as_of"))
         or parse_display_date(source_row.get("fund_assets_as_of"))
         or parse_display_date(source_row.get("nav_date"))
-        or scrape_date
     )
     ccy = (
         clean_text(source_row.get("ccy")).upper()
@@ -337,10 +214,7 @@ def write_csv_with_fallback(output_path: Path, rows: list[dict[str, str]]) -> Pa
 
 def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
-    captured_at, source_rows, missing_target_isins = parse_snapshot(resolved_input_path)
-    if missing_target_isins:
-        source_rows = list(source_rows) + load_historical_rows(set(missing_target_isins), resolved_input_path)
-    source_rows = apply_targeted_historical_aum_fix(list(source_rows), resolved_input_path)
+    captured_at, source_rows, _missing_target_isins = parse_snapshot(resolved_input_path)
     scrape_date = captured_at or extract_file_date(resolved_input_path)
     return dedupe_rows([transform_row(row, scrape_date) for row in source_rows])
 

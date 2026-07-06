@@ -1,7 +1,7 @@
 {
   "source_url": "https://www.schroders.com/en-gb/uk/institutional/fund-centre/#/fund/search/filter",
   "method": "Schroders Fund Centre — search-by-ISIN, API interception + DOM fallback",
-  "captured_at": "2026-07-06T14:22:46.157774",
+  "captured_at": "2026-07-06T16:26:18.225948",
   "row_count": 5,
   "rows": [
     {
@@ -24,7 +24,7 @@
       "inception": "21.04.2026",
       "inception_norm": "21.04.2026",
       "source_url": "https://www.schroders.com/en-gb/uk/institutional/fund-centre/#/fund/search/filter",
-      "scraped_at": "2026-07-06T14:22:46.157774",
+      "scraped_at": "2026-07-06T16:26:18.225948",
       "extraction_method": "api_intercept",
       "aum_as_of_date": "03.07.2026",
       "fund_manager": "Lukas Kamblevicius"
@@ -49,7 +49,7 @@
       "inception": "06.11.2025",
       "inception_norm": "06.11.2025",
       "source_url": "https://www.schroders.com/en-gb/uk/institutional/fund-centre/#/fund/search/filter",
-      "scraped_at": "2026-07-06T14:22:46.157774",
+      "scraped_at": "2026-07-06T16:26:18.225948",
       "extraction_method": "api_intercept",
       "fund_manager": "Julien Houdain"
     },
@@ -73,7 +73,7 @@
       "inception": "24.09.2025",
       "inception_norm": "24.09.2025",
       "source_url": "https://www.schroders.com/en-gb/uk/institutional/fund-centre/#/fund/search/filter",
-      "scraped_at": "2026-07-06T14:22:46.157774",
+      "scraped_at": "2026-07-06T16:26:18.225948",
       "extraction_method": "api_intercept",
       "aum_as_of_date": "03.07.2026",
       "fund_manager": "Lukas Kamblevicius"
@@ -98,7 +98,7 @@
       "inception": "24.09.2025",
       "inception_norm": "24.09.2025",
       "source_url": "https://www.schroders.com/en-gb/uk/institutional/fund-centre/#/fund/search/filter",
-      "scraped_at": "2026-07-06T14:22:46.157774",
+      "scraped_at": "2026-07-06T16:26:18.225948",
       "extraction_method": "api_intercept",
       "aum_as_of_date": "03.07.2026",
       "fund_manager": "Julien Houdain"
@@ -123,7 +123,7 @@
       "inception": "13.01.2026",
       "inception_norm": "13.01.2026",
       "source_url": "https://www.schroders.com/en-gb/uk/institutional/fund-centre/#/fund/search/filter",
-      "scraped_at": "2026-07-06T14:22:46.157774",
+      "scraped_at": "2026-07-06T16:26:18.225948",
       "extraction_method": "api_intercept",
       "aum_as_of_date": "03.07.2026",
       "fund_manager": "The QEP Investment team"

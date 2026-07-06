@@ -7,15 +7,19 @@
     "language": "en"
   },
   "method": "Explicit Janus Henderson target ISIN list + official jhetf.com ETF overview pages + archived official Janus pages for retired share classes when live pages are unavailable",
-  "captured_at": "2026-07-06T14:10:13.663307",
+  "captured_at": "2026-07-06T20:51:03.687672",
   "requested_target_isin_count": 26,
   "resolved_target_isin_count": 0,
   "archive_resolved_target_isin_count": 46,
   "archive_products_snapshot_timestamp": "20260312112033",
-  "successful_scrape_count": 9,
-  "listing_only_count": 14,
-  "output_row_count": 26,
-  "missing_target_isins": [],
+  "successful_scrape_count": 11,
+  "listing_only_count": 12,
+  "output_row_count": 23,
+  "missing_target_isins": [
+    "IE0002P9KZW1",
+    "IE0008B0OAD5",
+    "IE0008C3G0Y9"
+  ],
   "candidate_overview_url_count": 0,
   "target_isins": [
     "IE0002P9KZW1",
@@ -48,59 +52,56 @@
   "target_results": [
     {
       "isin": "IE0002P9KZW1",
-      "status": "historical_local",
-      "detail_url": "https://www.jhetf.com/products/ie000ccqkon9/ie0002p9kzw1/overview/",
+      "status": "unresolved",
+      "detail_url": "",
       "references": {
         "search_results": [],
         "legacy_product_links": [],
-        "error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE0002P9KZW1&per_page=20",
-        "historical_snapshot": "C:\\Users\\Bochra\\OneDrive\\Desktop\\etf-extractor\\providers\\Janus_Henderson\\2026-07-05\\janushenderson_etf_export.json"
+        "error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE0002P9KZW1&per_page=20"
       }
     },
     {
       "isin": "IE0007W7MZL0",
-      "status": "listing_only",
+      "status": "archive_ok",
       "detail_url": "https://www.jhetf.com/products/ie0007w7mzl0/overview/",
       "factsheet_url": "",
       "references": {
-        "page_error": "Requested ISIN IE0007W7MZL0 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
-        "archive_error": "No archived Janus Henderson detail page succeeded for the candidate URLs.",
-        "search_results": [],
-        "legacy_product_links": [],
-        "reference_search_error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE0007W7MZL0&per_page=20"
+        "live_page_error": "Requested ISIN IE0007W7MZL0 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
+        "archive_snapshot_timestamp": "20260211220010",
+        "archive_request_url": "https://web.archive.org/web/20260211220010if_/https://www.jhetf.com/products/ie0007w7mzl0/overview/"
       }
     },
     {
       "isin": "IE0008B0OAD5",
-      "status": "historical_local",
-      "detail_url": "https://www.jhetf.com/products/ie000ymbl844/ie0008b0oad5/overview/",
+      "status": "unresolved",
+      "detail_url": "",
       "references": {
         "search_results": [],
         "legacy_product_links": [],
-        "error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE0008B0OAD5&per_page=20",
-        "historical_snapshot": "C:\\Users\\Bochra\\OneDrive\\Desktop\\etf-extractor\\providers\\Janus_Henderson\\2026-07-05\\janushenderson_etf_export.json"
+        "error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE0008B0OAD5&per_page=20"
       }
     },
     {
       "isin": "IE0008C3G0Y9",
-      "status": "historical_local",
-      "detail_url": "https://www.jhetf.com/products/ie0007w7mzl0/ie0008c3g0y9/overview/",
+      "status": "unresolved",
+      "detail_url": "",
       "references": {
         "search_results": [],
         "legacy_product_links": [],
-        "error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE0008C3G0Y9&per_page=20",
-        "historical_snapshot": "C:\\Users\\Bochra\\OneDrive\\Desktop\\etf-extractor\\providers\\Janus_Henderson\\2026-07-05\\janushenderson_etf_export.json"
+        "error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE0008C3G0Y9&per_page=20"
       }
     },
     {
       "isin": "IE0009ZTL4B5",
-      "status": "archive_ok",
+      "status": "listing_only",
       "detail_url": "https://www.jhetf.com/products/ie0009ztl4b5/overview/",
-      "factsheet_url": "https://web.archive.org/web/20260114200335/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_US_Transformational_Growth_High_Conviction_Equity_UCITS_ETF_JTXX_Factsheet.pdf",
+      "factsheet_url": "",
       "references": {
-        "live_page_error": "Requested ISIN IE0009ZTL4B5 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
-        "archive_snapshot_timestamp": "20260114200335",
-        "archive_request_url": "https://web.archive.org/web/20260114200335if_/https://www.jhetf.com/products/ie0009ztl4b5/overview/"
+        "page_error": "Requested ISIN IE0009ZTL4B5 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
+        "archive_error": "No archived Janus Henderson detail page succeeded for the candidate URLs.",
+        "search_results": [],
+        "legacy_product_links": [],
+        "reference_search_error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE0009ZTL4B5&per_page=20"
       }
     },
     {
@@ -116,15 +117,13 @@
     },
     {
       "isin": "IE000GETKIK8",
-      "status": "listing_only",
+      "status": "archive_ok",
       "detail_url": "https://www.jhetf.com/products/ie000lzc9nm0/ie000getkik8/overview/",
-      "factsheet_url": "",
+      "factsheet_url": "https://web.archive.org/web/20260314233734/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_Haitong_Asia_ex-Japan_HY_Corp_USD_Bond_Screened_Core_UCITS_ETF_TAGH_Factsheet.pdf",
       "references": {
-        "page_error": "Requested ISIN IE000GETKIK8 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
-        "archive_error": "No archived Janus Henderson detail page succeeded for the candidate URLs.",
-        "search_results": [],
-        "legacy_product_links": [],
-        "reference_search_error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE000GETKIK8&per_page=20"
+        "live_page_error": "Requested ISIN IE000GETKIK8 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
+        "archive_snapshot_timestamp": "20260314233734",
+        "archive_request_url": "https://web.archive.org/web/20260314233734if_/https://www.jhetf.com/products/ie000lzc9nm0/ie000getkik8/overview/"
       }
     },
     {
@@ -175,15 +174,13 @@
     },
     {
       "isin": "IE000LSFKN16",
-      "status": "listing_only",
+      "status": "archive_ok",
       "detail_url": "https://www.jhetf.com/products/ie000jl9sv51/ie000lsfkn16/overview/",
-      "factsheet_url": "",
+      "factsheet_url": "https://web.archive.org/web/20260124023540/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_Global_HY_Fallen_Angels_Paris-aligned_Climate_Core_UCITS_ETF_TFGD_Factsheet.pdf",
       "references": {
-        "page_error": "Requested ISIN IE000LSFKN16 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
-        "archive_error": "No archived Janus Henderson detail page succeeded for the candidate URLs.",
-        "search_results": [],
-        "legacy_product_links": [],
-        "reference_search_error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE000LSFKN16&per_page=20"
+        "live_page_error": "Requested ISIN IE000LSFKN16 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
+        "archive_snapshot_timestamp": "20260124023540",
+        "archive_request_url": "https://web.archive.org/web/20260124023540if_/https://www.jhetf.com/products/ie000jl9sv51/ie000lsfkn16/overview/"
       }
     },
     {
@@ -199,15 +196,13 @@
     },
     {
       "isin": "IE000P7C7930",
-      "status": "listing_only",
+      "status": "archive_ok",
       "detail_url": "https://www.jhetf.com/products/ie000wxlhr76/ie000p7c7930/overview/",
-      "factsheet_url": "",
+      "factsheet_url": "https://web.archive.org/web/20260312102845/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_EUR_Ultrashort_IG_Bond_Paris-aligned_Climate_Core_UCITS_ETF_TUGB_Factsheet.pdf",
       "references": {
-        "page_error": "Requested ISIN IE000P7C7930 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
-        "archive_error": "No archived Janus Henderson detail page succeeded for the candidate URLs.",
-        "search_results": [],
-        "legacy_product_links": [],
-        "reference_search_error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE000P7C7930&per_page=20"
+        "live_page_error": "Requested ISIN IE000P7C7930 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
+        "archive_snapshot_timestamp": "20260312102845",
+        "archive_request_url": "https://web.archive.org/web/20260312102845if_/https://www.jhetf.com/products/ie000wxlhr76/ie000p7c7930/overview/"
       }
     },
     {
@@ -220,7 +215,7 @@
         "archive_error": "No archived Janus Henderson detail page succeeded for the candidate URLs.",
         "search_results": [],
         "legacy_product_links": [],
-        "reference_search_error": "HTTPSConnectionPool(host='www.jhetf.com', port=443): Max retries exceeded with url: /wp-json/wp/v2/search?search=IE000RH1ZG27&per_page=20 (Caused by NewConnectionError(\"HTTPSConnection(host='www.jhetf.com', port=443): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))"
+        "reference_search_error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE000RH1ZG27&per_page=20"
       }
     },
     {
@@ -273,13 +268,15 @@
     },
     {
       "isin": "IE00BN0T9H70",
-      "status": "archive_ok",
+      "status": "listing_only",
       "detail_url": "https://www.jhetf.com/products/ie00bmdwws85/ie00bn0t9h70/overview/",
-      "factsheet_url": "https://web.archive.org/web/20260314233244/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_US_Enhanced_Inflation_Core_UCITS_ETF_TING_Factsheet.pdf",
+      "factsheet_url": "",
       "references": {
-        "live_page_error": "Requested ISIN IE00BN0T9H70 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
-        "archive_snapshot_timestamp": "20260314233244",
-        "archive_request_url": "https://web.archive.org/web/20260314233244if_/https://www.jhetf.com/products/ie00bmdwws85/ie00bn0t9h70/overview/"
+        "page_error": "Requested ISIN IE00BN0T9H70 redirected to a non-product or generic page: https://www.janushenderson.com/social/overview/",
+        "archive_error": "No archived Janus Henderson detail page succeeded for the candidate URLs.",
+        "search_results": [],
+        "legacy_product_links": [],
+        "reference_search_error": "404 Client Error: Not Found for url: https://www.jhetf.com/wp-json/wp/v2/search?search=IE00BN0T9H70&per_page=20"
       }
     },
     {
@@ -367,22 +364,22 @@
       "issuer": "Janus Henderson",
       "isin": "IE0007W7MZL0",
       "ccy": "USD",
-      "base_currency": "",
-      "listing_currency": "",
+      "base_currency": "USD",
+      "listing_currency": "USD",
       "ticker": "JSHY",
       "ter_percent": "0.49%",
       "ter_bps": "49",
       "ongoing_charge_percent": "0.49%",
-      "aum_display": "$9.97",
-      "aum_mn": "0.00",
-      "date": "",
-      "data_as_of": "",
+      "aum_display": "$10,014,009",
+      "aum_mn": "10.01",
+      "date": "2026-02-10",
+      "data_as_of": "2026-02-10",
       "page_title": "Janus Henderson US Short Duration High Yield Active Core UCITS ETF (USD) Acc.",
       "share_class_name": "",
-      "income_treatment": "",
-      "domicile": "",
-      "fund_inception": "",
-      "share_class_inception": "",
+      "income_treatment": "Accumulating",
+      "domicile": "Ireland",
+      "fund_inception": "27 January 2026",
+      "share_class_inception": "27 January 2026",
       "factsheet_url": "",
       "detail_url": "https://www.jhetf.com/products/ie0007w7mzl0/overview/"
     },
@@ -391,23 +388,23 @@
       "issuer": "Janus Henderson",
       "isin": "IE0009ZTL4B5",
       "ccy": "USD",
-      "base_currency": "USD",
-      "listing_currency": "USD",
+      "base_currency": "",
+      "listing_currency": "",
       "ticker": "JTXX",
       "ter_percent": "0.49%",
       "ter_bps": "49",
       "ongoing_charge_percent": "0.49%",
-      "aum_display": "$5,535,028",
-      "aum_mn": "5.54",
-      "date": "2026-01-13",
-      "data_as_of": "2026-01-13",
+      "aum_display": "$5.02",
+      "aum_mn": "5.02",
+      "date": "",
+      "data_as_of": "",
       "page_title": "Janus Henderson US Transformational Growth High Conviction Equity UCITS ETF (USD) Acc.",
       "share_class_name": "",
-      "income_treatment": "Accumulating",
-      "domicile": "Ireland",
-      "fund_inception": "21 July 2025",
-      "share_class_inception": "21 July 2025",
-      "factsheet_url": "https://web.archive.org/web/20260114200335/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_US_Transformational_Growth_High_Conviction_Equity_UCITS_ETF_JTXX_Factsheet.pdf",
+      "income_treatment": "",
+      "domicile": "",
+      "fund_inception": "",
+      "share_class_inception": "",
+      "factsheet_url": "",
       "detail_url": "https://www.jhetf.com/products/ie0009ztl4b5/overview/"
     },
     {
@@ -435,27 +432,27 @@
       "detail_url": "https://www.jhetf.com/products/ie000cv0wwl4/overview/"
     },
     {
-      "etf_name": "Haitong Asia ex-Japan High Yield Corp USD Bond Screened Core UCITS ETF",
+      "etf_name": "Haitong Asia ex-Japan High Yield Corp USD Bond Screened Core UCITS ETF (USD)",
       "issuer": "Janus Henderson",
       "isin": "IE000GETKIK8",
       "ccy": "GBP",
-      "base_currency": "",
-      "listing_currency": "",
+      "base_currency": "USD",
+      "listing_currency": "GBP",
       "ticker": "TAGH",
       "ter_percent": "0.65%",
       "ter_bps": "65",
       "ongoing_charge_percent": "0.65%",
-      "aum_display": "$81.03",
-      "aum_mn": "81.03",
-      "date": "",
-      "data_as_of": "",
-      "page_title": "Janus Henderson Haitong Asia ex-Japan High Yield Corp USD Bond Screened Core UCITS ETF",
+      "aum_display": "$80,777,378",
+      "aum_mn": "80.78",
+      "date": "2026-03-12",
+      "data_as_of": "2026-03-12",
+      "page_title": "Janus Henderson Haitong Asia ex-Japan High Yield Corp USD Bond Screened Core UCITS ETF (USD) – GBP-Hedged Acc.",
       "share_class_name": "GBP-Hedged Acc.",
-      "income_treatment": "",
-      "domicile": "",
-      "fund_inception": "",
-      "share_class_inception": "",
-      "factsheet_url": "",
+      "income_treatment": "Accumulating",
+      "domicile": "Ireland",
+      "fund_inception": "02 September 2021",
+      "share_class_inception": "25 April 2022",
+      "factsheet_url": "https://web.archive.org/web/20260314233734/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_Haitong_Asia_ex-Japan_HY_Corp_USD_Bond_Screened_Core_UCITS_ETF_TAGH_Factsheet.pdf",
       "detail_url": "https://www.jhetf.com/products/ie000lzc9nm0/ie000getkik8/overview/"
     },
     {
@@ -555,27 +552,27 @@
       "detail_url": "https://www.jhetf.com/products/ie000l1i4r94/ie000ljg9wk1/overview/"
     },
     {
-      "etf_name": "Fallen Angels Bond ESG Active Core UCITS ETF",
+      "etf_name": "Global High Yield Fallen Angels Paris-aligned Climate Core UCITS ETF (USD)",
       "issuer": "Janus Henderson",
       "isin": "IE000LSFKN16",
       "ccy": "GBP",
-      "base_currency": "",
-      "listing_currency": "",
+      "base_currency": "USD",
+      "listing_currency": "GBP",
       "ticker": "TFGD",
       "ter_percent": "0.55%",
       "ter_bps": "55",
       "ongoing_charge_percent": "0.55%",
-      "aum_display": "$57.30",
-      "aum_mn": "57.30",
-      "date": "",
-      "data_as_of": "",
-      "page_title": "Janus Henderson Fallen Angels Bond ESG Active Core UCITS ETF",
+      "aum_display": "$58,847,468",
+      "aum_mn": "58.85",
+      "date": "2026-01-22",
+      "data_as_of": "2026-01-22",
+      "page_title": "Janus Henderson Global High Yield Fallen Angels Paris-aligned Climate Core UCITS ETF (USD) - GBP-Hedged Dist.",
       "share_class_name": "GBP-Hedged Dist.",
-      "income_treatment": "",
-      "domicile": "",
-      "fund_inception": "",
-      "share_class_inception": "",
-      "factsheet_url": "",
+      "income_treatment": "Distributing",
+      "domicile": "Ireland",
+      "fund_inception": "21 June 2023",
+      "share_class_inception": "25 July 2023",
+      "factsheet_url": "https://web.archive.org/web/20260124023540/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_Global_HY_Fallen_Angels_Paris-aligned_Climate_Core_UCITS_ETF_TFGD_Factsheet.pdf",
       "detail_url": "https://www.jhetf.com/products/ie000jl9sv51/ie000lsfkn16/overview/"
     },
     {
@@ -603,27 +600,27 @@
       "detail_url": "https://www.jhetf.com/products/ie000lzc9nm0/overview/"
     },
     {
-      "etf_name": "EUR Ultrashort IG Bond Paris-aligned Climate Core UCITS ETF",
+      "etf_name": "EUR Ultrashort IG Bond Paris-aligned Climate Core UCITS ETF (EUR)",
       "issuer": "Janus Henderson",
       "isin": "IE000P7C7930",
       "ccy": "GBP",
-      "base_currency": "",
-      "listing_currency": "",
+      "base_currency": "EUR",
+      "listing_currency": "GBP",
       "ticker": "TUGB",
       "ter_percent": "0.18%",
       "ter_bps": "18",
       "ongoing_charge_percent": "0.18%",
-      "aum_display": "€16.49",
+      "aum_display": "€16,492,578",
       "aum_mn": "16.49",
-      "date": "",
-      "data_as_of": "",
-      "page_title": "Janus Henderson EUR Ultrashort IG Bond Paris-aligned Climate Core UCITS ETF",
+      "date": "2026-03-11",
+      "data_as_of": "2026-03-11",
+      "page_title": "Janus Henderson EUR Ultrashort IG Bond Paris-aligned Climate Core UCITS ETF (EUR) - GBP-Hedged Acc.",
       "share_class_name": "GBP-Hedged Acc.",
-      "income_treatment": "",
-      "domicile": "",
-      "fund_inception": "",
-      "share_class_inception": "",
-      "factsheet_url": "",
+      "income_treatment": "Accumulating",
+      "domicile": "Ireland",
+      "fund_inception": "29 September 2023",
+      "share_class_inception": "25 October 2023",
+      "factsheet_url": "https://web.archive.org/web/20260312102845/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_EUR_Ultrashort_IG_Bond_Paris-aligned_Climate_Core_UCITS_ETF_TUGB_Factsheet.pdf",
       "detail_url": "https://www.jhetf.com/products/ie000wxlhr76/ie000p7c7930/overview/"
     },
     {
@@ -686,7 +683,7 @@
       "ter_bps": "30",
       "ongoing_charge_percent": "0.30%",
       "aum_display": "$5.30",
-      "aum_mn": "0.00",
+      "aum_mn": "5.30",
       "date": "",
       "data_as_of": "",
       "page_title": "Janus Henderson Global Research-Engineered Equity Active Core UCITS ETF (USD) Acc.",
@@ -747,27 +744,27 @@
       "detail_url": "https://www.jhetf.com/products/ie00bmdwws85/overview/"
     },
     {
-      "etf_name": "US Enhanced Inflation Core UCITS ETF (USD)",
+      "etf_name": "US Enhanced Inflation Core UCITS ETF",
       "issuer": "Janus Henderson",
       "isin": "IE00BN0T9H70",
       "ccy": "GBP",
-      "base_currency": "USD",
-      "listing_currency": "GBP",
+      "base_currency": "",
+      "listing_currency": "",
       "ticker": "TING",
       "ter_percent": "0.34%",
       "ter_bps": "34",
       "ongoing_charge_percent": "0.34%",
-      "aum_display": "$21,872,856",
-      "aum_mn": "21.87",
-      "date": "2026-03-12",
-      "data_as_of": "2026-03-12",
-      "page_title": "Janus Henderson US Enhanced Inflation Core UCITS ETF (USD) – GBP-Hedged Acc.",
+      "aum_display": "$21.93",
+      "aum_mn": "21.93",
+      "date": "",
+      "data_as_of": "",
+      "page_title": "Janus Henderson US Enhanced Inflation Core UCITS ETF",
       "share_class_name": "GBP-Hedged Acc.",
-      "income_treatment": "Accumulating",
-      "domicile": "Ireland",
-      "fund_inception": "22 October 2020",
-      "share_class_inception": "19 November 2020",
-      "factsheet_url": "https://web.archive.org/web/20260314233244/https://www.jhetf.com/wp-content/uploads/tabula-data-uploads/factsheets/JH_US_Enhanced_Inflation_Core_UCITS_ETF_TING_Factsheet.pdf",
+      "income_treatment": "",
+      "domicile": "",
+      "fund_inception": "",
+      "share_class_inception": "",
+      "factsheet_url": "",
       "detail_url": "https://www.jhetf.com/products/ie00bmdwws85/ie00bn0t9h70/overview/"
     },
     {
@@ -913,78 +910,6 @@
       "share_class_inception": "",
       "factsheet_url": "",
       "detail_url": "https://www.jhetf.com/products/lu2994520851/lu2994521669/overview/"
-    },
-    {
-      "etf_name": "EUR Short Duration Income Active Core UCITS ETF (EUR)",
-      "issuer": "Janus Henderson",
-      "isin": "IE0002P9KZW1",
-      "ccy": "GBP",
-      "base_currency": "EUR",
-      "listing_currency": "GBP",
-      "ticker": "JHEG",
-      "ter_percent": "0.30%",
-      "ter_bps": "30",
-      "ongoing_charge_percent": "0.30%",
-      "aum_display": "€38,054,918",
-      "aum_mn": "38.05",
-      "date": "2026-07-02",
-      "data_as_of": "2026-07-02",
-      "page_title": "Janus Henderson EUR Short Duration Income Active Core UCITS ETF (EUR) - GBP-Hedged Dist.",
-      "share_class_name": "GBP-Hedged Dist.",
-      "income_treatment": "Distributing",
-      "domicile": "Ireland",
-      "fund_inception": "28 May 2025",
-      "share_class_inception": "06 May 2026",
-      "factsheet_url": "",
-      "detail_url": "https://www.jhetf.com/products/ie000ccqkon9/ie0002p9kzw1/overview/"
-    },
-    {
-      "etf_name": "USD Mortgage-Backed Securities Active Core UCITS ETF",
-      "issuer": "Janus Henderson",
-      "isin": "IE0008B0OAD5",
-      "ccy": "GBP",
-      "base_currency": "",
-      "listing_currency": "",
-      "ticker": "JMBG",
-      "ter_percent": "0.40%",
-      "ter_bps": "40",
-      "ongoing_charge_percent": "0.40%",
-      "aum_display": "$33.84",
-      "aum_mn": "33.84",
-      "date": "",
-      "data_as_of": "",
-      "page_title": "Janus Henderson USD Mortgage-Backed Securities Active Core UCITS ETF",
-      "share_class_name": "GBP-Hedged Dist.",
-      "income_treatment": "",
-      "domicile": "",
-      "fund_inception": "",
-      "share_class_inception": "",
-      "factsheet_url": "",
-      "detail_url": "https://www.jhetf.com/products/ie000ymbl844/ie0008b0oad5/overview/"
-    },
-    {
-      "etf_name": "US Short Duration High Yield Active Core UCITS ETF (USD)",
-      "issuer": "Janus Henderson",
-      "isin": "IE0008C3G0Y9",
-      "ccy": "GBP",
-      "base_currency": "USD",
-      "listing_currency": "GBP",
-      "ticker": "JSHG",
-      "ter_percent": "0.54%",
-      "ter_bps": "54",
-      "ongoing_charge_percent": "0.54%",
-      "aum_display": "$10,140,380",
-      "aum_mn": "10.14",
-      "date": "2026-07-02",
-      "data_as_of": "2026-07-02",
-      "page_title": "Janus Henderson US Short Duration High Yield Active Core UCITS ETF (USD) - GBP-Hedged Dist.",
-      "share_class_name": "GBP-Hedged Dist.",
-      "income_treatment": "Distributing",
-      "domicile": "Ireland",
-      "fund_inception": "27 January 2026",
-      "share_class_inception": "06 May 2026",
-      "factsheet_url": "",
-      "detail_url": "https://www.jhetf.com/products/ie0007w7mzl0/ie0008c3g0y9/overview/"
     }
   ]
 }

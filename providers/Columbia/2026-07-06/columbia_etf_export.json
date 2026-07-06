@@ -7,7 +7,7 @@
     "configuration_key": "fundsAndPriceUK_Intm_Inst"
   },
   "method": "Official Columbia Threadneedle funds-and-prices page discovery of the live Kurtosys fund-centre configuration, followed by authenticated read-only /fund/searchEntity API extraction for the explicit target ISIN list with full statistics blocks preserved.",
-  "captured_at": "2026-07-06T14:09:40.491183",
+  "captured_at": "2026-07-06T16:18:40.867906",
   "target_isin_count": 6,
   "matched_target_isins": [
     "IE000953I6Z4",

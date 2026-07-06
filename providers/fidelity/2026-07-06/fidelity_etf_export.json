@@ -6,7 +6,7 @@
     "funddata_endpoint": "https://www.fidelity.lu/api/ce/fdh/FundData.json"
   },
   "method": "ISIN workbook filter + Fidelity LU FundData.json per factsheet ISIN",
-  "captured_at": "2026-07-06T13:40:12.610316",
+  "captured_at": "2026-07-06T15:50:15.328198",
   "listing_rows": [
     {
       "etf_name": "Fidelity Global Value Research Enhanced UCITS ETF ACC-USD",

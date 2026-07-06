@@ -10,7 +10,7 @@
     "expat_fund_url": "https://expat.bg/en/funds/ExpatBulgariaSOFIX?utm_source=chatgpt.com"
   },
   "method": "Combined ETF snapshot. For the 4 Dimensional UCITS ETF ISINs, the scraper uses the official Dimensional fund center API and enriches objective/documents from the official portfolio-details API. If an official target row is missing or errors, the scraper falls back to the ISIN-based public ETF profile page. For BG9000011163, the scraper uses the official Expat Bulgaria SOFIX fund page plus its current KID PDF.",
-  "captured_at": "2026-07-06T14:09:51.642725",
+  "captured_at": "2026-07-06T16:18:52.273052",
   "target_isin_count": 5,
   "matched_target_isins": [
     "IE0002YHUWS3",
@@ -197,7 +197,7 @@
       "management_company": "Expat Asset Management EAD",
       "product_range": "Expat UCITS ETFs",
       "objective": "The objective of the Expat Bulgaria SOFIX UCITS ETF is to track the performance of the SOFIX Index (the \"Index\"), which consi sts of the 15 most liquid companies traded on the Bulgarian Stock Exchange - Sofia. The Index is based on the market capitalizatio n of the included issues of common stock, adjusted by the free-float ratio of each. The index is rebalanced quarterly. For more information: www.bse-sofia.bg The Fund seeks to achieve a return on your investment through a combination of income and capital growth (total return) that reflects the performance of the Fund's Reference Index (the \"Index\"). The product's return is directly dependent on the performance of the assets held by the Fund, with the main factors affecting the performance being the investment strategy, the risk profile of the Fund, the recommended holding period, the cost to the investor of making the investment etc. The recommended holding per iod is a function of the Fund's risk profile, investment policy and expected return. The recommended holding period is calculated in accordance with the Fund's investment strategy and the time frame in which the Fund's investment objective is expected to be achieved. This Fund may not be suitable for investors who plan to withdraw their funds prior to the recommended holding period. Each investment should be considered in accordance with your specific investment objectives and risk appetite (see section \"How long should I hold the investment, and can I withdraw my money early?\"). \"Expat Bulgaria SOFIX UCITS ETF is a passively managed fund and adheres to the full physical replication method of an index. The fund invests only in shares of the SOFIX index. The factors that influence the performance of the Fund are the liquidity of the stocks, the performance of the Index constituents, the performance of the market, the costs of the Fund, etc. The expected tracking error on an annualized basis under moderate market conditions is up to 10%.",
-      "factsheet_url": "https://expat.bg/uploads/documents/BulgariaETF-Structure & Basket - 01072026 - EN.pdf",
+      "factsheet_url": "https://expat.bg/uploads/documents/BulgariaETF-Structure & Basket - 03072026 - EN.pdf",
       "product_page_url": "https://expat.bg/en/funds/ExpatBulgariaSOFIX?utm_source=chatgpt.com",
       "kiid_url": "https://expat.bg/uploads/documents/PRIIP Expat Bulgaria SOFIX UCITS ETF EN 04032026.pdf",
       "launch_date": "2016-09-27",

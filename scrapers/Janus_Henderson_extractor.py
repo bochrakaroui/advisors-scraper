@@ -192,7 +192,8 @@ def percent_to_bps(value: object | None) -> str:
 
 
 def amount_text_to_millions(value: object | None) -> str:
-    cleaned = clean_text(value).upper().replace(",", "")
+    original = clean_text(value)
+    cleaned = original.upper().replace(",", "")
     if not cleaned:
         return ""
 
@@ -216,7 +217,12 @@ def amount_text_to_millions(value: object | None) -> str:
         return ""
 
     if stripped == cleaned:
-        decimal_value = decimal_value / Decimal("1000000")
+        # Janus Henderson now exposes two bare-number shapes:
+        # 1) raw currency amounts such as "$10,140,380"
+        # 2) listing values already expressed in millions such as "$9.97"
+        # Use separators / magnitude to distinguish them.
+        if "," in original or decimal_value >= Decimal("10000"):
+            decimal_value = decimal_value / Decimal("1000000")
     else:
         decimal_value = decimal_value * multiplier
     return format_decimal(decimal_value, places=2)
@@ -945,27 +951,6 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
 
     successful_statuses = {"ok", "archive_ok"}
     usable_statuses = successful_statuses | {"listing_only"}
-    unresolved_isins = [
-        result["isin"] for result in target_results if result.get("status") not in usable_statuses
-    ]
-    historical_listing_rows = load_historical_listing_rows(set(unresolved_isins))
-    if historical_listing_rows:
-        for result in target_results:
-            isin = result.get("isin", "")
-            if result.get("status") in usable_statuses or isin not in historical_listing_rows:
-                continue
-            historical_row, historical_path = historical_listing_rows[isin]
-            listing_rows.append(dict(historical_row))
-            result["status"] = "historical_local"
-            result["detail_url"] = historical_row.get("detail_url", result.get("detail_url", ""))
-            references = result.get("references")
-            if not isinstance(references, dict):
-                references = {}
-            references["historical_snapshot"] = historical_path
-            result["references"] = references
-
-        usable_statuses = usable_statuses | {"historical_local"}
-
     missing_target_isins = [
         result["isin"] for result in target_results if result.get("status") not in usable_statuses
     ]

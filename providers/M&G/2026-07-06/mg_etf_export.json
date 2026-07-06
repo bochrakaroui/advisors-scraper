@@ -5,7 +5,7 @@
     "kurtosys_api": "https://api-uk.kurtosys.app/fund/savedSearchEntity/singleClassSearch"
   },
   "method": "Sequential Playwright loads of the official factsheet pages; share classes are parsed from the live Kurtosys singleClassSearch response.",
-  "captured_at": "2026-07-06T14:17:10.014013",
+  "captured_at": "2026-07-06T16:20:36.050868",
   "listing_rows": [
     {
       "etf_name": "M&G US Treasury Bond Active UCITS ETF USD Acc",
@@ -50,7 +50,7 @@
       "share_class": "M&G Global Maxima Equity UCITS ETF USD Acc",
       "management_company": "",
       "product_range": "M&G (Ireland) ETF ICAV",
-      "objective": "M&G Global Maxima Equity UCITS ETF (the \"Sub-Fund\") aims to provide a combination of capital growth and income that is higher than the global equity market over a five-year period.",
+      "objective": "",
       "factsheet_url": "https://www.mandg.com/investments/professional-investor/en-gb/funds/mg-global-maxima-equity-ucits-etf/ie000aem1k78",
       "api_url": "https://api-uk.kurtosys.app/fund/savedSearchEntity/singleClassSearch?sourceCulture=Default&culture=en-GB&isin=IE000AEM1K78&country=GB&audience=professional&audienceTitle=Professional",
       "fetch_status": "ok"
@@ -98,7 +98,7 @@
       "share_class": "M&G UK Gilts Active UCITS ETF GBP Acc",
       "management_company": "",
       "product_range": "M&G (Ireland) ETF ICAV",
-      "objective": "M&G UK Gilts Active UCITS ETF aims to provide a combination of capital growth and income higher than that of the UK Government bond market over a 5-year period.",
+      "objective": "",
       "factsheet_url": "https://www.mandg.com/investments/professional-investor/en-gb/funds/mg-uk-gilts-active-ucits-etf/ie000ptm74b6",
       "api_url": "https://api-uk.kurtosys.app/fund/savedSearchEntity/singleClassSearch?sourceCulture=Default&culture=en-GB&isin=IE000PTM74B6&country=GB&audience=professional&audienceTitle=Professional",
       "fetch_status": "ok"
@@ -122,7 +122,7 @@
       "share_class": "M&G US Treasury Bond Active UCITS ETF GBP-H Acc",
       "management_company": "",
       "product_range": "M&G (Ireland) ETF ICAV",
-      "objective": "The Sub-Fund aims to provide a higher total return (through a combination of capital growth and income) than that of the US treasury market over any 5-year period.",
+      "objective": "",
       "factsheet_url": "https://www.mandg.com/investments/professional-investor/en-gb/funds/mg-us-treasury-bond-active-ucits-etf/ie000yfpl0i4",
       "api_url": "https://api-uk.kurtosys.app/fund/savedSearchEntity/singleClassSearch?sourceCulture=Default&culture=en-GB&isin=IE000YFPL0I4&country=GB&audience=professional&audienceTitle=Professional",
       "fetch_status": "ok"
