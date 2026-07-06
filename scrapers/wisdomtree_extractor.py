@@ -14,6 +14,13 @@ from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 from playwright.async_api import TimeoutError as PlaywrightTimeoutError, async_playwright
 
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    from justetf_profile import build_session as build_justetf_session
+    from justetf_profile import fetch_profile as fetch_justetf_profile
+
 
 START_URL = "https://www.wisdomtree.eu/products?structure=UCITS+ETFs"
 ISSUER = "WisdomTree"
@@ -30,11 +37,13 @@ USER_AGENT = (
     "Chrome/124.0.0.0 Safari/537.36"
 )
 ISIN_PATTERN = re.compile(r"^[A-Z]{2}[A-Z0-9]{9}[0-9]$")
-DATE_PATTERN = re.compile(r"(\d{1,2}\s+[A-Za-z]{3}\s+\d{4})")
+DATE_PATTERN = re.compile(r"(\d{1,2}\s+[A-Za-z]{3}\s+\d{4}|\d{1,2}/\d{1,2}/\d{4})")
 PRODUCT_URL_PATTERN = re.compile(r"^https://www\.wisdomtree\.eu/en-gb/etfs/[^?#]+$")
 SUPPLEMENTAL_PRODUCT_URLS = (
-    "https://www.wisdomtree.eu/en-gb/etfs/commodities/weng---wisdomtree-strategic-metals-ucits-etf---gbp-hedged-acc",
-    "https://www.wisdomtree.eu/en-gb/etfs/commodities/wenu---wisdomtree-strategic-metals-ucits-etf---usd-acc",
+)
+JUSTETF_FALLBACK_ISINS = (
+    "IE0003XI1PW0",
+    "IE0007UE04X9",
 )
 FLAG_COUNTRY_MAP = {
     "gbr": "United Kingdom",
@@ -47,6 +56,11 @@ FLAG_COUNTRY_MAP = {
     "swe": "Sweden",
 }
 MIN_PRODUCT_URL_COUNT = 10
+OVERVIEW_DATE_PATTERNS = (
+    r"\bProduct Overview\s+As of\s*(\d{1,2}/\d{1,2}/\d{4}|\d{1,2}\s+[A-Za-z]{3}\s+\d{4})",
+    r"\bNet Asset Value\s+As of\s*(\d{1,2}/\d{1,2}/\d{4}|\d{1,2}\s+[A-Za-z]{3}\s+\d{4})",
+    r"\bFees\s+As of\s*(\d{1,2}/\d{1,2}/\d{4}|\d{1,2}\s+[A-Za-z]{3}\s+\d{4})",
+)
 
 
 def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
@@ -142,6 +156,45 @@ def normalize_aum_millions(raw_value: str) -> tuple[str, str]:
     return millions_text or "0", currency_code
 
 
+def extract_first_text(pattern: str, text: str) -> str:
+    match = re.search(pattern, text, flags=re.IGNORECASE)
+    if not match:
+        return ""
+    return clean_text(match.group(1))
+
+
+def extract_overview_metrics_from_text(page_text: str) -> dict[str, str]:
+    metrics: dict[str, str] = {
+        "base_currency": "",
+        "ter_raw": "",
+        "ter_bps": "",
+        "aum_raw": "",
+        "aum_numeric": "",
+        "aum_m": "",
+        "aum_currency": "",
+        "as_of_date": "",
+    }
+    if not clean_text(page_text):
+        return metrics
+
+    metrics["base_currency"] = extract_first_text(r"\bBase Currency\s*([A-Z]{3})\b", page_text).upper()
+    metrics["ter_raw"] = extract_first_text(r"\bTotal expense ratio \(TER\)\s*([0-9]+(?:[.,][0-9]+)?%)", page_text)
+    metrics["ter_bps"] = normalize_ter_bps(metrics["ter_raw"])
+    metrics["aum_raw"] = extract_first_text(
+        r"\bTotal AUM of fund\s*([A-Z]{0,3}\$?\s*[\d,]+(?:\.\d+)?)",
+        page_text,
+    )
+    metrics["aum_numeric"], metrics["aum_currency"] = normalize_aum_millions(metrics["aum_raw"])
+    metrics["aum_m"] = metrics["aum_numeric"]
+
+    for pattern in OVERVIEW_DATE_PATTERNS:
+        metrics["as_of_date"] = extract_first_text(pattern, page_text)
+        if metrics["as_of_date"]:
+            break
+
+    return metrics
+
+
 def normalize_product_url(url: str) -> str:
     parsed = urlparse(urljoin(BASE_URL, clean_text(url)))
     normalized = parsed._replace(query="", fragment="").geturl()
@@ -169,7 +222,7 @@ def extract_product_name(soup: BeautifulSoup) -> str:
     return clean_text(title.split("|", 1)[0])
 
 
-def extract_overview_metrics(soup: BeautifulSoup) -> dict[str, str]:
+def extract_overview_metrics(soup: BeautifulSoup, page_text: str = "") -> dict[str, str]:
     metrics: dict[str, str] = {
         "base_currency": "",
         "ter_raw": "",
@@ -213,6 +266,12 @@ def extract_overview_metrics(soup: BeautifulSoup) -> dict[str, str]:
                 metrics["aum_raw"] = value
                 metrics["aum_numeric"], metrics["aum_currency"] = normalize_aum_millions(value)
                 metrics["aum_m"] = metrics["aum_numeric"]
+
+    if not all(metrics.get(field) for field in ("base_currency", "ter_raw", "aum_raw", "as_of_date")):
+        fallback_metrics = extract_overview_metrics_from_text(page_text or soup.get_text("\n", strip=True))
+        for key, value in fallback_metrics.items():
+            if not metrics.get(key):
+                metrics[key] = value
 
     return metrics
 
@@ -314,6 +373,60 @@ def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return list(deduped.values())
 
 
+def supplement_missing_isins_from_justetf(rows: list[dict[str, str]], scraped_at: str) -> list[dict[str, str]]:
+    present_isins = {
+        clean_text(row.get("isin")).upper()
+        for row in rows
+        if clean_text(row.get("isin"))
+    }
+    missing_isins = [isin for isin in JUSTETF_FALLBACK_ISINS if isin not in present_isins]
+    if not missing_isins:
+        return rows
+
+    session = build_justetf_session()
+    supplemented_rows = list(rows)
+    for isin in missing_isins:
+        try:
+            profile = fetch_justetf_profile(isin, session=session)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[WARN] WisdomTree justETF fallback failed for {isin}: {exc}")
+            continue
+
+        if clean_text(profile.get("fetch_status")) not in {"", "ok"}:
+            print(
+                f"[WARN] WisdomTree justETF fallback did not resolve {isin}: "
+                f"{clean_text(profile.get('error')) or 'unknown error'}"
+            )
+            continue
+
+        supplemented_rows.append(
+            {
+                "provider": PROVIDER,
+                "issuer": ISSUER,
+                "etf_name": clean_text(profile.get("etf_name")),
+                "ticker": clean_text(profile.get("ticker")).upper(),
+                "exchange": "",
+                "country": "",
+                "ccy": clean_text(profile.get("ccy")).upper(),
+                "base_currency": clean_text(profile.get("ccy")).upper(),
+                "isin": clean_text(profile.get("isin")).upper() or isin,
+                "aum_raw": clean_text(profile.get("fund_size_raw")),
+                "aum_numeric": clean_text(profile.get("aum_mn")),
+                "aum_m": clean_text(profile.get("aum_mn")),
+                "aum_currency": clean_text(profile.get("aum_ccy")).upper(),
+                "ter_raw": clean_text(profile.get("ter_raw")),
+                "ter_bps": clean_text(profile.get("ter_bps")),
+                "product_url": clean_text(profile.get("profile_url")),
+                "source_url": clean_text(profile.get("profile_url")),
+                "scraped_at": scraped_at,
+                "as_of_date": "",
+            }
+        )
+        print(f"[INFO] WisdomTree justETF fallback added missing ISIN {isin}")
+
+    return supplemented_rows
+
+
 def load_historical_product_urls() -> list[str]:
     historical_urls: set[str] = set()
     for snapshot_path in sorted(OUTPUT_DIR.rglob("wisdomtree_etf_export.json"), key=lambda path: path.stat().st_mtime, reverse=True):
@@ -379,13 +492,13 @@ async def scrape_detail_rows(page, product_url: str, scraped_at: str) -> list[di
     await page.goto(product_url, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
     await page.wait_for_timeout(5_000)
     html = await page.content()
+    page_text = await page.locator("body").inner_text()
     soup = BeautifulSoup(html, "html.parser")
 
     etf_name = extract_product_name(soup)
-    metrics = extract_overview_metrics(soup)
+    metrics = extract_overview_metrics(soup, page_text)
     listings = extract_listings_from_table(soup)
     if not listings:
-        page_text = await page.locator("body").inner_text()
         listings = extract_listings_from_text(page_text)
 
     if not listings:
@@ -489,6 +602,7 @@ async def build_snapshot(now: datetime) -> dict[str, object]:
         await browser.close()
 
     rows = dedupe_rows(rows)
+    rows = dedupe_rows(supplement_missing_isins_from_justetf(rows, scraped_at))
     missing_aum_count = sum(1 for row in rows if not clean_text(row.get("aum_numeric")))
     missing_ccy_count = sum(1 for row in rows if not clean_text(row.get("ccy")))
     valid_isin_count = sum(1 for row in rows if ISIN_PATTERN.fullmatch(clean_text(row.get("isin")).upper()))

@@ -141,7 +141,11 @@ def amount_to_millions(raw: object | None) -> str:
     if "," in numeric and "." in numeric:
         numeric = numeric.replace(",", "")
     elif "," in numeric and "." not in numeric:
-        numeric = numeric.replace(",", ".")
+        parts = numeric.split(",")
+        if len(parts) > 2 or len(parts[-1]) == 3:
+            numeric = numeric.replace(",", "")
+        else:
+            numeric = numeric.replace(",", ".")
     try:
         value = Decimal(numeric)
     except InvalidOperation:
