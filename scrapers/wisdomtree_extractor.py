@@ -22,7 +22,7 @@ except ModuleNotFoundError:  # pragma: no cover - direct script execution fallba
     from justetf_profile import fetch_profile as fetch_justetf_profile
 
 
-START_URL = "https://www.wisdomtree.eu/products?structure=UCITS+ETFs"
+START_URL = "https://www.wisdomtree.eu/en-gb/products?structure=UCITS+ETFs"
 ISSUER = "WisdomTree"
 PROVIDER = "WisdomTree"
 BASE_URL = "https://www.wisdomtree.eu"
@@ -45,6 +45,7 @@ JUSTETF_FALLBACK_ISINS = (
     "IE0003XI1PW0",
     "IE0007UE04X9",
 )
+FUNDLIST_API_URL_TOKEN = "dataspanapi.wisdomtree.com/fundlist/data/"
 FLAG_COUNTRY_MAP = {
     "gbr": "United Kingdom",
     "deu": "Germany",
@@ -61,6 +62,20 @@ OVERVIEW_DATE_PATTERNS = (
     r"\bNet Asset Value\s+As of\s*(\d{1,2}/\d{1,2}/\d{4}|\d{1,2}\s+[A-Za-z]{3}\s+\d{4})",
     r"\bFees\s+As of\s*(\d{1,2}/\d{1,2}/\d{4}|\d{1,2}\s+[A-Za-z]{3}\s+\d{4})",
 )
+
+
+def extract_product_urls_from_fundlist_payload(payload: object) -> set[str]:
+    if not isinstance(payload, list):
+        return set()
+
+    urls: set[str] = set()
+    for item in payload:
+        if not isinstance(item, dict):
+            continue
+        product_url = clean_text(item.get("url"))
+        if product_url and is_product_url(product_url):
+            urls.add(normalize_product_url(product_url))
+    return urls
 
 
 def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
@@ -446,14 +461,24 @@ def load_historical_product_urls() -> list[str]:
             if product_url and is_product_url(product_url):
                 historical_urls.add(normalize_product_url(product_url))
 
-        if historical_urls:
-            break
-
     return sorted(historical_urls)
 
 
 async def collect_product_urls(page) -> list[str]:
-    await page.goto(START_URL, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+    fundlist_payload: object | None = None
+    navigated = False
+    try:
+        async with page.expect_response(
+            lambda response: FUNDLIST_API_URL_TOKEN in response.url and response.status == 200,
+            timeout=TIMEOUT_MS,
+        ) as fundlist_response_info:
+            await page.goto(START_URL, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
+            navigated = True
+        fundlist_response = await fundlist_response_info.value
+        fundlist_payload = await fundlist_response.json()
+    except Exception:
+        if not navigated:
+            await page.goto(START_URL, wait_until="domcontentloaded", timeout=TIMEOUT_MS)
     await page.wait_for_timeout(5_000)
     html = await page.content()
     if "Attention Required! | Cloudflare" in html or "Sorry, you have been blocked" in html:
@@ -464,7 +489,15 @@ async def collect_product_urls(page) -> list[str]:
         if clean_text(href).startswith(f"{BASE_URL}/en-gb/etfs/")
     }
 
-    urls = sorted(discovered_urls | {normalize_product_url(url) for url in SUPPLEMENTAL_PRODUCT_URLS})
+    fundlist_urls: set[str] = set()
+    if fundlist_payload is not None:
+        fundlist_urls = extract_product_urls_from_fundlist_payload(fundlist_payload)
+
+    urls = sorted(
+        discovered_urls
+        | fundlist_urls
+        | {normalize_product_url(url) for url in SUPPLEMENTAL_PRODUCT_URLS}
+    )
     if len(urls) < MIN_PRODUCT_URL_COUNT:
         historical_urls = load_historical_product_urls()
         if historical_urls:

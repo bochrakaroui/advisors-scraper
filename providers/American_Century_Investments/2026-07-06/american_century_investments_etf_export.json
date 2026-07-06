@@ -8,7 +8,7 @@
     "location_cookie_country": "de"
   },
   "method": "Playwright discovery over the live Avantis Germany UCITS ETF site + hydrated product-page fact extraction + official English factsheet PDF parsing; AUM uses the live product-page Total Assets figure as requested.",
-  "captured_at": "2026-07-06T11:04:28.415598",
+  "captured_at": "2026-07-06T14:06:59.246303",
   "target_isins": [
     "IE0003R87OG3",
     "IE000K975W13",

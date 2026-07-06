@@ -1,7 +1,7 @@
 {
   "source_url": "https://finexetf.com/product/",
   "method": "requests + BeautifulSoup — listing page + per-product detail pages",
-  "captured_at": "2026-07-06T11:00:56.788177",
+  "captured_at": "2026-07-06T14:04:25.271699",
   "listing_rows": [
     {
       "etf_name": "FinEx Blockchain UCITS ETF",
@@ -210,18 +210,18 @@
       "bbg_ticker": "FXGD RM",
       "product_url": "https://finexetf.com/product/FXGD",
       "terminated": "false",
-      "ccy": "",
-      "ter_bps": "",
-      "aum_mn": "",
-      "nav": "",
-      "inception_date": "",
-      "index_name": "",
-      "replication_method": "",
-      "annual_volatility": "",
-      "tracking_error": "",
-      "shares_in_issue": "",
-      "detail_missing_fields": "ccy,ter_bps,aum_mn",
-      "detail_fetch_status": "partial:missing_core_fields"
+      "ccy": "USD",
+      "ter_bps": "45",
+      "aum_mn": "307.2",
+      "nav": "2.73",
+      "inception_date": "03.09.2013",
+      "index_name": "LBMA Gold Price PM USD",
+      "replication_method": "Full replication",
+      "annual_volatility": "15.33%",
+      "tracking_error": "1.08%",
+      "shares_in_issue": "112 384 500",
+      "detail_missing_fields": "",
+      "detail_fetch_status": "ok"
     },
     {
       "etf_name": "FinEx Global Equity UCITS ETF (USD)",

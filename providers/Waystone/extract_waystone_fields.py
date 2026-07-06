@@ -141,7 +141,7 @@ def transform_row(source_row: dict) -> dict[str, str] | None:
     if not fund_name or not isin:
         return None
 
-    issuer = clean_text(source_row.get("issuer")) or guess_issuer(fund_name)
+    issuer = clean_text(source_row.get("provider")) or "Waystone"
 
     return {
         "ETF Name": fund_name,

@@ -1,7 +1,7 @@
 {
   "source_url": "https://www.imgp.com/funds/",
   "method": "Playwright (networkidle) + BeautifulSoup — UCITS ETF share classes only",
-  "captured_at": "2026-07-06T11:02:45.446503",
+  "captured_at": "2026-07-06T14:05:46.037594",
   "listing_rows": [
     {
       "etf_name": "iMGP Italian Opportunities Fund R EUR UCITS ETF",

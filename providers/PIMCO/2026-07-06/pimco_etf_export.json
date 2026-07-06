@@ -7,7 +7,7 @@
     "language": "en"
   },
   "method": "Official PIMCO GB ETF sitemap + public fund-detail app responses filtered to target ISINs",
-  "captured_at": "2026-07-06T11:12:30.284560",
+  "captured_at": "2026-07-06T14:18:20.166002",
   "requested_target_isin_count": 14,
   "matched_target_isin_count": 14,
   "missing_target_isins": [],
@@ -1599,78 +1599,6 @@
           "latestMonthEnd": "2026-05-31",
           "latestQuarterEnd": "2026-03-31"
         },
-        "share_classes": {
-          "shareClass": {
-            "cusip": "G7110H156",
-            "name": "ARTIFICIAL",
-            "displayName": "ARTIFICIAL",
-            "code": "ARTF",
-            "displayCode": "ARTF",
-            "ticker": "EMLB",
-            "isin": "IE00B4P11460",
-            "isActive": 1,
-            "shareclassInceptionDate": "2011-09-19"
-          },
-          "oldestShareClass": {
-            "cusip": "G7110H156",
-            "name": "ARTIFICIAL",
-            "displayName": "ARTIFICIAL",
-            "code": "ARTF",
-            "displayCode": "ARTF",
-            "ticker": "EMLB",
-            "isin": "IE00B4P11460",
-            "prdctAcctNo": 4737,
-            "isActive": 1,
-            "shareclassInceptionDate": "2011-09-19",
-            "shareType": "Accumulation",
-            "displayShareType": "Accumulation",
-            "navCurrency": "USD",
-            "displayNavCurrency": "USD"
-          },
-          "oldestShareClassV2": {
-            "name": "ARTIFICIAL",
-            "displayName": "ARTIFICIAL",
-            "shareclassInceptionDate": "2011-09-19"
-          },
-          "availableShareClasses": [
-            {
-              "cusip": "G7110H156",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "EMLB",
-              "isin": "IE00B4P11460",
-              "prdctAcctNo": 4737,
-              "isActive": 1,
-              "shareclassInceptionDate": "2011-09-19",
-              "shareType": "Accumulation",
-              "displayShareType": "Accumulation",
-              "navCurrency": "USD",
-              "displayNavCurrency": "USD",
-              "displayHedgingStyle": "NA",
-              "allowLiquidatedFundsDays": 0
-            },
-            {
-              "cusip": "G7110H206",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "EMLI",
-              "isin": "IE00BH3X8336",
-              "prdctAcctNo": 4737,
-              "isActive": 1,
-              "shareclassInceptionDate": "2014-01-23",
-              "shareType": "Income",
-              "displayShareType": "Income",
-              "navCurrency": "USD",
-              "displayNavCurrency": "USD",
-              "displayHedgingStyle": "NA",
-              "allowLiquidatedFundsDays": 0
-            }
-          ]
-        },
         "fund_stats": {
           "asOfDate": "2026-07-02",
           "dailyNav": 129.0643,
@@ -1835,6 +1763,78 @@
             "asofDateKey": 20251031,
             "value": "3"
           }
+        },
+        "share_classes": {
+          "shareClass": {
+            "cusip": "G7110H156",
+            "name": "ARTIFICIAL",
+            "displayName": "ARTIFICIAL",
+            "code": "ARTF",
+            "displayCode": "ARTF",
+            "ticker": "EMLB",
+            "isin": "IE00B4P11460",
+            "isActive": 1,
+            "shareclassInceptionDate": "2011-09-19"
+          },
+          "oldestShareClass": {
+            "cusip": "G7110H156",
+            "name": "ARTIFICIAL",
+            "displayName": "ARTIFICIAL",
+            "code": "ARTF",
+            "displayCode": "ARTF",
+            "ticker": "EMLB",
+            "isin": "IE00B4P11460",
+            "prdctAcctNo": 4737,
+            "isActive": 1,
+            "shareclassInceptionDate": "2011-09-19",
+            "shareType": "Accumulation",
+            "displayShareType": "Accumulation",
+            "navCurrency": "USD",
+            "displayNavCurrency": "USD"
+          },
+          "oldestShareClassV2": {
+            "name": "ARTIFICIAL",
+            "displayName": "ARTIFICIAL",
+            "shareclassInceptionDate": "2011-09-19"
+          },
+          "availableShareClasses": [
+            {
+              "cusip": "G7110H156",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "EMLB",
+              "isin": "IE00B4P11460",
+              "prdctAcctNo": 4737,
+              "isActive": 1,
+              "shareclassInceptionDate": "2011-09-19",
+              "shareType": "Accumulation",
+              "displayShareType": "Accumulation",
+              "navCurrency": "USD",
+              "displayNavCurrency": "USD",
+              "displayHedgingStyle": "NA",
+              "allowLiquidatedFundsDays": 0
+            },
+            {
+              "cusip": "G7110H206",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "EMLI",
+              "isin": "IE00BH3X8336",
+              "prdctAcctNo": 4737,
+              "isActive": 1,
+              "shareclassInceptionDate": "2014-01-23",
+              "shareType": "Income",
+              "displayShareType": "Income",
+              "navCurrency": "USD",
+              "displayNavCurrency": "USD",
+              "displayHedgingStyle": "NA",
+              "allowLiquidatedFundsDays": 0
+            }
+          ]
         }
       },
       "listing_row": {
@@ -2897,154 +2897,6 @@
           "latestMonthEnd": "2026-05-31",
           "latestQuarterEnd": "2026-03-31"
         },
-        "share_classes": {
-          "shareClass": {
-            "cusip": "G7110H164",
-            "name": "ARTIFICIAL",
-            "displayName": "ARTIFICIAL",
-            "code": "ARTF",
-            "displayCode": "ARTF",
-            "ticker": "STHY",
-            "isin": "IE00B7N3YW49",
-            "isActive": 1,
-            "shareclassInceptionDate": "2012-03-14"
-          },
-          "oldestShareClass": {
-            "cusip": "G7110H164",
-            "name": "ARTIFICIAL",
-            "displayName": "ARTIFICIAL",
-            "code": "ARTF",
-            "displayCode": "ARTF",
-            "ticker": "STHY",
-            "isin": "IE00B7N3YW49",
-            "prdctAcctNo": 14702,
-            "isActive": 1,
-            "shareclassInceptionDate": "2012-03-14",
-            "shareType": "Income",
-            "displayShareType": "Income",
-            "navCurrency": "USD",
-            "displayNavCurrency": "USD"
-          },
-          "oldestShareClassV2": {
-            "name": "ARTIFICIAL",
-            "displayName": "ARTIFICIAL",
-            "shareclassInceptionDate": "2012-03-14"
-          },
-          "availableShareClasses": [
-            {
-              "cusip": "G7110H164",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "STHY",
-              "isin": "IE00B7N3YW49",
-              "prdctAcctNo": 14702,
-              "isActive": 1,
-              "shareclassInceptionDate": "2012-03-14",
-              "shareType": "Income",
-              "displayShareType": "Income",
-              "navCurrency": "USD",
-              "displayNavCurrency": "USD",
-              "displayHedgingStyle": "NA",
-              "allowLiquidatedFundsDays": 0
-            },
-            {
-              "cusip": "G7110H198",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "STHE",
-              "isin": "IE00BF8HV600",
-              "prdctAcctNo": 14702,
-              "isActive": 1,
-              "shareclassInceptionDate": "2013-10-16",
-              "shareType": "Income",
-              "displayShareType": "Income",
-              "navCurrency": "EUR",
-              "displayNavCurrency": "EUR",
-              "hedgingStyle": "Hedged",
-              "displayHedgingStyle": "Hedged",
-              "allowLiquidatedFundsDays": 0
-            },
-            {
-              "cusip": "G7110H305",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "STHC",
-              "isin": "IE00BWC52G65",
-              "prdctAcctNo": 14702,
-              "isActive": 1,
-              "shareclassInceptionDate": "2015-05-28",
-              "shareType": "Accumulation",
-              "displayShareType": "Accumulation",
-              "navCurrency": "CHF",
-              "displayNavCurrency": "CHF",
-              "hedgingStyle": "Hedged",
-              "displayHedgingStyle": "Hedged",
-              "allowLiquidatedFundsDays": 0
-            },
-            {
-              "cusip": "G7110H321",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "STHS",
-              "isin": "IE00BYXVWC37",
-              "prdctAcctNo": 14702,
-              "isActive": 1,
-              "shareclassInceptionDate": "2015-11-16",
-              "shareType": "Income",
-              "displayShareType": "Income",
-              "navCurrency": "GBP",
-              "displayNavCurrency": "GBP",
-              "hedgingStyle": "Hedged",
-              "displayHedgingStyle": "Hedged",
-              "allowLiquidatedFundsDays": 0
-            },
-            {
-              "cusip": "G7110H362",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "STEA",
-              "isin": "IE00BD26N851",
-              "prdctAcctNo": 14702,
-              "isActive": 1,
-              "shareclassInceptionDate": "2017-12-11",
-              "shareType": "Accumulation",
-              "displayShareType": "Accumulation",
-              "navCurrency": "EUR",
-              "displayNavCurrency": "EUR",
-              "hedgingStyle": "Hedged",
-              "displayHedgingStyle": "Hedged",
-              "allowLiquidatedFundsDays": 0
-            },
-            {
-              "cusip": "G7110H289",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "STYC",
-              "isin": "IE00BVZ6SQ11",
-              "prdctAcctNo": 14702,
-              "isActive": 1,
-              "shareclassInceptionDate": "2015-04-30",
-              "shareType": "Accumulation",
-              "displayShareType": "Accumulation",
-              "navCurrency": "USD",
-              "displayNavCurrency": "USD",
-              "displayHedgingStyle": "NA",
-              "allowLiquidatedFundsDays": 0
-            }
-          ]
-        },
         "fund_stats": {
           "asOfDate": "2026-07-02",
           "dailyNav": 93.7693,
@@ -3227,6 +3079,154 @@
             "asofDateKey": 20260131,
             "value": "2.0"
           }
+        },
+        "share_classes": {
+          "shareClass": {
+            "cusip": "G7110H164",
+            "name": "ARTIFICIAL",
+            "displayName": "ARTIFICIAL",
+            "code": "ARTF",
+            "displayCode": "ARTF",
+            "ticker": "STHY",
+            "isin": "IE00B7N3YW49",
+            "isActive": 1,
+            "shareclassInceptionDate": "2012-03-14"
+          },
+          "oldestShareClass": {
+            "cusip": "G7110H164",
+            "name": "ARTIFICIAL",
+            "displayName": "ARTIFICIAL",
+            "code": "ARTF",
+            "displayCode": "ARTF",
+            "ticker": "STHY",
+            "isin": "IE00B7N3YW49",
+            "prdctAcctNo": 14702,
+            "isActive": 1,
+            "shareclassInceptionDate": "2012-03-14",
+            "shareType": "Income",
+            "displayShareType": "Income",
+            "navCurrency": "USD",
+            "displayNavCurrency": "USD"
+          },
+          "oldestShareClassV2": {
+            "name": "ARTIFICIAL",
+            "displayName": "ARTIFICIAL",
+            "shareclassInceptionDate": "2012-03-14"
+          },
+          "availableShareClasses": [
+            {
+              "cusip": "G7110H164",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "STHY",
+              "isin": "IE00B7N3YW49",
+              "prdctAcctNo": 14702,
+              "isActive": 1,
+              "shareclassInceptionDate": "2012-03-14",
+              "shareType": "Income",
+              "displayShareType": "Income",
+              "navCurrency": "USD",
+              "displayNavCurrency": "USD",
+              "displayHedgingStyle": "NA",
+              "allowLiquidatedFundsDays": 0
+            },
+            {
+              "cusip": "G7110H198",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "STHE",
+              "isin": "IE00BF8HV600",
+              "prdctAcctNo": 14702,
+              "isActive": 1,
+              "shareclassInceptionDate": "2013-10-16",
+              "shareType": "Income",
+              "displayShareType": "Income",
+              "navCurrency": "EUR",
+              "displayNavCurrency": "EUR",
+              "hedgingStyle": "Hedged",
+              "displayHedgingStyle": "Hedged",
+              "allowLiquidatedFundsDays": 0
+            },
+            {
+              "cusip": "G7110H305",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "STHC",
+              "isin": "IE00BWC52G65",
+              "prdctAcctNo": 14702,
+              "isActive": 1,
+              "shareclassInceptionDate": "2015-05-28",
+              "shareType": "Accumulation",
+              "displayShareType": "Accumulation",
+              "navCurrency": "CHF",
+              "displayNavCurrency": "CHF",
+              "hedgingStyle": "Hedged",
+              "displayHedgingStyle": "Hedged",
+              "allowLiquidatedFundsDays": 0
+            },
+            {
+              "cusip": "G7110H321",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "STHS",
+              "isin": "IE00BYXVWC37",
+              "prdctAcctNo": 14702,
+              "isActive": 1,
+              "shareclassInceptionDate": "2015-11-16",
+              "shareType": "Income",
+              "displayShareType": "Income",
+              "navCurrency": "GBP",
+              "displayNavCurrency": "GBP",
+              "hedgingStyle": "Hedged",
+              "displayHedgingStyle": "Hedged",
+              "allowLiquidatedFundsDays": 0
+            },
+            {
+              "cusip": "G7110H362",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "STEA",
+              "isin": "IE00BD26N851",
+              "prdctAcctNo": 14702,
+              "isActive": 1,
+              "shareclassInceptionDate": "2017-12-11",
+              "shareType": "Accumulation",
+              "displayShareType": "Accumulation",
+              "navCurrency": "EUR",
+              "displayNavCurrency": "EUR",
+              "hedgingStyle": "Hedged",
+              "displayHedgingStyle": "Hedged",
+              "allowLiquidatedFundsDays": 0
+            },
+            {
+              "cusip": "G7110H289",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "STYC",
+              "isin": "IE00BVZ6SQ11",
+              "prdctAcctNo": 14702,
+              "isActive": 1,
+              "shareclassInceptionDate": "2015-04-30",
+              "shareType": "Accumulation",
+              "displayShareType": "Accumulation",
+              "navCurrency": "USD",
+              "displayNavCurrency": "USD",
+              "displayHedgingStyle": "NA",
+              "allowLiquidatedFundsDays": 0
+            }
+          ]
         }
       },
       "listing_row": {
@@ -3402,6 +3402,140 @@
           "latestMonthEnd": "2026-05-31",
           "latestQuarterEnd": "2026-03-31"
         },
+        "fund_stats": {
+          "asOfDate": "2026-07-02",
+          "dailyNav": 125.8993,
+          "dailyChange": 0.1638,
+          "navCurrency": "EUR",
+          "totalNetAssets": 2127492089.03,
+          "totalNetAssetsAsOfDate": "2026-05-31",
+          "totalNetAssetsCurrency": "USD",
+          "totalNetAssetsDaily": 2096872798.1,
+          "totalNetAssetsAsOfDateDaily": "2026-07-02",
+          "totalNetAssetsCurrencyDaily": "USD",
+          "estimatedGrossYieldToMaturity": {
+            "asofDate": "2026-05-31",
+            "asofDateKey": 20260531,
+            "value": 7.4027333
+          },
+          "currentYield": {
+            "asofDate": "2026-05-31",
+            "asofDateKey": 20260531,
+            "value": 6.5122
+          },
+          "latestDividendDistribution": {},
+          "dividendDistributionYTD": {},
+          "eomLatestDividendDistribution": {},
+          "eomDividendDistributionYTD": {},
+          "sharesOutstanding": 817045.0,
+          "distributionRate": {},
+          "noOfHoldings": 933,
+          "accountRiskMeasures": {
+            "asofDate": "2026-07-02",
+            "asofDateKey": 20260702,
+            "currentYield": 6.6295,
+            "avgQuality": "BA",
+            "avgMaturity": 3.3098
+          },
+          "eomAccountRiskMeasures": {
+            "asofDate": "2026-05-31",
+            "asofDateKey": 20260531,
+            "currentYield": 6.5122,
+            "avgQuality": "BA",
+            "avgMaturity": 3.0004
+          },
+          "accountDuration": {
+            "asofDate": "2026-07-02",
+            "asofDateKey": 20260702,
+            "duration": 2.1965
+          },
+          "eomCusipDuration": {
+            "asofDate": "2026-05-31",
+            "asofDateKey": 20260531,
+            "duration": 2.0026
+          },
+          "eomAccountSpread": {
+            "asofDate": "2026-05-31",
+            "asofDateKey": 20260531,
+            "mortgageSpread": 0.0,
+            "corporateSpread": 2.182222,
+            "swapSpread": 0.000508,
+            "emSpread": 0.024376,
+            "coveredBondSpread": 0.0,
+            "sovgRelatedSpread": 0.0
+          },
+          "accountSpreadLBD": {
+            "asofDate": "2026-07-02",
+            "asofDateKey": 20260702,
+            "mortgageSpread": 0.0,
+            "corporateSpread": 2.197041,
+            "swapSpread": 0.002429,
+            "emSpread": 0.026604,
+            "coveredBondSpread": 0.0,
+            "sovgRelatedSpread": 0.0
+          },
+          "etfYield": {
+            "asofDate": "2026-07-02",
+            "asofDateKey": 20260702,
+            "value": 7.5543
+          },
+          "eomEtfYield": {
+            "asofDate": "2026-05-31",
+            "asofDateKey": 20260531,
+            "value": 7.4027
+          },
+          "eomAccountDuration": {
+            "asofDate": "2026-05-31",
+            "asofDateKey": 20260531,
+            "duration": 2.0026,
+            "bullDuration": 1.8332,
+            "bearDuration": 2.1302,
+            "totalCurveDuration": 0.783673
+          },
+          "accountDurationLBD": {
+            "asofDate": "2026-07-02",
+            "asofDateKey": 20260702,
+            "duration": 2.1965,
+            "bullDuration": 2.0312,
+            "bearDuration": 2.3095,
+            "totalCurveDuration": 0.854396
+          },
+          "bullDuration": 2.0312,
+          "bearDuration": 2.3095,
+          "totalCurveDuration": 0.854396,
+          "dailyCurrentYield": {
+            "asofDate": "2026-07-02",
+            "asofDateKey": 20260702,
+            "value": 6.6295
+          },
+          "dailyChangePercent": 0.00130273,
+          "cusipCurrencyMv": 102865352.97,
+          "eomCusipCurrencyMv": 85508139.49,
+          "d0Yield": {
+            "asofDate": "2026-07-02",
+            "asofDateKey": 20260702
+          },
+          "ipoNav": 100.0,
+          "monthlySharesOutstanding": 680123.0,
+          "showSecYieldQuotation": false,
+          "eomDate": "2026-05-31",
+          "quarterEndDate": "2026-03-31",
+          "monthEndNav": 125.7245,
+          "avgPayoutYield": {},
+          "underlyingPortfolioYield": {
+            "asofDate": "2026-05-31",
+            "asofDateKey": 20260531,
+            "value": 5.9122
+          },
+          "avgDistribution": {},
+          "divPeriodPerf": {},
+          "nonAnnualDistributionYield": {},
+          "priipsSri": {
+            "asofDate": "2026-01-31",
+            "asofDateKey": 20260131,
+            "value": "2.0"
+          }
+        },
         "share_classes": {
           "shareClass": {
             "cusip": "G7110H362",
@@ -3549,140 +3683,6 @@
               "allowLiquidatedFundsDays": 0
             }
           ]
-        },
-        "fund_stats": {
-          "asOfDate": "2026-07-02",
-          "dailyNav": 125.8993,
-          "dailyChange": 0.1638,
-          "navCurrency": "EUR",
-          "totalNetAssets": 2127492089.03,
-          "totalNetAssetsAsOfDate": "2026-05-31",
-          "totalNetAssetsCurrency": "USD",
-          "totalNetAssetsDaily": 2096872798.1,
-          "totalNetAssetsAsOfDateDaily": "2026-07-02",
-          "totalNetAssetsCurrencyDaily": "USD",
-          "estimatedGrossYieldToMaturity": {
-            "asofDate": "2026-05-31",
-            "asofDateKey": 20260531,
-            "value": 7.4027333
-          },
-          "currentYield": {
-            "asofDate": "2026-05-31",
-            "asofDateKey": 20260531,
-            "value": 6.5122
-          },
-          "latestDividendDistribution": {},
-          "dividendDistributionYTD": {},
-          "eomLatestDividendDistribution": {},
-          "eomDividendDistributionYTD": {},
-          "sharesOutstanding": 817045.0,
-          "distributionRate": {},
-          "noOfHoldings": 933,
-          "accountRiskMeasures": {
-            "asofDate": "2026-07-02",
-            "asofDateKey": 20260702,
-            "currentYield": 6.6295,
-            "avgQuality": "BA",
-            "avgMaturity": 3.3098
-          },
-          "eomAccountRiskMeasures": {
-            "asofDate": "2026-05-31",
-            "asofDateKey": 20260531,
-            "currentYield": 6.5122,
-            "avgQuality": "BA",
-            "avgMaturity": 3.0004
-          },
-          "accountDuration": {
-            "asofDate": "2026-07-02",
-            "asofDateKey": 20260702,
-            "duration": 2.1965
-          },
-          "eomCusipDuration": {
-            "asofDate": "2026-05-31",
-            "asofDateKey": 20260531,
-            "duration": 2.0026
-          },
-          "eomAccountSpread": {
-            "asofDate": "2026-05-31",
-            "asofDateKey": 20260531,
-            "mortgageSpread": 0.0,
-            "corporateSpread": 2.182222,
-            "swapSpread": 0.000508,
-            "emSpread": 0.024376,
-            "coveredBondSpread": 0.0,
-            "sovgRelatedSpread": 0.0
-          },
-          "accountSpreadLBD": {
-            "asofDate": "2026-07-02",
-            "asofDateKey": 20260702,
-            "mortgageSpread": 0.0,
-            "corporateSpread": 2.197041,
-            "swapSpread": 0.002429,
-            "emSpread": 0.026604,
-            "coveredBondSpread": 0.0,
-            "sovgRelatedSpread": 0.0
-          },
-          "etfYield": {
-            "asofDate": "2026-07-02",
-            "asofDateKey": 20260702,
-            "value": 7.5543
-          },
-          "eomEtfYield": {
-            "asofDate": "2026-05-31",
-            "asofDateKey": 20260531,
-            "value": 7.4027
-          },
-          "eomAccountDuration": {
-            "asofDate": "2026-05-31",
-            "asofDateKey": 20260531,
-            "duration": 2.0026,
-            "bullDuration": 1.8332,
-            "bearDuration": 2.1302,
-            "totalCurveDuration": 0.783673
-          },
-          "accountDurationLBD": {
-            "asofDate": "2026-07-02",
-            "asofDateKey": 20260702,
-            "duration": 2.1965,
-            "bullDuration": 2.0312,
-            "bearDuration": 2.3095,
-            "totalCurveDuration": 0.854396
-          },
-          "bullDuration": 2.0312,
-          "bearDuration": 2.3095,
-          "totalCurveDuration": 0.854396,
-          "dailyCurrentYield": {
-            "asofDate": "2026-07-02",
-            "asofDateKey": 20260702,
-            "value": 6.6295
-          },
-          "dailyChangePercent": 0.00130273,
-          "cusipCurrencyMv": 102865352.97,
-          "eomCusipCurrencyMv": 85508139.49,
-          "d0Yield": {
-            "asofDate": "2026-07-02",
-            "asofDateKey": 20260702
-          },
-          "ipoNav": 100.0,
-          "monthlySharesOutstanding": 680123.0,
-          "showSecYieldQuotation": false,
-          "eomDate": "2026-05-31",
-          "quarterEndDate": "2026-03-31",
-          "monthEndNav": 125.7245,
-          "avgPayoutYield": {},
-          "underlyingPortfolioYield": {
-            "asofDate": "2026-05-31",
-            "asofDateKey": 20260531,
-            "value": 5.9122
-          },
-          "avgDistribution": {},
-          "divPeriodPerf": {},
-          "nonAnnualDistributionYield": {},
-          "priipsSri": {
-            "asofDate": "2026-01-31",
-            "asofDateKey": 20260131,
-            "value": "2.0"
-          }
         }
       },
       "listing_row": {
@@ -4407,6 +4407,78 @@
           "latestMonthEnd": "2026-05-31",
           "latestQuarterEnd": "2026-03-31"
         },
+        "share_classes": {
+          "shareClass": {
+            "cusip": "G7110H206",
+            "name": "ARTIFICIAL",
+            "displayName": "ARTIFICIAL",
+            "code": "ARTF",
+            "displayCode": "ARTF",
+            "ticker": "EMLI",
+            "isin": "IE00BH3X8336",
+            "isActive": 1,
+            "shareclassInceptionDate": "2014-01-23"
+          },
+          "oldestShareClass": {
+            "cusip": "G7110H156",
+            "name": "ARTIFICIAL",
+            "displayName": "ARTIFICIAL",
+            "code": "ARTF",
+            "displayCode": "ARTF",
+            "ticker": "EMLB",
+            "isin": "IE00B4P11460",
+            "prdctAcctNo": 4737,
+            "isActive": 1,
+            "shareclassInceptionDate": "2011-09-19",
+            "shareType": "Accumulation",
+            "displayShareType": "Accumulation",
+            "navCurrency": "USD",
+            "displayNavCurrency": "USD"
+          },
+          "oldestShareClassV2": {
+            "name": "ARTIFICIAL",
+            "displayName": "ARTIFICIAL",
+            "shareclassInceptionDate": "2011-09-19"
+          },
+          "availableShareClasses": [
+            {
+              "cusip": "G7110H156",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "EMLB",
+              "isin": "IE00B4P11460",
+              "prdctAcctNo": 4737,
+              "isActive": 1,
+              "shareclassInceptionDate": "2011-09-19",
+              "shareType": "Accumulation",
+              "displayShareType": "Accumulation",
+              "navCurrency": "USD",
+              "displayNavCurrency": "USD",
+              "displayHedgingStyle": "NA",
+              "allowLiquidatedFundsDays": 0
+            },
+            {
+              "cusip": "G7110H206",
+              "name": "ARTIFICIAL",
+              "displayName": "ARTIFICIAL",
+              "code": "ARTF",
+              "displayCode": "ARTF",
+              "ticker": "EMLI",
+              "isin": "IE00BH3X8336",
+              "prdctAcctNo": 4737,
+              "isActive": 1,
+              "shareclassInceptionDate": "2014-01-23",
+              "shareType": "Income",
+              "displayShareType": "Income",
+              "navCurrency": "USD",
+              "displayNavCurrency": "USD",
+              "displayHedgingStyle": "NA",
+              "allowLiquidatedFundsDays": 0
+            }
+          ]
+        },
         "fund_stats": {
           "asOfDate": "2026-07-02",
           "dailyNav": 66.1586,
@@ -4589,78 +4661,6 @@
             "asofDateKey": 20251031,
             "value": "3"
           }
-        },
-        "share_classes": {
-          "shareClass": {
-            "cusip": "G7110H206",
-            "name": "ARTIFICIAL",
-            "displayName": "ARTIFICIAL",
-            "code": "ARTF",
-            "displayCode": "ARTF",
-            "ticker": "EMLI",
-            "isin": "IE00BH3X8336",
-            "isActive": 1,
-            "shareclassInceptionDate": "2014-01-23"
-          },
-          "oldestShareClass": {
-            "cusip": "G7110H156",
-            "name": "ARTIFICIAL",
-            "displayName": "ARTIFICIAL",
-            "code": "ARTF",
-            "displayCode": "ARTF",
-            "ticker": "EMLB",
-            "isin": "IE00B4P11460",
-            "prdctAcctNo": 4737,
-            "isActive": 1,
-            "shareclassInceptionDate": "2011-09-19",
-            "shareType": "Accumulation",
-            "displayShareType": "Accumulation",
-            "navCurrency": "USD",
-            "displayNavCurrency": "USD"
-          },
-          "oldestShareClassV2": {
-            "name": "ARTIFICIAL",
-            "displayName": "ARTIFICIAL",
-            "shareclassInceptionDate": "2011-09-19"
-          },
-          "availableShareClasses": [
-            {
-              "cusip": "G7110H156",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "EMLB",
-              "isin": "IE00B4P11460",
-              "prdctAcctNo": 4737,
-              "isActive": 1,
-              "shareclassInceptionDate": "2011-09-19",
-              "shareType": "Accumulation",
-              "displayShareType": "Accumulation",
-              "navCurrency": "USD",
-              "displayNavCurrency": "USD",
-              "displayHedgingStyle": "NA",
-              "allowLiquidatedFundsDays": 0
-            },
-            {
-              "cusip": "G7110H206",
-              "name": "ARTIFICIAL",
-              "displayName": "ARTIFICIAL",
-              "code": "ARTF",
-              "displayCode": "ARTF",
-              "ticker": "EMLI",
-              "isin": "IE00BH3X8336",
-              "prdctAcctNo": 4737,
-              "isActive": 1,
-              "shareclassInceptionDate": "2014-01-23",
-              "shareType": "Income",
-              "displayShareType": "Income",
-              "navCurrency": "USD",
-              "displayNavCurrency": "USD",
-              "displayHedgingStyle": "NA",
-              "allowLiquidatedFundsDays": 0
-            }
-          ]
         }
       },
       "listing_row": {

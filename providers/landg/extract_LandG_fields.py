@@ -19,6 +19,7 @@ OUTPUT_COLUMNS = [
     "CCY",
     "TER(bps)",
     "AUM(M)",
+    "AUM CCY",
     "Date",
 ]
 
@@ -297,6 +298,15 @@ COLUMN_HINTS: dict[str, list[str]] = {
         "total assets",
         "total net assets",
     ],
+    "aum_ccy": [
+        "aum currency",
+        "assets under management currency",
+        "fund size currency",
+        "fund assets currency",
+        "net assets currency",
+        "total assets currency",
+        "total net assets currency",
+    ],
 }
 
 
@@ -390,7 +400,7 @@ def ter_to_bps(value: object | None) -> str:
     lower = text.lower()
     if "%" in lower:
         bps = number * 100                       # 0.12% -> 12 bps
-    elif abs(number) <= 0.05:
+    elif abs(number) < 0.01:
         bps = number * 10_000                    # Excel percent fraction: 0.0012 -> 12 bps
     elif abs(number) <= 5:
         bps = number * 100                       # Percent points: 0.12 -> 12 bps
@@ -436,6 +446,7 @@ def extract_fields(input_path: Path, debug_columns: bool = False) -> pd.DataFram
         "ccy": find_column(raw, "ccy"),
         "ter": find_column(raw, "ter"),
         "aum": find_column(raw, "aum"),
+        "aum_ccy": find_column(raw, "aum_ccy"),
     }
 
     if debug_columns:
@@ -466,6 +477,7 @@ def extract_fields(input_path: Path, debug_columns: bool = False) -> pd.DataFram
     else:
         out["AUM(M)"] = ""
 
+    out["AUM CCY"] = raw[cols["aum_ccy"]].map(clean_ccy) if cols["aum_ccy"] else ""
     out["Date"] = format_display_date(export_date)
 
     # Keep only valid ETF listing rows.

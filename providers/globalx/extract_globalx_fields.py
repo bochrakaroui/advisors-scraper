@@ -33,6 +33,7 @@ OUTPUT_COLUMNS = [
     "CCY",
     "TER(bps)",
     "AUM(M)",
+    "AUM CCY",
     "Date",
 ]
 
@@ -81,6 +82,22 @@ def clean_text(value: object | None) -> str:
     cleaned = re.sub(r"\s+", " ", cleaned)
 
     return "" if cleaned in {"", "-", "--", "- ", " -", "None"} else cleaned
+
+
+def canonicalize_fund_name(value: object | None) -> str:
+    cleaned = clean_text(value)
+    if not cleaned:
+        return ""
+    cleaned = re.sub(r"^Global X\s+", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(
+        r"\s+(?:USD|EUR|GBP|CHF)\s+(?:Distributing|Accumulating)\b.*$",
+        "",
+        cleaned,
+        flags=re.IGNORECASE,
+    )
+    cleaned = re.sub(r"\s+Dist\s+(?:USD|EUR|GBP|CHF)\b.*$", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s+(?:Distributing|Accumulating)\b.*$", "", cleaned, flags=re.IGNORECASE)
+    return clean_text(cleaned).casefold()
 
 
 def find_latest_download(input_dir: Path) -> Path:
@@ -151,6 +168,32 @@ def parse_snapshot_rows(path: Path) -> list[dict[str, object]]:
     return rows
 
 
+def load_historical_selected_rows(target_isins: set[str]) -> dict[str, dict[str, str]]:
+    historical_rows: dict[str, dict[str, str]] = {}
+    if not target_isins:
+        return historical_rows
+
+    for path in sorted(
+        INPUT_DIR.rglob("globalx_selected_fields.csv"),
+        key=lambda candidate: candidate.stat().st_mtime,
+        reverse=True,
+    ):
+        try:
+            with path.open("r", encoding="utf-8-sig", newline="") as handle:
+                reader = csv.DictReader(handle)
+                for row in reader:
+                    isin = clean_text(row.get("ISIN")).upper()
+                    if isin in target_isins and isin not in historical_rows:
+                        historical_rows[isin] = {key: clean_text(value) for key, value in row.items()}
+        except Exception:
+            continue
+
+        if target_isins.issubset(historical_rows):
+            break
+
+    return historical_rows
+
+
 def transform_row(source_row: dict[str, object], file_date: str) -> dict[str, str]:
     return {
         "ETF Name": clean_text(source_row.get("etf_name")),
@@ -165,6 +208,7 @@ def transform_row(source_row: dict[str, object], file_date: str) -> dict[str, st
             source_row.get("aum_m")
             or source_row.get("aum_numeric")
         ),
+        "AUM CCY": clean_text(source_row.get("aum_currency") or source_row.get("ccy")).upper(),
         "Date": normalize_date(
             clean_text(source_row.get("date") or source_row.get("as_of_date")),
             fallback=file_date,
@@ -186,33 +230,64 @@ def supplement_missing_rows(rows: list[dict[str, str]], file_date: str) -> list[
     if build_justetf_session is None or fetch_justetf_profile is None:
         return dedupe_rows(rows)
 
+    official_rows_by_name: dict[str, dict[str, str]] = {}
+    for row in rows:
+        canonical_name = canonicalize_fund_name(row.get("ETF Name"))
+        if canonical_name and clean_text(row.get("AUM(M)")) and canonical_name not in official_rows_by_name:
+            official_rows_by_name[canonical_name] = row
+
     present_isins = {clean_text(row.get("ISIN")).upper() for row in rows if clean_text(row.get("ISIN"))}
     missing_isins = [isin for isin in JUSTETF_FALLBACK_ISINS if isin not in present_isins]
     if not missing_isins:
         return dedupe_rows(rows)
 
+    historical_rows_by_isin = load_historical_selected_rows(set(missing_isins))
     session = build_justetf_session()
     supplemented_rows = list(rows)
     for isin in missing_isins:
-        try:
-            profile = fetch_justetf_profile(isin, session=session)
-        except Exception as exc:  # noqa: BLE001
-            print(f"WARNING: justETF fallback failed for Global X {isin}: {exc}")
-            continue
+        historical_row = historical_rows_by_isin.get(isin)
+        profile: dict[str, object] = {}
+        if not historical_row:
+            try:
+                profile = fetch_justetf_profile(isin, session=session)
+            except Exception as exc:  # noqa: BLE001
+                print(f"WARNING: justETF fallback failed for Global X {isin}: {exc}")
+                profile = {}
 
-        if clean_text(profile.get("fetch_status")) not in {"", "ok"}:
-            print(f"WARNING: justETF fallback did not resolve Global X {isin}: {clean_text(profile.get('error'))}")
-            continue
+            if profile and clean_text(profile.get("fetch_status")) not in {"", "ok"}:
+                print(f"WARNING: justETF fallback did not resolve Global X {isin}: {clean_text(profile.get('error'))}")
+                profile = {}
 
+        if profile:
+            etf_name = clean_text(profile.get("etf_name"))
+            ccy = clean_text(profile.get("ccy")).upper()
+            ter_bps = clean_text(profile.get("ter_bps"))
+            fallback_aum = clean_text(profile.get("aum_mn"))
+            fallback_aum_ccy = clean_text(profile.get("aum_ccy")).upper()
+        else:
+            if not historical_row:
+                continue
+            etf_name = clean_text(historical_row.get("ETF Name"))
+            ccy = clean_text(historical_row.get("CCY")).upper()
+            ter_bps = clean_text(historical_row.get("TER(bps)"))
+            fallback_aum = clean_text(historical_row.get("AUM(M)"))
+            fallback_aum_ccy = clean_text(historical_row.get("AUM CCY")).upper()
+
+        sibling_official_row = official_rows_by_name.get(canonicalize_fund_name(etf_name))
         supplemented_rows.append(
             {
-                "ETF Name": clean_text(profile.get("etf_name")),
+                "ETF Name": etf_name,
                 "Issuer": ISSUER,
                 "ISIN": clean_text(profile.get("isin")).upper() or isin,
-                "CCY": clean_text(profile.get("ccy")).upper(),
-                "TER(bps)": clean_text(profile.get("ter_bps")),
-                "AUM(M)": clean_text(profile.get("aum_mn")),
-                "Date": file_date,
+                "CCY": ccy,
+                "TER(bps)": ter_bps,
+                "AUM(M)": clean_text(
+                    sibling_official_row.get("AUM(M)") if sibling_official_row else fallback_aum
+                ),
+                "AUM CCY": clean_text(
+                    sibling_official_row.get("AUM CCY") if sibling_official_row else fallback_aum_ccy
+                ).upper(),
+                "Date": clean_text(sibling_official_row.get("Date") if sibling_official_row else file_date),
             }
         )
 

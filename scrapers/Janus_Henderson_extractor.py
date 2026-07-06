@@ -484,6 +484,42 @@ def dedupe_product_urls(candidate_urls: list[str]) -> list[str]:
     return deduped_urls
 
 
+def load_historical_listing_rows(target_isins: set[str]) -> dict[str, tuple[dict[str, str], str]]:
+    historical_rows: dict[str, tuple[dict[str, str], str]] = {}
+    if not target_isins:
+        return historical_rows
+
+    for snapshot_path in sorted(
+        OUTPUT_DIR.rglob("janushenderson_etf_export.json"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    ):
+        try:
+            payload = json.loads(snapshot_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+
+        rows = payload.get("listing_rows", [])
+        if not isinstance(rows, list):
+            continue
+
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            isin = normalize_isin(row.get("isin"))
+            if isin not in target_isins or isin in historical_rows:
+                continue
+            cleaned_row = {key: clean_text(value) for key, value in row.items()}
+            cleaned_row["isin"] = isin
+            if row_has_required_listing_fields(cleaned_row):
+                historical_rows[isin] = (cleaned_row, str(snapshot_path))
+
+        if target_isins.issubset(historical_rows):
+            break
+
+    return historical_rows
+
+
 def extract_reference_product_urls(reference_payload: dict[str, Any] | None) -> list[str]:
     if not isinstance(reference_payload, dict):
         return []
@@ -909,6 +945,27 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
 
     successful_statuses = {"ok", "archive_ok"}
     usable_statuses = successful_statuses | {"listing_only"}
+    unresolved_isins = [
+        result["isin"] for result in target_results if result.get("status") not in usable_statuses
+    ]
+    historical_listing_rows = load_historical_listing_rows(set(unresolved_isins))
+    if historical_listing_rows:
+        for result in target_results:
+            isin = result.get("isin", "")
+            if result.get("status") in usable_statuses or isin not in historical_listing_rows:
+                continue
+            historical_row, historical_path = historical_listing_rows[isin]
+            listing_rows.append(dict(historical_row))
+            result["status"] = "historical_local"
+            result["detail_url"] = historical_row.get("detail_url", result.get("detail_url", ""))
+            references = result.get("references")
+            if not isinstance(references, dict):
+                references = {}
+            references["historical_snapshot"] = historical_path
+            result["references"] = references
+
+        usable_statuses = usable_statuses | {"historical_local"}
+
     missing_target_isins = [
         result["isin"] for result in target_results if result.get("status") not in usable_statuses
     ]

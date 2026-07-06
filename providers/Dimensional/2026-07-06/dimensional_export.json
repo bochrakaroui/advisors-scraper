@@ -10,7 +10,7 @@
     "expat_fund_url": "https://expat.bg/en/funds/ExpatBulgariaSOFIX?utm_source=chatgpt.com"
   },
   "method": "Combined ETF snapshot. For the 4 Dimensional UCITS ETF ISINs, the scraper uses the official Dimensional fund center API and enriches objective/documents from the official portfolio-details API. If an official target row is missing or errors, the scraper falls back to the ISIN-based public ETF profile page. For BG9000011163, the scraper uses the official Expat Bulgaria SOFIX fund page plus its current KID PDF.",
-  "captured_at": "2026-07-06T11:07:11.944862",
+  "captured_at": "2026-07-06T14:09:51.642725",
   "target_isin_count": 5,
   "matched_target_isins": [
     "IE0002YHUWS3",

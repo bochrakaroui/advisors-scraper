@@ -5,7 +5,7 @@
     "kurtosys_api": "https://api-uk.kurtosys.app/fund/savedSearchEntity/singleClassSearch"
   },
   "method": "Sequential Playwright loads of the official factsheet pages; share classes are parsed from the live Kurtosys singleClassSearch response.",
-  "captured_at": "2026-07-06T11:11:19.161390",
+  "captured_at": "2026-07-06T14:17:10.014013",
   "listing_rows": [
     {
       "etf_name": "M&G US Treasury Bond Active UCITS ETF USD Acc",

@@ -1,7 +1,7 @@
 {
   "source_url": "https://etfs.waystone.com/fund-listing/",
   "method": "Waystone ETFs fund listing — DataTables filter-by-ISIN, API interception + DOM table extraction",
-  "captured_at": "2026-07-06T11:18:22.658376",
+  "captured_at": "2026-07-06T14:24:19.521608",
   "row_count": 5,
   "rows": [
     {
@@ -25,7 +25,7 @@
       "inception_norm": "",
       "factsheet_url": "https://etfs.waystone.com/fund/wahed-dow-jones-islamic-world-ucits-etf/",
       "source_url": "https://etfs.waystone.com/fund-listing/",
-      "scraped_at": "2026-07-06T11:18:22.658376",
+      "scraped_at": "2026-07-06T14:24:19.521608",
       "extraction_method": "dom_table"
     },
     {
@@ -49,7 +49,7 @@
       "inception_norm": "09/12/2021",
       "factsheet_url": "https://www.flexshares.com/content/dam/ntflexshares/eu-common/images/funds/flpe/kid-flpe-en.pdf",
       "source_url": "https://www.flexshares.com/kiids",
-      "scraped_at": "2026-07-06T11:18:22.658376",
+      "scraped_at": "2026-07-06T14:24:19.521608",
       "extraction_method": "official_manual_fallback",
       "listing_source_url": "https://etfs.waystone.com/fund-listing/",
       "fallback_origin_url": "https://etfs.ntam.northerntrust.com/gb",
@@ -80,7 +80,7 @@
       "inception_norm": "27/04/2026",
       "factsheet_url": "https://www.calamos.com/resources/#ucitsfunds",
       "source_url": "https://www.calamos.com/about/news/press-releases/2026/worlds-first-autocallable-ucits-etf/",
-      "scraped_at": "2026-07-06T11:18:22.658376",
+      "scraped_at": "2026-07-06T14:24:19.521608",
       "extraction_method": "official_manual_fallback",
       "listing_source_url": "https://etfs.waystone.com/fund-listing/",
       "fallback_origin_url": "https://www.calamos.com",
@@ -111,7 +111,7 @@
       "inception_norm": "",
       "factsheet_url": "https://etfs.waystone.com/fund/wahed-sp-500-shariah-ucits-etf/",
       "source_url": "https://etfs.waystone.com/fund-listing/",
-      "scraped_at": "2026-07-06T11:18:22.658376",
+      "scraped_at": "2026-07-06T14:24:19.521608",
       "extraction_method": "dom_table"
     },
     {
@@ -135,7 +135,7 @@
       "inception_norm": "",
       "factsheet_url": "https://etfs.waystone.com/fund/calamos-autocallable-dis/",
       "source_url": "https://etfs.waystone.com/fund-listing/",
-      "scraped_at": "2026-07-06T11:18:22.658376",
+      "scraped_at": "2026-07-06T14:24:19.521608",
       "extraction_method": "dom_table"
     }
   ]

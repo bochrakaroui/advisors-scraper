@@ -9,7 +9,7 @@
     "country_selected": "united kingdom"
   },
   "method": "Headless-browser (Playwright) rendering of the ossiam.com fund list, submitting the site's cookie banner and investor-profile/country gate, then expanding each row of the PrimeNG fund table to extract per-share-class fields (ISIN, currency, TER, NAV, etc.) via generic table/label-value heuristics. See raw_labels on each row for everything captured verbatim, and tune LABEL_ALIASES / CLIENT_PROFILES_TO_TRY / COUNTRY_ID at the top of this script if fields are missing or the fund count looks incomplete.",
-  "captured_at": "2026-07-06T11:12:28.276646",
+  "captured_at": "2026-07-06T14:18:17.759128",
   "fund_row_count": 15,
   "status_counts": {
     "ok": 15

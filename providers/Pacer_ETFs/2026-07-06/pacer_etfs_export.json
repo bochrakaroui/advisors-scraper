@@ -4,7 +4,7 @@
     "profile_url_template": "https://www.justetf.com/en/etf-profile.html?isin={isin}"
   },
   "method": "Target ISIN fetch from public justETF ETF profile pages",
-  "captured_at": "2026-07-06T11:12:28.300446",
+  "captured_at": "2026-07-06T14:18:17.782791",
   "target_isins": [
     "IE000E909O74",
     "IE000IL7PZ05",
