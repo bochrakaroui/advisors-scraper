@@ -51,7 +51,8 @@ OUTPUT_COLUMNS = [
     "ISIN",
     "CCY",
     "TER(bps)",
-    "AUM(M)",
+    "Partial AUM(M)",
+    "Total AUM(M)",
     "AUM CCY",
     "Date",
 ]
@@ -242,14 +243,17 @@ def parse_numeric_decimal(value: str | None) -> Decimal | None:
         return None
 
 
-def resolve_aum_m(source_row: dict[str, str]) -> str:
-    direct_aum = format_decimal(source_row.get(SOURCE_COLUMNS["aum"]))
-    if direct_aum:
-        return direct_aum
-
+def resolve_partial_aum_m(source_row: dict[str, str]) -> str:
     net_assets = parse_numeric_decimal(source_row.get(SOURCE_COLUMNS["net_assets"]))
     if net_assets is not None:
         return format_decimal(str(net_assets / Decimal("1000000")))
+    return ""
+
+
+def resolve_total_aum_m(source_row: dict[str, str]) -> str:
+    direct_aum = format_decimal(source_row.get(SOURCE_COLUMNS["aum"]))
+    if direct_aum:
+        return direct_aum
 
     isin = clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper()
     shares_outstanding = clean_text(source_row.get(SOURCE_COLUMNS["shares_outstanding"]))
@@ -385,7 +389,8 @@ def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
         "ISIN": clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper(),
         "CCY": share_class_currency,
         "TER(bps)": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
-        "AUM(M)": resolve_aum_m(source_row),
+        "Partial AUM(M)": resolve_partial_aum_m(source_row),
+        "Total AUM(M)": resolve_total_aum_m(source_row),
         "AUM CCY": share_class_currency,
         "Date": as_of_date,
     }

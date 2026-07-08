@@ -51,7 +51,7 @@ from providers.amundi.extract_amundi_fields import (
     find_latest_download as find_latest_amundi_download,
     parse_xlsx_rows as parse_amundi_source_rows,
 )
-from providers.output_schema import OUTPUT_COLUMNS, infer_aum_currency_from_row
+from providers.output_schema import infer_aum_currency_from_row
 from providers.firsttrust.extract_firsttrust_fields import (
     INPUT_DIR as FIRSTTRUST_INPUT_DIR,
     extract_rows as extract_firsttrust_rows,
@@ -358,6 +358,20 @@ JUSTETF_AUM_FALLBACK_BLOCKED_ISSUERS = {
     "J.P. Morgan Asset Management",
     "Waystone",
 }
+LEGACY_AUM_COLUMN = "AUM(M)"
+PARTIAL_AUM_COLUMN = "Partial AUM(M)"
+TOTAL_AUM_COLUMN = "Total AUM(M)"
+OUTPUT_COLUMNS = [
+    "ETF Name",
+    "Issuer",
+    "ISIN",
+    "CCY",
+    "TER(bps)",
+    PARTIAL_AUM_COLUMN,
+    TOTAL_AUM_COLUMN,
+    "AUM CCY",
+    "Date",
+]
 
 ALL_PROVIDERS = (
     "ishares",
@@ -526,7 +540,7 @@ def summarize_source_metadata(input_path: Path) -> tuple[str, str, str]:
 def evaluate_extraction_status(row_count: int, missing_counts: dict[str, int]) -> str:
     if row_count == 0:
         return "EMPTY"
-    if any(missing_counts.get(column, 0) for column in ("ISIN", "AUM(M)", "TER(bps)")):
+    if any(missing_counts.get(column, 0) for column in ("ISIN", TOTAL_AUM_COLUMN, "TER(bps)")):
         return "PARTIAL"
     return "OK"
 
@@ -536,7 +550,7 @@ def evaluate_result_status(row_count: int, provider_match_count: int, missing_co
         return "EMPTY"
     if provider_match_count == 0:
         return "NO MATCHES"
-    if any(missing_counts.get(column, 0) for column in ("ISIN", "AUM(M)", "TER(bps)")):
+    if any(missing_counts.get(column, 0) for column in ("ISIN", TOTAL_AUM_COLUMN, "TER(bps)")):
         return "PARTIAL"
     return "SUCCESS"
 
@@ -579,7 +593,7 @@ def print_provider_report(report: ProviderRunReport, run_date: str) -> None:
     print(f"      Rows extracted : {report.extracted_row_count:,}")
     print(f"      Valid ISINs    : {report.valid_isin_count:,}")
     print(f"      Missing ISIN   : {report.missing_counts.get('ISIN', 0):,}")
-    print(f"      Missing AUM    : {report.missing_counts.get('AUM(M)', 0):,}")
+    print(f"      Missing Total AUM : {report.missing_counts.get(TOTAL_AUM_COLUMN, 0):,}")
     print(f"      Missing TER    : {report.missing_counts.get('TER(bps)', 0):,}")
     print(f"      Status         : {report.extraction_status}")
     print()
@@ -599,7 +613,7 @@ def print_provider_report(report: ProviderRunReport, run_date: str) -> None:
     print(f"      Provider     : {report.provider_name}")
     print(f"      Extracted    : {report.extracted_row_count:,}")
     print(f"      ISIN matches : {report.provider_match_count:,}")
-    print(f"      Missing AUM  : {report.missing_counts.get('AUM(M)', 0):,}")
+    print(f"      Missing Total AUM : {report.missing_counts.get(TOTAL_AUM_COLUMN, 0):,}")
     print(f"      Rows saved   : {report.extracted_row_count:,}")
     print(f"      Status       : {report.result_status}")
     print()
@@ -721,7 +735,19 @@ def normalize_output_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     normalized_rows: list[dict[str, str]] = []
     for row in rows:
         normalized_row = {column: str(row.get(column, "")).strip() for column in OUTPUT_COLUMNS}
-        if not normalized_row.get("AUM(M)", ""):
+        normalized_row[PARTIAL_AUM_COLUMN] = normalized_row.get(PARTIAL_AUM_COLUMN, "")
+        normalized_row[TOTAL_AUM_COLUMN] = (
+            normalized_row.get(TOTAL_AUM_COLUMN, "")
+            or str(row.get(LEGACY_AUM_COLUMN, "")).strip()
+        )
+        if not normalized_row.get(PARTIAL_AUM_COLUMN, "") and str(row.get(PARTIAL_AUM_COLUMN, "")).strip():
+            normalized_row[PARTIAL_AUM_COLUMN] = str(row.get(PARTIAL_AUM_COLUMN, "")).strip()
+        if not normalized_row.get(PARTIAL_AUM_COLUMN, "") and str(row.get("Partial AUM", "")).strip():
+            normalized_row[PARTIAL_AUM_COLUMN] = str(row.get("Partial AUM", "")).strip()
+        if not normalized_row.get(TOTAL_AUM_COLUMN, "") and str(row.get("Total AUM", "")).strip():
+            normalized_row[TOTAL_AUM_COLUMN] = str(row.get("Total AUM", "")).strip()
+
+        if not normalized_row.get(PARTIAL_AUM_COLUMN, "") and not normalized_row.get(TOTAL_AUM_COLUMN, ""):
             normalized_row["AUM CCY"] = ""
         elif not normalized_row.get("AUM CCY", ""):
             normalized_row["AUM CCY"] = (
@@ -743,7 +769,7 @@ def supplement_missing_aum_from_justetf(rows: list[dict[str, str]]) -> list[dict
             if normalized_isin
             and any(
                 normalize_isin(candidate_row.get("ISIN")) == normalized_isin
-                and not str(candidate_row.get("AUM(M)", "")).strip()
+                and not str(candidate_row.get(TOTAL_AUM_COLUMN, "")).strip()
                 for candidate_row in rows
             )
         }
@@ -778,7 +804,7 @@ def supplement_missing_aum_from_justetf(rows: list[dict[str, str]]) -> list[dict
         issuer = str(row.get("Issuer", "")).strip()
         if (
             not isin
-            or str(row.get("AUM(M)", "")).strip()
+            or str(row.get(TOTAL_AUM_COLUMN, "")).strip()
             or isin not in fallback_by_isin
             or issuer in JUSTETF_AUM_FALLBACK_BLOCKED_ISSUERS
         ):
@@ -787,7 +813,7 @@ def supplement_missing_aum_from_justetf(rows: list[dict[str, str]]) -> list[dict
 
         aum_m, aum_ccy = fallback_by_isin[isin]
         supplemented_row = dict(row)
-        supplemented_row["AUM(M)"] = aum_m
+        supplemented_row[TOTAL_AUM_COLUMN] = aum_m
         if aum_ccy:
             supplemented_row["AUM CCY"] = aum_ccy
         supplemented_rows.append(supplemented_row)
@@ -1007,7 +1033,7 @@ def collect_missing_whitelist_isins(
 def collect_rows_with_missing_aum(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     missing_rows: list[dict[str, str]] = []
     for row in rows:
-        if not str(row.get("AUM(M)", "")).strip():
+        if not str(row.get(TOTAL_AUM_COLUMN, "")).strip():
             missing_rows.append(row)
     return missing_rows
 
@@ -1685,9 +1711,9 @@ async def async_main() -> int:
     print(f"Total rows   : {len(filtered_rows):,}")
     print(f"Whitelist ISINs: {filter_summary.whitelist_unique_isin_count:,} from {ISIN_FILTER_PATH}")
     print(f"Rows removed by ISIN filter: {filter_summary.removed_rows_count:,}")
-    print(f"Rows with missing AUM in final CSV: {len(coverage_summary.missing_aum_identifiers):,}")
+    print(f"Rows with missing total AUM in final CSV: {len(coverage_summary.missing_aum_identifiers):,}")
     if coverage_summary.missing_aum_identifiers:
-        print("Sample rows still missing AUM(M):")
+        print(f"Sample rows still missing {TOTAL_AUM_COLUMN}:")
         for identifier in coverage_summary.missing_aum_identifiers[:10]:
             print(f"  {identifier}")
 
@@ -1698,7 +1724,7 @@ async def async_main() -> int:
             print(f"  Selected -> {relative_display_path(report.output_path)}")
             print(f"  Extracted -> {report.extracted_row_count:,}")
             print(f"  Matches   -> {report.provider_match_count:,}")
-            print(f"  Missing AUM -> {report.missing_counts.get('AUM(M)', 0):,}")
+            print(f"  Missing Total AUM -> {report.missing_counts.get(TOTAL_AUM_COLUMN, 0):,}")
             print(f"  Status -> {report.result_status}")
 
     if failures:
@@ -1709,7 +1735,7 @@ async def async_main() -> int:
     if coverage_summary.missing_aum_identifiers:
         print(
             "Final coverage verification failed: the aggregated CSV still has "
-            f"{len(coverage_summary.missing_aum_identifiers):,} row(s) with blank AUM(M)."
+            f"{len(coverage_summary.missing_aum_identifiers):,} row(s) with blank {TOTAL_AUM_COLUMN}."
         )
         return 1
 

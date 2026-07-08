@@ -54,7 +54,8 @@ SOURCE_COLUMNS = {
     "isin":      "ISIN",
     "currency":  "Share Class Currency",
     "ter":       "Ongoing Charges",
-    "aum":       "Share Class Size",
+    "partial_aum": "Share Class Size",
+    "total_aum": "Total Fund Size",
 }
 
 OUTPUT_COLUMNS = [
@@ -63,7 +64,9 @@ OUTPUT_COLUMNS = [
     "ISIN",
     "CCY",
     "TER(bps)",
-    "AUM(M)",
+    "Partial AUM(M)",
+    "Total AUM(M)",
+    "AUM CCY",
     "Date",
 ]
 
@@ -279,7 +282,9 @@ def transform_row(source_row: dict[str, str], run_date: str) -> dict[str, str]:
         "ISIN":     clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper(),
         "CCY":      clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper(),
         "TER(bps)": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
-        "AUM(M)":   format_aum_millions(source_row.get(SOURCE_COLUMNS["aum"])),
+        "Partial AUM(M)": format_aum_millions(source_row.get(SOURCE_COLUMNS["partial_aum"])),
+        "Total AUM(M)": format_aum_millions(source_row.get(SOURCE_COLUMNS["total_aum"])),
+        "AUM CCY": clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper(),
         "Date":     run_date,
     }
 
@@ -328,7 +333,9 @@ def supplement_missing_rows(rows: list[dict[str, str]], run_date: str) -> list[d
                 "ISIN": clean_text(profile.get("isin")).upper() or isin,
                 "CCY": clean_text(profile.get("ccy")).upper(),
                 "TER(bps)": clean_text(profile.get("ter_bps")),
-                "AUM(M)": clean_text(profile.get("aum_mn")),
+                "Partial AUM(M)": "",
+                "Total AUM(M)": clean_text(profile.get("aum_mn")),
+                "AUM CCY": clean_text(profile.get("aum_ccy")).upper() or clean_text(profile.get("ccy")).upper(),
                 "Date": run_date,
             }
         )

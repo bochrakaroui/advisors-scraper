@@ -28,7 +28,8 @@ SOURCE_COLUMNS = {
     "fund_name": "Fund Name",
     "currency": "Share Class Currency",
     "ter": "TER (%)",
-    "aum_raw": "Total Fund Assets Raw",
+    "partial_aum_raw": "Share Class Assets Raw",
+    "total_aum_raw": "Total Fund Assets Raw",
 }
 
 OUTPUT_COLUMNS = [
@@ -37,7 +38,9 @@ OUTPUT_COLUMNS = [
     "ISIN",
     "CCY",
     "TER(bps)",
-    "AUM(M)",
+    "Partial AUM(M)",
+    "Total AUM(M)",
+    "AUM CCY",
     "Date",
 ]
 
@@ -146,7 +149,9 @@ def transform_row(source_row: dict[str, str], file_date: str, currency_overrides
         "ISIN": isin,
         "CCY": ccy,
         "TER(bps)": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
-        "AUM(M)": convert_aum_to_millions(source_row.get(SOURCE_COLUMNS["aum_raw"])),
+        "Partial AUM(M)": convert_aum_to_millions(source_row.get(SOURCE_COLUMNS["partial_aum_raw"])),
+        "Total AUM(M)": convert_aum_to_millions(source_row.get(SOURCE_COLUMNS["total_aum_raw"])),
+        "AUM CCY": ccy,
         "Date": file_date,
     }
 

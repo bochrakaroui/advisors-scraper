@@ -79,7 +79,8 @@ class PipelinePolicyTests(unittest.TestCase):
                     "ISIN": "IE000TEST123",
                     "CCY": "USD",
                     "TER(bps)": "32.00",
-                    "AUM(M)": "",
+                    "Partial AUM(M)": "",
+                    "Total AUM(M)": "",
                     "AUM CCY": "",
                     "Date": "",
                 }
@@ -95,12 +96,31 @@ class PipelinePolicyTests(unittest.TestCase):
                 "ISIN": "IE000TEST123",
                 "CCY": "USD",
                 "TER(bps)": "32.00",
-                "AUM(M)": "",
+                "Partial AUM(M)": "",
+                "Total AUM(M)": "",
                 "AUM CCY": "",
                 "Date": "",
             }
         ]
         self.assertEqual(collect_rows_with_missing_aum(rows), rows)
+
+    def test_legacy_aum_column_is_promoted_to_total_aum(self) -> None:
+        rows = normalize_output_rows(
+            [
+                {
+                    "ETF Name": "Legacy AUM ETF",
+                    "Issuer": "Example Issuer",
+                    "ISIN": "IE000LEGACY1",
+                    "CCY": "EUR",
+                    "TER(bps)": "10.00",
+                    "AUM(M)": "12.34",
+                    "AUM CCY": "EUR",
+                    "Date": "07/07/2026",
+                }
+            ]
+        )
+        self.assertEqual(rows[0]["Partial AUM(M)"], "")
+        self.assertEqual(rows[0]["Total AUM(M)"], "12.34")
 
 
 class JpmorganExtractionTests(unittest.TestCase):
