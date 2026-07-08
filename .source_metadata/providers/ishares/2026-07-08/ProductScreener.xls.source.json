@@ -1,0 +1,10 @@
+{
+  "provider": "iShares",
+  "source_url": "https://www.ishares.com/uk/individual/en/products/etf-investments#/?productView=all&pageNumber=1&sortColumn=totalFundSizeInMillions&sortDirection=desc&dataView=keyFacts&keyFacts=all",
+  "resolved_source_url": "https://www.ishares.com/uk/individual/en/product-screener/product-screener-v3.1.jsn?type=customized-excel",
+  "source_date": "2026-07-08",
+  "freshness_status": "CURRENT",
+  "freshness_proof": "Workbook AUM As Of date from live iShares export",
+  "http_last_modified": "",
+  "content_disposition": "attachment; filename=ProductScreener.xls"
+}

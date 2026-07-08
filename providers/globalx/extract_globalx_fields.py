@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 from datetime import datetime
@@ -49,6 +50,7 @@ JUSTETF_FALLBACK_ISINS = [
     "IE00BM8R0H36",
     "IE00BMH5YS76",
 ]
+ALLOW_NON_OFFICIAL_ROW_SUPPLEMENT_ENV_VAR = "GLOBALX_ALLOW_NON_OFFICIAL_ROW_SUPPLEMENT"
 
 
 def parse_args() -> argparse.Namespace:
@@ -66,6 +68,10 @@ def parse_args() -> argparse.Namespace:
         help="Output CSV path. Defaults to globalx_selected_fields.csv next to the input JSON.",
     )
     return parser.parse_args()
+
+
+def non_official_row_supplement_allowed() -> bool:
+    return os.environ.get(ALLOW_NON_OFFICIAL_ROW_SUPPLEMENT_ENV_VAR, "").strip().lower() not in {"0", "false", "no", "off"}
 
 
 def clean_text(value: object | None) -> str:
@@ -168,32 +174,6 @@ def parse_snapshot_rows(path: Path) -> list[dict[str, object]]:
     return rows
 
 
-def load_historical_selected_rows(target_isins: set[str]) -> dict[str, dict[str, str]]:
-    historical_rows: dict[str, dict[str, str]] = {}
-    if not target_isins:
-        return historical_rows
-
-    for path in sorted(
-        INPUT_DIR.rglob("globalx_selected_fields.csv"),
-        key=lambda candidate: candidate.stat().st_mtime,
-        reverse=True,
-    ):
-        try:
-            with path.open("r", encoding="utf-8-sig", newline="") as handle:
-                reader = csv.DictReader(handle)
-                for row in reader:
-                    isin = clean_text(row.get("ISIN")).upper()
-                    if isin in target_isins and isin not in historical_rows:
-                        historical_rows[isin] = {key: clean_text(value) for key, value in row.items()}
-        except Exception:
-            continue
-
-        if target_isins.issubset(historical_rows):
-            break
-
-    return historical_rows
-
-
 def transform_row(source_row: dict[str, object], file_date: str) -> dict[str, str]:
     return {
         "ETF Name": clean_text(source_row.get("etf_name")),
@@ -227,6 +207,8 @@ def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 
 
 def supplement_missing_rows(rows: list[dict[str, str]], file_date: str) -> list[dict[str, str]]:
+    if not non_official_row_supplement_allowed():
+        return dedupe_rows(rows)
     if build_justetf_session is None or fetch_justetf_profile is None:
         return dedupe_rows(rows)
 
@@ -241,37 +223,24 @@ def supplement_missing_rows(rows: list[dict[str, str]], file_date: str) -> list[
     if not missing_isins:
         return dedupe_rows(rows)
 
-    historical_rows_by_isin = load_historical_selected_rows(set(missing_isins))
     session = build_justetf_session()
     supplemented_rows = list(rows)
     for isin in missing_isins:
-        historical_row = historical_rows_by_isin.get(isin)
-        profile: dict[str, object] = {}
-        if not historical_row:
-            try:
-                profile = fetch_justetf_profile(isin, session=session)
-            except Exception as exc:  # noqa: BLE001
-                print(f"WARNING: justETF fallback failed for Global X {isin}: {exc}")
-                profile = {}
+        try:
+            profile = fetch_justetf_profile(isin, session=session)
+        except Exception as exc:  # noqa: BLE001
+            print(f"WARNING: justETF fallback failed for Global X {isin}: {exc}")
+            continue
 
-            if profile and clean_text(profile.get("fetch_status")) not in {"", "ok"}:
-                print(f"WARNING: justETF fallback did not resolve Global X {isin}: {clean_text(profile.get('error'))}")
-                profile = {}
+        if clean_text(profile.get("fetch_status")) not in {"", "ok"}:
+            print(f"WARNING: justETF fallback did not resolve Global X {isin}: {clean_text(profile.get('error'))}")
+            continue
 
-        if profile:
-            etf_name = clean_text(profile.get("etf_name"))
-            ccy = clean_text(profile.get("ccy")).upper()
-            ter_bps = clean_text(profile.get("ter_bps"))
-            fallback_aum = clean_text(profile.get("aum_mn"))
-            fallback_aum_ccy = clean_text(profile.get("aum_ccy")).upper()
-        else:
-            if not historical_row:
-                continue
-            etf_name = clean_text(historical_row.get("ETF Name"))
-            ccy = clean_text(historical_row.get("CCY")).upper()
-            ter_bps = clean_text(historical_row.get("TER(bps)"))
-            fallback_aum = clean_text(historical_row.get("AUM(M)"))
-            fallback_aum_ccy = clean_text(historical_row.get("AUM CCY")).upper()
+        etf_name = clean_text(profile.get("etf_name"))
+        ccy = clean_text(profile.get("ccy")).upper()
+        ter_bps = clean_text(profile.get("ter_bps"))
+        fallback_aum = clean_text(profile.get("aum_mn"))
+        fallback_aum_ccy = clean_text(profile.get("aum_ccy")).upper()
 
         sibling_official_row = official_rows_by_name.get(canonicalize_fund_name(etf_name))
         supplemented_rows.append(

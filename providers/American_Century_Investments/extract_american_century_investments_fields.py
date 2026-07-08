@@ -23,6 +23,14 @@ OUTPUT_DIR = BASE_DIR
 ISSUER = "American Century Investments"
 
 SPACE_PATTERN = re.compile(r"\s+")
+JUSTETF_FALLBACK_ISINS = ["IE000K975W13"]
+
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    build_justetf_session = None  # type: ignore[assignment]
+    fetch_justetf_profile = None  # type: ignore[assignment]
 
 
 def parse_args() -> argparse.Namespace:
@@ -149,6 +157,47 @@ def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return list(deduped.values())
 
 
+def supplement_missing_rows(rows: list[dict[str, str]], scrape_date: str) -> list[dict[str, str]]:
+    if build_justetf_session is None or fetch_justetf_profile is None:
+        return dedupe_rows(rows)
+
+    present_isins = {normalize_isin(row.get("ISIN")) for row in rows if normalize_isin(row.get("ISIN"))}
+    missing_isins = [isin for isin in JUSTETF_FALLBACK_ISINS if isin not in present_isins]
+    if not missing_isins:
+        return dedupe_rows(rows)
+
+    session = build_justetf_session()
+    supplemented_rows = list(rows)
+    for isin in missing_isins:
+        try:
+            profile = fetch_justetf_profile(isin, session=session)
+        except Exception as exc:  # noqa: BLE001
+            print(f"WARNING: justETF fallback failed for American Century Investments {isin}: {exc}")
+            continue
+
+        if clean_text(profile.get("fetch_status")) not in {"", "ok"}:
+            print(
+                "WARNING: justETF fallback did not resolve American Century Investments "
+                f"{isin}: {clean_text(profile.get('error'))}"
+            )
+            continue
+
+        supplemented_rows.append(
+            {
+                "ETF Name": clean_text(profile.get("etf_name")),
+                "Issuer": ISSUER,
+                "ISIN": normalize_isin(profile.get("isin")) or isin,
+                "CCY": clean_text(profile.get("ccy")).upper(),
+                "TER(bps)": clean_text(profile.get("ter_bps")),
+                "AUM(M)": clean_text(profile.get("aum_mn")),
+                "AUM CCY": clean_text(profile.get("aum_ccy")).upper() or clean_text(profile.get("ccy")).upper(),
+                "Date": scrape_date,
+            }
+        )
+
+    return dedupe_rows(supplemented_rows)
+
+
 def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="", encoding="utf-8-sig") as handle:
@@ -161,7 +210,8 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
     captured_at, source_rows = parse_snapshot(resolved_input_path)
     scrape_date = captured_at or extract_file_date(resolved_input_path)
-    return dedupe_rows([transform_row(row, scrape_date) for row in source_rows])
+    output_rows = [transform_row(row, scrape_date) for row in source_rows]
+    return supplement_missing_rows(output_rows, scrape_date)
 
 
 def process_file(input_path: Path | None = None, output_path: Path | None = None) -> Path:

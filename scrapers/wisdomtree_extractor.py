@@ -30,6 +30,8 @@ BASE_URL = "https://www.wisdomtree.eu"
 BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "wisdomtree"
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+ALLOW_HISTORICAL_URL_REUSE_ENV_VAR = "WISDOMTREE_ALLOW_HISTORICAL_URL_REUSE"
+ALLOW_JUSTETF_SUPPLEMENT_ENV_VAR = "WISDOMTREE_ALLOW_JUSTETF_SUPPLEMENT"
 TIMEOUT_MS = 120_000
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -86,11 +88,7 @@ def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
         return output_dir
 
     output_dir = base_dir / run_date
-    suffix = 1
-    while output_dir.exists():
-        output_dir = base_dir / f"{run_date} ({suffix})"
-        suffix += 1
-    output_dir.mkdir(parents=True, exist_ok=False)
+    output_dir.mkdir(parents=True, exist_ok=True)
     os.environ[RUN_FOLDER_ENV_VAR] = output_dir.name
     return output_dir
 
@@ -389,6 +387,8 @@ def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 
 
 def supplement_missing_isins_from_justetf(rows: list[dict[str, str]], scraped_at: str) -> list[dict[str, str]]:
+    if clean_text(os.environ.get(ALLOW_JUSTETF_SUPPLEMENT_ENV_VAR)).lower() not in {"1", "true", "yes"}:
+        return rows
     present_isins = {
         clean_text(row.get("isin")).upper()
         for row in rows
@@ -464,6 +464,10 @@ def load_historical_product_urls() -> list[str]:
     return sorted(historical_urls)
 
 
+def historical_url_reuse_allowed() -> bool:
+    return clean_text(os.environ.get(ALLOW_HISTORICAL_URL_REUSE_ENV_VAR)).lower() in {"1", "true", "yes"}
+
+
 async def collect_product_urls(page) -> list[str]:
     fundlist_payload: object | None = None
     navigated = False
@@ -498,7 +502,7 @@ async def collect_product_urls(page) -> list[str]:
         | fundlist_urls
         | {normalize_product_url(url) for url in SUPPLEMENTAL_PRODUCT_URLS}
     )
-    if len(urls) < MIN_PRODUCT_URL_COUNT:
+    if len(urls) < MIN_PRODUCT_URL_COUNT and historical_url_reuse_allowed():
         historical_urls = load_historical_product_urls()
         if historical_urls:
             print(
@@ -506,6 +510,11 @@ async def collect_product_urls(page) -> list[str]:
                 f"reusing {len(historical_urls)} historical product URLs."
             )
             urls = sorted(set(urls) | set(historical_urls))
+    elif len(urls) < MIN_PRODUCT_URL_COUNT:
+        print(
+            f"[WARN] WisdomTree live product discovery only found {len(urls)} links; "
+            "historical URL reuse is disabled by default for freshness safety."
+        )
     if not urls:
         raise ValueError("Could not find any WisdomTree ETF detail links on the filtered products page.")
     return urls

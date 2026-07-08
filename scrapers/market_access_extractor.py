@@ -26,6 +26,11 @@ except ModuleNotFoundError as exc:  # pragma: no cover - runtime guidance for lo
         "Install it with 'pip install beautifulsoup4'."
     ) from exc
 
+try:
+    from playwright.sync_api import sync_playwright
+except ModuleNotFoundError:  # pragma: no cover - runtime guidance for local usage
+    sync_playwright = None  # type: ignore[assignment]
+
 
 ISSUER = "Market Access"
 BASE_URL = "https://www.marketaccessetf.com"
@@ -154,9 +159,35 @@ def amount_to_millions(raw: object | None) -> str:
 
 
 def fetch_html(url: str) -> str:
-    response = SESSION.get(url, timeout=REQUEST_TIMEOUT_S)
-    response.raise_for_status()
-    return response.text
+    try:
+        response = SESSION.get(url, timeout=REQUEST_TIMEOUT_S)
+        response.raise_for_status()
+        return response.text
+    except requests.RequestException as exc:
+        status_code = getattr(getattr(exc, "response", None), "status_code", None)
+        if sync_playwright is None or (status_code is not None and status_code < 500):
+            raise
+        logging.info(
+            "Market Access HTTP fetch failed for %s with status %s; retrying in Playwright.",
+            url,
+            status_code,
+        )
+        return fetch_html_with_playwright(url)
+
+
+def fetch_html_with_playwright(url: str) -> str:
+    if sync_playwright is None:  # pragma: no cover - guarded by caller
+        raise RuntimeError("playwright is not installed")
+
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        try:
+            page = browser.new_page()
+            page.goto(url, wait_until="domcontentloaded", timeout=REQUEST_TIMEOUT_S * 1000)
+            page.wait_for_load_state("networkidle", timeout=REQUEST_TIMEOUT_S * 1000)
+            return page.content()
+        finally:
+            browser.close()
 
 
 def ensure_market_access_name(name: str) -> str:

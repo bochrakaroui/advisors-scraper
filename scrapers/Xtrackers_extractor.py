@@ -4,11 +4,14 @@ import asyncio
 import json
 import os
 import shutil
+import tempfile
+import xml.etree.ElementTree as ET
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import parse_qs, quote, urljoin, urlparse
+from zipfile import ZipFile
 
-from playwright.async_api import async_playwright
+from playwright.async_api import Download, TimeoutError as PlaywrightTimeoutError, async_playwright
 
 
 PAGE_URL = "https://etf.dws.com/en-gb/product-finder/?AssetClasses=Commodities,Equities,Fixed+Income,Multi+Asset"
@@ -16,6 +19,7 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "xtrackers"
 TIMEOUT_MS = 90_000
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+XLSX_NS = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
 
 def build_run_output_dir(base_dir: Path) -> Path:
@@ -33,6 +37,23 @@ def build_run_output_dir(base_dir: Path) -> Path:
 
 def build_output_path() -> Path:
     return build_run_output_dir(OUTPUT_DIR) / "xtrackers_etf_export.xlsx"
+
+
+def workbook_has_data_rows(body: bytes) -> bool:
+    with tempfile.NamedTemporaryFile(suffix=".xlsx", delete=False) as handle:
+        temp_path = Path(handle.name)
+        handle.write(body)
+
+    try:
+        with ZipFile(temp_path) as workbook:
+            sheet_root = ET.fromstring(workbook.read("xl/worksheets/sheet1.xml"))
+        row_numbers = [
+            int(row.attrib.get("r", "0"))
+            for row in sheet_root.findall(".//a:sheetData/a:row", XLSX_NS)
+        ]
+        return any(row_number >= 11 for row_number in row_numbers)
+    finally:
+        temp_path.unlink(missing_ok=True)
 
 
 def build_fallback_export_url(page_url: str) -> str:
@@ -83,17 +104,41 @@ async def resolve_export_url(page) -> tuple[str, str]:
     return build_fallback_export_url(page.url), "fallback query built from page URL"
 
 
+async def try_browser_download(page, download_link) -> bytes | None:
+    try:
+        async with page.expect_download(timeout=TIMEOUT_MS) as download_info:
+            await download_link.click(force=True)
+        download: Download = await download_info.value
+        with tempfile.NamedTemporaryFile(suffix=".xlsx", delete=False) as handle:
+            temp_path = Path(handle.name)
+        try:
+            await download.save_as(temp_path)
+            return temp_path.read_bytes()
+        finally:
+            temp_path.unlink(missing_ok=True)
+    except PlaywrightTimeoutError:
+        return None
+
+
 async def accept_xtrackers_gate(page) -> None:
     cookie_accept = page.locator("#consent_prompt_submit").first
     if await cookie_accept.is_visible():
         print("      Accepting cookies ...")
-        await cookie_accept.click(force=True)
+        try:
+            await cookie_accept.scroll_into_view_if_needed()
+            await cookie_accept.click(force=True)
+        except Exception:
+            await cookie_accept.evaluate("(el) => el.click()")
         await page.wait_for_timeout(2_000)
 
     continue_btn = page.locator("button:has-text('Accept & continue')").first
     if await continue_btn.is_visible():
         print("      Accepting entry gate ...")
-        await continue_btn.click(force=True)
+        try:
+            await continue_btn.scroll_into_view_if_needed()
+            await continue_btn.click(force=True)
+        except Exception:
+            await continue_btn.evaluate("(el) => el.click()")
         await page.wait_for_timeout(5_000)
 
 
@@ -124,30 +169,45 @@ async def download_xtrackers_file() -> Path:
         print(f"      Using {source}.")
         print(f"      {export_url}")
 
-        print("[3/3] Downloading file via browser context ...")
-        response = await context.request.get(
-            export_url,
-            headers={
-                "Referer": PAGE_URL,
-                "Accept": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,*/*",
-                "Accept-Language": "en-GB,en;q=0.9",
-            },
-            timeout=TIMEOUT_MS,
-        )
+        print("[3/3] Downloading file via browser flow ...")
+        download_link = page.locator("a.d-fund-finder__download-link[href*='downloadxls']").first
+        body = await try_browser_download(page, download_link)
+        download_method = "browser click"
 
-        if not response.ok:
-            raise RuntimeError(
-                f"Download failed - HTTP {response.status}\n"
-                f"URL: {export_url}"
+        if body is None:
+            print("      Browser download event not detected; falling back to browser-context request.")
+            response = await context.request.get(
+                export_url,
+                headers={
+                    "Referer": PAGE_URL,
+                    "Accept": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,*/*",
+                    "Accept-Language": "en-GB,en;q=0.9",
+                },
+                timeout=TIMEOUT_MS,
             )
 
-        body = await response.body()
+            if not response.ok:
+                raise RuntimeError(
+                    f"Download failed - HTTP {response.status}\n"
+                    f"URL: {export_url}"
+                )
+
+            body = await response.body()
+            download_method = "browser-context request"
+
         if body[:2] != b"PK":
             preview = body[:300].decode("utf-8", errors="replace")
             raise RuntimeError(
                 "Response is not a valid XLSX file.\n"
                 f"URL: {export_url}\n"
                 f"Preview: {preview}"
+            )
+
+        if not workbook_has_data_rows(body):
+            raise RuntimeError(
+                "Downloaded Xtrackers workbook contains headers only and no fund rows.\n"
+                f"URL: {export_url}\n"
+                f"Method: {download_method}"
             )
 
         out_path = build_output_path()

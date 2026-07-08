@@ -32,6 +32,7 @@ except ModuleNotFoundError:  # pragma: no cover - direct script execution fallba
 
 XLSX_NS = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 JUSTETF_FALLBACK_ISINS = ["IE000KTD59H4"]
+ALLOW_JUSTETF_ROW_SUPPLEMENT_ENV_VAR = "AMUNDI_ALLOW_JUSTETF_ROW_SUPPLEMENT"
 
 SOURCE_COLUMNS = {
     "fund_name": "Product name",
@@ -50,6 +51,10 @@ OUTPUT_COLUMNS = [
     "AUM(M)",
     "Date",
 ]
+
+
+def justetf_row_supplement_allowed() -> bool:
+    return os.environ.get(ALLOW_JUSTETF_ROW_SUPPLEMENT_ENV_VAR, "").strip().lower() not in {"0", "false", "no", "off"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -241,6 +246,8 @@ def dedupe_rows_by_isin(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 
 
 def supplement_missing_rows(rows: list[dict[str, str]], file_date: str) -> list[dict[str, str]]:
+    if not justetf_row_supplement_allowed():
+        return dedupe_rows_by_isin(rows)
     if build_justetf_session is None or fetch_justetf_profile is None:
         return dedupe_rows_by_isin(rows)
 

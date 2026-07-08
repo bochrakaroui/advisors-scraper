@@ -6,6 +6,7 @@ import argparse
 import csv
 import json
 import logging
+import os
 import re
 import sys
 from datetime import datetime
@@ -77,6 +78,7 @@ JUSTETF_FALLBACK_ISINS = [
     "IE0003MKK4H3",
     "IE000HPBRE54",
 ]
+ALLOW_JUSTETF_ROW_SUPPLEMENT_ENV_VAR = "GOLDMAN_SACHS_ALLOW_JUSTETF_ROW_SUPPLEMENT"
 
 
 def parse_args() -> argparse.Namespace:
@@ -102,6 +104,10 @@ def parse_args() -> argparse.Namespace:
         help="Skip live TER lookups and only use TER values already present in the snapshot.",
     )
     return parser.parse_args()
+
+
+def justetf_row_supplement_allowed() -> bool:
+    return os.environ.get(ALLOW_JUSTETF_ROW_SUPPLEMENT_ENV_VAR, "").strip().lower() not in {"0", "false", "no", "off"}
 
 
 def setup_logging() -> None:
@@ -333,6 +339,8 @@ def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 
 
 def supplement_missing_rows(rows: list[dict[str, str]], scrape_date: str) -> list[dict[str, str]]:
+    if not justetf_row_supplement_allowed():
+        return dedupe_rows(rows)
     if build_justetf_session is None or fetch_justetf_profile is None:
         return dedupe_rows(rows)
 

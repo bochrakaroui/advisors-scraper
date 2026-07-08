@@ -21,6 +21,13 @@ if str(REPO_ROOT) not in sys.path:
 
 from providers.output_schema import OUTPUT_COLUMNS, infer_aum_currency_from_row
 
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    build_justetf_session = None  # type: ignore[assignment]
+    fetch_justetf_profile = None  # type: ignore[assignment]
+
 SPACE_PATTERN = re.compile(r"\s+")
 
 
@@ -151,7 +158,9 @@ def parse_snapshot(path: Path) -> tuple[str, list[dict[str, object]], list[str]]
 
 def transform_row(source_row: dict[str, object], scrape_date: str) -> dict[str, str]:
     row_date = (
-        parse_iso_date(source_row.get("date"))
+        parse_display_date(source_row.get("aum_date"))
+        or parse_display_date(source_row.get("valuation_date"))
+        or parse_iso_date(source_row.get("date"))
         or parse_iso_date(source_row.get("data_as_of"))
         or parse_display_date(source_row.get("fund_assets_as_of"))
         or parse_display_date(source_row.get("nav_date"))
@@ -166,10 +175,8 @@ def transform_row(source_row: dict[str, object], scrape_date: str) -> dict[str, 
         )
     )
     aum_ccy = (
-        infer_aum_currency_from_row(source_row)
-        or clean_text(source_row.get("base_currency")).upper()
-        or clean_text(source_row.get("listing_currency")).upper()
-        or ccy
+        clean_text(source_row.get("aum_currency")).upper()
+        or infer_aum_currency_from_row(source_row, allow_fund_currency_fallback=False)
     )
     return {
         "ETF Name": clean_text(source_row.get("etf_name")),
@@ -181,6 +188,96 @@ def transform_row(source_row: dict[str, object], scrape_date: str) -> dict[str, 
         "AUM CCY": aum_ccy,
         "Date": row_date,
     }
+
+
+def build_row_from_justetf_profile(profile: dict[str, object], isin: str) -> dict[str, str] | None:
+    if clean_text(profile.get("fetch_status")) not in {"", "ok"}:
+        return None
+
+    resolved_isin = normalize_isin(profile.get("isin")) or isin
+    etf_name = clean_text(profile.get("etf_name"))
+    issuer = clean_text(profile.get("issuer")) or clean_text(profile.get("fund_provider")) or "Janus Henderson"
+    ccy = clean_text(profile.get("ccy")).upper()
+    if not resolved_isin or not etf_name:
+        return None
+
+    return {
+        "ETF Name": etf_name,
+        "Issuer": issuer,
+        "ISIN": resolved_isin,
+        "CCY": ccy,
+        "TER(bps)": clean_text(profile.get("ter_bps")),
+        "AUM(M)": "",
+        "AUM CCY": "",
+        "Date": "",
+    }
+
+
+def supplement_missing_static_fields_from_justetf(
+    rows: list[dict[str, str]],
+    missing_target_isins: list[str],
+    scrape_date: str,
+) -> list[dict[str, str]]:
+    if build_justetf_session is None or fetch_justetf_profile is None:
+        return rows
+
+    candidate_isins = sorted(
+        {
+            normalize_isin(row.get("ISIN"))
+            for row in rows
+            if normalize_isin(row.get("ISIN"))
+            and (
+                not clean_text(row.get("ETF Name"))
+                or not clean_text(row.get("CCY"))
+                or not clean_text(row.get("TER(bps)"))
+            )
+        }
+    )
+    present_isins = {normalize_isin(row.get("ISIN")) for row in rows if normalize_isin(row.get("ISIN"))}
+    candidate_isins.extend(isin for isin in missing_target_isins if isin and isin not in present_isins)
+    candidate_isins = list(dict.fromkeys(isin for isin in candidate_isins if isin))
+    if not candidate_isins:
+        return rows
+
+    session = build_justetf_session()
+    supplemented_rows = list(rows)
+    for isin in candidate_isins:
+        try:
+            profile = fetch_justetf_profile(isin, session=session)
+        except Exception:  # noqa: BLE001
+            continue
+        fallback_row = build_row_from_justetf_profile(profile, isin)
+        if fallback_row is not None:
+            supplemented_rows.append(fallback_row)
+
+    profile_rows_by_isin = {
+        normalize_isin(row.get("ISIN")): row
+        for row in supplemented_rows
+        if normalize_isin(row.get("ISIN")) and not clean_text(row.get("AUM(M)"))
+    }
+    enriched_rows: list[dict[str, str]] = []
+    for row in rows:
+        isin = normalize_isin(row.get("ISIN"))
+        profile_row = profile_rows_by_isin.get(isin)
+        if not isin or profile_row is None:
+            enriched_rows.append(row)
+            continue
+
+        enriched_row = dict(row)
+        for field in ("ETF Name", "CCY", "TER(bps)"):
+            if not clean_text(enriched_row.get(field)):
+                enriched_row[field] = clean_text(profile_row.get(field))
+        enriched_rows.append(enriched_row)
+
+    missing_present_isins = {normalize_isin(row.get("ISIN")) for row in enriched_rows if normalize_isin(row.get("ISIN"))}
+    for isin in candidate_isins:
+        if isin in missing_present_isins:
+            continue
+        profile_row = profile_rows_by_isin.get(isin)
+        if profile_row is not None:
+            enriched_rows.append(profile_row)
+
+    return enriched_rows
 
 
 def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -214,9 +311,11 @@ def write_csv_with_fallback(output_path: Path, rows: list[dict[str, str]]) -> Pa
 
 def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
-    captured_at, source_rows, _missing_target_isins = parse_snapshot(resolved_input_path)
+    captured_at, source_rows, missing_target_isins = parse_snapshot(resolved_input_path)
     scrape_date = captured_at or extract_file_date(resolved_input_path)
-    return dedupe_rows([transform_row(row, scrape_date) for row in source_rows])
+    output_rows = [transform_row(row, scrape_date) for row in source_rows]
+    output_rows = supplement_missing_static_fields_from_justetf(output_rows, missing_target_isins, scrape_date)
+    return dedupe_rows(output_rows)
 
 
 def parse_snapshot_rows(path: Path) -> list[dict[str, str]]:

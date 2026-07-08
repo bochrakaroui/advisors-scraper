@@ -33,6 +33,16 @@ TARGET_ISINS = [
     "IE000QF8TEK7",
     "IE000ZDPZL69",
 ]
+
+WAYSTONE_DETAIL_FALLBACKS: dict[str, dict[str, str]] = {
+    "IE000DHZXD61": {
+        "detail_url": "https://etfs.waystone.com/fund/calamos-autocallable-dis/",
+        "source_note": (
+            "Mapped to the official Waystone Calamos product page so fund-level "
+            "Total Net Assets can still be scraped for the accumulating share class."
+        ),
+    },
+}
  
 BASE_DIR   = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "Waystone"
@@ -93,7 +103,8 @@ NEXT_PAGE_BUTTON_SELECTORS = [
     "[aria-label='Next']",
 ]
 MAX_PAGES_PER_TAB = 50  # safety cap against an unexpected infinite loop
- 
+
+
 # Tab controls grouping funds by category. Best-effort — if none of these
 # match, the scraper just treats the page as single-tab.
 TAB_BUTTON_SELECTORS = [
@@ -144,65 +155,6 @@ WAYSTONE_SHARE_CLASS_AUM_LABELS = (
     "Share Class Assets",
 )
 
-WAYSTONE_EXTERNAL_FALLBACKS: dict[str, dict[str, str]] = {
-    "IE000DHZXD61": {
-        "issuer": "Calamos",
-        "etf_name": "Calamos Autocallable Income UCITS ETF",
-        "ticker": "CAKE",
-        "ccy": "USD",
-        "aum_currency": "USD",
-        "aum_reference_isin": "IE000ZDPZL69",
-        "sfdr_classification": "",
-        "ongoing_charges_raw": "0.74%",
-        "ter_bps": "74.00",
-        "inception": "27/04/2026",
-        "inception_norm": "27/04/2026",
-        "factsheet_url": "https://www.calamos.com/resources/#ucitsfunds",
-        "source_url": "https://www.calamos.com/about/news/press-releases/2026/worlds-first-autocallable-ucits-etf/",
-        "fallback_origin_url": "https://www.calamos.com",
-        "fallback_notes": (
-            "Recovered from Calamos' official UCITS ETF launch release. "
-            "The release identifies IE000DHZXD61 as the accumulating share class of "
-            "Calamos Autocallable Income UCITS ETF, ticker CAKE, with a 0.74% expense ratio."
-        ),
-        "aum_source_note": (
-            "AUM is inferred from sibling share class IE000ZDPZL69 on the same Waystone listing snapshot, "
-            "because the launch release and the listed distributing share class refer to the same fund."
-        ),
-    },
-    "IE0008ZGI5C1": {
-        "issuer": "Northern Trust",
-        "etf_name": "Northern Trust Listed Private Equity UCITS ETF",
-        "ticker": "FLPE",
-        "ccy": "USD",
-        "net_assets_raw": "USD 320.20 m",
-        "aum_numeric": "320.20",
-        "aum_m": "320.20",
-        "aum_currency": "USD",
-        "aum_as_of_date": "31/03/2025",
-        "sfdr_classification": "Article 6",
-        "ongoing_charges_raw": "0.40%",
-        "ter_bps": "40.00",
-        "inception": "09/12/2021",
-        "inception_norm": "09/12/2021",
-        "factsheet_url": "https://www.flexshares.com/content/dam/ntflexshares/eu-common/images/funds/flpe/kid-flpe-en.pdf",
-        "source_url": "https://www.flexshares.com/kiids",
-        "fallback_origin_url": "https://etfs.ntam.northerntrust.com/gb",
-        "aum_source_url": "https://www.flexshares.com/content/dam/ntflexshares/eu-common/images/funds/kiids/icav/icav-annual-accounts-2025.pdf",
-        "fallback_notes": (
-            "Recovered from FlexShares' official UCITS documents. "
-            "The KIID and supplement identify IE0008ZGI5C1 as Northern Trust Listed Private Equity UCITS ETF (FLPE), "
-            "USD accumulating, with ongoing charges of 0.40%."
-        ),
-        "aum_source_note": (
-            "AUM comes from the official Waystone ETF ICAV annual report for the year ended 31 March 2025. "
-            "The report shows net assets attributable to holders of redeemable shares of approximately USD 320.20m "
-            "for FlexShares Listed Private Equity UCITS ETF."
-        ),
-        "index_name": "MSCI World IMI Listed Private Equity Select (USD Net Total Return) Index",
-    },
-}
- 
 # ---------------------------------------------------------------------------
 # Output helpers
 # ---------------------------------------------------------------------------
@@ -619,6 +571,43 @@ def empty_row(isin: str, scraped_at: str, reason: str) -> dict[str, str]:
     }
 
 
+def build_detail_placeholder_row(isin: str, scraped_at: str) -> dict[str, str] | None:
+    override = WAYSTONE_DETAIL_FALLBACKS.get(isin)
+    if override is None:
+        return None
+
+    detail_url = normalize_waystone_detail_url(override.get("detail_url", ""))
+    if not detail_url:
+        return None
+
+    return {
+        "provider": PROVIDER,
+        "issuer": PROVIDER,
+        "etf_name": "",
+        "ticker": "",
+        "isin": isin,
+        "net_assets_raw": "",
+        "aum_numeric": "",
+        "aum_m": "",
+        "aum_currency": "",
+        "ccy": "",
+        "nav_raw": "",
+        "as_of_date": "",
+        "date": "",
+        "sfdr_classification": "",
+        "ongoing_charges_raw": "",
+        "ter_bps": "",
+        "inception": "",
+        "inception_norm": "",
+        "factsheet_url": "",
+        "detail_url": detail_url,
+        "source_url": LISTING_URL,
+        "scraped_at": scraped_at,
+        "extraction_method": "official_detail_fallback",
+        "fallback_notes": clean(override.get("source_note", "")),
+    }
+
+
 def build_row_from_available_source(
     isin: str,
     intercepted: dict[str, dict],
@@ -631,115 +620,9 @@ def build_row_from_available_source(
     if isin in collected:
         match = collected[isin]
         return map_dom_row(match["headers"], match["cells"], match["href"], isin, scraped_at, page_date)
-    return None
+    return build_detail_placeholder_row(isin, scraped_at)
 
 
-def resolve_manual_fallback_aum(
-    fallback: dict[str, str],
-    intercepted: dict[str, dict],
-    collected: dict[str, dict[str, str]],
-    scraped_at: str,
-    page_date: str,
-) -> tuple[str, str, str, str, str]:
-    direct_raw = clean(fallback.get("net_assets_raw", ""))
-    direct_numeric = clean(fallback.get("aum_numeric", "")) or clean(fallback.get("aum_m", ""))
-    direct_currency = clean(fallback.get("aum_currency", ""))
-    direct_as_of_date = clean(fallback.get("aum_as_of_date", ""))
-    if direct_raw or direct_numeric:
-        return direct_raw, direct_numeric, direct_numeric, direct_currency, direct_as_of_date
-
-    return "", "", "", direct_currency, direct_as_of_date
-
-
-def resolve_manual_fallback_detail_url(
-    fallback: dict[str, str],
-    intercepted: dict[str, dict],
-    collected: dict[str, dict[str, str]],
-    scraped_at: str,
-    page_date: str,
-) -> str:
-    direct_url = normalize_waystone_detail_url(
-        fallback.get("detail_url", "")
-        or fallback.get("factsheet_url", "")
-        or fallback.get("source_url", "")
-    )
-    if direct_url:
-        return direct_url
-
-    reference_isin = clean(fallback.get("aum_reference_isin", "")).upper()
-    if not reference_isin:
-        return ""
-
-    reference_row = build_row_from_available_source(reference_isin, intercepted, collected, scraped_at, page_date)
-    if reference_row is None:
-        return ""
-
-    return normalize_waystone_detail_url(
-        reference_row.get("detail_url", "")
-        or reference_row.get("factsheet_url", "")
-        or reference_row.get("source_url", "")
-    )
-
-
-def manual_official_fallback_row(
-    isin: str,
-    scraped_at: str,
-    page_date: str,
-    intercepted: dict[str, dict],
-    collected: dict[str, dict[str, str]],
-) -> dict[str, str] | None:
-    fallback = WAYSTONE_EXTERNAL_FALLBACKS.get(isin)
-    if fallback is None:
-        return None
-
-    net_assets_raw, aum_numeric, aum_m, aum_currency, aum_as_of_date = resolve_manual_fallback_aum(
-        fallback,
-        intercepted,
-        collected,
-        scraped_at,
-        page_date,
-    )
-    detail_url = resolve_manual_fallback_detail_url(
-        fallback,
-        intercepted,
-        collected,
-        scraped_at,
-        page_date,
-    )
-    as_of_date = aum_as_of_date or page_date or clean(fallback.get("inception", ""))
-    return {
-        "provider": PROVIDER,
-        "issuer": clean(fallback.get("issuer", "")),
-        "etf_name": clean(fallback.get("etf_name", "")),
-        "ticker": clean(fallback.get("ticker", "")),
-        "isin": isin,
-        "net_assets_raw": net_assets_raw,
-        "aum_numeric": aum_numeric,
-        "aum_m": aum_m,
-        "aum_currency": aum_currency or clean(fallback.get("aum_currency", "")),
-        "ccy": clean(fallback.get("ccy", "")),
-        "nav_raw": "",
-        "as_of_date": as_of_date,
-        "date": norm_date(as_of_date),
-        "sfdr_classification": clean(fallback.get("sfdr_classification", "")),
-        "ongoing_charges_raw": clean(fallback.get("ongoing_charges_raw", "")),
-        "ter_bps": clean(fallback.get("ter_bps", "")),
-        "inception": clean(fallback.get("inception", "")),
-        "inception_norm": clean(fallback.get("inception_norm", "")),
-        "factsheet_url": clean(fallback.get("factsheet_url", "")),
-        "detail_url": detail_url,
-        "source_url": clean(fallback.get("source_url", "")),
-        "scraped_at": scraped_at,
-        "extraction_method": "official_manual_fallback",
-        "listing_source_url": LISTING_URL,
-        "fallback_origin_url": clean(fallback.get("fallback_origin_url", "")),
-        "fallback_notes": clean(fallback.get("fallback_notes", "")),
-        "aum_as_of_date": aum_as_of_date,
-        "aum_source_note": clean(fallback.get("aum_source_note", "")),
-        "aum_source_url": clean(fallback.get("aum_source_url", "")),
-        "index_name": clean(fallback.get("index_name", "")),
-    }
- 
 # ---------------------------------------------------------------------------
 # Page interaction helpers
 # ---------------------------------------------------------------------------
@@ -1338,20 +1221,12 @@ async def scrape(scraped_at: str) -> list[dict]:
  
         for isin in TARGET_ISINS:
             print(f"[scrape] {isin}")
-            if isin in intercepted:
-                rows.append(map_json_row(intercepted[isin], isin, scraped_at, page_date))
-            elif isin in collected:
-                match = collected[isin]
-                rows.append(map_dom_row(match["headers"], match["cells"], match["href"], isin, scraped_at, page_date))
-            else:
-                manual_row = manual_official_fallback_row(isin, scraped_at, page_date, intercepted, collected)
-                if manual_row is not None:
-                    rows.append(manual_row)
-                    continue
+            row = build_row_from_available_source(isin, intercepted, collected, scraped_at, page_date)
+            if row is None:
                 row = empty_row(isin, scraped_at, "ISIN not found via API interception or full-table DOM scan")
                 row["diagnostic_snippet"] = build_diagnostic_snippet(diagnostic_text)
                 row["diagnostic_collected_isins_sample"] = ", ".join(sorted(collected.keys())[:15])
-                rows.append(row)
+            rows.append(row)
 
         await enrich_rows_with_waystone_detail_aum(context, rows)
  
@@ -1378,7 +1253,7 @@ async def build_snapshot(now: datetime) -> dict:
     print_summary(rows)
     return {
         "source_url": LISTING_URL,
-        "method": "Waystone ETFs fund listing — DataTables filter-by-ISIN, API interception + DOM table extraction",
+        "method": "Waystone ETFs fund listing - DataTables filter-by-ISIN, API interception + DOM table extraction only",
         "captured_at": scraped_at,
         "row_count": len(rows),
         "rows": rows,

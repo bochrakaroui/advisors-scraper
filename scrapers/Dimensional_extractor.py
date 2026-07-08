@@ -30,6 +30,7 @@ DIMENSIONAL_PORTFOLIO_DETAILS_API_URL = (
     "https://www.dimensional.com/investment-api/portfolio-details?allowMorningstarFixedIncome=true"
 )
 DIMENSIONAL_FALLBACK_PROFILE_URL = "https://www.justetf.com/en/etf-profile.html?isin={isin}"
+ALLOW_DIMENSIONAL_PUBLIC_PROFILE_FALLBACK_ENV_VAR = "DIMENSIONAL_ALLOW_PUBLIC_PROFILE_FALLBACK"
 EXPAT_FUND_URL = "https://expat.bg/en/funds/ExpatBulgariaSOFIX?utm_source=chatgpt.com"
 DIMENSIONAL_SELECTED_COUNTRY = "GB"
 DIMENSIONAL_REGION_CODE = "emea"
@@ -85,6 +86,14 @@ def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
 
     output_dir.mkdir(parents=True, exist_ok=True)
     return output_dir
+
+
+def dimensional_public_profile_fallback_allowed() -> bool:
+    return clean_text(os.environ.get(ALLOW_DIMENSIONAL_PUBLIC_PROFILE_FALLBACK_ENV_VAR)).lower() in {
+        "1",
+        "true",
+        "yes",
+    }
 
 
 def build_output_path(now: datetime) -> Path:
@@ -675,20 +684,23 @@ def build_snapshot() -> dict[str, Any]:
             portfolio = dimensional_official_rows.get(isin)
             if portfolio:
                 row = parse_dimensional_official_row(isin, portfolio)
-            else:
+            elif dimensional_public_profile_fallback_allowed():
                 row = parse_dimensional_fallback_row(
                     isin,
                     fallback_reason="official_api_missing_target_isin",
                 )
+            else:
+                row = build_missing_row(isin, DIMENSIONAL_ISSUER)
+                row["fetch_status"] = "missing_official_row"
+                row["source_kind"] = "official_fundcenter_api"
         except Exception as exc:  # noqa: BLE001
             logging.warning("Failed to collect Dimensional %s: %s", isin, exc)
-            try:
+            if dimensional_public_profile_fallback_allowed():
                 row = parse_dimensional_fallback_row(
                     isin,
                     fallback_reason=f"official_row_error:{type(exc).__name__}",
                 )
-            except Exception as fallback_exc:  # noqa: BLE001
-                logging.warning("Fallback profile also failed for Dimensional %s: %s", isin, fallback_exc)
+            else:
                 row = build_missing_row(isin, DIMENSIONAL_ISSUER)
                 row["fetch_status"] = "error"
         listing_rows.append(row)
@@ -713,14 +725,20 @@ def build_snapshot() -> dict[str, Any]:
             "dimensional_portfolio_details_api_url": DIMENSIONAL_PORTFOLIO_DETAILS_API_URL,
             "dimensional_selected_country": DIMENSIONAL_SELECTED_COUNTRY,
             "dimensional_official_fetch_status": dimensional_fetch_status,
-            "dimensional_fallback_profile_url_template": DIMENSIONAL_FALLBACK_PROFILE_URL,
+            "dimensional_fallback_profile_url_template": (
+                DIMENSIONAL_FALLBACK_PROFILE_URL if dimensional_public_profile_fallback_allowed() else ""
+            ),
             "expat_fund_url": EXPAT_FUND_URL,
         },
         "method": (
             "Combined ETF snapshot. For the 4 Dimensional UCITS ETF ISINs, the scraper uses the official Dimensional "
-            "fund center API and enriches objective/documents from the official portfolio-details API. If an official "
-            "target row is missing or errors, the scraper falls back to the ISIN-based public ETF profile page. For "
-            "BG9000011163, the scraper uses the official Expat Bulgaria SOFIX fund page plus its current KID PDF."
+            "fund center API and enriches objective/documents from the official portfolio-details API. "
+            + (
+                "If an official target row is missing or errors, the scraper falls back to the ISIN-based public ETF profile page. "
+                if dimensional_public_profile_fallback_allowed()
+                else "If an official target row is missing or errors, the scraper leaves that row unresolved rather than using a public profile page. "
+            )
+            + "For BG9000011163, the scraper uses the official Expat Bulgaria SOFIX fund page plus its current KID PDF."
         ),
         "captured_at": timestamp_now().isoformat(),
         "target_isin_count": len(TARGET_ISINS),

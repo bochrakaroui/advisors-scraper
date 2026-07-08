@@ -7,6 +7,7 @@ import csv
 import json
 import os
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -16,6 +17,17 @@ INPUT_DIR = BASE_DIR
 OUTPUT_DIR = BASE_DIR
 ISSUER = "Fidelity International"
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+REPO_ROOT = BASE_DIR.parents[1]
+
+if str(REPO_ROOT) not in sys.path:
+    sys.path.append(str(REPO_ROOT))
+
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    build_justetf_session = None  # type: ignore[assignment]
+    fetch_justetf_profile = None  # type: ignore[assignment]
 
 OUTPUT_COLUMNS = [
     "ETF Name",
@@ -173,6 +185,42 @@ def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return list(deduped.values())
 
 
+def supplement_missing_aum_rows(
+    rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    missing_isins = {
+        clean_text(row.get("ISIN")).upper()
+        for row in rows
+        if clean_text(row.get("ISIN")) and not clean_text(row.get("AUM(M)"))
+    }
+    if not missing_isins:
+        return dedupe_rows(rows)
+
+    session = build_justetf_session() if build_justetf_session is not None else None
+    supplemented_rows: list[dict[str, str]] = []
+
+    for row in rows:
+        if clean_text(row.get("AUM(M)")):
+            supplemented_rows.append(row)
+            continue
+
+        isin = clean_text(row.get("ISIN")).upper()
+        supplemented_row = dict(row)
+
+        if isin and session is not None and fetch_justetf_profile is not None:
+            try:
+                profile = fetch_justetf_profile(isin, session=session)
+            except Exception as exc:  # noqa: BLE001
+                print(f"WARNING: justETF AUM fallback failed for Fidelity {isin}: {exc}")
+            else:
+                if clean_text(profile.get("fetch_status")) in {"", "ok"} and clean_text(profile.get("aum_mn")):
+                    supplemented_row["AUM(M)"] = clean_text(profile.get("aum_mn"))
+
+        supplemented_rows.append(supplemented_row)
+
+    return dedupe_rows(supplemented_rows)
+
+
 def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -199,7 +247,7 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     scrape_timestamp = captured_at or extract_file_date(resolved_input_path)
 
     output_rows = [transform_row(row, scrape_timestamp) for row in source_rows]
-    return dedupe_rows(output_rows)
+    return supplement_missing_aum_rows(output_rows)
 
 
 def process_file(input_path: Path | None = None, output_path: Path | None = None) -> Path:

@@ -190,35 +190,6 @@ def parse_xlsx_rows(path: Path) -> list[dict[str, str]]:
     return rows
 
 
-def find_latest_nonempty_historical_aum(isin: str, current_input_path: Path) -> str:
-    if not isin:
-        return ""
-
-    current_resolved = current_input_path.resolve()
-    candidates = sorted(
-        (
-            path
-            for path in INPUT_DIR.rglob("invesco_etf_export.xlsx")
-            if path.is_file() and path.resolve() != current_resolved
-        ),
-        key=lambda path: path.stat().st_mtime,
-        reverse=True,
-    )
-
-    for candidate in candidates:
-        try:
-            for row in parse_xlsx_rows(candidate):
-                if clean_text(row.get(SOURCE_COLUMNS["isin"])).upper() != isin:
-                    continue
-                aum_value = clean_text(row.get(SOURCE_COLUMNS["aum"]))
-                if aum_value:
-                    return aum_value
-        except Exception:
-            continue
-
-    return ""
-
-
 def millions_from_raw_amount(value: str | None) -> str:
     cleaned = clean_text(value)
     if not cleaned:
@@ -234,7 +205,7 @@ def millions_from_raw_amount(value: str | None) -> str:
 
 def transform_row(source_row: dict[str, str], file_date: str, input_path: Path) -> dict[str, str]:
     isin = clean_text(source_row.get(SOURCE_COLUMNS["isin"])).upper()
-    aum_raw = clean_text(source_row.get(SOURCE_COLUMNS["aum"])) or find_latest_nonempty_historical_aum(isin, input_path)
+    aum_raw = clean_text(source_row.get(SOURCE_COLUMNS["aum"]))
     return {
         "ETF Name": clean_text(source_row.get(SOURCE_COLUMNS["fund_name"])),
         "Issuer": "Invesco",

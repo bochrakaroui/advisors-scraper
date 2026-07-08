@@ -7,6 +7,7 @@ import csv
 import json
 import os
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -16,6 +17,17 @@ INPUT_DIR = BASE_DIR
 OUTPUT_DIR = BASE_DIR
 ISSUER = "WisdomTree"
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+REPO_ROOT = BASE_DIR.parents[1]
+
+if str(REPO_ROOT) not in sys.path:
+    sys.path.append(str(REPO_ROOT))
+
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    build_justetf_session = None  # type: ignore[assignment]
+    fetch_justetf_profile = None  # type: ignore[assignment]
 
 OUTPUT_COLUMNS = [
     "ETF Name",
@@ -26,6 +38,11 @@ OUTPUT_COLUMNS = [
     "AUM(M)",
     "AUM CCY",
     "Date",
+]
+
+JUSTETF_FALLBACK_ISINS = [
+    "IE0003XI1PW0",
+    "IE0007UE04X9",
 ]
 
 
@@ -110,74 +127,6 @@ def is_official_wisdomtree_url(value: object | None) -> bool:
     return cleaned.startswith("https://www.wisdomtree.eu/en-gb/etfs/")
 
 
-def load_historical_selected_rows(target_isins: set[str], current_input_path: Path) -> list[dict[str, str]]:
-    if not target_isins:
-        return []
-
-    current_raw_path = current_input_path.resolve()
-    historical_rows_by_isin: dict[str, list[dict[str, str]]] = {}
-
-    for raw_path in sorted(
-        INPUT_DIR.rglob("wisdomtree_etf_export.json"),
-        key=lambda candidate: candidate.stat().st_mtime,
-        reverse=True,
-    ):
-        if raw_path.resolve() == current_raw_path:
-            continue
-        try:
-            payload = json.loads(raw_path.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-
-        rows = payload.get("rows", [])
-        if not isinstance(rows, list):
-            continue
-
-        eligible_isins = {
-            isin
-            for isin in target_isins
-            if isin not in historical_rows_by_isin
-            and any(
-                normalize_isin(row.get("isin")) == isin
-                and is_official_wisdomtree_url(row.get("product_url") or row.get("source_url"))
-                for row in rows
-                if isinstance(row, dict)
-            )
-        }
-        if not eligible_isins:
-            continue
-
-        selected_path = raw_path.parent / "wisdomtree_selected_fields.csv"
-        if not selected_path.exists():
-            continue
-
-        try:
-            with selected_path.open("r", encoding="utf-8-sig", newline="") as handle:
-                reader = csv.DictReader(handle)
-                grouped_rows: dict[str, list[dict[str, str]]] = {}
-                for row in reader:
-                    isin = normalize_isin(row.get("ISIN"))
-                    if isin not in eligible_isins:
-                        continue
-                    grouped_rows.setdefault(isin, []).append(
-                        {key: clean_text(value) for key, value in row.items()}
-                    )
-        except Exception:
-            continue
-
-        for isin, grouped in grouped_rows.items():
-            if isin not in historical_rows_by_isin and grouped:
-                historical_rows_by_isin[isin] = grouped
-
-        if target_isins.issubset(historical_rows_by_isin):
-            break
-
-    ordered_rows: list[dict[str, str]] = []
-    for isin in sorted(historical_rows_by_isin):
-        ordered_rows.extend(historical_rows_by_isin[isin])
-    return ordered_rows
-
-
 def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
     return {
         "ETF Name": clean_text(source_row.get("etf_name")),
@@ -199,6 +148,44 @@ def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return list(deduped.values())
 
 
+def supplement_missing_rows(rows: list[dict[str, str]], file_date: str) -> list[dict[str, str]]:
+    if build_justetf_session is None or fetch_justetf_profile is None:
+        return dedupe_rows(rows)
+
+    present_isins = {normalize_isin(row.get("ISIN")) for row in rows if normalize_isin(row.get("ISIN"))}
+    missing_isins = [isin for isin in JUSTETF_FALLBACK_ISINS if isin not in present_isins]
+    if not missing_isins:
+        return dedupe_rows(rows)
+
+    session = build_justetf_session()
+    supplemented_rows = list(rows)
+    for isin in missing_isins:
+        try:
+            profile = fetch_justetf_profile(isin, session=session)
+        except Exception as exc:  # noqa: BLE001
+            print(f"WARNING: justETF fallback failed for WisdomTree {isin}: {exc}")
+            continue
+
+        if clean_text(profile.get("fetch_status")) not in {"", "ok"}:
+            print(f"WARNING: justETF fallback did not resolve WisdomTree {isin}: {clean_text(profile.get('error'))}")
+            continue
+
+        supplemented_rows.append(
+            {
+                "ETF Name": clean_text(profile.get("etf_name")),
+                "Issuer": ISSUER,
+                "ISIN": clean_text(profile.get("isin")).upper() or isin,
+                "CCY": clean_text(profile.get("ccy")).upper(),
+                "TER(bps)": clean_text(profile.get("ter_bps")),
+                "AUM(M)": clean_text(profile.get("aum_mn")),
+                "AUM CCY": clean_text(profile.get("aum_ccy")).upper(),
+                "Date": file_date,
+            }
+        )
+
+    return dedupe_rows(supplemented_rows)
+
+
 def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="", encoding="utf-8-sig") as handle:
@@ -211,31 +198,8 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
     rows = parse_snapshot_rows(resolved_input_path)
     file_date = extract_file_date(resolved_input_path)
-
-    rows_by_isin: dict[str, list[dict[str, str]]] = {}
-    for row in rows:
-        isin = normalize_isin(row.get("isin"))
-        if isin:
-            rows_by_isin.setdefault(isin, []).append(row)
-
-    replacement_isins = {
-        isin
-        for isin, grouped_rows in rows_by_isin.items()
-        if grouped_rows
-        and not any(
-            is_official_wisdomtree_url(row.get("product_url") or row.get("source_url"))
-            for row in grouped_rows
-        )
-        and any("justetf.com" in clean_text(row.get("product_url") or row.get("source_url")).lower() for row in grouped_rows)
-    }
-
-    output_rows = [
-        transform_row(row, file_date)
-        for row in rows
-        if normalize_isin(row.get("isin")) not in replacement_isins
-    ]
-    output_rows.extend(load_historical_selected_rows(replacement_isins, resolved_input_path))
-    return dedupe_rows(output_rows)
+    output_rows = [transform_row(row, file_date) for row in rows]
+    return supplement_missing_rows(output_rows, file_date)
 
 
 def process_file(input_path: Path | None = None, output_path: Path | None = None) -> Path:

@@ -1,4 +1,4 @@
-"""Scrape Alpha UCITS / Fair Oaks ETF share classes from justETF profile pages."""
+"""Scrape Alpha UCITS / Fair Oaks ETF share classes from official Fair Oaks sources."""
 
 from __future__ import annotations
 
@@ -863,16 +863,30 @@ def count_missing(rows: list[dict[str, str]]) -> dict[str, int]:
     }
 
 
+def build_output_rows_from_official(now: datetime) -> list[dict[str, str]]:
+    session = build_session()
+    official_rows = fetch_official_nav_rows()
+    merged_rows = merge_source_rows(official_rows, {})
+    reference_metadata = load_reference_metadata(session)
+
+    output_rows = [build_output_row(nav_row, reference_metadata, now) for nav_row in merged_rows]
+    for row in output_rows:
+        row["Source kind"] = "official_page_ajax"
+        row["Fetch status"] = "ok"
+
+    return output_rows
+
+
 def scrape_alpha_ucits() -> Path:
     setup_logging()
     now = timestamp_now()
     output_path = build_output_path(now)
-    output_rows = build_output_rows_from_justetf(now)
+    output_rows = build_output_rows_from_official(now)
     missing_counts = count_missing(output_rows)
 
     missing_target_isins = [isin for isin in TARGET_SHARE_CLASSES if isin not in {row["ISIN"] for row in output_rows}]
     for missing_isin in missing_target_isins:
-        logging.warning("Expected Fair Oaks target ISIN was not present in the justETF output: %s", missing_isin)
+        logging.warning("Expected Fair Oaks target ISIN was not present in the official output: %s", missing_isin)
 
     write_json(
         output_path,
@@ -881,16 +895,17 @@ def scrape_alpha_ucits() -> Path:
             "provider": ISSUER,
             "manager": MANAGER,
             "method": (
-                "Target ISIN fetch from public justETF ETF profile pages."
+                "Official Fair Oaks static page + AJAX share-class payloads + official factsheet metadata."
             ),
-            "profile_url_template": JUSTETF_PROFILE_URL_TEMPLATE,
+            "source_url": STATIC_PAGE_URL,
+            "factsheet_url": FACTSHEET_URL,
             "target_isins": list(TARGET_SHARE_CLASSES),
             "row_count": len(output_rows),
             "listing_rows": output_rows,
         },
     )
 
-    logging.info("Extracted %d Alpha UCITS / Fair Oaks ETF row(s) from justETF.", len(output_rows))
+    logging.info("Extracted %d Alpha UCITS / Fair Oaks ETF row(s) from official Fair Oaks sources.", len(output_rows))
     for field_name in OUTPUT_COLUMNS:
         logging.info("Missing %-9s: %d", field_name, missing_counts[field_name])
 

@@ -23,7 +23,6 @@ try:
 except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
     from tls_compat import session_get
 
-
 FUNDS_URL = "https://www.nordea.co.uk/en/professional/funds/"
 FUNDS_SHARE_CLASSES_URL = f"{FUNDS_URL}?tab=share-classes"
 APP_ID = "2717fe1e-9849-4d97-84ea-fccd8e78a145"
@@ -43,6 +42,7 @@ USER_AGENT = (
     "Chrome/125.0.0.0 Safari/537.36"
 )
 DISCLOSURE_URLS_ENV_VAR = "NORDEA_DISCLOSURE_URLS"
+ALLOW_DISCLOSURE_FALLBACK_ENV_VAR = "NORDEA_ALLOW_DISCLOSURE_FALLBACK"
 CISION_PRESSROOM_URL = "https://news.cision.com/nordea-icav-etf"
 MAX_CISION_DISCLOSURE_URLS = 12
 DEFAULT_CISION_DISCLOSURE_URLS = (
@@ -97,6 +97,13 @@ ALL_DISCLOSURE_LABEL_KEYS = {
     key for keys in DISCLOSURE_LABEL_KEYS.values() for key in keys
 }
 INVALID_DISCLOSURE_CURRENCY_CODES = {"ETF", "NAV", "AUM"}
+
+
+def disclosure_fallback_allowed() -> bool:
+    raw_value = os.environ.get(ALLOW_DISCLOSURE_FALLBACK_ENV_VAR, "").strip().lower()
+    if not raw_value:
+        return True
+    return raw_value in {"1", "true", "yes", "on"}
 
 
 def clean_text(value: Any) -> str:
@@ -249,14 +256,6 @@ def parse_money_to_millions(value: Any) -> str:
     if abs(parsed) >= 100_000:
         return format_millions(parsed / 1_000_000)
     return format_millions(parsed)
-
-
-def compute_aum_from_nav(units_outstanding: Any, nav_per_share: Any) -> str:
-    units = parse_numeric_value(units_outstanding)
-    nav = parse_numeric_value(nav_per_share)
-    if units is None or nav is None:
-        return ""
-    return parse_money_to_millions(units * nav)
 
 
 def canonicalize_key(value: Any) -> str:
@@ -588,6 +587,9 @@ def discover_yahoo_disclosure_urls(session: requests.Session) -> list[str]:
 
 
 def build_disclosure_url_candidates(session: requests.Session) -> list[str]:
+    if not disclosure_fallback_allowed():
+        return []
+
     env_urls = parse_disclosure_url_env()
     if env_urls:
         return env_urls
@@ -888,10 +890,7 @@ def parse_disclosure_tables(html: str, known_isins: set[str]) -> dict[str, list[
                     if "date" in header_indexes and header_indexes["date"] < len(data_row)
                     else "",
                 }
-                record["AUM(M)"] = first_nonempty(
-                    parse_money_to_millions(record["aum_raw"]),
-                    compute_aum_from_nav(record["units_outstanding"], record["nav_per_share"]),
-                )
+                record["AUM(M)"] = parse_money_to_millions(record["aum_raw"])
                 append_disclosure_record(parsed_rows, record)
 
     return parsed_rows
@@ -928,10 +927,7 @@ def parse_disclosure_text_windows(
                     )),
                     "date": article_date,
                 }
-                record["AUM(M)"] = first_nonempty(
-                    parse_money_to_millions(record["aum_raw"]),
-                    compute_aum_from_nav(record["units_outstanding"], record["nav_per_share"]),
-                )
+                record["AUM(M)"] = parse_money_to_millions(record["aum_raw"])
                 append_disclosure_record(parsed_rows, record)
 
     return parsed_rows
@@ -1169,14 +1165,11 @@ def build_output_row(
         fund_ccy,
         extract_currency_code(disclosure_record.get("aum_ccy")),
     )
+    disclosure_aum = clean_text(disclosure_record.get("AUM(M)"))
     aum_m = first_nonempty(
-        clean_text(disclosure_record.get("AUM(M)")),
+        disclosure_aum,
         parse_first_money_to_millions(dataset_aum_values),
         parse_first_money_to_millions(detail_aum_values),
-        compute_aum_from_nav(
-            disclosure_record.get("units_outstanding"),
-            disclosure_record.get("nav_per_share"),
-        ),
     )
     aum_ccy = first_nonempty(
         ccy,
@@ -1227,7 +1220,12 @@ def scrape_nordea() -> Path:
     missing_counts: Counter[str] = Counter()
     for dataset_row in dataset_etf_rows:
         isin = normalize_isin(dataset_row.get("isin"))
-        row = build_output_row(dataset_row, detail_map.get(isin), disclosure_map.get(isin), now)
+        row = build_output_row(
+            dataset_row,
+            detail_map.get(isin),
+            disclosure_map.get(isin),
+            now,
+        )
         rows.append(row)
 
         for column in OUTPUT_COLUMNS:
@@ -1245,6 +1243,11 @@ def scrape_nordea() -> Path:
         {
             "captured_at": now.isoformat(),
             "provider": ISSUER,
+            "source_url": FUNDS_URL,
+            "method": (
+                "Official Nordea professional fund-centre dataset + detail APIs "
+                "+ latest disclosure fallback for AUM gaps"
+            ),
             "discovered_fund_pages": discovered_fund_pages,
             "disclosure_source_urls": disclosure_urls,
             "listing_rows": rows,

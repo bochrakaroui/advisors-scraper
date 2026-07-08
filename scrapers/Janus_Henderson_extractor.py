@@ -12,7 +12,7 @@ from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin, urlsplit, urlunsplit
+from urllib.parse import quote, urljoin, urlsplit, urlunsplit
 
 import requests
 from bs4 import BeautifulSoup
@@ -28,6 +28,7 @@ PRODUCTS_PAGE_URL = "https://www.jhetf.com/products/"
 SITEMAP_URL = "https://www.jhetf.com/wp-sitemap-posts-page-1.xml"
 SEARCH_API_URL = "https://www.jhetf.com/wp-json/wp/v2/search"
 ARCHIVE_CDX_URL = "https://web.archive.org/cdx/search/cdx"
+CISION_SEARCH_URL = "https://news.cision.com/"
 REQUEST_TIMEOUT_S = 45
 HTTP_RETRY_ATTEMPTS = 3
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
@@ -61,6 +62,24 @@ TARGET_ISINS = [
     "LU2994521669",
 ]
 
+LEGACY_DETAIL_URL_HINTS = {
+    "IE0002P9KZW1": "https://www.jhetf.com/products/ie000ccqkon9/ie0002p9kzw1/overview/",
+    "IE0008B0OAD5": "https://www.jhetf.com/products/ie000ymbl844/ie0008b0oad5/overview/",
+    "IE0008C3G0Y9": "https://www.jhetf.com/products/ie0007w7mzl0/ie0008c3g0y9/overview/",
+    "IE000GETKIK8": "https://www.jhetf.com/products/ie000lzc9nm0/ie000getkik8/overview/",
+    "IE000LZC9NM0": "https://www.jhetf.com/products/ie000lzc9nm0/overview/",
+    "IE000XIITCN5": "https://www.jhetf.com/products/ie000lzc9nm0/ie000xiitcn5/overview/",
+    "LU2941599081": "https://www.jhetf.com/products/lu2941599081/overview/",
+    "LU2941599248": "https://www.jhetf.com/products/lu2941599081/lu2941599248/overview/",
+    "LU2941599834": "https://www.jhetf.com/products/lu2941599081/lu2941599834/overview/",
+    "LU2994520851": "https://www.jhetf.com/products/lu2994520851/overview/",
+    "LU2994520935": "https://www.jhetf.com/products/lu2994520851/lu2994520935/overview/",
+    "LU2994521669": "https://www.jhetf.com/products/lu2994520851/lu2994521669/overview/",
+}
+ARCHIVE_PRODUCTS_SNAPSHOT_HINTS = [
+    "20260312112033",
+]
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = BASE_DIR / "providers" / "Janus_Henderson"
 
@@ -85,6 +104,10 @@ PRODUCT_URL_PATTERN = re.compile(
 AS_OF_PATTERN = re.compile(r"\bas of\s+(\d{4}-\d{2}-\d{2})\b", re.IGNORECASE)
 NON_VALUE_STRINGS = {"", "-", "--", "none", "null", "n/a"}
 XML_NS = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+CISION_ARTICLE_URL_RE = re.compile(
+    r"https://news\.cision\.com/janus-henderson[^\"'<>\\\s]+/r/net-asset-value[^\"'<>\\\s]+",
+    re.IGNORECASE,
+)
 
 
 def build_run_output_dir(base_dir: Path, run_date: str) -> Path:
@@ -192,8 +215,7 @@ def percent_to_bps(value: object | None) -> str:
 
 
 def amount_text_to_millions(value: object | None) -> str:
-    original = clean_text(value)
-    cleaned = original.upper().replace(",", "")
+    cleaned = clean_text(value).upper().replace(",", "")
     if not cleaned:
         return ""
 
@@ -217,12 +239,7 @@ def amount_text_to_millions(value: object | None) -> str:
         return ""
 
     if stripped == cleaned:
-        # Janus Henderson now exposes two bare-number shapes:
-        # 1) raw currency amounts such as "$10,140,380"
-        # 2) listing values already expressed in millions such as "$9.97"
-        # Use separators / magnitude to distinguish them.
-        if "," in original or decimal_value >= Decimal("10000"):
-            decimal_value = decimal_value / Decimal("1000000")
+        decimal_value = decimal_value / Decimal("1000000")
     else:
         decimal_value = decimal_value * multiplier
     return format_decimal(decimal_value, places=2)
@@ -239,6 +256,225 @@ def normalize_product_url(url: str) -> str:
         path = f"{path}/overview"
     path = f"{path}/"
     return urlunsplit((split_url.scheme.lower(), split_url.netloc.lower(), path, "", ""))
+
+
+def normalize_phrase(value: object | None) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", clean_text(value).lower()).strip()
+
+
+def dedupe_preserve_order(values: list[str]) -> list[str]:
+    deduped: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        cleaned = clean_text(value)
+        if not cleaned or cleaned in seen:
+            continue
+        seen.add(cleaned)
+        deduped.append(cleaned)
+    return deduped
+
+
+def build_cision_search_url(term: str) -> str:
+    return f"{CISION_SEARCH_URL}?q={quote(term)}"
+
+
+def parse_cision_article_urls(html: str) -> list[str]:
+    return dedupe_preserve_order(CISION_ARTICLE_URL_RE.findall(html))
+
+
+def resolve_cision_header_indexes(cells: list[str]) -> dict[str, int]:
+    header_indexes: dict[str, int] = {}
+    for index, cell in enumerate(cells):
+        normalized = normalize_phrase(cell)
+        if normalized == "valuation date":
+            header_indexes["valuation_date"] = index
+        elif normalized in {"isin code", "isin"}:
+            header_indexes["isin"] = index
+        elif normalized == "shares in issue":
+            header_indexes["shares_in_issue"] = index
+        elif normalized == "currency":
+            header_indexes["currency"] = index
+        elif normalized == "net asset value":
+            header_indexes["net_asset_value"] = index
+        elif normalized == "nav per share":
+            header_indexes["nav_per_share"] = index
+    return header_indexes
+
+
+def parse_cision_date(value: object | None) -> tuple[datetime | None, str]:
+    cleaned = clean_text(value)
+    if not cleaned:
+        return None, ""
+    for fmt in ("%d.%m.%y", "%d/%m/%Y", "%d/%m/%y", "%Y-%m-%d"):
+        try:
+            parsed = datetime.strptime(cleaned, fmt)
+            return parsed, parsed.strftime("%d/%m/%Y")
+        except ValueError:
+            continue
+    return None, ""
+
+
+def parse_absolute_amount(value: object | None) -> Decimal | None:
+    cleaned = clean_text(value).replace(",", "")
+    if not cleaned:
+        return None
+    try:
+        return Decimal(cleaned)
+    except InvalidOperation:
+        return None
+
+
+def format_millions_from_absolute(value: Decimal) -> str:
+    amount_millions = value / Decimal("1000000")
+    normalized = format(amount_millions.normalize(), "f")
+    if "." in normalized:
+        normalized = normalized.rstrip("0").rstrip(".")
+    return normalized
+
+
+def build_cision_fund_name(article_title: str) -> str:
+    cleaned_title = clean_text(article_title)
+    if not cleaned_title:
+        return ""
+    prefix = "Net Asset Value(s) - "
+    if cleaned_title.startswith(prefix):
+        cleaned_title = cleaned_title[len(prefix):]
+    return "" if cleaned_title == "Janus Henderson ICAV" else cleaned_title
+
+
+def parse_cision_nav_rows(article_url: str, html: str) -> list[dict[str, str]]:
+    soup = BeautifulSoup(html, "html.parser")
+    article_title = clean_text(soup.title.get_text(" ", strip=True) if soup.title else "")
+    fund_name = build_cision_fund_name(article_title)
+    parsed_rows: list[dict[str, str]] = []
+
+    for table in soup.find_all("table"):
+        table_rows: list[list[str]] = []
+        for row in table.find_all("tr"):
+            cells = [clean_text(cell.get_text(" ", strip=True)) for cell in row.find_all(["th", "td"])]
+            if any(cells):
+                table_rows.append(cells)
+
+        if len(table_rows) < 2:
+            continue
+
+        header_indexes = resolve_cision_header_indexes(table_rows[0])
+        required_keys = {"valuation_date", "isin", "shares_in_issue", "currency", "net_asset_value", "nav_per_share"}
+        if not required_keys.issubset(header_indexes):
+            continue
+
+        for data_row in table_rows[1:]:
+            isin_index = header_indexes["isin"]
+            if isin_index >= len(data_row):
+                continue
+
+            isin = normalize_isin(data_row[isin_index])
+            if not isin:
+                continue
+
+            valuation_date_raw = data_row[header_indexes["valuation_date"]]
+            _parsed_date, valuation_date = parse_cision_date(valuation_date_raw)
+            net_asset_value_raw = data_row[header_indexes["net_asset_value"]]
+            net_asset_value = parse_absolute_amount(net_asset_value_raw)
+            if net_asset_value is None:
+                continue
+
+            parsed_rows.append(
+                {
+                    "isin": isin,
+                    "article_title": article_title,
+                    "article_fund_name": fund_name,
+                    "valuation_date": valuation_date,
+                    "valuation_date_raw": valuation_date_raw,
+                    "shares_in_issue": data_row[header_indexes["shares_in_issue"]],
+                    "aum_currency": clean_text(data_row[header_indexes["currency"]]).upper(),
+                    "nav_per_share": data_row[header_indexes["nav_per_share"]],
+                    "net_asset_value_raw": net_asset_value_raw,
+                    "aum_mn": format_millions_from_absolute(net_asset_value),
+                    "aum_source_url": article_url,
+                }
+            )
+
+        if parsed_rows:
+            break
+
+    return parsed_rows
+
+
+def discover_cision_article_urls(search_terms: list[str]) -> list[str]:
+    discovered_urls: list[str] = []
+    for term in search_terms:
+        if not clean_text(term):
+            continue
+        html = fetch_text(build_cision_search_url(term))
+        discovered_urls.extend(parse_cision_article_urls(html))
+    return dedupe_preserve_order(discovered_urls)
+
+
+def fetch_latest_cision_nav_rows(target_isins: set[str]) -> tuple[dict[str, dict[str, str]], list[str]]:
+    rows_by_isin: dict[str, dict[str, str]] = {}
+    successful_urls: list[str] = []
+
+    search_terms = ["Janus Henderson", "Janus Henderson Net Asset Value(s)"]
+    article_urls = discover_cision_article_urls(search_terms)
+
+    def consider_article(url: str) -> None:
+        nonlocal successful_urls
+        html = fetch_text(url)
+        parsed_rows = parse_cision_nav_rows(url, html)
+        matched_any = False
+        for row in parsed_rows:
+            isin = row["isin"]
+            if isin not in target_isins:
+                continue
+            matched_any = True
+            current = rows_by_isin.get(isin)
+            current_date, _ = parse_cision_date(current.get("valuation_date")) if current else (None, "")
+            row_date, _ = parse_cision_date(row.get("valuation_date"))
+            if current is None or (row_date is not None and (current_date is None or row_date > current_date)):
+                rows_by_isin[isin] = row
+        if matched_any:
+            successful_urls.append(url)
+
+    for article_url in article_urls:
+        try:
+            consider_article(article_url)
+        except Exception as exc:  # noqa: BLE001
+            logging.warning("Could not fetch Janus Henderson Cision article %s: %s", article_url, exc)
+
+    unresolved_isins = sorted(target_isins - set(rows_by_isin))
+    if unresolved_isins:
+        for article_url in discover_cision_article_urls(unresolved_isins):
+            if article_url in article_urls:
+                continue
+            try:
+                consider_article(article_url)
+            except Exception as exc:  # noqa: BLE001
+                logging.warning("Could not fetch Janus Henderson Cision article %s: %s", article_url, exc)
+
+    return rows_by_isin, dedupe_preserve_order(successful_urls)
+
+
+def merge_cision_nav_row(base_row: dict[str, str], cision_row: dict[str, str]) -> dict[str, str]:
+    merged_row = dict(base_row)
+    if not clean_text(merged_row.get("etf_name")):
+        merged_row["etf_name"] = clean_text(cision_row.get("article_fund_name"))
+    if not clean_text(merged_row.get("page_title")):
+        merged_row["page_title"] = clean_text(cision_row.get("article_title"))
+    if not clean_text(merged_row.get("ccy")):
+        merged_row["ccy"] = clean_text(cision_row.get("aum_currency")).upper()
+    merged_row["aum_display"] = clean_text(cision_row.get("net_asset_value_raw"))
+    merged_row["aum_mn"] = clean_text(cision_row.get("aum_mn"))
+    merged_row["aum_currency"] = clean_text(cision_row.get("aum_currency")).upper()
+    merged_row["date"] = clean_text(cision_row.get("valuation_date"))
+    merged_row["data_as_of"] = clean_text(cision_row.get("valuation_date"))
+    merged_row["aum_date"] = clean_text(cision_row.get("valuation_date"))
+    merged_row["valuation_date"] = clean_text(cision_row.get("valuation_date"))
+    merged_row["shares_in_issue"] = clean_text(cision_row.get("shares_in_issue"))
+    merged_row["nav_per_share"] = clean_text(cision_row.get("nav_per_share"))
+    merged_row["aum_source_url"] = clean_text(cision_row.get("aum_source_url"))
+    merged_row["aum_source_kind"] = "cision_nav_announcement"
+    return merged_row
 
 
 def extract_overview_urls(html: str) -> list[str]:
@@ -355,22 +591,6 @@ def parse_factsheet_url(html: str, soup: BeautifulSoup) -> str:
     return ""
 
 
-# Override the legacy splitter so both current and mojibake title separators are handled.
-def split_name_and_share_class(page_title: str) -> tuple[str, str]:
-    cleaned_title = clean_text(page_title)
-    if not cleaned_title:
-        return "", ""
-
-    if " – " in cleaned_title:
-        fund_name, share_class_name = cleaned_title.split(" – ", 1)
-    else:
-        fund_name, share_class_name = cleaned_title, ""
-
-    if fund_name.startswith(f"{ISSUER} "):
-        fund_name = fund_name[len(ISSUER) + 1 :]
-    return fund_name, share_class_name
-
-
 def split_name_and_share_class(page_title: str) -> tuple[str, str]:
     cleaned_title = clean_text(page_title)
     if not cleaned_title:
@@ -417,9 +637,15 @@ def parse_products_listing(products_html: str) -> dict[str, dict[str, str]]:
 
         fund_name, row_share_class_name = split_name_and_share_class(row_title)
         base_url = normalize_product_url(row.get("data-href") or (link_node.get("href") if link_node else ""))
-        base_ticker = clean_text((row.select_one("td.ticker") or {}).get_text(" ", strip=True) if row.select_one("td.ticker") else "").upper()
-        base_charges = clean_text((row.select_one("td.charges") or {}).get_text(" ", strip=True) if row.select_one("td.charges") else "")
-        base_aum_display = clean_text((row.select_one("td.aum-currency") or {}).get_text(" ", strip=True) if row.select_one("td.aum-currency") else "")
+        base_ticker = clean_text(
+            (row.select_one("td.ticker") or {}).get_text(" ", strip=True) if row.select_one("td.ticker") else ""
+        ).upper()
+        base_charges = clean_text(
+            (row.select_one("td.charges") or {}).get_text(" ", strip=True) if row.select_one("td.charges") else ""
+        )
+        base_aum_display = clean_text(
+            (row.select_one("td.aum-currency") or {}).get_text(" ", strip=True) if row.select_one("td.aum-currency") else ""
+        )
 
         option_nodes = row.select("select.alternative-fund-select option")
         if option_nodes:
@@ -490,60 +716,22 @@ def dedupe_product_urls(candidate_urls: list[str]) -> list[str]:
     return deduped_urls
 
 
-def load_historical_listing_rows(target_isins: set[str]) -> dict[str, tuple[dict[str, str], str]]:
-    historical_rows: dict[str, tuple[dict[str, str], str]] = {}
-    if not target_isins:
-        return historical_rows
-
-    for snapshot_path in sorted(
-        OUTPUT_DIR.rglob("janushenderson_etf_export.json"),
-        key=lambda path: path.stat().st_mtime,
-        reverse=True,
-    ):
-        try:
-            payload = json.loads(snapshot_path.read_text(encoding="utf-8"))
-        except Exception:
-            continue
-
-        rows = payload.get("listing_rows", [])
-        if not isinstance(rows, list):
-            continue
-
-        for row in rows:
-            if not isinstance(row, dict):
-                continue
-            isin = normalize_isin(row.get("isin"))
-            if isin not in target_isins or isin in historical_rows:
-                continue
-            cleaned_row = {key: clean_text(value) for key, value in row.items()}
-            cleaned_row["isin"] = isin
-            if row_has_required_listing_fields(cleaned_row):
-                historical_rows[isin] = (cleaned_row, str(snapshot_path))
-
-        if target_isins.issubset(historical_rows):
-            break
-
-    return historical_rows
-
-
-def extract_reference_product_urls(reference_payload: dict[str, Any] | None) -> list[str]:
-    if not isinstance(reference_payload, dict):
-        return []
-
-    candidate_urls: list[str] = []
-    for link in reference_payload.get("legacy_product_links", []):
-        if isinstance(link, dict):
-            candidate_urls.append(clean_text(link.get("url")))
-    return dedupe_product_urls(candidate_urls)
-
-
-def row_has_required_listing_fields(row: dict[str, str]) -> bool:
-    required_keys = ("etf_name", "isin", "ccy", "ticker", "ter_bps", "aum_mn")
-    return all(clean_text(row.get(key)) for key in required_keys)
-
-
 def fetch_archive_listing_index(target_isins: set[str]) -> tuple[dict[str, dict[str, str]], str]:
     if not target_isins:
+        return {}, ""
+
+    def try_archive_snapshot(snapshot_timestamp: str) -> tuple[dict[str, dict[str, str]], str]:
+        if not clean_text(snapshot_timestamp):
+            return {}, ""
+        archive_url = build_wayback_raw_url(PRODUCTS_PAGE_URL, snapshot_timestamp)
+        try:
+            archive_html = fetch_text(archive_url)
+        except Exception:  # noqa: BLE001
+            return {}, ""
+
+        archive_listing_index = parse_products_listing(archive_html)
+        if target_isins.intersection(archive_listing_index):
+            return archive_listing_index, snapshot_timestamp
         return {}, ""
 
     try:
@@ -563,9 +751,17 @@ def fetch_archive_listing_index(target_isins: set[str]) -> tuple[dict[str, dict[
         payload = response.json()
     except Exception as exc:  # noqa: BLE001
         logging.warning("Janus Henderson archive listing index fetch failed, continuing without it: %s", exc)
+        for snapshot_timestamp in ARCHIVE_PRODUCTS_SNAPSHOT_HINTS:
+            archive_listing_index, resolved_timestamp = try_archive_snapshot(snapshot_timestamp)
+            if archive_listing_index:
+                return archive_listing_index, resolved_timestamp
         return {}, ""
 
     if not isinstance(payload, list) or len(payload) <= 1:
+        for snapshot_timestamp in ARCHIVE_PRODUCTS_SNAPSHOT_HINTS:
+            archive_listing_index, resolved_timestamp = try_archive_snapshot(snapshot_timestamp)
+            if archive_listing_index:
+                return archive_listing_index, resolved_timestamp
         return {}, ""
 
     for row in reversed(payload[1:]):
@@ -574,15 +770,14 @@ def fetch_archive_listing_index(target_isins: set[str]) -> tuple[dict[str, dict[
         snapshot_timestamp = clean_text(row[0])
         if not snapshot_timestamp:
             continue
-        archive_url = build_wayback_raw_url(PRODUCTS_PAGE_URL, snapshot_timestamp)
-        try:
-            archive_html = fetch_text(archive_url)
-        except Exception:  # noqa: BLE001
-            continue
+        archive_listing_index, resolved_timestamp = try_archive_snapshot(snapshot_timestamp)
+        if archive_listing_index:
+            return archive_listing_index, resolved_timestamp
 
-        archive_listing_index = parse_products_listing(archive_html)
-        if target_isins.intersection(archive_listing_index):
-            return archive_listing_index, snapshot_timestamp
+    for snapshot_timestamp in ARCHIVE_PRODUCTS_SNAPSHOT_HINTS:
+        archive_listing_index, resolved_timestamp = try_archive_snapshot(snapshot_timestamp)
+        if archive_listing_index:
+            return archive_listing_index, resolved_timestamp
 
     return {}, ""
 
@@ -656,7 +851,9 @@ def scrape_product_page(
     html = response.content.decode("utf-8", errors="replace")
     soup = BeautifulSoup(html, "html.parser")
 
-    page_title = clean_text(next((node.get_text(" ", strip=True) for node in soup.find_all("h1") if clean_text(node.get_text(" ", strip=True))), ""))
+    page_title = clean_text(
+        next((node.get_text(" ", strip=True) for node in soup.find_all("h1") if clean_text(node.get_text(" ", strip=True))), "")
+    )
     fund_name, share_class_name = split_name_and_share_class(page_title)
     summary_stats = parse_summary_stats(soup)
     table_fields = parse_table_fields(soup)
@@ -770,10 +967,31 @@ def search_reference_pages(isin: str) -> dict[str, Any]:
     }
 
 
+def row_has_required_listing_fields(row: dict[str, str]) -> bool:
+    required_keys = ("etf_name", "isin", "ccy", "ticker", "ter_bps", "aum_mn")
+    return all(clean_text(row.get(key)) for key in required_keys)
+
+
+def extract_reference_product_urls(reference_payload: dict[str, Any] | None) -> list[str]:
+    if not isinstance(reference_payload, dict):
+        return []
+
+    candidate_urls: list[str] = []
+    for link in reference_payload.get("legacy_product_links", []):
+        if isinstance(link, dict):
+            candidate_urls.append(clean_text(link.get("url")))
+    return dedupe_product_urls(candidate_urls)
+
+
 def build_snapshot(now: datetime) -> dict[str, Any]:
     logging.info("Loaded %d Janus Henderson target ISINs from the scraper constant list.", len(TARGET_ISINS))
     products_html = fetch_text(PRODUCTS_PAGE_URL)
     listing_index = parse_products_listing(products_html)
+    try:
+        cision_rows_by_isin, cision_article_urls = fetch_latest_cision_nav_rows(set(TARGET_ISINS))
+    except Exception as exc:  # noqa: BLE001
+        logging.warning("Janus Henderson Cision discovery failed, continuing without it: %s", exc)
+        cision_rows_by_isin, cision_article_urls = {}, []
     archive_listing_index, archive_snapshot_timestamp = fetch_archive_listing_index(
         set(TARGET_ISINS) - set(listing_index)
     )
@@ -816,11 +1034,30 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
             "factsheet_url": "",
             "detail_url": clean_text(base_source.get("detail_url")),
         }
-        detail_url = resolved_urls.get(isin) or base_row.get("detail_url", "")
+        detail_url = (
+            resolved_urls.get(isin)
+            or base_row.get("detail_url", "")
+            or LEGACY_DETAIL_URL_HINTS.get(isin, "")
+        )
         if detail_url:
             base_row["detail_url"] = detail_url
 
         if not detail_url and not clean_text(base_row.get("etf_name")):
+            if isin in cision_rows_by_isin:
+                row = merge_cision_nav_row(base_row, cision_rows_by_isin[isin])
+                listing_rows.append(row)
+                target_results.append(
+                    {
+                        "isin": isin,
+                        "status": "cision_ok",
+                        "detail_url": "",
+                        "factsheet_url": "",
+                        "references": {
+                            "aum_source_url": clean_text(cision_rows_by_isin[isin].get("aum_source_url")),
+                        },
+                    }
+                )
+                continue
             target_results.append(
                 {
                     "isin": isin,
@@ -835,11 +1072,20 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
         row = dict(base_row)
         status = "listing_only" if clean_text(base_row.get("etf_name")) else "unresolved"
         references: dict[str, Any] | None = None
+        if isin in cision_rows_by_isin:
+            row = merge_cision_nav_row(row, cision_rows_by_isin[isin])
+            status = "cision_ok"
+            references = {
+                "aum_source_url": clean_text(cision_rows_by_isin[isin].get("aum_source_url")),
+            }
         if detail_url:
             try:
                 detail_row = scrape_product_page(isin, detail_url)
                 row = merge_non_empty(base_row, detail_row)
-                status = "ok"
+                if isin in cision_rows_by_isin:
+                    row = merge_cision_nav_row(row, cision_rows_by_isin[isin])
+                else:
+                    status = "ok"
             except Exception as exc:  # noqa: BLE001
                 archive_candidate_urls = dedupe_product_urls([
                     candidate
@@ -847,6 +1093,7 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
                         clean_text(row_index.get("detail_url")),
                         clean_text(archive_row_index.get("detail_url")),
                         detail_url,
+                        LEGACY_DETAIL_URL_HINTS.get(isin, ""),
                     ]
                     if candidate
                 ])
@@ -882,36 +1129,22 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
 
                 if archive_detail_row is not None:
                     row = merge_non_empty(base_row, archive_detail_row)
-                    status = "archive_ok"
+                    if isin in cision_rows_by_isin:
+                        row = merge_cision_nav_row(row, cision_rows_by_isin[isin])
+                    else:
+                        status = "archive_ok"
                     references = {
                         "live_page_error": str(exc),
                         **archive_metadata,
                     }
+                    if isin in cision_rows_by_isin:
+                        references["aum_source_url"] = clean_text(cision_rows_by_isin[isin].get("aum_source_url"))
                     if reference_search_payload and clean_text(reference_search_payload.get("error")):
                         references["reference_search_error"] = clean_text(reference_search_payload.get("error"))
                 else:
                     archive_error_message = (
                         "No archived Janus Henderson detail page succeeded for the candidate URLs."
                     )
-                    if status == "unresolved":
-                        references = reference_search_payload or search_reference_pages(isin)
-                        logging.warning(
-                            "Janus Henderson archive fallback failed for %s: %s",
-                            isin,
-                            archive_error_message,
-                        )
-                        target_results.append(
-                            {
-                                "isin": isin,
-                                "status": "error",
-                                "detail_url": detail_url,
-                                "error": str(exc),
-                                "archive_error": archive_error_message,
-                                "references": references,
-                            }
-                        )
-                        continue
-
                     references = {
                         "page_error": str(exc),
                         "archive_error": archive_error_message,
@@ -926,12 +1159,19 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
                                 reference_search_payload.get("error")
                             )
 
-                    if row_has_required_listing_fields(row):
+                    if row_has_required_listing_fields(row) or isin in cision_rows_by_isin:
                         logging.info(
                             "Using official Janus Henderson listing data for %s because no detail page was available",
                             isin,
                         )
+                        if isin in cision_rows_by_isin:
+                            row = merge_cision_nav_row(row, cision_rows_by_isin[isin])
+                            status = "cision_ok"
+                            references["aum_source_url"] = clean_text(
+                                cision_rows_by_isin[isin].get("aum_source_url")
+                            )
                     else:
+                        status = "error"
                         logging.warning(
                             "Janus Henderson archive fallback failed for %s: %s",
                             isin,
@@ -949,7 +1189,7 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
             }
         )
 
-    successful_statuses = {"ok", "archive_ok"}
+    successful_statuses = {"ok", "archive_ok", "cision_ok"}
     usable_statuses = successful_statuses | {"listing_only"}
     missing_target_isins = [
         result["isin"] for result in target_results if result.get("status") not in usable_statuses
@@ -968,8 +1208,9 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
             "language": "en",
         },
         "method": (
-            "Explicit Janus Henderson target ISIN list + official jhetf.com ETF overview pages "
-            "+ archived official Janus pages for retired share classes when live pages are unavailable"
+            "Explicit Janus Henderson target ISIN list + public Cision Net Asset Value(s) announcements "
+            "for exact daily AUM records + official jhetf.com ETF overview pages and archived official Janus "
+            "pages for static product metadata when live pages are unavailable"
         ),
         "captured_at": now.isoformat(),
         "requested_target_isin_count": len(TARGET_ISINS),
@@ -977,6 +1218,7 @@ def build_snapshot(now: datetime) -> dict[str, Any]:
         "archive_resolved_target_isin_count": len(archive_listing_index),
         "archive_products_snapshot_timestamp": archive_snapshot_timestamp,
         "successful_scrape_count": successful_scrape_count,
+        "cision_article_urls": cision_article_urls,
         "listing_only_count": listing_only_count,
         "output_row_count": len(listing_rows),
         "missing_target_isins": missing_target_isins,

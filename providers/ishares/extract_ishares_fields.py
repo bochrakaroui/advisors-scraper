@@ -10,6 +10,9 @@ from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from zipfile import ZipFile
+
+from src.source_freshness import load_source_metadata, normalize_source_date, write_source_metadata
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -20,6 +23,7 @@ RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 SPREADSHEET_NS = "urn:schemas-microsoft-com:office:spreadsheet"
 NS = {"ss": SPREADSHEET_NS}
 SS_INDEX = f"{{{SPREADSHEET_NS}}}Index"
+XLSX_NS = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
 SOURCE_COLUMNS = {
     "fund_name": "Fund Name",
@@ -29,6 +33,7 @@ SOURCE_COLUMNS = {
     "ter": "TER / OCF",
     "issuer": "Issuing Company",
     "aum": "AUM (M)",
+    "aum_as_of": "AUM As Of",
     "net_assets": "Net Assets",
     "shares_outstanding": "Shares Outstanding",
 }
@@ -53,8 +58,8 @@ OUTPUT_COLUMNS = [
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Extract the selected ETF fields from a downloaded iShares .xls file.")
-    parser.add_argument("--input", type=Path, help="Downloaded iShares .xls file. Defaults to the latest file.")
+    parser = argparse.ArgumentParser(description="Extract the selected ETF fields from a downloaded iShares workbook.")
+    parser.add_argument("--input", type=Path, help="Downloaded iShares .xls or .xlsx file. Defaults to the latest file.")
     parser.add_argument("--output", type=Path, help="Processed CSV path. Defaults to a date folder inside ./ishares.")
     parser.add_argument(
         "--etf-only",
@@ -77,9 +82,17 @@ def build_run_output_dir(base_dir: Path) -> Path:
     return output_dir
 
 def find_latest_download(input_dir: Path) -> Path:
-    candidates = sorted((path for path in input_dir.rglob("*.xls") if path.is_file()), key=lambda path: path.stat().st_mtime, reverse=True)
+    candidates = sorted(
+        (
+            path
+            for path in input_dir.rglob("*")
+            if path.is_file() and path.suffix.lower() in {".xls", ".xlsx"}
+        ),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
     if not candidates:
-        raise FileNotFoundError(f"No .xls files found in {input_dir}")
+        raise FileNotFoundError(f"No iShares .xls or .xlsx files found in {input_dir}")
     return candidates[0]
 
 
@@ -115,6 +128,53 @@ def clean_text(value: str | None) -> str:
 def normalize_header(value: str | None) -> str:
     cleaned = clean_text(value)
     return re.sub(r"\s+", " ", cleaned)
+
+
+def extract_column_letters(cell_reference: str) -> str:
+    match = re.match(r"[A-Z]+", cell_reference)
+    return match.group(0) if match else ""
+
+
+def column_key_to_index(column_key: int | str) -> int:
+    if isinstance(column_key, int):
+        return column_key
+
+    index = 0
+    for character in str(column_key).upper():
+        if not ("A" <= character <= "Z"):
+            continue
+        index = index * 26 + (ord(character) - ord("A") + 1)
+    return index
+
+
+def disambiguate_header(column_index: int, header_value: str, headers: dict[int, str]) -> str:
+    if header_value == "As Of" and headers.get(column_index - 1) == SOURCE_COLUMNS["aum"]:
+        return SOURCE_COLUMNS["aum_as_of"]
+    return header_value
+
+
+def merge_header_values(
+    values_by_column: dict[int | str, str],
+    headers: dict[int | str, str],
+) -> dict[int | str, str]:
+    updated_headers = dict(headers)
+    for column_key in sorted(values_by_column, key=column_key_to_index):
+        normalized_value = normalize_header(values_by_column[column_key])
+        if not normalized_value:
+            continue
+        updated_headers[column_key] = disambiguate_header(
+            column_key_to_index(column_key),
+            normalized_value,
+            {
+                column_key_to_index(existing_key): existing_value
+                for existing_key, existing_value in updated_headers.items()
+            },
+        )
+    return updated_headers
+
+
+def has_required_headers(headers: dict[int | str, str]) -> bool:
+    return all(column in headers.values() for column in SOURCE_COLUMNS.values())
 
 
 def format_decimal(value: str | None, places: int = 2) -> str:
@@ -158,6 +218,18 @@ def extract_file_date(input_path: Path) -> str:
         return timestamp
 
 
+def format_source_date(value: str | None) -> str:
+    cleaned = clean_text(value)
+    if not cleaned:
+        return ""
+    for fmt in ("%Y-%m-%d", "%d/%m/%Y"):
+        try:
+            return datetime.strptime(cleaned, fmt).strftime("%d/%m/%Y")
+        except ValueError:
+            continue
+    return cleaned
+
+
 def parse_numeric_decimal(value: str | None) -> Decimal | None:
     cleaned = clean_text(value)
     if not cleaned:
@@ -191,6 +263,9 @@ def resolve_aum_m(source_row: dict[str, str]) -> str:
 
 
 def parse_xml_spreadsheet(path: Path) -> list[dict[str, str]]:
+    if path.suffix.lower() == ".xlsx":
+        return parse_xlsx_spreadsheet(path)
+
     root = ET.parse(path).getroot()
     worksheet = root.find(".//ss:Worksheet", NS)
     if worksheet is None:
@@ -206,12 +281,7 @@ def parse_xml_spreadsheet(path: Path) -> list[dict[str, str]]:
 
     headers: dict[int, str] = {}
     for row_element in row_elements[:2]:
-        headers.update(
-            {
-                column_index: normalize_header(value)
-                for column_index, value in read_sparse_row(row_element).items()
-            }
-        )
+        headers = merge_header_values(read_sparse_row(row_element), headers)
 
     missing_headers = [column for column in SOURCE_COLUMNS.values() if column not in headers.values()]
     if missing_headers:
@@ -234,8 +304,81 @@ def parse_xml_spreadsheet(path: Path) -> list[dict[str, str]]:
     return rows
 
 
+def load_shared_strings(workbook: ZipFile) -> list[str]:
+    if "xl/sharedStrings.xml" not in workbook.namelist():
+        return []
+
+    root = ET.fromstring(workbook.read("xl/sharedStrings.xml"))
+    return [
+        "".join(node.text or "" for node in item.findall(".//a:t", XLSX_NS))
+        for item in root.findall("a:si", XLSX_NS)
+    ]
+
+
+def parse_xlsx_sheet_row(row: ET.Element, shared_strings: list[str]) -> dict[str, str]:
+    values: dict[str, str] = {}
+
+    for cell in row.findall("a:c", XLSX_NS):
+        column = extract_column_letters(cell.attrib.get("r", ""))
+        if not column:
+            continue
+
+        cell_type = cell.attrib.get("t")
+        raw_value = cell.find("a:v", XLSX_NS)
+
+        if cell_type == "s" and raw_value is not None and raw_value.text is not None:
+            value = shared_strings[int(raw_value.text)]
+        elif cell_type == "inlineStr":
+            value = "".join(node.text or "" for node in cell.findall(".//a:t", XLSX_NS))
+        else:
+            value = "" if raw_value is None or raw_value.text is None else raw_value.text
+
+        values[column] = value
+
+    return values
+
+
+def parse_xlsx_spreadsheet(path: Path) -> list[dict[str, str]]:
+    with ZipFile(path) as workbook:
+        shared_strings = load_shared_strings(workbook)
+        sheet_root = ET.fromstring(workbook.read("xl/worksheets/sheet1.xml"))
+
+    headers: dict[str, str] = {}
+    rows: list[dict[str, str]] = []
+    header_complete = False
+
+    for row in sheet_root.findall(".//a:sheetData/a:row", XLSX_NS):
+        values_by_column = parse_xlsx_sheet_row(row, shared_strings)
+        if not values_by_column:
+            continue
+
+        if not header_complete:
+            prospective_headers = merge_header_values(values_by_column, headers)
+            if has_required_headers(prospective_headers):
+                headers = prospective_headers
+                header_complete = True
+            elif prospective_headers != headers:
+                headers = prospective_headers
+            continue
+
+        record = {
+            headers[column]: value
+            for column, value in values_by_column.items()
+            if column in headers
+        }
+        if clean_text(record.get(SOURCE_COLUMNS["fund_name"])):
+            rows.append(record)
+
+    if not header_complete:
+        missing_headers = [column for column in SOURCE_COLUMNS.values() if column not in headers.values()]
+        raise ValueError(f"Missing expected source columns in {path}: {', '.join(missing_headers)}")
+
+    return rows
+
+
 def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
     share_class_currency = clean_text(source_row.get(SOURCE_COLUMNS["currency"])).upper()
+    as_of_date = format_source_date(source_row.get(SOURCE_COLUMNS["aum_as_of"])) or file_date
     return {
         "ETF Name": clean_text(source_row.get(SOURCE_COLUMNS["fund_name"])),
         "Issuer": clean_text(source_row.get(SOURCE_COLUMNS["issuer"])),
@@ -244,8 +387,30 @@ def transform_row(source_row: dict[str, str], file_date: str) -> dict[str, str]:
         "TER(bps)": format_ter(source_row.get(SOURCE_COLUMNS["ter"])),
         "AUM(M)": resolve_aum_m(source_row),
         "AUM CCY": share_class_currency,
-        "Date": file_date,
+        "Date": as_of_date,
     }
+
+
+def update_source_metadata(input_path: Path, rows: list[dict[str, str]]) -> None:
+    source_dates = sorted(
+        {
+            normalize_source_date(row.get("Date"))
+            for row in rows
+            if normalize_source_date(row.get("Date"))
+        }
+    )
+    if not source_dates:
+        return
+
+    metadata = load_source_metadata(input_path)
+    metadata.update(
+        {
+            "source_date": source_dates[-1],
+            "freshness_status": "CURRENT",
+            "freshness_proof": "Workbook AUM As Of date from live iShares export",
+        }
+    )
+    write_source_metadata(input_path, metadata)
 
 
 def filter_rows(rows: list[dict[str, str]], include_all_funds: bool) -> list[dict[str, str]]:
@@ -268,7 +433,9 @@ def extract_rows(input_path: Path | None = None, *, include_all_funds: bool = Fa
     rows = parse_xml_spreadsheet(resolved_input_path)
     filtered_rows = filter_rows(rows, include_all_funds=include_all_funds)
     file_date = extract_file_date(resolved_input_path)
-    return [transform_row(row, file_date) for row in filtered_rows]
+    extracted_rows = [transform_row(row, file_date) for row in filtered_rows]
+    update_source_metadata(resolved_input_path, extracted_rows)
+    return extracted_rows
 
 
 def process_file(

@@ -11,6 +11,7 @@ import argparse
 import csv
 import json
 import os
+import sys
 from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
@@ -21,6 +22,17 @@ BASE_DIR = Path(__file__).resolve().parent
 INPUT_DIR = BASE_DIR
 OUTPUT_DIR = BASE_DIR
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+REPO_ROOT = BASE_DIR.parents[1]
+
+if str(REPO_ROOT) not in sys.path:
+    sys.path.append(str(REPO_ROOT))
+
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    build_justetf_session = None  # type: ignore[assignment]
+    fetch_justetf_profile = None  # type: ignore[assignment]
 
 RAW_FILENAME = "schroders_etf_export.json"
 
@@ -41,6 +53,11 @@ OUTPUT_COLUMNS = [
     "TER(bps)",
     "AUM(M)",
     "Date",
+]
+
+JUSTETF_FALLBACK_ISINS = [
+    "IE000BNLRWE6",
+    "IE000FGFJT15",
 ]
 
 
@@ -148,6 +165,43 @@ def filter_rows(rows: list[dict[str, Any]], include_failed: bool) -> list[dict[s
     return [row for row in rows if row.get("extraction_method") != "failed"]
 
 
+def supplement_missing_rows(rows: list[dict[str, str]], file_date: str) -> list[dict[str, str]]:
+    if build_justetf_session is None or fetch_justetf_profile is None:
+        return rows
+
+    present_isins = {clean_text(row.get("ISIN")).upper() for row in rows if clean_text(row.get("ISIN"))}
+    missing_isins = [isin for isin in JUSTETF_FALLBACK_ISINS if isin not in present_isins]
+    if not missing_isins:
+        return rows
+
+    session = build_justetf_session()
+    supplemented_rows = list(rows)
+    for isin in missing_isins:
+        try:
+            profile = fetch_justetf_profile(isin, session=session)
+        except Exception as exc:  # noqa: BLE001
+            print(f"WARNING: justETF fallback failed for Schroders {isin}: {exc}")
+            continue
+
+        if clean_text(profile.get("fetch_status")) not in {"", "ok"}:
+            print(f"WARNING: justETF fallback did not resolve Schroders {isin}: {clean_text(profile.get('error'))}")
+            continue
+
+        supplemented_rows.append(
+            {
+                "ETF Name": clean_text(profile.get("etf_name")),
+                "Issuer": "Schroders",
+                "ISIN": clean_text(profile.get("isin")).upper() or isin,
+                "CCY": clean_text(profile.get("ccy")).upper(),
+                "TER(bps)": format_decimal(profile.get("ter_bps")),
+                "AUM(M)": format_decimal(profile.get("aum_mn")),
+                "Date": file_date,
+            }
+        )
+
+    return supplemented_rows
+
+
 def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="", encoding="utf-8-sig") as handle:
@@ -161,7 +215,8 @@ def extract_rows(input_path: Path | None = None, *, include_failed: bool = False
     raw_rows = load_rows(resolved_input_path)
     filtered_rows = filter_rows(raw_rows, include_failed=include_failed)
     file_date = extract_file_date(resolved_input_path)
-    return [transform_row(row, file_date) for row in filtered_rows]
+    output_rows = [transform_row(row, file_date) for row in filtered_rows]
+    return supplement_missing_rows(output_rows, file_date)
 
 
 def process_file(

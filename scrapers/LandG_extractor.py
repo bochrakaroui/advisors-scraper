@@ -22,6 +22,19 @@ ELEMENT_TIMEOUT   = 20_000
 DOWNLOAD_TIMEOUT  = 90_000
 
 
+def evaluate_with_retry(page, script: str, arg=None, retries: int = 3):
+    for attempt in range(1, retries + 1):
+        try:
+            if arg is None:
+                return page.evaluate(script)
+            return page.evaluate(script, arg)
+        except Exception as exc:  # noqa: BLE001
+            if "Execution context was destroyed" not in str(exc) or attempt >= retries:
+                raise
+            page.wait_for_load_state("domcontentloaded", timeout=PAGE_LOAD_TIMEOUT)
+            page.wait_for_timeout(500)
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # CLI
 # ─────────────────────────────────────────────────────────────────────────────
@@ -60,7 +73,7 @@ def dismiss_cookie_banner(page) -> None:
 
     # From debug: 'Accept all cookies (Recommended) @(835,744)'
     # Use the OneTrust ID first (most reliable), then text fallback
-    dismissed = page.evaluate("""
+    dismissed = evaluate_with_retry(page, """
         () => {
             // Strategy 1: OneTrust button by ID
             let btn = document.querySelector('#onetrust-accept-btn-handler');
@@ -113,7 +126,7 @@ def dismiss_investor_gate(page) -> None:
         "agree",
         "proceed",
     ]
-    result = page.evaluate("""
+    result = evaluate_with_retry(page, """
         (texts) => {
             const btns = Array.from(document.querySelectorAll('button'))
                 .filter(b => b.offsetParent !== null);
@@ -169,7 +182,7 @@ def click_download_button_via_js(page) -> None:
     This fires real-feeling browser events without needing coordinates,
     so HeadlessUI registers it and opens the dropdown.
     """
-    result = page.evaluate("""
+    result = evaluate_with_retry(page, """
         () => {
             const btn = Array.from(document.querySelectorAll('button')).find(b =>
                 b.innerText.trim().toLowerCase().includes('download data') &&
@@ -221,7 +234,7 @@ def click_all_data_via_js(page) -> None:
     Clicks the 'All data' menuitem using JS dispatchEvent.
     Must be called while the dropdown is still open.
     """
-    result = page.evaluate("""
+    result = evaluate_with_retry(page, """
         () => {
             // Prefer role=menuitem
             let item = Array.from(document.querySelectorAll('[role="menuitem"]')).find(el =>
@@ -248,7 +261,7 @@ def click_all_data_via_js(page) -> None:
     """)
     if not result or not result.startswith("CLICKED"):
         # Dump menuitems for diagnosis
-        items = page.evaluate("""
+        items = evaluate_with_retry(page, """
             () => Array.from(document.querySelectorAll('[role="menuitem"]'))
                 .map(el => el.innerText.trim() + ' visible=' + (el.offsetParent !== null))
                 .join(' | ')
@@ -323,7 +336,7 @@ def _download_landg_file(headless: bool = True) -> Path:
 
         # ── 5. Open the dropdown OUTSIDE expect_download ──────────────────────
         print("[5/6] Opening 'Download data' dropdown…")
-        page.evaluate("window.scrollTo(0, 0)")
+        evaluate_with_retry(page, "window.scrollTo(0, 0)")
         page.wait_for_timeout(300)
 
         click_download_button_via_js(page)

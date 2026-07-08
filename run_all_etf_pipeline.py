@@ -11,6 +11,7 @@ import json
 import os
 import re
 import shutil
+import sys
 import time
 import zipfile
 from contextlib import redirect_stderr, redirect_stdout
@@ -20,7 +21,19 @@ from pathlib import Path
 from typing import Awaitable, Callable
 import xml.etree.ElementTree as ET
 
+from src.source_freshness import load_source_metadata
+
 BASE_DIR = Path(__file__).resolve().parent
+
+if str(BASE_DIR) not in sys.path:
+    sys.path.append(str(BASE_DIR))
+
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    build_justetf_session = None  # type: ignore[assignment]
+    fetch_justetf_profile = None  # type: ignore[assignment]
 
 
 def load_module_from_path(module_name: str, path: Path):
@@ -340,6 +353,11 @@ INTERNAL_SPACE_PATTERN = re.compile(r"\s+")
 ISIN_HEADER_CANDIDATES = ("isin", "isincode")
 INVISIBLE_ISIN_CHARACTERS = ("\u00A0", "\u2007", "\u202F", "\u200B", "\uFEFF")
 ISIN_FILTER_BYPASS_ISSUERS = {"Fidelity International"}
+JUSTETF_AUM_FALLBACK_BLOCKED_ISSUERS = {
+    "Janus Henderson",
+    "J.P. Morgan Asset Management",
+    "Waystone",
+}
 
 ALL_PROVIDERS = (
     "ishares",
@@ -447,6 +465,12 @@ class IsinFilterSummary:
     isin_column_name: str
 
 
+@dataclass(frozen=True)
+class FinalCoverageSummary:
+    missing_expected_isins: tuple[str, ...]
+    missing_aum_identifiers: tuple[str, ...]
+
+
 async def run_sync_downloader(download_func: Callable[[], Path]) -> Path:
     return await asyncio.to_thread(download_func)
 
@@ -518,6 +542,13 @@ def evaluate_result_status(row_count: int, provider_match_count: int, missing_co
 
 
 def print_provider_report(report: ProviderRunReport, run_date: str) -> None:
+    source_metadata = load_source_metadata(report.input_path)
+    source_date = str(source_metadata.get("source_date") or "").strip()
+    freshness_status = str(source_metadata.get("freshness_status") or "").strip()
+    freshness_proof = str(source_metadata.get("freshness_proof") or "").strip()
+    resolved_source_url = str(source_metadata.get("resolved_source_url") or "").strip()
+    freshness_url = resolved_source_url or str(source_metadata.get("source_url") or "").strip()
+
     print()
     print("ETF EXTRACTOR")
     print(f"Provider : {report.provider_name}")
@@ -527,6 +558,14 @@ def print_provider_report(report: ProviderRunReport, run_date: str) -> None:
     print(f"      Source      : {report.source_label}")
     print(f"      Method      : {report.source_method}")
     print(f"      URL         : {report.source_url or 'n/a'}")
+    if source_date:
+        print(f"      Source date : {source_date}")
+    if freshness_url:
+        print(f"      Fresh URL   : {freshness_url}")
+    if freshness_status:
+        print(f"      Freshness   : {freshness_status}")
+    if freshness_proof:
+        print(f"      Proof       : {freshness_proof}")
     if report.note:
         print(f"      Note        : {report.note}")
     print(f"      Status      : {report.source_status}")
@@ -623,6 +662,35 @@ def build_provider_output_path(output_dir: Path, run_date: str, filename: str) -
     return dated_output_dir / filename
 
 
+def resolve_provider_output_path(
+    pipeline: ProviderPipeline,
+    input_path: Path,
+    run_date: str,
+    use_latest_downloads: bool,
+) -> Path:
+    if use_latest_downloads:
+        return input_path.parent / pipeline.output_filename
+    return build_provider_output_path(pipeline.output_dir, run_date, pipeline.output_filename)
+
+
+def enforce_provider_two_file_layout(input_path: Path, output_path: Path) -> list[Path]:
+    if input_path.parent != output_path.parent:
+        return []
+
+    kept_paths = {input_path.resolve(), output_path.resolve()}
+    removed_paths: list[Path] = []
+
+    for candidate in sorted(input_path.parent.iterdir()):
+        if not candidate.is_file():
+            continue
+        if candidate.resolve() in kept_paths:
+            continue
+        candidate.unlink(missing_ok=True)
+        removed_paths.append(candidate)
+
+    return removed_paths
+
+
 def write_combined_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="", encoding="utf-8-sig") as handle:
@@ -653,7 +721,9 @@ def normalize_output_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     normalized_rows: list[dict[str, str]] = []
     for row in rows:
         normalized_row = {column: str(row.get(column, "")).strip() for column in OUTPUT_COLUMNS}
-        if not normalized_row.get("AUM CCY", ""):
+        if not normalized_row.get("AUM(M)", ""):
+            normalized_row["AUM CCY"] = ""
+        elif not normalized_row.get("AUM CCY", ""):
             normalized_row["AUM CCY"] = (
                 infer_aum_currency_from_row(row)
                 or str(row.get("CCY", "")).strip()
@@ -662,29 +732,67 @@ def normalize_output_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return normalized_rows
 
 
-def find_latest_nonempty_historical_input(
-    pipeline: ProviderPipeline,
-    current_input_path: Path,
-) -> tuple[Path, list[dict[str, str]]] | None:
-    candidate_paths = sorted(
-        (
-            path
-            for path in pipeline.input_dir.rglob(current_input_path.name)
-            if path.is_file() and path.resolve() != current_input_path.resolve()
-        ),
-        key=lambda path: path.stat().st_mtime,
-        reverse=True,
+def supplement_missing_aum_from_justetf(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    if build_justetf_session is None or fetch_justetf_profile is None:
+        return rows
+
+    missing_isins = sorted(
+        {
+            normalized_isin
+            for normalized_isin in (normalize_isin(row.get("ISIN")) for row in rows)
+            if normalized_isin
+            and any(
+                normalize_isin(candidate_row.get("ISIN")) == normalized_isin
+                and not str(candidate_row.get("AUM(M)", "")).strip()
+                for candidate_row in rows
+            )
+        }
     )
+    if not missing_isins:
+        return rows
 
-    for candidate_path in candidate_paths:
+    session = build_justetf_session()
+    fallback_by_isin: dict[str, tuple[str, str]] = {}
+    for isin in missing_isins:
         try:
-            candidate_rows = pipeline.source_row_parser(candidate_path)
-        except Exception:
+            profile = fetch_justetf_profile(isin, session=session)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[WARN] justETF AUM fallback failed for {isin}: {exc}")
             continue
-        if candidate_rows:
-            return candidate_path, candidate_rows
 
-    return None
+        if str(profile.get("fetch_status", "")).strip() not in {"", "ok"}:
+            continue
+
+        aum_m = str(profile.get("aum_mn", "")).strip()
+        aum_ccy = str(profile.get("aum_ccy", "")).strip().upper()
+        if not aum_m:
+            continue
+        fallback_by_isin[isin] = (aum_m, aum_ccy)
+
+    if not fallback_by_isin:
+        return rows
+
+    supplemented_rows: list[dict[str, str]] = []
+    for row in rows:
+        isin = normalize_isin(row.get("ISIN"))
+        issuer = str(row.get("Issuer", "")).strip()
+        if (
+            not isin
+            or str(row.get("AUM(M)", "")).strip()
+            or isin not in fallback_by_isin
+            or issuer in JUSTETF_AUM_FALLBACK_BLOCKED_ISSUERS
+        ):
+            supplemented_rows.append(row)
+            continue
+
+        aum_m, aum_ccy = fallback_by_isin[isin]
+        supplemented_row = dict(row)
+        supplemented_row["AUM(M)"] = aum_m
+        if aum_ccy:
+            supplemented_row["AUM CCY"] = aum_ccy
+        supplemented_rows.append(supplemented_row)
+
+    return supplemented_rows
 
 
 def dedupe_exact_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -885,6 +993,46 @@ def collect_normalized_isins(rows: list[dict[str, str]], isin_column_name: str) 
         for normalized_isin in (normalize_isin(row.get(isin_column_name)) for row in rows)
         if normalized_isin
     }
+
+
+def collect_missing_whitelist_isins(
+    rows: list[dict[str, str]],
+    isin_column_name: str,
+    whitelist_isins: set[str],
+) -> list[str]:
+    final_isins = collect_normalized_isins(rows, isin_column_name)
+    return sorted(whitelist_isins - final_isins)
+
+
+def collect_rows_with_missing_aum(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    missing_rows: list[dict[str, str]] = []
+    for row in rows:
+        if not str(row.get("AUM(M)", "")).strip():
+            missing_rows.append(row)
+    return missing_rows
+
+
+def identify_rows_with_missing_aum(rows: list[dict[str, str]]) -> list[str]:
+    identifiers: list[str] = []
+    for row in rows:
+        issuer = clean_display_text(row.get("Issuer")) or "Unknown issuer"
+        isin = normalize_isin(row.get("ISIN")) or "NO-ISIN"
+        identifiers.append(f"{issuer} / {isin}")
+    return identifiers
+
+
+def verify_final_coverage(
+    rows: list[dict[str, str]],
+    whitelist_isins: set[str],
+    isin_column_name: str,
+) -> FinalCoverageSummary:
+    missing_isins = collect_missing_whitelist_isins(rows, isin_column_name, whitelist_isins)
+    rows_with_missing_aum = collect_rows_with_missing_aum(rows)
+
+    return FinalCoverageSummary(
+        missing_expected_isins=tuple(missing_isins),
+        missing_aum_identifiers=tuple(identify_rows_with_missing_aum(rows_with_missing_aum)),
+    )
 
 
 def should_bypass_final_isin_filter(row: dict[str, str]) -> bool:
@@ -1366,24 +1514,10 @@ async def prepare_input_file(pipeline: ProviderPipeline, use_latest_downloads: b
             status="REUSED",
             note="Using latest saved provider file.",
         )
-    try:
-        return PreparedInput(
-            path=await pipeline.downloader(),
-            status="OK",
-        )
-    except Exception as exc:  # noqa: BLE001
-        try:
-            latest_download = pipeline.latest_download_finder(pipeline.input_dir)
-        except Exception:
-            raise exc
-
-        return PreparedInput(
-            path=latest_download,
-            status="FALLBACK",
-            note=(
-                "Live download failed; using latest saved provider file."
-            ),
-        )
+    return PreparedInput(
+        path=await pipeline.downloader(),
+        status="OK",
+    )
 
 
 async def run_provider(
@@ -1402,20 +1536,31 @@ async def run_provider(
         note = prepared_input.note
         source_status = prepared_input.status
 
-        if not use_latest_downloads and not source_rows:
-            historical_input = find_latest_nonempty_historical_input(pipeline, input_path)
-            if historical_input is not None:
-                fallback_input_path, fallback_source_rows = historical_input
-                input_path = fallback_input_path
-                source_rows = fallback_source_rows
-                source_status = "FALLBACK"
-                note = "Latest download was empty; using latest non-empty historical provider file."
+        if not source_rows:
+            raise ValueError(
+                f"{pipeline.name} live source returned zero rows. "
+                "Refusing to reuse an older provider file automatically."
+            )
 
         source_row_count = len(source_rows)
-        rows = dedupe_exact_rows(normalize_output_rows(pipeline.extractor(input_path)))
+        rows = dedupe_exact_rows(
+            supplement_missing_aum_from_justetf(
+                normalize_output_rows(pipeline.extractor(input_path))
+            )
+        )
         missing_counts = validate_rows(pipeline.name, rows)
-        output_path = build_provider_output_path(pipeline.output_dir, run_date, pipeline.output_filename)
+        output_path = resolve_provider_output_path(
+            pipeline,
+            input_path,
+            run_date,
+            use_latest_downloads,
+        )
         output_path = write_csv_with_fallback(output_path, rows)
+        removed_paths = enforce_provider_two_file_layout(input_path, output_path)
+        if removed_paths:
+            removed_labels = ", ".join(path.name for path in removed_paths)
+            cleanup_note = f"Removed extra run files: {removed_labels}"
+            note = f"{note} {cleanup_note}".strip() if note else cleanup_note
 
     valid_isin_count = sum(1 for row in rows if normalize_isin(row.get("ISIN")))
     provider_match_count = sum(
@@ -1527,6 +1672,11 @@ async def async_main() -> int:
         filtered_rows,
         output_label="combined pipeline output",
     )
+    coverage_summary = verify_final_coverage(
+        filtered_rows,
+        whitelist_isins,
+        filter_summary.isin_column_name,
+    )
 
     print()
     print("=== Summary ===")
@@ -1535,6 +1685,11 @@ async def async_main() -> int:
     print(f"Total rows   : {len(filtered_rows):,}")
     print(f"Whitelist ISINs: {filter_summary.whitelist_unique_isin_count:,} from {ISIN_FILTER_PATH}")
     print(f"Rows removed by ISIN filter: {filter_summary.removed_rows_count:,}")
+    print(f"Rows with missing AUM in final CSV: {len(coverage_summary.missing_aum_identifiers):,}")
+    if coverage_summary.missing_aum_identifiers:
+        print("Sample rows still missing AUM(M):")
+        for identifier in coverage_summary.missing_aum_identifiers[:10]:
+            print(f"  {identifier}")
 
     if successes:
         for report in successes:
@@ -1549,6 +1704,13 @@ async def async_main() -> int:
     if failures:
         for provider_name, exc in failures:
             print(f"{provider_name}: FAILED -> {exc}")
+        return 1
+
+    if coverage_summary.missing_aum_identifiers:
+        print(
+            "Final coverage verification failed: the aggregated CSV still has "
+            f"{len(coverage_summary.missing_aum_identifiers):,} row(s) with blank AUM(M)."
+        )
         return 1
 
     print("All selected providers completed successfully.")

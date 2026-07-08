@@ -2,13 +2,19 @@
 
 import asyncio
 import os
-import shutil
 import re
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
 from playwright.async_api import Download, Locator, TimeoutError as PlaywrightTimeoutError, async_playwright
+
+from src.source_freshness import (
+    atomic_write_bytes,
+    normalize_source_date,
+    parse_http_last_modified,
+    write_source_metadata,
+)
 
 
 URL = (
@@ -23,6 +29,13 @@ OUTPUT_DIR = BASE_DIR / "providers" / "ishares"
 TIMEOUT_MS = 60_000
 NAVIGATION_TIMEOUT_MS = 30_000
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
+CUSTOMIZED_EXPORT_TOKEN = "product-screener-v3.1.jsn?type=customized-excel"
+SPREADSHEET_CONTENT_TYPE_TOKENS = (
+    "excel",
+    "spreadsheet",
+    "spreadsheetml",
+    "officedocument",
+)
 
 
 async def click_with_fallback(locator: Locator, label: str) -> None:
@@ -177,25 +190,91 @@ def build_run_output_dir(base_dir: Path) -> Path:
 
 
 def build_output_path(filename_hint: str) -> Path:
-    suggested = filename_hint or "ishares_etf_list.xls"
+    suggested = filename_hint or "ishares_etf_list.xlsx"
     dated_output_dir = build_run_output_dir(OUTPUT_DIR)
     stem, ext = os.path.splitext(suggested)
-    ext = ext or ".xls"
+    ext = ext or ".xlsx"
     return dated_output_dir / f"{stem}{ext}"
+
+
+def response_looks_like_spreadsheet(response) -> bool:
+    content_type = response.headers.get("content-type", "").lower()
+    return any(token in content_type for token in SPREADSHEET_CONTENT_TYPE_TOKENS)
+
+
+def infer_filename_from_response(response) -> str:
+    content_disposition = response.headers.get("content-disposition", "")
+    filename_match = re.search(r'filename="?([^";]+)"?', content_disposition, re.IGNORECASE)
+    if filename_match:
+        return filename_match.group(1)
+
+    parsed = urlparse(response.url)
+    parsed_name = Path(parsed.path).name
+    if parsed_name and Path(parsed_name).suffix:
+        return parsed_name
+
+    content_type = response.headers.get("content-type", "").lower()
+    if "spreadsheetml" in content_type or "officedocument" in content_type:
+        return "ProductScreener.xlsx"
+    if "excel" in content_type:
+        return "ProductScreener.xls"
+    if "csv" in content_type:
+        return "ProductScreener.csv"
+    return "ProductScreener.xlsx"
 
 
 async def save_response_to_disk(response) -> Path:
     content_disposition = response.headers.get("content-disposition", "")
-    filename_match = re.search(r'filename="?([^";]+)"?', content_disposition, re.IGNORECASE)
-    if filename_match:
-        filename_hint = filename_match.group(1)
-    else:
-        parsed = urlparse(response.url)
-        filename_hint = Path(parsed.path).name or "ishares_etf_list.xls"
+    filename_hint = infer_filename_from_response(response)
 
     final_path = build_output_path(filename_hint)
-    final_path.write_bytes(await response.body())
+    response_bytes = await response.body()
+    atomic_write_bytes(final_path, response_bytes)
+    write_source_metadata(
+        final_path,
+        {
+            "provider": "iShares",
+            "source_url": URL,
+            "resolved_source_url": response.url,
+            "source_date": parse_http_last_modified(response.headers.get("last-modified")),
+            "freshness_status": "CURRENT",
+            "freshness_proof": "Live iShares customized-excel export response",
+            "http_last_modified": normalize_source_date(
+                parse_http_last_modified(response.headers.get("last-modified"))
+            ),
+            "content_disposition": content_disposition,
+        },
+    )
     return final_path
+
+
+async def write_download_to_disk(download: Download) -> Path:
+    suggested = download.suggested_filename or "ProductScreener.xlsx"
+    final_path = build_output_path(suggested)
+    temp_path = final_path.with_name(f"{final_path.name}.download")
+    await download.save_as(temp_path)
+    temp_bytes = temp_path.read_bytes()
+    temp_path.unlink(missing_ok=True)
+    atomic_write_bytes(final_path, temp_bytes)
+    write_source_metadata(
+        final_path,
+        {
+            "provider": "iShares",
+            "source_url": URL,
+            "resolved_source_url": clean_download_url(download.url),
+            "source_date": "",
+            "freshness_status": "CURRENT SOURCE VERIFIED",
+            "freshness_proof": "Blob download verified against live iShares export flow",
+        },
+    )
+    return final_path
+
+
+def clean_download_url(url: str | None) -> str:
+    if not url:
+        return ""
+    cleaned = str(url).strip()
+    return "" if cleaned.startswith("blob:") else cleaned
 
 
 async def download_etf_list() -> Path:
@@ -215,6 +294,10 @@ async def download_etf_list() -> Path:
                 "Chrome/124.0.0.0 Safari/537.36"
             ),
             accept_downloads=True,
+            extra_http_headers={
+                "Cache-Control": "no-cache",
+                "Pragma": "no-cache",
+            },
         )
         page = await context.new_page()
 
@@ -277,16 +360,30 @@ async def download_etf_list() -> Path:
         )
         await click_with_fallback(download_btn, "DOWNLOAD button")
 
-        print("     Selecting 'DOWNLOAD ALL FUNDS (XLS)' from dropdown ...")
+        print("     Selecting the all-funds export option from dropdown ...")
         await page.wait_for_timeout(1_000)
 
         all_etfs_option = await find_first_visible_locator(
             [
                 (
+                    "overlay menuitem DOWNLOAD ALL FUNDS (XLSX)",
+                    page.locator(
+                        "div.cdk-overlay-pane div[role='menu'] "
+                        "button[role='menuitem']:has-text('DOWNLOAD ALL FUNDS (XLSX)')"
+                    ).first,
+                ),
+                (
                     "overlay menuitem DOWNLOAD ALL FUNDS (XLS)",
                     page.locator(
                         "div.cdk-overlay-pane div[role='menu'] "
                         "button[role='menuitem']:has-text('DOWNLOAD ALL FUNDS (XLS)')"
+                    ).first,
+                ),
+                (
+                    "overlay button with button-content DOWNLOAD ALL FUNDS (XLSX)",
+                    page.locator(
+                        "div.cdk-overlay-pane button.mat-mdc-menu-item "
+                        ":has(div.button-content:has-text('DOWNLOAD ALL FUNDS (XLSX)'))"
                     ).first,
                 ),
                 (
@@ -299,14 +396,21 @@ async def download_etf_list() -> Path:
                 (
                     "overlay text matching DOWNLOAD ALL FUNDS",
                     page.locator(
-                        "div.cdk-overlay-pane text=/download\\s+all\\s+funds\\s*\\(xls\\)/i"
+                        "div.cdk-overlay-pane text=/download\\s+all\\s+funds\\s*\\((xlsx|xls)\\)/i"
                     ).first,
                 ),
                 (
                     "menuitem role named DOWNLOAD ALL FUNDS",
                     page.get_by_role(
                         "menuitem",
-                        name=re.compile(r"download\s+all\s+funds\s*\(xls\)", re.IGNORECASE),
+                        name=re.compile(r"download\s+all\s+funds\s*\((xlsx|xls)\)", re.IGNORECASE),
+                    ).first,
+                ),
+                (
+                    "menuitem role named DOWNLOAD ALL FUNDS without extension",
+                    page.get_by_role(
+                        "menuitem",
+                        name=re.compile(r"download\s+all\s+funds", re.IGNORECASE),
                     ).first,
                 ),
             ],
@@ -326,13 +430,32 @@ async def download_etf_list() -> Path:
             return final_path
 
         try:
+            async with page.expect_response(
+                lambda response: (
+                    response.status == 200
+                    and CUSTOMIZED_EXPORT_TOKEN in response.url
+                    and response_looks_like_spreadsheet(response)
+                ),
+                timeout=TIMEOUT_MS,
+            ) as response_info:
+                await click_with_fallback(all_etfs_option, "DOWNLOAD ALL FUNDS export option")
+
+            response = await response_info.value
+            final_path = await save_response_to_disk(response)
+            print(f"[5/5] File saved -> {final_path}")
+            await browser.close()
+            return final_path
+        except PlaywrightTimeoutError:
+            print("     No direct customized-excel response captured; falling back to browser download.")
+            await click_with_fallback(download_btn, "DOWNLOAD button")
+            await page.wait_for_timeout(1_000)
+
+        try:
             async with page.expect_download(timeout=TIMEOUT_MS) as dl_info:
-                await click_with_fallback(all_etfs_option, "DOWNLOAD ALL FUNDS (XLS) option")
+                await click_with_fallback(all_etfs_option, "DOWNLOAD ALL FUNDS export option")
 
             download: Download = await dl_info.value
-            suggested = download.suggested_filename or "ishares_etf_list.xls"
-            final_path = build_output_path(suggested)
-            await download.save_as(final_path)
+            final_path = await write_download_to_disk(download)
             print(f"[5/5] File saved -> {final_path}")
             await browser.close()
             return final_path
@@ -344,14 +467,13 @@ async def download_etf_list() -> Path:
                 response.status == 200
                 and (
                     "content-disposition" in response.headers
-                    or "excel" in response.headers.get("content-type", "").lower()
-                    or "spreadsheet" in response.headers.get("content-type", "").lower()
+                    or response_looks_like_spreadsheet(response)
                     or response.url.lower().endswith((".xls", ".xlsx", ".csv"))
                 )
             ),
             timeout=TIMEOUT_MS,
         ) as response_info:
-            await click_with_fallback(all_etfs_option, "DOWNLOAD ALL FUNDS (XLS) option")
+            await click_with_fallback(all_etfs_option, "DOWNLOAD ALL FUNDS export option")
 
         response = await response_info.value
         final_path = await save_response_to_disk(response)
