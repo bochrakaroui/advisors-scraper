@@ -65,9 +65,12 @@ That means the extractor pulls out the fields the final pipeline needs, such as:
 - ISIN
 - currency
 - TER
-- AUM
+- partial AUM, when the provider exposes a separate share-class or listing value
+- total fund AUM
 - AUM currency
-- source date
+- AUM source or valuation date
+
+If a current provider response omits a required target or does not contain usable total AUM, the extractor can use that provider's configured fallback. The fallback keeps the same provider workflow and selects the newest usable AUM from a current official disclosure, a current public fund profile, or the latest successful official provider snapshot.
 
 The result of this step is the provider's selected-fields CSV, saved in the same dated folder as the raw file.
 
@@ -100,7 +103,9 @@ In other words:
 - provider files may contain more products than needed
 - the final combined file keeps only the rows relevant to the project whitelist
 
-## Step 5: Final Combined Output
+After filtering, the pipeline verifies that every whitelist ISIN is present. Missing expected ISINs cause the run to fail instead of silently producing incomplete coverage.
+
+## Step 5: Final AUM Validation and Combined Output
 
 After combining and filtering, the pipeline writes the final CSV for that run inside:
 
@@ -111,6 +116,8 @@ pipeline_runs/<YYYY-MM-DD>/all_etf_fields.csv
 This is the main final deliverable of the project.
 
 If someone only cares about the final result, this is usually the file they want.
+
+The run is successful only when every whitelist ISIN is represented and every final row has a numeric `Total AUM(M)` greater than zero. Blank, invalid, zero, or negative total AUM causes final coverage verification to fail.
 
 ## Folder Philosophy
 

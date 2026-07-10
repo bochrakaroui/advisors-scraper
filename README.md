@@ -13,15 +13,16 @@ Each pipeline run produces:
 The final CSV columns are:
 
 ```text
-ETF Name,Issuer,ISIN,CCY,TER(bps),AUM(M),AUM CCY,Date
+ETF Name,Issuer,ISIN,CCY,TER(bps),Partial AUM(M),Total AUM(M),AUM CCY,Date
 ```
 
 Field meanings:
 
 - `TER(bps)`: total expense ratio in basis points
-- `AUM(M)`: assets under management, always expressed in millions
+- `Partial AUM(M)`: optional share-class or listing-level AUM when the provider exposes it separately
+- `Total AUM(M)`: total fund AUM, always expressed in millions; this is the required AUM field
 - `AUM CCY`: currency of the AUM value
-- `Date`: source date, normalized as `dd/mm/yyyy`
+- `Date`: source or valuation date for the AUM value, normalized as `dd/mm/yyyy`
 
 ## Repository Layout
 
@@ -134,8 +135,12 @@ For each selected provider, the pipeline does this:
 1. Download or reuse the latest provider raw file.
 2. Parse that raw file.
 3. Run the matching provider extractor.
-4. Save the extracted CSV in the provider's dated folder.
-5. Apply the final ISIN whitelist filter when building the combined file.
+4. Use the provider's configured AUM fallback when the current source omits a required target or returns no usable AUM.
+5. Save the extracted CSV in the provider's dated folder.
+6. Apply the final ISIN whitelist filter when building the combined file.
+7. Verify final whitelist coverage and total AUM validity.
+
+A fallback uses the newest usable value available from the provider's configured sources. Depending on the provider, that may be a current official disclosure, a current public fund profile, or the latest successful official provider snapshot when the live endpoint temporarily fails.
 
 The console output shows, for each provider:
 
@@ -147,7 +152,17 @@ The console output shows, for each provider:
 - raw and selected output paths
 - final provider status
 
-At the end, the script prints the final combined CSV path and the total row counts.
+At the end, the script prints the final combined CSV path, row counts, missing-whitelist count, and invalid-AUM count.
+
+### Final AUM success criteria
+
+The pipeline returns a successful exit code only when:
+
+- every ISIN in `ISIN-list.xlsx` appears in the final combined CSV
+- every final row has a numeric `Total AUM(M)` greater than zero
+- no selected provider has a hard execution failure
+
+If a whitelist ISIN is missing, or if a final total AUM is blank, invalid, zero, or negative, the final coverage verification returns a failing exit code.
 
 ## Where Files Are Written
 
@@ -315,6 +330,17 @@ Fix:
 ```powershell
 python run_all_etf_pipeline.py --use-latest-downloads
 ```
+
+### Final AUM coverage verification fails
+
+Cause:
+- One or more whitelist ISINs are absent from the final provider outputs.
+- A final row has a blank, invalid, zero, or negative `Total AUM(M)`.
+- The configured current or latest-successful AUM fallback could not resolve the row.
+
+Fix:
+- Review the provider report printed immediately before the final coverage error.
+- Rerun the affected provider when its source is available, then rebuild with `--use-latest-downloads`.
 
 ## Notes About Source Metadata
 
