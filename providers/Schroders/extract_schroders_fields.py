@@ -165,6 +165,70 @@ def filter_rows(rows: list[dict[str, Any]], include_failed: bool) -> list[dict[s
     return [row for row in rows if row.get("extraction_method") != "failed"]
 
 
+def source_row_has_positive_aum(row: dict[str, Any]) -> bool:
+    cleaned = clean_text(row.get(SOURCE_FIELDS["aum"])).replace(",", "")
+    if not cleaned:
+        return False
+    try:
+        return Decimal(cleaned) > 0
+    except (InvalidOperation, ValueError):
+        return False
+
+
+def supplement_from_latest_successful_snapshot(
+    rows: list[dict[str, str]],
+    input_path: Path,
+    target_isins: set[str],
+) -> list[dict[str, str]]:
+    present_isins = {clean_text(row.get("ISIN")).upper() for row in rows if clean_text(row.get("ISIN"))}
+    unresolved_isins = {isin for isin in target_isins if isin and isin not in present_isins}
+    if not unresolved_isins:
+        return rows
+
+    try:
+        current_run_date = datetime.strptime(input_path.parent.name, "%Y-%m-%d")
+    except ValueError:
+        current_run_date = datetime.max
+
+    candidates = sorted(
+        (
+            path
+            for path in INPUT_DIR.rglob(RAW_FILENAME)
+            if path.is_file() and path.resolve() != input_path.resolve()
+        ),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    recovered_rows: dict[str, dict[str, str]] = {}
+    for candidate in candidates:
+        try:
+            candidate_run_date = datetime.strptime(candidate.parent.name, "%Y-%m-%d")
+        except ValueError:
+            continue
+        if candidate_run_date >= current_run_date:
+            continue
+
+        for source_row in load_rows(candidate):
+            isin = clean_text(source_row.get(SOURCE_FIELDS["isin"])).upper()
+            if (
+                isin not in unresolved_isins
+                or isin in recovered_rows
+                or source_row.get("extraction_method") == "failed"
+                or not source_row_has_positive_aum(source_row)
+            ):
+                continue
+            recovered_rows[isin] = transform_row(source_row, extract_file_date(candidate))
+        if unresolved_isins <= set(recovered_rows):
+            break
+
+    if recovered_rows:
+        print(
+            "Recovered latest successful official Schroders AUM for: "
+            + ", ".join(sorted(recovered_rows))
+        )
+    return rows + [recovered_rows[isin] for isin in sorted(recovered_rows)]
+
+
 def supplement_missing_rows(rows: list[dict[str, str]], file_date: str) -> list[dict[str, str]]:
     if build_justetf_session is None or fetch_justetf_profile is None:
         return rows
@@ -216,6 +280,12 @@ def extract_rows(input_path: Path | None = None, *, include_failed: bool = False
     filtered_rows = filter_rows(raw_rows, include_failed=include_failed)
     file_date = extract_file_date(resolved_input_path)
     output_rows = [transform_row(row, file_date) for row in filtered_rows]
+    failed_isins = {
+        clean_text(row.get(SOURCE_FIELDS["isin"])).upper()
+        for row in raw_rows
+        if row.get("extraction_method") == "failed" and clean_text(row.get(SOURCE_FIELDS["isin"]))
+    }
+    output_rows = supplement_from_latest_successful_snapshot(output_rows, resolved_input_path, failed_isins)
     return supplement_missing_rows(output_rows, file_date)
 
 

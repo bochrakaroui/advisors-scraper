@@ -7,6 +7,7 @@ import csv
 import json
 import re
 from datetime import datetime
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 
@@ -129,6 +130,18 @@ def parse_captured_at(value: object | None) -> str:
     return parsed.strftime("%d/%m/%Y")
 
 
+def format_source_date(value: object | None) -> str:
+    cleaned = clean_text(value)
+    if not cleaned:
+        return ""
+    for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%Y/%m/%d"):
+        try:
+            return datetime.strptime(cleaned, fmt).strftime("%d/%m/%Y")
+        except ValueError:
+            continue
+    return ""
+
+
 def parse_snapshot(path: Path) -> tuple[str, list[dict[str, object]]]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     captured_at = parse_captured_at(payload.get("captured_at"))
@@ -144,6 +157,7 @@ def parse_snapshot_rows(path: Path) -> list[dict[str, object]]:
 
 
 def transform_row(source_row: dict[str, object], scrape_date: str) -> dict[str, str]:
+    aum_date = format_source_date(source_row.get("nav_date") or source_row.get("fund_size_date"))
     return {
         "ISIN": clean_text(source_row.get("isin")).upper(),
         "ETF Name": clean_text(source_row.get("etf_name")),
@@ -151,8 +165,80 @@ def transform_row(source_row: dict[str, object], scrape_date: str) -> dict[str, 
         "CCY": clean_text(source_row.get("ccy")).upper(),
         "TER(bps)": clean_text(source_row.get("ter_bps")),
         "AUM(M)": clean_text(source_row.get("aum_mn")),
-        "Date": scrape_date,
+        "Date": aum_date or scrape_date,
     }
+
+
+def source_row_has_positive_aum(row: dict[str, object]) -> bool:
+    cleaned = clean_text(row.get("aum_mn")).replace(",", "")
+    if not cleaned:
+        return False
+    try:
+        return Decimal(cleaned) > 0
+    except (InvalidOperation, ValueError):
+        return False
+
+
+def replace_failed_aum_with_latest_successful_rows(
+    input_path: Path,
+    source_rows: list[dict[str, object]],
+) -> list[dict[str, object]]:
+    unresolved_isins = {
+        clean_text(row.get("isin")).upper()
+        for row in source_rows
+        if clean_text(row.get("isin")) and not source_row_has_positive_aum(row)
+    }
+    if not unresolved_isins:
+        return source_rows
+
+    try:
+        current_run_date = datetime.strptime(input_path.parent.name, "%Y-%m-%d")
+    except ValueError:
+        current_run_date = datetime.max
+
+    candidates = sorted(
+        (
+            path
+            for path in INPUT_DIR.rglob("bnpparibas_etf_export.json")
+            if path.is_file() and path.resolve() != input_path.resolve()
+        ),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    recovered_rows: dict[str, dict[str, object]] = {}
+    for candidate in candidates:
+        try:
+            candidate_run_date = datetime.strptime(candidate.parent.name, "%Y-%m-%d")
+        except ValueError:
+            continue
+        if candidate_run_date >= current_run_date:
+            continue
+
+        _, candidate_rows = parse_snapshot(candidate)
+        for candidate_row in candidate_rows:
+            isin = clean_text(candidate_row.get("isin")).upper()
+            if (
+                isin not in unresolved_isins
+                or isin in recovered_rows
+                or not source_row_has_positive_aum(candidate_row)
+            ):
+                continue
+            recovered_rows[isin] = candidate_row
+        if unresolved_isins <= set(recovered_rows):
+            break
+
+    if recovered_rows:
+        print(
+            "Recovered latest successful official BNP Paribas AUM for: "
+            + ", ".join(sorted(recovered_rows))
+        )
+
+    return [
+        recovered_rows.get(clean_text(row.get("isin")).upper(), row)
+        if not source_row_has_positive_aum(row)
+        else row
+        for row in source_rows
+    ]
 
 
 def dedupe_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -174,6 +260,7 @@ def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
 def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
     captured_at, source_rows = parse_snapshot(resolved_input_path)
+    source_rows = replace_failed_aum_with_latest_successful_rows(resolved_input_path, source_rows)
     scrape_date = captured_at or extract_file_date(resolved_input_path)
     return dedupe_rows([transform_row(row, scrape_date) for row in source_rows])
 

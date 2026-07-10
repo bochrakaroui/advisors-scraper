@@ -17,6 +17,7 @@ import zipfile
 from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import dataclass
 from datetime import datetime
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Awaitable, Callable
 import xml.etree.ElementTree as ET
@@ -758,6 +759,16 @@ def normalize_output_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return normalized_rows
 
 
+def has_positive_total_aum(row: dict[str, str]) -> bool:
+    cleaned = str(row.get(TOTAL_AUM_COLUMN, "")).strip().replace(",", "")
+    if not cleaned:
+        return False
+    try:
+        return Decimal(cleaned) > 0
+    except (InvalidOperation, ValueError):
+        return False
+
+
 def supplement_missing_aum_from_justetf(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     if build_justetf_session is None or fetch_justetf_profile is None:
         return rows
@@ -769,7 +780,7 @@ def supplement_missing_aum_from_justetf(rows: list[dict[str, str]]) -> list[dict
             if normalized_isin
             and any(
                 normalize_isin(candidate_row.get("ISIN")) == normalized_isin
-                and not str(candidate_row.get(TOTAL_AUM_COLUMN, "")).strip()
+                and not has_positive_total_aum(candidate_row)
                 for candidate_row in rows
             )
         }
@@ -791,7 +802,11 @@ def supplement_missing_aum_from_justetf(rows: list[dict[str, str]]) -> list[dict
 
         aum_m = str(profile.get("aum_mn", "")).strip()
         aum_ccy = str(profile.get("aum_ccy", "")).strip().upper()
-        if not aum_m:
+        try:
+            has_positive_fallback = Decimal(aum_m.replace(",", "")) > 0
+        except (InvalidOperation, ValueError):
+            has_positive_fallback = False
+        if not has_positive_fallback:
             continue
         fallback_by_isin[isin] = (aum_m, aum_ccy)
 
@@ -804,7 +819,7 @@ def supplement_missing_aum_from_justetf(rows: list[dict[str, str]]) -> list[dict
         issuer = str(row.get("Issuer", "")).strip()
         if (
             not isin
-            or str(row.get(TOTAL_AUM_COLUMN, "")).strip()
+            or has_positive_total_aum(row)
             or isin not in fallback_by_isin
             or issuer in JUSTETF_AUM_FALLBACK_BLOCKED_ISSUERS
         ):
@@ -1033,7 +1048,7 @@ def collect_missing_whitelist_isins(
 def collect_rows_with_missing_aum(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     missing_rows: list[dict[str, str]] = []
     for row in rows:
-        if not str(row.get(TOTAL_AUM_COLUMN, "")).strip():
+        if not has_positive_total_aum(row):
             missing_rows.append(row)
     return missing_rows
 
@@ -1711,6 +1726,11 @@ async def async_main() -> int:
     print(f"Total rows   : {len(filtered_rows):,}")
     print(f"Whitelist ISINs: {filter_summary.whitelist_unique_isin_count:,} from {ISIN_FILTER_PATH}")
     print(f"Rows removed by ISIN filter: {filter_summary.removed_rows_count:,}")
+    print(f"Missing whitelist ISINs in final CSV: {len(coverage_summary.missing_expected_isins):,}")
+    if coverage_summary.missing_expected_isins:
+        print("Sample whitelist ISINs missing from final CSV:")
+        for isin in coverage_summary.missing_expected_isins[:10]:
+            print(f"  {isin}")
     print(f"Rows with missing total AUM in final CSV: {len(coverage_summary.missing_aum_identifiers):,}")
     if coverage_summary.missing_aum_identifiers:
         print(f"Sample rows still missing {TOTAL_AUM_COLUMN}:")
@@ -1732,10 +1752,18 @@ async def async_main() -> int:
             print(f"{provider_name}: FAILED -> {exc}")
         return 1
 
+    if coverage_summary.missing_expected_isins:
+        print(
+            "Final coverage verification failed: the aggregated CSV is missing "
+            f"{len(coverage_summary.missing_expected_isins):,} whitelist ISIN(s)."
+        )
+        return 1
+
     if coverage_summary.missing_aum_identifiers:
         print(
             "Final coverage verification failed: the aggregated CSV still has "
-            f"{len(coverage_summary.missing_aum_identifiers):,} row(s) with blank {TOTAL_AUM_COLUMN}."
+            f"{len(coverage_summary.missing_aum_identifiers):,} row(s) with missing, invalid, "
+            f"or non-positive {TOTAL_AUM_COLUMN}."
         )
         return 1
 

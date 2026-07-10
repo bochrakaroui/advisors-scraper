@@ -23,6 +23,20 @@ if str(REPO_ROOT) not in sys.path:
 
 from providers.output_schema import OUTPUT_COLUMNS
 
+try:
+    from scrapers.justetf_profile import build_session as build_justetf_session
+    from scrapers.justetf_profile import fetch_profile as fetch_justetf_profile
+except ModuleNotFoundError:  # pragma: no cover - direct script execution fallback
+    build_justetf_session = None  # type: ignore[assignment]
+    fetch_justetf_profile = None  # type: ignore[assignment]
+
+
+GREEN_BOND_REFERENCE_ISIN = "IE0005FKEK99"
+GREEN_BOND_SHARE_CLASSES = {
+    "IE0005FKEK99": "JPMorgan Green Social Sustainable Bond Active UCITS ETF USD (acc)",
+    "IE000HZSZFP6": "JPMorgan Green Social Sustainable Bond Active UCITS ETF USD (dist)",
+}
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -200,6 +214,51 @@ def dedupe_rows_by_isin(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return ordered_rows
 
 
+def supplement_missing_green_bond_share_classes(
+    rows: list[dict[str, str]],
+    input_path: Path,
+) -> list[dict[str, str]]:
+    present_isins = {clean_text(row.get("ISIN")).upper() for row in rows if clean_text(row.get("ISIN"))}
+    missing_isins = [isin for isin in GREEN_BOND_SHARE_CLASSES if isin not in present_isins]
+    if not missing_isins or build_justetf_session is None or fetch_justetf_profile is None:
+        return rows
+
+    try:
+        profile = fetch_justetf_profile(GREEN_BOND_REFERENCE_ISIN, session=build_justetf_session())
+    except Exception as exc:  # noqa: BLE001
+        print(f"WARNING: J.P. Morgan Green Bond AUM fallback failed: {exc}")
+        return rows
+
+    if clean_text(profile.get("fetch_status")) not in {"", "ok"}:
+        return rows
+
+    aum_m = clean_text(profile.get("aum_mn"))
+    try:
+        has_positive_aum = Decimal(aum_m.replace(",", "")) > 0
+    except (InvalidOperation, ValueError):
+        has_positive_aum = False
+    if not has_positive_aum:
+        return rows
+
+    aum_ccy = clean_text(profile.get("aum_ccy")).upper()
+    source_date = format_source_date(input_path.parent.name)
+    supplemented_rows = list(rows)
+    for isin in missing_isins:
+        supplemented_rows.append(
+            {
+                "ETF Name": GREEN_BOND_SHARE_CLASSES[isin],
+                "Issuer": ISSUER,
+                "ISIN": isin,
+                "CCY": "USD",
+                "TER(bps)": "32.00",
+                "AUM(M)": aum_m,
+                "AUM CCY": aum_ccy,
+                "Date": source_date,
+            }
+        )
+    return supplemented_rows
+
+
 def write_csv(output_path: Path, rows: list[dict[str, str]]) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", newline="", encoding="utf-8-sig") as handle:
@@ -212,6 +271,9 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     resolved_input_path = input_path.resolve() if input_path else find_latest_download(INPUT_DIR)
     rows = parse_snapshot_rows(resolved_input_path)
     output_rows = [transform_row(row) for row in rows if is_etf_row(row)]
+    output_rows = dedupe_rows_by_isin(output_rows)
+    if resolved_input_path.exists():
+        output_rows = supplement_missing_green_bond_share_classes(output_rows, resolved_input_path)
     return dedupe_rows_by_isin(output_rows)
 
 

@@ -8,12 +8,18 @@ import sys
 from datetime import datetime
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
+from urllib.parse import urljoin
+
+import requests
+from bs4 import BeautifulSoup
 
 
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_DIR = BASE_DIR
 RUN_FOLDER_ENV_VAR = "ETF_PIPELINE_RUN_FOLDER"
 REPO_ROOT = BASE_DIR.parents[1]
+CISION_PRESSROOM_URL = "https://news.cision.com/waystone-etf-icav"
+CISION_TIMEOUT_S = 45
 
 if str(REPO_ROOT) not in sys.path:
     sys.path.append(str(REPO_ROOT))
@@ -108,7 +114,7 @@ def format_date(value: str | None) -> str:
         return cleaned
     except ValueError:
         pass
-    for fmt in ("%Y-%m-%d", "%d-%m-%Y", "%d/%m/%Y %H:%M:%S"):
+    for fmt in ("%Y-%m-%d", "%Y/%m/%d", "%d-%m-%Y", "%d/%m/%Y %H:%M:%S"):
         try:
             return datetime.strptime(cleaned, fmt).strftime("%d/%m/%Y")
         except ValueError:
@@ -127,6 +133,74 @@ def load_rows(path: Path) -> list[dict]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     rows = payload.get("rows", payload.get("listing_rows", []))
     return rows
+
+
+def parse_cision_aum_rows(html: str) -> dict[str, dict[str, str]]:
+    soup = BeautifulSoup(html, "html.parser")
+    parsed_rows: dict[str, dict[str, str]] = {}
+    for table in soup.find_all("table"):
+        table_rows = [
+            [clean_text(cell.get_text(" ", strip=True)) for cell in row.find_all(["th", "td"])]
+            for row in table.find_all("tr")
+        ]
+        table_rows = [row for row in table_rows if any(row)]
+        if len(table_rows) < 2:
+            continue
+
+        header_indexes = {clean_text(label).casefold(): index for index, label in enumerate(table_rows[0])}
+        required_headers = ("valuation date", "isin", "currency", "units", "nav per unit")
+        if not all(header in header_indexes for header in required_headers):
+            continue
+
+        for row in table_rows[1:]:
+            try:
+                isin = clean_text(row[header_indexes["isin"]]).upper()
+                currency = clean_text(row[header_indexes["currency"]]).upper()
+                units = Decimal(clean_text(row[header_indexes["units"]]).replace(",", ""))
+                nav_per_unit = Decimal(clean_text(row[header_indexes["nav per unit"]]).replace(",", ""))
+                valuation_date = format_date(row[header_indexes["valuation date"]])
+            except (IndexError, InvalidOperation, ValueError):
+                continue
+            if not isin or units <= 0 or nav_per_unit <= 0 or not valuation_date:
+                continue
+            parsed_rows[isin] = {
+                "aum_m": format_decimal((units * nav_per_unit) / Decimal("1000000")),
+                "aum_currency": currency,
+                "date": valuation_date,
+            }
+        if parsed_rows:
+            break
+    return parsed_rows
+
+
+def fetch_latest_cision_aum_rows(target_isins: set[str]) -> dict[str, dict[str, str]]:
+    if not target_isins:
+        return {}
+
+    session = requests.Session()
+    session.headers.update({"User-Agent": "Mozilla/5.0", "Accept-Language": "en-GB,en;q=0.9"})
+    response = session.get(CISION_PRESSROOM_URL, timeout=CISION_TIMEOUT_S)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+    article_urls: list[str] = []
+    for link in soup.find_all("a", href=True):
+        href = clean_text(link.get("href"))
+        if "/r/net-asset-value" not in href:
+            continue
+        article_url = urljoin(CISION_PRESSROOM_URL, href)
+        if article_url not in article_urls:
+            article_urls.append(article_url)
+
+    resolved_rows: dict[str, dict[str, str]] = {}
+    for article_url in article_urls[:12]:
+        article_response = session.get(article_url, timeout=CISION_TIMEOUT_S)
+        article_response.raise_for_status()
+        for isin, row in parse_cision_aum_rows(article_response.text).items():
+            if isin in target_isins and isin not in resolved_rows:
+                resolved_rows[isin] = {**row, "source_url": article_url}
+        if target_isins <= set(resolved_rows):
+            break
+    return resolved_rows
 
 
 def transform_row(source_row: dict) -> dict[str, str] | None:
@@ -233,6 +307,31 @@ def extract_rows(input_path: Path | None = None) -> list[dict[str, str]]:
     source_rows = load_rows(resolved_input_path)
     output_rows = [transform_row(row) for row in source_rows]
     filtered_rows = [row for row in output_rows if row is not None]
+    failed_rows = [row for row in source_rows if row.get("extraction_method") == "failed"]
+    failed_isins = {clean_text(row.get("isin")).upper() for row in failed_rows if clean_text(row.get("isin"))}
+    if failed_isins:
+        try:
+            cision_rows = fetch_latest_cision_aum_rows(failed_isins)
+        except Exception as exc:  # noqa: BLE001
+            print(f"WARNING: Waystone Cision AUM fallback failed: {exc}")
+            cision_rows = {}
+        for source_row in failed_rows:
+            isin = clean_text(source_row.get("isin")).upper()
+            cision_row = cision_rows.get(isin)
+            if not cision_row:
+                continue
+            filtered_rows.append(
+                {
+                    "ETF Name": "",
+                    "Issuer": clean_text(source_row.get("provider")) or "Waystone",
+                    "ISIN": isin,
+                    "CCY": cision_row["aum_currency"],
+                    "TER(bps)": "",
+                    "AUM(M)": cision_row["aum_m"],
+                    "AUM CCY": cision_row["aum_currency"],
+                    "Date": cision_row["date"],
+                }
+            )
     return enrich_missing_static_fields(filtered_rows)
 
 
